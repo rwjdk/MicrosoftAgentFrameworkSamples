@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="src/HelloWorld/HelloWorld.csproj" Id="354649eb-cdab-4155-bbf0-0edbaab0782d" />
+  <Project Path="src/Shared/Shared.csproj" />
+</Solution>
