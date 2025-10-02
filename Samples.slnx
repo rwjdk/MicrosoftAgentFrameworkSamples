@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/SettingsAndConfiguration/">
+    <Project Path="src/SettingsOnAiAgent/SettingsOnAiAgent.csproj" Id="86d8fd4d-bf34-488d-8f30-94e9b808419a" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
   </Folder>
