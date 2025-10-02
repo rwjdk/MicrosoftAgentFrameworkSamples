@@ -4,6 +4,7 @@
   </Folder>
   <Folder Name="/ZeroToFirstAgent/">
     <Project Path="src/ZeroToFirstAgent.AzureOpenAi/ZeroToFirstAgent.AzureOpenAi.csproj" Id="a1a05c9d-690d-4055-b666-8546e7d876a8" />
+    <Project Path="src/ZeroToFirstAgent.OpenAi/ZeroToFirstAgent.OpenAi.csproj" Id="c2901cc3-40cc-4ef7-a3a2-b082e855ea6a" />
   </Folder>
   <Project Path="src/Shared/Shared.csproj" />
 </Solution>
