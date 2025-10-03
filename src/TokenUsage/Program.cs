@@ -1,0 +1,45 @@
+﻿using Azure.AI.OpenAI;
+using Microsoft.Agents.AI;
+using OpenAI;
+using Shared;
+using Shared.Extensions;
+using System.ClientModel;
+
+Configuration configuration = ConfigurationManager.GetConfiguration();
+
+AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.Endpoint), new ApiKeyCredential(configuration.Key));
+
+AIAgent agent = client
+    .GetChatClient(configuration.ChatDeploymentName)
+    .CreateAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
+
+string question = "What is the capital of France and how many people live there?";
+
+//Simple
+AgentRunResponse response = await agent.RunAsync(question);
+Console.WriteLine(response);
+
+Utils.WriteLineInformation($"- Input Tokens: {response.Usage?.InputTokenCount}");
+Utils.WriteLineInformation($"- Output Tokens: {response.Usage?.OutputTokenCount} " +
+                           $"({response.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
+
+//------------------------------------------------------------------------------------------------------------------------
+Utils.WriteSeparator();
+
+//Streaming
+List<AgentRunResponseUpdate> updates = [];
+await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(question))
+{
+    updates.Add(update);
+    Console.Write(update);
+}
+
+Console.WriteLine();
+
+AgentRunResponse collectedResponseFromStreaming = updates.ToAgentRunResponse();
+Utils.WriteLineInformation($"- Input Tokens (Streaming): {collectedResponseFromStreaming.Usage?.InputTokenCount}");
+Utils.WriteLineInformation($"- Output Tokens (Streaming): {collectedResponseFromStreaming.Usage?.OutputTokenCount} " +
+                           $"({collectedResponseFromStreaming.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
+
+Utils.WriteSeparator();
+Console.ReadKey();
