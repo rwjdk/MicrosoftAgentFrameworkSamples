@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Features/">
+    <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />
+  </Folder>
   <Folder Name="/SettingsAndConfiguration/">
     <Project Path="src/SettingsOnAiAgent/SettingsOnAiAgent.csproj" Id="86d8fd4d-bf34-488d-8f30-94e9b808419a" />
   </Folder>
