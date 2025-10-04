@@ -1,4 +1,6 @@
-﻿/* Steps:
+﻿//YouTube video that cover this sample: https://youtu.be/aQD4vhzQRvI
+
+/* Steps:
  * 1: Create an 'Azure AI Foundry' Resource (or legacy 'Azure OpenAI Resource') + Deploy Model
  * 2: Add Nuget Packages (Azure.AI.OpenAI + Microsoft.Agents.AI.OpenAI)
  * 3: Create an AzureOpenAIClient (API Key or Azure Identity)

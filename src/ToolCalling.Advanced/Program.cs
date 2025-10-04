@@ -1,4 +1,9 @@
-﻿#pragma warning disable MEAI001
+﻿//YouTube video that cover this sample
+//- Basic: https://youtu.be/gJTodKpv8Ik
+//- Advanced: https://youtu.be/dCtojrK8bKk
+//- MCP: https://youtu.be/Y5IKdt9vdJM
+
+#pragma warning disable MEAI001
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;

@@ -1,4 +1,6 @@
-﻿/* Steps:
+﻿//YouTube video that cover this sample: https://youtu.be/GbyEQWwBMFk
+
+/* Steps:
  * 1: Get an Anthropic API Key (https://docs.claude.com/en/api/admin-api/apikeys/get-api-key)
  * 2: Add Nuget Packages (Anthropic.SDK + Microsoft.Agents.AI)
  * 3: Create an AnthropicClient for an ChatClientAgent

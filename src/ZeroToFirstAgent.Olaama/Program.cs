@@ -1,4 +1,6 @@
-﻿/* Steps:
+﻿//YouTube video that cover this sample: https://youtu.be/GbyEQWwBMFk
+
+/* Steps:
  * 1: Download Ollama + Model (https://ollama.com/)
  * 2: Add Nuget Packages (OllamaSharp + Microsoft.Agents.AI)
  * 3: Create an OllamaApiClient and store it as IChatClient for an ChatClientAgent

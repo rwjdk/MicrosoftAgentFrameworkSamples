@@ -1,4 +1,9 @@
-﻿using Azure.AI.OpenAI;
+﻿//YouTube video that cover this sample
+//- Basic: https://youtu.be/gJTodKpv8Ik
+//- Advanced: https://youtu.be/dCtojrK8bKk
+//- MCP: https://youtu.be/Y5IKdt9vdJM
+
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI;

@@ -1,4 +1,6 @@
-﻿/* Steps:
+﻿//YouTube video that cover this sample: https://youtu.be/GbyEQWwBMFk
+
+/* Steps:
  * 1: Get a Grok API Key (https://x.ai/api)
  * 2: Add Nuget Packages (OpenAI + Microsoft.Agents.AI.OpenAI)
  * 3: Create an OpenAIClient

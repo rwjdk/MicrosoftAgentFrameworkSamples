@@ -1,4 +1,6 @@
-﻿/* Steps:
+﻿//YouTube video that cover this sample: https://youtu.be/CvA69UyqJ7U
+
+/* Steps:
  * 1: Create an 'OpenAI API Account'
  * 2: Add Nuget Packages (OpenAI + Microsoft.Agents.AI.OpenAI)
  * 3: Create an OpenAIClient

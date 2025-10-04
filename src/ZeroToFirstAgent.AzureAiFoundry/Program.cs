@@ -1,4 +1,6 @@
-﻿/* Steps:
+﻿//YouTube video that cover this sample: https://youtu.be/DoyeSZqim08
+
+/* Steps:
  * 1: Create an 'Azure AI Foundry' Resource + Deploy Model
  * 2: Add Nuget Packages (Azure.AI.Agents.Persistent, Azure.Identity, Microsoft.Agents.AI.AzureAI)
  * 3: Create an PersistentAgentsClient (Azure Identity)

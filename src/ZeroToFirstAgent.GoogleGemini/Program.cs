@@ -1,4 +1,6 @@
-﻿/* Steps:
+﻿//YouTube video that cover this sample: https://youtu.be/GbyEQWwBMFk
+
+/* Steps:
  * 1: Get a Google API Gemini API Key (https://aistudio.google.com/app/api-keys)
  * 2: Add Nuget Packages (Google_GenerativeAI.Microsoft + Microsoft.Agents.AI)
  * 3: Create an GenerativeAIChatClient for an ChatClientAgent
