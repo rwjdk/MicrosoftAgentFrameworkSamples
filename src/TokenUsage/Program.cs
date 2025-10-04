@@ -24,7 +24,7 @@ Utils.WriteLineInformation($"- Output Tokens: {response.Usage?.OutputTokenCount}
                            $"({response.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
 
 //------------------------------------------------------------------------------------------------------------------------
-Utils.WriteSeparator();
+Utils.Separator();
 
 //Streaming
 List<AgentRunResponseUpdate> updates = [];
@@ -41,5 +41,5 @@ Utils.WriteLineInformation($"- Input Tokens (Streaming): {collectedResponseFromS
 Utils.WriteLineInformation($"- Output Tokens (Streaming): {collectedResponseFromStreaming.Usage?.OutputTokenCount} " +
                            $"({collectedResponseFromStreaming.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
 
-Utils.WriteSeparator();
+Utils.Separator();
 Console.ReadKey();

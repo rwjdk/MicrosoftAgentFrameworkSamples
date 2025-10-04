@@ -7,4 +7,5 @@ public record Configuration(
     string EmbeddingModelName,
     string AzureAiFoundryAgentEndpoint,
     string AzureAiFoundryAgentId,
-    string BingApiKey);
+    string BingApiKey,
+    string GitHubPatToken);

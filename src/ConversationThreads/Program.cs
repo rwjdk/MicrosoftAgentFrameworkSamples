@@ -37,9 +37,7 @@ while (true)
         }
     }
 
-    Console.WriteLine();
-    Console.WriteLine(string.Empty.PadLeft(50, '*'));
-    Console.WriteLine();
+    Utils.Separator();
 
     if (optionToResume)
     {

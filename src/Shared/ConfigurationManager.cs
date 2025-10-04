@@ -32,7 +32,8 @@ public class ConfigurationManager
         string azureAiFoundryAgentEndpoint = configurationRoot["AzureAiFoundryAgentEndpoint"] ?? string.Empty;
         string azureAiFoundryAgentId = configurationRoot["AzureAiFoundryAgentId"] ?? string.Empty;
         string bingApiKey = configurationRoot["BingApiKey"] ?? string.Empty;
+        string githubPatToken = configurationRoot["GitHubPatToken"] ?? string.Empty;
 
-        return new Configuration(endpoint, key, chatDeploymentName, embeddingModelName, azureAiFoundryAgentEndpoint, azureAiFoundryAgentId, bingApiKey);
+        return new Configuration(endpoint, key, chatDeploymentName, embeddingModelName, azureAiFoundryAgentEndpoint, azureAiFoundryAgentId, bingApiKey, githubPatToken);
     }
 }
