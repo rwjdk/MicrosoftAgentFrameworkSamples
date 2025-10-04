@@ -12,7 +12,7 @@ Configuration configuration = ConfigurationManager.GetConfiguration();
 
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.Endpoint), new ApiKeyCredential(configuration.Key));
 
-McpClient gitHubMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
+await using McpClient gitHubMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
 {
     TransportMode = HttpTransportMode.StreamableHttp,
     Endpoint = new Uri("https://api.githubcopilot.com/mcp/"),
