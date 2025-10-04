@@ -1,5 +1,5 @@
 ﻿/* Steps:
- * 1: Create an 'Azure AI Foundry' Resource (or legacy 'Azure OpenAI Resource')
+ * 1: Create an 'Azure AI Foundry' Resource (or legacy 'Azure OpenAI Resource') + Deploy Model
  * 2: Add Nuget Packages (Azure.AI.OpenAI + Microsoft.Agents.AI.OpenAI)
  * 3: Create an AzureOpenAIClient (API Key or Azure Identity)
  * 4: Get a ChatClient and Create an AI Agent from it

@@ -23,6 +23,7 @@
     <Project Path="src/ZeroToFirstAgent.Olaama/ZeroToFirstAgent.Olaama.csproj" Id="fbb6b3d1-1aed-4fec-9632-a99def054b8e" />
   </Folder>
   <Folder Name="/ZeroToFirstAgent/OpenAI Based/">
+    <Project Path="src/ZeroToFirstAgent.AzureAiFoundry/ZeroToFirstAgent.AzureAiFoundry.csproj" Id="b0b3dda9-e6f6-4fbd-baf0-c2148dbf91a0" />
     <Project Path="src/ZeroToFirstAgent.AzureOpenAi/ZeroToFirstAgent.AzureOpenAi.csproj" Id="a1a05c9d-690d-4055-b666-8546e7d876a8" />
     <Project Path="src/ZeroToFirstAgent.OpenAi/ZeroToFirstAgent.OpenAi.csproj" Id="c2901cc3-40cc-4ef7-a3a2-b082e855ea6a" />
     <Project Path="src/ZeroToFirstAgent.XAIGrok/ZeroToFirstAgent.XAIGrok.csproj" Id="d55d6ced-850d-4fb7-b729-a953ca1b70b0" />
