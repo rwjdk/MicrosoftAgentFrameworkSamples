@@ -9,7 +9,7 @@ using System.ClientModel;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.Endpoint), new ApiKeyCredential(configuration.Key));
+AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
 AIAgent agent = client
     .GetChatClient(configuration.ChatDeploymentName)

@@ -15,7 +15,7 @@ using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.Endpoint), new ApiKeyCredential(configuration.Key));
+AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
 await using McpClient gitHubMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
 {
