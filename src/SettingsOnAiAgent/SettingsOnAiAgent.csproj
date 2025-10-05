@@ -8,7 +8,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Azure.AI.OpenAI" Version="2.3.0-beta.2" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251001.3" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251002.1" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.9" />
 		<PackageReference Include="OpenTelemetry" Version="1.13.0" />
