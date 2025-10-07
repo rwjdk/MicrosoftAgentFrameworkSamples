@@ -9,8 +9,6 @@ using Microsoft.Extensions.AI;
 using OpenAI;
 using Shared;
 using System.ClientModel;
-using System.Reflection;
-using System.Text;
 using ToolCalling.Basics;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 

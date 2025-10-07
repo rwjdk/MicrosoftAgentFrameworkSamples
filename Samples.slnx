@@ -9,7 +9,18 @@
     <Project Path="src/ToolCalling.Basics/ToolCalling.Basics.csproj" Id="0157ef69-5a6c-4470-9a9d-43bca4ea9649" />
     <Project Path="src/Toolcalling.FromAnMcpServer/Toolcalling.FromAnMcpServer.csproj" Id="427477f9-a17e-4284-a66f-fea0f9411701" />
   </Folder>
-  <Folder Name="/MultiAgents &amp; Workflows/" />
+  <Folder Name="/MultiAgents &amp; Workflows/">
+    <Project Path="src/MultiAgent.AgentAsTool/MultiAgent.AgentAsTool.csproj" Id="41434d93-72ba-43d0-b7b0-117e3c6eb7bb" />
+    <Project Path="src/MultiAgent.ManualViaStructuredOutput/MultiAgent.ManualViaStructuredOutput.csproj" Id="84bbb296-1bd5-4e35-86dd-bf12dce7b418" />
+  </Folder>
+  <Folder Name="/MultiAgents &amp; Workflows/Agentic Workflows/">
+    <Project Path="src/Workflow.Concurrent/Workflow.Concurrent.csproj" Id="b22a0c06-ddd2-4615-9335-84dfbecfd961" />
+    <Project Path="src/Workflow.Handoff/Workflow.Handoff.csproj" Id="b19de8e1-2119-403c-8f12-8a61c5b77e33" />
+    <Project Path="src/Workflow.Sequential/Workflow.Sequential.csproj" Id="1bcdb486-2870-4739-8a35-d01c80b167e9" />
+  </Folder>
+  <Folder Name="/MultiAgents &amp; Workflows/Workflows/">
+    <Project Path="src/Workflow.AiAssisted.PizzaSample/Workflow.AiAssisted.PizzaSample.csproj" Id="ebb01b83-7e68-44be-a89a-4574848c00fa" />
+  </Folder>
   <Folder Name="/SettingsAndConfiguration/">
     <Project Path="src/SettingsOnAiAgent/SettingsOnAiAgent.csproj" Id="86d8fd4d-bf34-488d-8f30-94e9b808419a" />
   </Folder>
