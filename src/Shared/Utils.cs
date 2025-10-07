@@ -12,6 +12,11 @@ public static class Utils
         WriteLine(text, ConsoleColor.Red);
     }
 
+    public static void WriteLineYellow(string text)
+    {
+        WriteLine(text, ConsoleColor.Yellow);
+    }
+
     public static void WriteLineWarning(string text)
     {
         WriteLine(text, ConsoleColor.Yellow);
