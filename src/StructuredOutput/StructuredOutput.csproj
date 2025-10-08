@@ -11,6 +11,7 @@
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251007.1" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\MicrosoftAgentFramework.Utilities\MicrosoftAgentFramework.Utilities.csproj" />
 		<ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 </Project>
