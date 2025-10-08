@@ -9,7 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251002.1" />
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251007.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicrosoftAgentFramework.Utilities\MicrosoftAgentFramework.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

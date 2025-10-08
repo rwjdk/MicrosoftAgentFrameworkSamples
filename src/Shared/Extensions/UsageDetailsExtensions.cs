@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.AI;
+using MicrosoftAgentFramework.Utilities.Extensions;
 
 namespace Shared.Extensions;
 
@@ -17,15 +18,5 @@ public static class UsageDetailsExtensions
         Utils.WriteLineInformation($"- Input Tokens: {usageDetails.InputTokenCount}");
         Utils.WriteLineInformation($"- Output Tokens: {usageDetails.OutputTokenCount} " +
                                    $"({usageDetails.GetOutputTokensUsedForReasoning()} was used for reasoning)");
-    }
-
-    public static long? GetOutputTokensUsedForReasoning(this UsageDetails? usageDetails)
-    {
-        if (usageDetails?.AdditionalCounts?.TryGetValue(ReasonTokenCountKey, out long tokenCount) ?? false)
-        {
-            return tokenCount;
-        }
-
-        return null;
     }
 }

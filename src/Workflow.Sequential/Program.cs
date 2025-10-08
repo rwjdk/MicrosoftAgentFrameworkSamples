@@ -1,4 +1,6 @@
-﻿using Azure.AI.OpenAI;
+﻿//YouTube video that cover this sample: https://youtu.be/nPhpIciKfFs
+
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.Workflows;
 using Microsoft.Extensions.AI;

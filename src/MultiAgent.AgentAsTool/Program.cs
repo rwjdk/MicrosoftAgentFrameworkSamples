@@ -1,4 +1,6 @@
-﻿using Azure.AI.OpenAI;
+﻿//YouTube video that cover this sample: https://youtu.be/wL4V78s_wI4
+
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using MultiAgent.AgentAsTool;
@@ -80,48 +82,8 @@ AIAgent jackOfAllTradesAgent = client
         tools:
         [
             AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
-            AIFunctionFactory.Create(StringTools.Reverse),
             AIFunctionFactory.Create(StringTools.Uppercase),
             AIFunctionFactory.Create(StringTools.Lowercase),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
-            AIFunctionFactory.Create(NumberTools.RandomNumber),
             AIFunctionFactory.Create(NumberTools.RandomNumber),
             AIFunctionFactory.Create(NumberTools.AnswerToEverythingNumber)
         ]

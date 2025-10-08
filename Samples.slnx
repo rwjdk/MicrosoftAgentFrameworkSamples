@@ -2,6 +2,7 @@
   <Folder Name="/Features/">
     <Project Path="src/AgentInputData/AgentInputData.csproj" Id="56751bff-8f82-4754-9d16-6f46b0b82fe1" />
     <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />
+    <Project Path="src/StructuredOutput/StructuredOutput.csproj" Id="3f844d4f-0435-468f-a6ef-ff35ac8f7983" />
     <Project Path="src/TokenUsage/TokenUsage.csproj" Id="e3accc36-005a-4900-be4e-0d1d35142a2a" />
   </Folder>
   <Folder Name="/Features/ToolCalling/">
@@ -44,6 +45,7 @@
   <Folder Name="/ZeroToFirstAgent/OpenAI Based/Offline/">
     <Project Path="src/ZeroToFirstAgent.FoundryLocal/ZeroToFirstAgent.FoundryLocal.csproj" Id="420ee7f5-fa0f-4303-a68c-630ede8086e4" />
   </Folder>
+  <Project Path="src/MicrosoftAgentFramework.Utilities/MicrosoftAgentFramework.Utilities.csproj" Id="997d075c-8a83-4d22-94b3-09af8550aed5" />
   <Project Path="src/Playground/Playground.csproj" Id="cbfc6bab-e8ea-4566-a695-56d84b6e5f68" />
   <Project Path="src/Shared/Shared.csproj" />
 </Solution>

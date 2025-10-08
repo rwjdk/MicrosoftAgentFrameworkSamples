@@ -1,4 +1,6 @@
-﻿using Microsoft.Agents.AI.Workflows;
+﻿//YouTube video that cover this sample: https://youtu.be/KaEefBTKBeE
+
+using Microsoft.Agents.AI.Workflows;
 using Shared;
 using System.Text;
 using Workflow.AiAssisted.PizzaSample;

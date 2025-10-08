@@ -6,6 +6,7 @@ using OpenAI;
 using Shared;
 using Shared.Extensions;
 using System.ClientModel;
+using MicrosoftAgentFramework.Utilities.Extensions;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
