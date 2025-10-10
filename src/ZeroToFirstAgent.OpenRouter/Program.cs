@@ -1,6 +1,4 @@
-﻿//YouTube video that cover this sample: https://youtu.be/GbyEQWwBMFk
-
-/* Steps:
+﻿/* Steps:
  * 1: Get a OpenRouter API Key (https://openrouter.ai/settings/keys)
  * 2: Add Nuget Packages (OpenAI + Microsoft.Agents.AI.OpenAI)
  * 3: Create an OpenAIClient
@@ -21,7 +19,7 @@ OpenAI.OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new 
 });
 AIAgent agent = client.GetChatClient(model).CreateAIAgent();
 
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Germany?");
+AgentRunResponse response = await agent.RunAsync("What is the Capital of Norway?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
