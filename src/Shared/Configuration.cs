@@ -9,4 +9,6 @@ public record Configuration(
     string AzureAiFoundryAgentEndpoint,
     string AzureAiFoundryAgentId,
     string BingApiKey,
-    string GitHubPatToken);
+    string GitHubPatToken,
+    string HuggingFaceApiKey,
+    string OpenRouterApiKey);

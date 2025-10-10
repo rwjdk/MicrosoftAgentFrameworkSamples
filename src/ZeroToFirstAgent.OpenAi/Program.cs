@@ -12,7 +12,7 @@ using Microsoft.Agents.AI;
 using OpenAI;
 
 const string apiKey = "<YourAPIKey>";
-const string model = "<yourModelName>";
+const string model = "<yourModelName>"; //Example: gpt-4.1
 
 OpenAI.OpenAIClient client = new OpenAIClient(apiKey);
 AIAgent agent = client.GetChatClient(model).CreateAIAgent();

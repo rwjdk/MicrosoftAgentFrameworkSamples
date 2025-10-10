@@ -3,7 +3,7 @@
 /* Steps:
  * 1: Get a Grok API Key (https://x.ai/api)
  * 2: Add Nuget Packages (OpenAI + Microsoft.Agents.AI.OpenAI)
- * 3: Create an OpenAIClient
+ * 3: Create an OpenAIClient with endpoint https://api.x.ai/v1
  * 4: Get a ChatClient and Create an AI Agent from it
  * 5: Call RunAsync or RunStreamingAsync
  */
