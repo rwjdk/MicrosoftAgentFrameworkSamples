@@ -9,7 +9,7 @@ namespace Workflow.AiAssisted.PizzaSample.Executors;
 
 class PizzaWarningExecutor(AIAgent warningToCustomerAgent) : ReflectingExecutor<PizzaWarningExecutor>("PizzaWarning"), IMessageHandler<PizzaOrder>
 {
-    public async ValueTask HandleAsync(PizzaOrder message, IWorkflowContext context)
+    public async ValueTask HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
     {
         Utils.WriteLineError("Can't create the pizza in full");
 

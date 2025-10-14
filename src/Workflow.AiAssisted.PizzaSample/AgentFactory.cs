@@ -10,18 +10,11 @@ namespace Workflow.AiAssisted.PizzaSample;
 
 public class AgentFactory(Configuration configuration)
 {
-    public AIAgent CreateOrderTakerAgent()
+    public ChatClientAgent CreateOrderTakerAgent()
     {
         return CreateAzureOpenAiClient()
             .GetChatClient(configuration.ChatDeploymentName)
-            .CreateAIAgent(new ChatClientAgentOptions
-            {
-                Instructions = "You are a Pizza Order Taker, parsing the customers order",
-                ChatOptions = new ChatOptions
-                {
-                    ResponseFormat = ChatResponseFormat.ForJsonSchema<PizzaOrder>()
-                }
-            });
+            .CreateAIAgent(instructions: "You are a Pizza Order Taker, parsing the customers order");
     }
 
     public AIAgent CreateWarningToCustomerAgent()
