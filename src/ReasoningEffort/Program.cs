@@ -38,7 +38,7 @@ ChatClientAgent agentControllingReasoningEffort = azureOpenAiClient
                 RawRepresentationFactory = _ => new ChatCompletionOptions
                 {
 #pragma warning disable OPENAI001
-                    ReasoningEffortLevel = "minimal", //'minimum', 'low', 'medium' (default) or 'high'
+                    ReasoningEffortLevel = "minimal", //'minimal', 'low', 'medium' (default) or 'high'
 #pragma warning restore OPENAI001
                 },
             }
