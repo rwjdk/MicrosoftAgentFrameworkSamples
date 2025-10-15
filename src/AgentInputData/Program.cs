@@ -1,4 +1,5 @@
 ﻿//YouTube video that cover this sample: https://youtu.be/AJZhHHnsFXY
+// ReSharper disable UnreachableSwitchCaseDueToIntegerAnalysis
 
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
@@ -10,8 +11,8 @@ using System.ClientModel;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-AzureOpenAIClient azureOpenAiClient = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
-OpenAIClient openAiClient = new OpenAIClient(new ApiKeyCredential(configuration.OpenAiApiKey));
+AzureOpenAIClient azureOpenAiClient = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+OpenAIClient openAiClient = new(new ApiKeyCredential(configuration.OpenAiApiKey));
 
 ChatClientAgent azureOpenAiAgent = azureOpenAiClient.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
 ChatClientAgent openAiAgent = openAiClient.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
@@ -27,6 +28,7 @@ switch (scenario)
         ShowResponse(response);
     }
         break;
+
     case Scenario.Image:
     {
         //---------------------------------------------------------------------------------

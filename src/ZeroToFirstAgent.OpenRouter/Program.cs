@@ -13,7 +13,7 @@ using OpenAI;
 const string apiKey = "<YourApiKey>";
 const string model = "<yourModelName>";
 
-OpenAI.OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions
+OpenAIClient client = new(new ApiKeyCredential(apiKey), new OpenAIClientOptions
 {
     Endpoint = new Uri("https://openrouter.ai/api/v1")
 });

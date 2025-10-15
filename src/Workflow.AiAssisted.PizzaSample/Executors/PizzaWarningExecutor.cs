@@ -13,13 +13,13 @@ class PizzaWarningExecutor(ChatClientAgent warningToCustomerAgent) : ReflectingE
     {
         Utils.WriteLineError("Can't create the pizza in full");
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
         foreach (KeyValuePair<WarningType, string> warning in message.Warnings)
         {
             sb.AppendLine($" - {warning}: {warning.Value}");
         }
 
-        AgentRunResponse response = await warningToCustomerAgent.RunAsync($"Explain to the use can't we can't for-fill their order do to the following: {sb}");
+        AgentRunResponse response = await warningToCustomerAgent.RunAsync($"Explain to the use can't we can't for-fill their order do to the following: {sb}", cancellationToken: cancellationToken);
         Console.WriteLine("Send as email: " + response);
     }
 }

@@ -1,10 +1,12 @@
-﻿using Microsoft.Agents.AI;
+﻿using JetBrains.Annotations;
+using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Logging;
 using OpenAI.Chat;
 
 namespace MicrosoftAgentFramework.Utilities.Extensions;
 
+[PublicAPI]
 public static class ChatClientExtensions
 {
     /// <summary>

@@ -1,10 +1,8 @@
 ﻿using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
-using Microsoft.Extensions.AI;
 using Shared;
 using System.ClientModel;
 using OpenAI;
-using Workflow.AiAssisted.PizzaSample.Models;
 
 namespace Workflow.AiAssisted.PizzaSample;
 

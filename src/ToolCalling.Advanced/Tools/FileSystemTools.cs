@@ -1,5 +1,8 @@
-﻿namespace ToolCalling.Advanced.Tools;
+﻿using JetBrains.Annotations;
 
+namespace ToolCalling.Advanced.Tools;
+
+[PublicAPI]
 public class FileSystemTools
 {
     public string RootFolder { get; set; }

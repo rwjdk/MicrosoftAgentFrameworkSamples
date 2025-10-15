@@ -17,13 +17,13 @@ const string model = AnthropicModels.Claude35Haiku;
 
 IChatClient client = new AnthropicClient(new APIAuthentication(apiKey)).Messages.AsBuilder().Build();
 
-ChatClientAgentRunOptions chatClientAgentRunOptions = new ChatClientAgentRunOptions(new()
+ChatClientAgentRunOptions chatClientAgentRunOptions = new(new()
 {
     ModelId = model,
     MaxOutputTokens = 1000
 });
 
-ChatClientAgent agent = new ChatClientAgent(client);
+ChatClientAgent agent = new(client);
 AgentRunResponse response = await agent.RunAsync("What is the Capital of Australia?", options: chatClientAgentRunOptions);
 Console.WriteLine(response);
 

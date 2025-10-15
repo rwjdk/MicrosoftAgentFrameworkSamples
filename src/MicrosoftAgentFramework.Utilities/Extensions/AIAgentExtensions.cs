@@ -1,13 +1,14 @@
 ﻿using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
-using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
+using JetBrains.Annotations;
 
 namespace MicrosoftAgentFramework.Utilities.Extensions;
 
 // ReSharper disable once InconsistentNaming
+[PublicAPI]
 public static class AIAgentExtensions
 {
     public static async Task<ChatClientAgentRunResponse<T>> RunAsync<T>(

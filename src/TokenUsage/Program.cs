@@ -4,13 +4,12 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using OpenAI;
 using Shared;
-using Shared.Extensions;
 using System.ClientModel;
 using MicrosoftAgentFramework.Utilities.Extensions;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
 ChatClientAgent agent = client
     .GetChatClient(configuration.ChatDeploymentName)

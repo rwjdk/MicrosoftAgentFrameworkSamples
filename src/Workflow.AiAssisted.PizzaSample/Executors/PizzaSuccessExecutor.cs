@@ -7,8 +7,9 @@ namespace Workflow.AiAssisted.PizzaSample.Executors;
 
 class PizzaSuccessExecutor() : ReflectingExecutor<PizzaSuccessExecutor>("PizzaSuccess"), IMessageHandler<PizzaOrder>
 {
-    public async ValueTask HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
+    public ValueTask HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
     {
         Utils.WriteLineYellow("- Pizza OK 😋");
+        return ValueTask.CompletedTask;
     }
 }

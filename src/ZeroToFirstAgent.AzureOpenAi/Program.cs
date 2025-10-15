@@ -17,7 +17,7 @@ const string endpoint = "https://<yourEndpoint>.openai.azure.com/";
 const string apiKey = "<yourApiKey>";
 const string model = "<yourModelDeploymentName>";
 
-AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
+AzureOpenAIClient client = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
 ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
 
 //Simple Response

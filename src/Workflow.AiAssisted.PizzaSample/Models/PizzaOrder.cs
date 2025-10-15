@@ -1,5 +1,8 @@
-﻿namespace Workflow.AiAssisted.PizzaSample.Models;
+﻿using JetBrains.Annotations;
 
+namespace Workflow.AiAssisted.PizzaSample.Models;
+
+[PublicAPI]
 class PizzaOrder
 {
     public PizzaSize Size { get; set; }

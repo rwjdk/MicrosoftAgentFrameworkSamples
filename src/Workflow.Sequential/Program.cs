@@ -44,7 +44,7 @@ var messages = new List<ChatMessage> { new(ChatRole.User, legalText) };
 StreamingRun run = await InProcessExecution.StreamAsync(workflow, messages);
 await run.TrySendMessageAsync(new TurnToken(emitEvents: true));
 
-List<ChatMessage> result = new();
+List<ChatMessage> result = [];
 await foreach (WorkflowEvent evt in run.WatchStreamAsync().ConfigureAwait(false))
 {
     if (evt is WorkflowOutputEvent completed)

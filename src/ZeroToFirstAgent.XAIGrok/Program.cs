@@ -15,7 +15,7 @@ using OpenAI;
 const string apiKey = "<yourApiKey>";
 const string model = "<yourModelName>";
 
-OpenAI.OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions
+OpenAIClient client = new(new ApiKeyCredential(apiKey), new OpenAIClientOptions
 {
     Endpoint = new Uri("https://api.x.ai/v1")
 });

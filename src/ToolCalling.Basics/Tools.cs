@@ -1,7 +1,4 @@
-﻿using Shared;
-using System.ComponentModel;
-
-namespace ToolCalling.Basics;
+﻿namespace ToolCalling.Basics;
 
 public static class Tools
 {

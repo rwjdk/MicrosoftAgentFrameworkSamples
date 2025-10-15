@@ -13,7 +13,7 @@ using OpenAI;
 const string apiKey = "<YourAPIKey>";
 const string model = "<yourModelName>"; //Example: Qwen/Qwen3-Coder-30B-A3B-Instruct
 
-OpenAI.OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions()
+OpenAIClient client = new(new ApiKeyCredential(apiKey), new OpenAIClientOptions()
 {
     Endpoint = new Uri("https://router.huggingface.co/v1")
 });

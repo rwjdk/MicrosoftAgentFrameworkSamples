@@ -5,7 +5,7 @@
  * 2: Add Nuget Packages (Azure.AI.Agents.Persistent, Azure.Identity, Microsoft.Agents.AI.AzureAI)
  * 3: Create an PersistentAgentsClient (Azure Identity)
  * 4: Use the client's Administration to create a new agent
- * 5: Use client to get an ChatClientAgentfrom the persistentAgent's Id
+ * 5: Use client to get an ChatClientAgent from the persistentAgent's Id
  * 6: Create a new Thread
  * 7: Call like normal
  * 8: (Optional) Clean up
@@ -19,7 +19,7 @@ using Microsoft.Agents.AI;
 const string endpoint = "<Azure AI Foundry project endpoint>";
 const string model = "<your model>";
 
-PersistentAgentsClient client = new PersistentAgentsClient(endpoint, new AzureCliCredential());
+PersistentAgentsClient client = new(endpoint, new AzureCliCredential());
 
 Response<PersistentAgent>? aiFoundryAgent = null;
 try

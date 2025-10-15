@@ -7,7 +7,7 @@ namespace Workflow.AiAssisted.PizzaSample.Executors;
 
 class PizzaStockCheckerExecutor() : ReflectingExecutor<PizzaStockCheckerExecutor>("StockChecker"), IMessageHandler<PizzaOrder, PizzaOrder>
 {
-    public async ValueTask<PizzaOrder> HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
+    public ValueTask<PizzaOrder> HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
     {
         foreach (string topping in message.Toppings)
         {
@@ -22,6 +22,6 @@ class PizzaStockCheckerExecutor() : ReflectingExecutor<PizzaStockCheckerExecutor
             }
         }
 
-        return message;
+        return ValueTask.FromResult(message);
     }
 }

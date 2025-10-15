@@ -17,10 +17,10 @@ using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
 //Get tools via reflection
-FileSystemTools target = new FileSystemTools();
+FileSystemTools target = new();
 MethodInfo[] methods = typeof(FileSystemTools).GetMethods(BindingFlags.Public | BindingFlags.Instance);
 List<AITool> listOfTools = methods.Select(x => AIFunctionFactory.Create(x, target)).Cast<AITool>().ToList();
 
@@ -43,7 +43,7 @@ while (true)
 {
     Console.Write("> ");
     string? input = Console.ReadLine();
-    ChatMessage message = new ChatMessage(ChatRole.User, input);
+    ChatMessage message = new(ChatRole.User, input);
     AgentRunResponse response = await agent.RunAsync(message, thread);
     List<UserInputRequestContent> userInputRequests = response.UserInputRequests.ToList();
     while (userInputRequests.Count > 0)
@@ -79,3 +79,39 @@ async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, FunctionIn
 
     return await next(context, cancellationToken);
 }
+
+//Alternative way to register the middleware to reside inside a class (if you need extra dependencies)
+/*
+var services = new ServiceCollection()
+   .AddSingleton<MyFilterClass>()
+   .BuildServiceProvider();
+
+AIAgent agent = client
+    .GetChatClient(configuration.ChatDeploymentName)
+    .CreateAIAgent(
+        instructions: "You are a File Expert. When working with files you need to provide the full path; not just the filename",
+        tools: listOfTools
+    )
+    .AsBuilder()
+    .Use(services.GetRequiredService<MyFilterClass>().FunctionCallMiddleware) //Middleware
+    .Build();
+
+public class MyFilterClass
+   {
+       private readonly ILogger<MyFilterClass> _logger;
+
+       public MyFilterClass(ILoggerFactory loggerFactory)
+       {
+           this._logger = loggerFactory.CreateLogger<MyFilterClass>();
+       }
+
+       public async ValueTask<object?> FunctionCallMiddleware(AIAgent agent, FunctionInvocationContext context, Func<FunctionInvocationContext, CancellationToken, ValueTask<object?>> next, CancellationToken cancellationToken)
+       {
+           this._logger.LogInformation($"Function Name: {context!.Function.Name} - Middleware 1 Pre-Invoke");
+           var result = await next(context, cancellationToken);
+           this._logger.LogInformation($"Function Name: {context!.Function.Name} - Middleware 1 Post-Invoke");
+
+           return result;
+       }
+   }
+*/

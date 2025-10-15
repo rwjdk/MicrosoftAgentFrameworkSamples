@@ -67,7 +67,7 @@ DisplayMovies(movieResult3);
 void DisplayMovies(MovieResult movieResult)
 {
     int counter = 1;
-    Console.WriteLine(movieResult!.MessageBack);
+    Console.WriteLine(movieResult.MessageBack);
     foreach (Movie movie in movieResult.Top10Movies)
     {
         Console.WriteLine($"{counter}: {movie.Title} ({movie.YearOfRelease}) - Genre: {movie.Genre} - Director: {movie.Director} - IMDB Score: {movie.ImdbScore}");

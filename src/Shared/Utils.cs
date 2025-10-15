@@ -1,5 +1,8 @@
-﻿namespace Shared;
+﻿using JetBrains.Annotations;
 
+namespace Shared;
+
+[PublicAPI]
 public static class Utils
 {
     public static void WriteLineError(Exception e)

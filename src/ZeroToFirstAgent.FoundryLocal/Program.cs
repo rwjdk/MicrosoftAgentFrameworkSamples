@@ -57,12 +57,12 @@ if (!isFoundryInstalled)
 
 string modelAlias = "qwen2.5-coder-0.5b";
 Console.WriteLine($"Starting AI Model '{modelAlias}'. If not already started / cached this might take a while...");
-FoundryLocalManager manager = await Microsoft.AI.Foundry.Local.FoundryLocalManager.StartModelAsync(modelAlias);
+FoundryLocalManager manager = await FoundryLocalManager.StartModelAsync(modelAlias);
 ModelInfo? modelInfo = await manager.GetModelInfoAsync(modelAlias);
 
 #endregion
 
-OpenAIClient client = new OpenAIClient(new ApiKeyCredential("NO_API_KEY"), new OpenAIClientOptions
+OpenAIClient client = new(new ApiKeyCredential("NO_API_KEY"), new OpenAIClientOptions
 {
     Endpoint = manager.Endpoint
 });

@@ -1,6 +1,8 @@
 ﻿//YouTube video that cover this sample: https://youtu.be/6i1Rs0MkBDQ
+// ReSharper disable UnusedVariable
 
 #pragma warning disable OPENAI001
+
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
@@ -14,9 +16,10 @@ using System.ClientModel;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry.Trace;
 
+
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
 ChatClientAgent noSettingAgent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
 
