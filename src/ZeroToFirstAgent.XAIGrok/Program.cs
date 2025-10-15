@@ -19,7 +19,7 @@ OpenAI.OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new 
 {
     Endpoint = new Uri("https://api.x.ai/v1")
 });
-AIAgent agent = client.GetChatClient(model).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
 
 AgentRunResponse response = await agent.RunAsync("What is the Capital of Germany?");
 Console.WriteLine(response);

@@ -18,9 +18,9 @@ Configuration configuration = ConfigurationManager.GetConfiguration();
 
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
-AIAgent noSettingAgent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
+ChatClientAgent noSettingAgent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
 
-AIAgent agent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent(
+ChatClientAgent agent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent(
     instructions: "You are a cool surfer dude",
     tools: [ /*Todo: In a separate video*/]);
 
@@ -93,7 +93,7 @@ Console.WriteLine(response);
 
 #region Even more options via ChatClientAgentOptions
 
-AIAgent advancedAgent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent(
+ChatClientAgent advancedAgent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent(
     new ChatClientAgentOptions
     {
         ChatOptions = new ChatOptions

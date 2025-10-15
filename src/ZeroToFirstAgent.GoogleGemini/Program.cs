@@ -16,7 +16,7 @@ const string apiKey = "<yourApiKey>";
 const string model = GoogleAIModels.Gemini25Flash;
 
 IChatClient client = new GenerativeAIChatClient(apiKey, model);
-AIAgent agent = new ChatClientAgent(client);
+ChatClientAgent agent = new ChatClientAgent(client);
 
 AgentRunResponse response = await agent.RunAsync("What is the Capital of Australia?");
 Console.WriteLine(response);

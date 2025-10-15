@@ -18,7 +18,7 @@ const string apiKey = "<yourApiKey>";
 const string model = "<yourModelDeploymentName>";
 
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
-AIAgent agent = client.GetChatClient(model).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
 
 //Simple Response
 AgentRunResponse response = await agent.RunAsync("What is the capital of France?");

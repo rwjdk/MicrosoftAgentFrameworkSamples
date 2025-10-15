@@ -17,7 +17,7 @@ OpenAI.OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new 
 {
     Endpoint = new Uri("https://router.huggingface.co/v1")
 });
-AIAgent agent = client.GetChatClient(model).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
 
 AgentRunResponse response = await agent.RunAsync("What is the Capital of Peru?");
 Console.WriteLine(response);

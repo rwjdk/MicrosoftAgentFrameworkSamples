@@ -17,7 +17,7 @@ OpenAI.OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new 
 {
     Endpoint = new Uri("https://openrouter.ai/api/v1")
 });
-AIAgent agent = client.GetChatClient(model).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
 
 AgentRunResponse response = await agent.RunAsync("What is the Capital of Norway?");
 Console.WriteLine(response);

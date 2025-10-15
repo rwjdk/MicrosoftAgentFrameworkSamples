@@ -66,7 +66,7 @@ OpenAIClient client = new OpenAIClient(new ApiKeyCredential("NO_API_KEY"), new O
 {
     Endpoint = manager.Endpoint
 });
-AIAgent agent = client.GetChatClient(modelInfo!.ModelId).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(modelInfo!.ModelId).CreateAIAgent();
 
 AgentRunResponse response = await agent.RunAsync("What is the Capital of Sweden?");
 Console.WriteLine(response);

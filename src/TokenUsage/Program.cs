@@ -12,7 +12,7 @@ Configuration configuration = ConfigurationManager.GetConfiguration();
 
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
-AIAgent agent = client
+ChatClientAgent agent = client
     .GetChatClient(configuration.ChatDeploymentName)
     .CreateAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 

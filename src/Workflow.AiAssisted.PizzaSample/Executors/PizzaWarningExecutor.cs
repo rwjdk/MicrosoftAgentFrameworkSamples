@@ -7,7 +7,7 @@ using Workflow.AiAssisted.PizzaSample.Models;
 
 namespace Workflow.AiAssisted.PizzaSample.Executors;
 
-class PizzaWarningExecutor(AIAgent warningToCustomerAgent) : ReflectingExecutor<PizzaWarningExecutor>("PizzaWarning"), IMessageHandler<PizzaOrder>
+class PizzaWarningExecutor(ChatClientAgent warningToCustomerAgent) : ReflectingExecutor<PizzaWarningExecutor>("PizzaWarning"), IMessageHandler<PizzaOrder>
 {
     public async ValueTask HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
     {

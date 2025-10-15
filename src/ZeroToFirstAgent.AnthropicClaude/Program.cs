@@ -23,7 +23,7 @@ ChatClientAgentRunOptions chatClientAgentRunOptions = new ChatClientAgentRunOpti
     MaxOutputTokens = 1000
 });
 
-AIAgent agent = new ChatClientAgent(client);
+ChatClientAgent agent = new ChatClientAgent(client);
 AgentRunResponse response = await agent.RunAsync("What is the Capital of Australia?", options: chatClientAgentRunOptions);
 Console.WriteLine(response);
 

@@ -8,7 +8,7 @@ public static class AgentThreadPersistence
 {
     private static string ConversationPath => Path.Combine(Path.GetTempPath(), "conversation.json");
 
-    public static async Task<AgentThread> ResumeChatIfRequestedAsync(AIAgent agent)
+    public static async Task<AgentThread> ResumeChatIfRequestedAsync(ChatClientAgent agent)
     {
         if (File.Exists(ConversationPath))
         {

@@ -17,7 +17,7 @@ public class AgentFactory(Configuration configuration)
             .CreateAIAgent(instructions: "You are a Pizza Order Taker, parsing the customers order");
     }
 
-    public AIAgent CreateWarningToCustomerAgent()
+    public ChatClientAgent CreateWarningToCustomerAgent()
     {
         return CreateAzureOpenAiClient()
             .GetChatClient(configuration.ChatDeploymentName)

@@ -13,10 +13,10 @@ Configuration configuration = ConfigurationManager.GetConfiguration();
 
 AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
-AIAgent intentAgent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent(name: "IntentAgent", instructions: "Determine what type of question was asked. Never answer yourself");
+ChatClientAgent intentAgent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent(name: "IntentAgent", instructions: "Determine what type of question was asked. Never answer yourself");
 
-AIAgent movieNerd = client.GetChatClient("gpt-4.1").CreateAIAgent(name: "MovieNerd", instructions: "You are a Movie Nerd");
-AIAgent musicNerd = client.GetChatClient("gpt-4.1").CreateAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd");
+ChatClientAgent movieNerd = client.GetChatClient("gpt-4.1").CreateAIAgent(name: "MovieNerd", instructions: "You are a Movie Nerd");
+ChatClientAgent musicNerd = client.GetChatClient("gpt-4.1").CreateAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd");
 
 
 while (true)

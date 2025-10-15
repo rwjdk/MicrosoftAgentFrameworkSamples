@@ -26,7 +26,7 @@ try
 {
     aiFoundryAgent = await client.Administration.CreateAgentAsync(model, "MyFirstAgent", "Some description", "You are a nice AI");
 
-    AIAgent agent = await client.GetAIAgentAsync(aiFoundryAgent.Value.Id);
+    ChatClientAgent agent = await client.GetAIAgentAsync(aiFoundryAgent.Value.Id);
 
     AgentThread thread = agent.GetNewThread();
 

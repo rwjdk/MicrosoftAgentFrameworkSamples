@@ -14,7 +14,7 @@ using Microsoft.Extensions.AI;
 const string gitHubPatToken = "<YourGitHubPATTokenWithModelAccess>";
 const string model = "<yourModelName>"; //Example: deepseek/DeepSeek-V3-0324
 
-AIAgent agent = new ChatCompletionsClient(
+ChatClientAgent agent = new ChatCompletionsClient(
     new Uri("https://models.github.ai/inference"),
     new AzureKeyCredential(gitHubPatToken),
     new AzureAIInferenceClientOptions()).AsIChatClient(model).CreateAIAgent();

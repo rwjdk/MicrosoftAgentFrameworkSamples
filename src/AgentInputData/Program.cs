@@ -13,8 +13,8 @@ Configuration configuration = ConfigurationManager.GetConfiguration();
 AzureOpenAIClient azureOpenAiClient = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 OpenAIClient openAiClient = new OpenAIClient(new ApiKeyCredential(configuration.OpenAiApiKey));
 
-AIAgent azureOpenAiAgent = azureOpenAiClient.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
-AIAgent openAiAgent = openAiClient.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
+ChatClientAgent azureOpenAiAgent = azureOpenAiClient.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
+ChatClientAgent openAiAgent = openAiClient.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
 
 Scenario scenario = Scenario.Image;
 

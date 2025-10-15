@@ -29,13 +29,13 @@ switch (intentResult.Intent)
 {
     case Intent.MusicQuestion:
         Utils.WriteLineSuccess("Music Question");
-        AIAgent musicNerdAgent = chatClient.CreateAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd answering questions (Give a question on max 200 chars)");
+        ChatClientAgent musicNerdAgent = chatClient.CreateAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd answering questions (Give a question on max 200 chars)");
         AgentRunResponse responseFromMusicNerd = await musicNerdAgent.RunAsync(question);
         Console.WriteLine(responseFromMusicNerd);
         break;
     case Intent.MovieQuestion:
         Utils.WriteLineSuccess("Movie Question");
-        AIAgent movieNerdAgent = chatClient.CreateAIAgent(name: "MovieNerd", instructions: "You are a Movie Nerd answering questions (Give a question on max 200 chars)");
+        ChatClientAgent movieNerdAgent = chatClient.CreateAIAgent(name: "MovieNerd", instructions: "You are a Movie Nerd answering questions (Give a question on max 200 chars)");
         AgentRunResponse responseFromMovieNerd = await movieNerdAgent.RunAsync(question);
         Console.WriteLine(responseFromMovieNerd);
         break;

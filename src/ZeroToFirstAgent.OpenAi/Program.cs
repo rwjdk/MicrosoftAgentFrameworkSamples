@@ -15,7 +15,7 @@ const string apiKey = "<YourAPIKey>";
 const string model = "<yourModelName>"; //Example: gpt-4.1
 
 OpenAI.OpenAIClient client = new OpenAIClient(apiKey);
-AIAgent agent = client.GetChatClient(model).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
 
 AgentRunResponse response = await agent.RunAsync("What is the Capital of Germany?");
 Console.WriteLine(response);
