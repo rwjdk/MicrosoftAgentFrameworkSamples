@@ -1,5 +1,4 @@
-﻿using System.ClientModel;
-using Azure.AI.OpenAI;
+﻿using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using MicrosoftAgentFramework.Utilities.Extensions;
@@ -7,6 +6,7 @@ using OpenAI;
 using OpenAI.Chat;
 using Shared;
 using Shared.Extensions;
+using System.ClientModel;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
