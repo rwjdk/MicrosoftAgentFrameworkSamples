@@ -1,0 +1,502 @@
+[
+    {
+        "Title": "Frozen Revenant",
+        "Plot": "Frozen Revenant tells the story of a protagonist who discovers that their memories have been fabricated amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 7.6
+    },
+    {
+        "Title": "Lost Pulse",
+        "Plot": "Lost Pulse tells the story of a protagonist who finds themselves hunted by the very people they swore to protect within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 6.4
+    },
+    {
+        "Title": "Crimson Voyage",
+        "Plot": "Crimson Voyage tells the story of a protagonist who discovers that their memories have been fabricated within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 6.5
+    },
+    {
+        "Title": "Midnight Dreams",
+        "Plot": "Midnight Dreams tells the story of a protagonist who discovers that their memories have been fabricated in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 5.1
+    },
+    {
+        "Title": "Electric Pulse",
+        "Plot": "Electric Pulse tells the story of a protagonist who forms an alliance with their greatest enemy to survive in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 1.0
+    },
+    {
+        "Title": "Golden Odyssey",
+        "Plot": "Golden Odyssey tells the story of a protagonist who faces a choice between love and duty amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 6.8
+    },
+    {
+        "Title": "Shattered Empire",
+        "Plot": "Shattered Empire tells the story of a protagonist who discovers that their memories have been fabricated within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 6.0
+    },
+    {
+        "Title": "Infinite Empire",
+        "Plot": "Infinite Empire tells the story of a protagonist who must uncover the truth behind a mysterious disappearance amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 7.3
+    },
+    {
+        "Title": "Silent Empire",
+        "Plot": "Silent Empire tells the story of a protagonist who fights to reclaim what was stolen from them in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 7.4
+    },
+    {
+        "Title": "Crimson Chronicle",
+        "Plot": "Crimson Chronicle tells the story of a protagonist who awakens a sleeping evil that should have remained buried in a dystopian future. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 5.2
+    },
+    {
+        "Title": "Golden Labyrinth",
+        "Plot": "Golden Labyrinth tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 4.1
+    },
+    {
+        "Title": "Silent Storm",
+        "Plot": "Silent Storm tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 9.3
+    },
+    {
+        "Title": "Dark Dreams",
+        "Plot": "Dark Dreams tells the story of a protagonist who must uncover the truth behind a mysterious disappearance during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 3.6
+    },
+    {
+        "Title": "Phantom Odyssey",
+        "Plot": "Phantom Odyssey tells the story of a protagonist who fights to reclaim what was stolen from them within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 2.6
+    },
+    {
+        "Title": "Silent Labyrinth",
+        "Plot": "Silent Labyrinth tells the story of a protagonist who forms an alliance with their greatest enemy to survive in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 6.5
+    },
+    {
+        "Title": "Infinite Labyrinth",
+        "Plot": "Infinite Labyrinth tells the story of a protagonist who awakens a sleeping evil that should have remained buried in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 6.8
+    },
+    {
+        "Title": "Phantom Revenant",
+        "Plot": "Phantom Revenant tells the story of a protagonist who discovers that their memories have been fabricated within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 4.8
+    },
+    {
+        "Title": "Lost Dreams",
+        "Plot": "Lost Dreams tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in a dystopian future. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 1.8
+    },
+    {
+        "Title": "Crimson Memory",
+        "Plot": "Crimson Memory tells the story of a protagonist who awakens a sleeping evil that should have remained buried during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 5.3
+    },
+    {
+        "Title": "Eternal Chronicle",
+        "Plot": "Eternal Chronicle tells the story of a protagonist who discovers that their memories have been fabricated during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 6.0
+    },
+    {
+        "Title": "Silent Dreams",
+        "Plot": "Silent Dreams tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 8.9
+    },
+    {
+        "Title": "Wild Ritual",
+        "Plot": "Wild Ritual tells the story of a protagonist who forms an alliance with their greatest enemy to survive in a dystopian future. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 5.2
+    },
+    {
+        "Title": "Wild Memory",
+        "Plot": "Wild Memory tells the story of a protagonist who faces a choice between love and duty in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 1.1
+    },
+    {
+        "Title": "Frozen Legacy",
+        "Plot": "Frozen Legacy tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 5.7
+    },
+    {
+        "Title": "Shattered Labyrinth",
+        "Plot": "Shattered Labyrinth tells the story of a protagonist who must uncover the truth behind a mysterious disappearance within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 9.6
+    },
+    {
+        "Title": "Frozen Dreams",
+        "Plot": "Frozen Dreams tells the story of a protagonist who must uncover the truth behind a mysterious disappearance amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 6.9
+    },
+    {
+        "Title": "Shattered Horizon",
+        "Plot": "Shattered Horizon tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 5.2
+    },
+    {
+        "Title": "Lost Empire",
+        "Plot": "Lost Empire tells the story of a protagonist who fights to reclaim what was stolen from them amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 7.5
+    },
+    {
+        "Title": "Phantom Voyage",
+        "Plot": "Phantom Voyage tells the story of a protagonist who must stop a force that threatens the fabric of time on a distant planet. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 5.5
+    },
+    {
+        "Title": "Hidden Storm",
+        "Plot": "Hidden Storm tells the story of a protagonist who forms an alliance with their greatest enemy to survive amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 6.2
+    },
+    {
+        "Title": "Shattered Chronicle",
+        "Plot": "Shattered Chronicle tells the story of a protagonist who forms an alliance with their greatest enemy to survive during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 6.0
+    },
+    {
+        "Title": "Hidden Echo",
+        "Plot": "Hidden Echo tells the story of a protagonist who forms an alliance with their greatest enemy to survive amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 2.4
+    },
+    {
+        "Title": "Frozen Labyrinth",
+        "Plot": "Frozen Labyrinth tells the story of a protagonist who must stop a force that threatens the fabric of time during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 3.4
+    },
+    {
+        "Title": "Infinite Revenant",
+        "Plot": "Infinite Revenant tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 5.6
+    },
+    {
+        "Title": "Shattered Memory",
+        "Plot": "Shattered Memory tells the story of a protagonist who discovers that their memories have been fabricated in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 5.0
+    },
+    {
+        "Title": "Golden Voyage",
+        "Plot": "Golden Voyage tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 2.7
+    },
+    {
+        "Title": "Broken Chronicle",
+        "Plot": "Broken Chronicle tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 2.2
+    },
+    {
+        "Title": "Hidden Ritual",
+        "Plot": "Hidden Ritual tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 8.2
+    },
+    {
+        "Title": "Dark Voyage",
+        "Plot": "Dark Voyage tells the story of a protagonist who forms an alliance with their greatest enemy to survive in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 7.0
+    },
+    {
+        "Title": "Wild Storm",
+        "Plot": "Wild Storm tells the story of a protagonist who discovers that their memories have been fabricated on a distant planet. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 3.4
+    },
+    {
+        "Title": "Electric Revenant",
+        "Plot": "Electric Revenant tells the story of a protagonist who fights to reclaim what was stolen from them in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 8.2
+    },
+    {
+        "Title": "Infinite Memory",
+        "Plot": "Infinite Memory tells the story of a protagonist who must uncover the truth behind a mysterious disappearance during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 9.4
+    },
+    {
+        "Title": "Hidden Horizon",
+        "Plot": "Hidden Horizon tells the story of a protagonist who faces a choice between love and duty within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 3.7
+    },
+    {
+        "Title": "Hidden Dreams",
+        "Plot": "Hidden Dreams tells the story of a protagonist who awakens a sleeping evil that should have remained buried in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 8.4
+    },
+    {
+        "Title": "Dark Memory",
+        "Plot": "Dark Memory tells the story of a protagonist who must uncover the truth behind a mysterious disappearance within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 7.3
+    },
+    {
+        "Title": "Electric Shadow",
+        "Plot": "Electric Shadow tells the story of a protagonist who forms an alliance with their greatest enemy to survive in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 5.6
+    },
+    {
+        "Title": "Eternal Ritual",
+        "Plot": "Eternal Ritual tells the story of a protagonist who discovers that their memories have been fabricated in a dystopian future. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 1.9
+    },
+    {
+        "Title": "Broken Labyrinth",
+        "Plot": "Broken Labyrinth tells the story of a protagonist who must stop a force that threatens the fabric of time on a distant planet. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 7.4
+    },
+    {
+        "Title": "Phantom Storm",
+        "Plot": "Phantom Storm tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 3.5
+    },
+    {
+        "Title": "Infinite Revenant",
+        "Plot": "Infinite Revenant tells the story of a protagonist who forms an alliance with their greatest enemy to survive within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 6.2
+    },
+    {
+        "Title": "Wild Chronicle",
+        "Plot": "Wild Chronicle tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 4.8
+    },
+    {
+        "Title": "Wild Ritual",
+        "Plot": "Wild Ritual tells the story of a protagonist who must uncover the truth behind a mysterious disappearance amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 6.2
+    },
+    {
+        "Title": "Golden Pulse",
+        "Plot": "Golden Pulse tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 8.4
+    },
+    {
+        "Title": "Silent Chronicle",
+        "Plot": "Silent Chronicle tells the story of a protagonist who must uncover the truth behind a mysterious disappearance during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 2.4
+    },
+    {
+        "Title": "Crimson Storm",
+        "Plot": "Crimson Storm tells the story of a protagonist who discovers that their memories have been fabricated in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 5.3
+    },
+    {
+        "Title": "Frozen Empire",
+        "Plot": "Frozen Empire tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 5.2
+    },
+    {
+        "Title": "Crimson Chronicle",
+        "Plot": "Crimson Chronicle tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 6.5
+    },
+    {
+        "Title": "Silent Ritual",
+        "Plot": "Silent Ritual tells the story of a protagonist who fights to reclaim what was stolen from them within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 9.2
+    },
+    {
+        "Title": "Broken Echo",
+        "Plot": "Broken Echo tells the story of a protagonist who discovers that their memories have been fabricated in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 5.4
+    },
+    {
+        "Title": "Phantom Ritual",
+        "Plot": "Phantom Ritual tells the story of a protagonist who finds themselves hunted by the very people they swore to protect within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 1.5
+    },
+    {
+        "Title": "Crimson Voyage",
+        "Plot": "Crimson Voyage tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 5.4
+    },
+    {
+        "Title": "Dark Voyage",
+        "Plot": "Dark Voyage tells the story of a protagonist who awakens a sleeping evil that should have remained buried within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 3.8
+    },
+    {
+        "Title": "Golden Pulse",
+        "Plot": "Golden Pulse tells the story of a protagonist who must stop a force that threatens the fabric of time in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 6.4
+    },
+    {
+        "Title": "Hidden Storm",
+        "Plot": "Hidden Storm tells the story of a protagonist who forms an alliance with their greatest enemy to survive during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 1.0
+    },
+    {
+        "Title": "Silent Ritual",
+        "Plot": "Silent Ritual tells the story of a protagonist who discovers that their memories have been fabricated within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 3.3
+    },
+    {
+        "Title": "Midnight Legacy",
+        "Plot": "Midnight Legacy tells the story of a protagonist who must stop a force that threatens the fabric of time in a dystopian future. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 2.8
+    },
+    {
+        "Title": "Dark Legacy",
+        "Plot": "Dark Legacy tells the story of a protagonist who must stop a force that threatens the fabric of time in a dystopian future. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 6.1
+    },
+    {
+        "Title": "Hidden Odyssey",
+        "Plot": "Hidden Odyssey tells the story of a protagonist who discovers that their memories have been fabricated within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 2.5
+    },
+    {
+        "Title": "Hidden Pulse",
+        "Plot": "Hidden Pulse tells the story of a protagonist who awakens a sleeping evil that should have remained buried during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 1.7
+    },
+    {
+        "Title": "Shattered Memory",
+        "Plot": "Shattered Memory tells the story of a protagonist who faces a choice between love and duty amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 3.6
+    },
+    {
+        "Title": "Electric Voyage",
+        "Plot": "Electric Voyage tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 6.5
+    },
+    {
+        "Title": "Phantom Chronicle",
+        "Plot": "Phantom Chronicle tells the story of a protagonist who fights to reclaim what was stolen from them in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 6.0
+    },
+    {
+        "Title": "Golden Echo",
+        "Plot": "Golden Echo tells the story of a protagonist who finds themselves hunted by the very people they swore to protect during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 4.7
+    },
+    {
+        "Title": "Shattered Shadow",
+        "Plot": "Shattered Shadow tells the story of a protagonist who must uncover the truth behind a mysterious disappearance on a distant planet. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 8.0
+    },
+    {
+        "Title": "Phantom Echo",
+        "Plot": "Phantom Echo tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 1.0
+    },
+    {
+        "Title": "Wild Storm",
+        "Plot": "Wild Storm tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 4.4
+    },
+    {
+        "Title": "Electric Odyssey",
+        "Plot": "Electric Odyssey tells the story of a protagonist who forms an alliance with their greatest enemy to survive amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 3.2
+    },
+    {
+        "Title": "Shattered Labyrinth",
+        "Plot": "Shattered Labyrinth tells the story of a protagonist who discovers that their memories have been fabricated during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 1.0
+    },
+    {
+        "Title": "Dark Empire",
+        "Plot": "Dark Empire tells the story of a protagonist who awakens a sleeping evil that should have remained buried in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 4.4
+    },
+    {
+        "Title": "Midnight Echo",
+        "Plot": "Midnight Echo tells the story of a protagonist who must stop a force that threatens the fabric of time in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 3.2
+    },
+    {
+        "Title": "Eternal Storm",
+        "Plot": "Eternal Storm tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 3.0
+    },
+    {
+        "Title": "Wild Empire",
+        "Plot": "Wild Empire tells the story of a protagonist who fights to reclaim what was stolen from them in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 9.6
+    },
+    {
+        "Title": "Shattered Legacy",
+        "Plot": "Shattered Legacy tells the story of a protagonist who forms an alliance with their greatest enemy to survive in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. The story concludes in a bittersweet triumph, leaving the world forever changed.",
+        "Rating": 5.5
+    },
+    {
+        "Title": "Eternal Storm",
+        "Plot": "Eternal Storm tells the story of a protagonist who fights to reclaim what was stolen from them in a dystopian future. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 9.4
+    },
+    {
+        "Title": "Phantom Pulse",
+        "Plot": "Phantom Pulse tells the story of a protagonist who must stop a force that threatens the fabric of time in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 2.7
+    },
+    {
+        "Title": "Dark Labyrinth",
+        "Plot": "Dark Labyrinth tells the story of a protagonist who must stop a force that threatens the fabric of time amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 8.3
+    },
+    {
+        "Title": "Midnight Dreams",
+        "Plot": "Midnight Dreams tells the story of a protagonist who fights to reclaim what was stolen from them within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 2.8
+    },
+    {
+        "Title": "Lost Pulse",
+        "Plot": "Lost Pulse tells the story of a protagonist who awakens a sleeping evil that should have remained buried amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Ultimately, they learn that the greatest battle is within themselves.",
+        "Rating": 2.1
+    },
+    {
+        "Title": "Lost Echo",
+        "Plot": "Lost Echo tells the story of a protagonist who must stop a force that threatens the fabric of time within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Their journey redefines what it means to be human.",
+        "Rating": 5.1
+    },
+    {
+        "Title": "Lost Shadow",
+        "Plot": "Lost Shadow tells the story of a protagonist who discovers that their memories have been fabricated in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 3.7
+    },
+    {
+        "Title": "Frozen Dreams",
+        "Plot": "Frozen Dreams tells the story of a protagonist who finds themselves hunted by the very people they swore to protect in the heart of a decaying metropolis. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 3.7
+    },
+    {
+        "Title": "Frozen Echo",
+        "Plot": "Frozen Echo tells the story of a protagonist who finds themselves hunted by the very people they swore to protect amidst a frozen wasteland. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 3.7
+    },
+    {
+        "Title": "Infinite Revenant",
+        "Plot": "Infinite Revenant tells the story of a protagonist who forms an alliance with their greatest enemy to survive on a distant planet. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 5.7
+    },
+    {
+        "Title": "Shattered Voyage",
+        "Plot": "Shattered Voyage tells the story of a protagonist who fights to reclaim what was stolen from them in a small coastal town. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 8.7
+    },
+    {
+        "Title": "Lost Odyssey",
+        "Plot": "Lost Odyssey tells the story of a protagonist who must uncover the truth behind a mysterious disappearance in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 8.1
+    },
+    {
+        "Title": "Silent Empire",
+        "Plot": "Silent Empire tells the story of a protagonist who must stop a force that threatens the fabric of time in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 3.6
+    },
+    {
+        "Title": "Eternal Odyssey",
+        "Plot": "Eternal Odyssey tells the story of a protagonist who must stop a force that threatens the fabric of time during a forgotten war. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 6.3
+    },
+    {
+        "Title": "Shattered Empire",
+        "Plot": "Shattered Empire tells the story of a protagonist who discovers that their memories have been fabricated within the walls of an ancient castle. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. As the truth unfolds, everything they believed is turned upside down.",
+        "Rating": 4.3
+    },
+    {
+        "Title": "Dark Revenant",
+        "Plot": "Dark Revenant tells the story of a protagonist who fights to reclaim what was stolen from them in a dystopian future. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. Despite overwhelming odds, hope finds a way to endure.",
+        "Rating": 5.6
+    },
+    {
+        "Title": "Wild Revenant",
+        "Plot": "Wild Revenant tells the story of a protagonist who must stop a force that threatens the fabric of time in a parallel universe. As secrets unravel, alliances shift, and betrayals cut deep, the world grows darker and more unpredictable. In the end, sacrifice becomes the only path to redemption.",
+        "Rating": 1.6
+    }
+]
