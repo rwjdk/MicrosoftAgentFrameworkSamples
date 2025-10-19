@@ -1,4 +1,6 @@
-﻿using Azure.AI.OpenAI;
+﻿//YouTube video that cover this sample: https://youtu.be/Vpi5aZJRJmA
+
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;

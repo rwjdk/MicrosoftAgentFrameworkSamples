@@ -1,4 +1,6 @@
-﻿using AdvancedRAGTechniques;
+﻿//YouTube video that cover this sample: https://youtu.be/0Lt1rmOEZNs
+
+using AdvancedRAGTechniques;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel.Connectors.SqlServer;
@@ -50,6 +52,6 @@ else
 
 ChatMessage question = new(ChatRole.User, "What is the 3 highest rated adventure movies?");
 
-//await Option1RephraseQuestion.Run(importData, movieDataForRag, question, client, collection, configuration);
-//await Option2EnhanceEmbeddings.Run(importData, movieDataForRag, question, client, collection, configuration);
+await Option1RephraseQuestion.Run(importData, movieDataForRag, question, client, collection, configuration);
+await Option2EnhanceEmbeddings.Run(importData, movieDataForRag, question, client, collection, configuration);
 await Option3CommonSense.Run(importData, movieDataForRag, question, client, collection, configuration);
