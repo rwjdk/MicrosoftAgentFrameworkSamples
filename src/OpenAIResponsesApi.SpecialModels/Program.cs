@@ -7,7 +7,7 @@ using OpenAI;
 using Shared.Extensions;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
-
+Console.Clear();
 //OpenAIClient client = new(configuration.OpenAiApiKey);
 AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
@@ -18,7 +18,8 @@ AIAgent agent = client
     );
 
 List<AgentRunResponseUpdate> updates = [];
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("Show me an C# Example of a method adding two numbers"))
+string question = "Show me an C# Example of a method adding two numbers";
+await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(question))
 {
     updates.Add(update);
     Console.Write(update);

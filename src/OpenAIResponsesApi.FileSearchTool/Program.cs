@@ -11,7 +11,7 @@ using System.ClientModel;
 Console.Clear();
 Configuration configuration = ConfigurationManager.GetConfiguration();
 OpenAIClient client = new(configuration.OpenAiApiKey);
-//NB: I was unable to get this to work with Azure OpenAI in regard to downloading files from Code Interpreter
+//NB: I was unable to get this to work with Azure OpenAI in regard to uploading files
 
 OpenAIFileClient fileClient = client.GetOpenAIFileClient();
 VectorStoreClient vectorStoreClient = client.GetVectorStoreClient();

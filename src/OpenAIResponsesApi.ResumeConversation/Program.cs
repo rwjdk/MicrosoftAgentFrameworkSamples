@@ -10,8 +10,8 @@ using Shared;
 Console.Clear();
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-//OpenAIClient client = new(configuration.OpenAiApiKey);
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+OpenAIClient client = new(configuration.OpenAiApiKey);
+/*AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));*/
 OpenAIResponseClient responseClient = client
     .GetOpenAIResponseClient("gpt-4.1");
 
@@ -32,7 +32,7 @@ Console.WriteLine(response2);
 string? responseId = response2.ResponseId;
 
 //Get previous text calling this multiple times
-//ClientResult<OpenAIResponse> result = await responseClient.GetResponseAsync(responseId);
+ClientResult<OpenAIResponse> result = await responseClient.GetResponseAsync(responseId);
 
 AgentRunResponse response3 = await agent.RunAsync("What city is he from", options: new ChatClientAgentRunOptions
 {
