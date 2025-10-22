@@ -3,4 +3,32 @@
 //Notes
 //- Microsoft.Agents.AI.Hosting.AgentCatalog TODO: Guess this is something to be used in AI Foundry
 
-Console.WriteLine("Todo");
+#pragma warning disable OPENAI001
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.AI.OpenAI;
+using Azure.Identity;
+using Microsoft.Agents.AI;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.Extensions.AI;
+using OpenAI;
+using Shared;
+using Shared.Extensions;
+using System.ClientModel;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+using Playground.Tests;
+
+Console.WriteLine("");
+Console.Clear();
+
+Configuration configuration = ConfigurationManager.GetConfiguration();
+
+await FileTool.Run(configuration);
+//await CodeTool.Run(configuration);
+//await ReasoningSummary.Run(configuration);
+//await CodexSpecialModels.Run(configuration);
+//await SpaceNewsWebSearch.Run(configuration);
+//await ResumeConversation.Run(configuration);
+//await AzureOpenAiCodex.Run(configuration);

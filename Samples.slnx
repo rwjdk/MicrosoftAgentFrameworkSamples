@@ -23,6 +23,10 @@
   <Folder Name="/MultiAgents &amp; Workflows/Workflows/">
     <Project Path="src/Workflow.AiAssisted.PizzaSample/Workflow.AiAssisted.PizzaSample.csproj" Id="ebb01b83-7e68-44be-a89a-4574848c00fa" />
   </Folder>
+  <Folder Name="/OpenAiResponesApi/">
+    <Project Path="src/OpenAIResponsesApi.ReasoningSummary/OpenAIResponsesApi.ReasoningSummary.csproj" Id="aa7c1934-b057-43d6-ba0a-92375c4e47f4" />
+    <Project Path="src/OpenAIResponsesApi.WebSearch/OpenAIResponsesApi.WebSearch.csproj" Id="9dc49e05-421b-4e1d-9384-579ddefd2763" />
+  </Folder>
   <Folder Name="/RAG/">
     <Project Path="src/AdvancedRAGTechniques/AdvancedRAGTechniques.csproj" Id="222d4527-f7ca-4e02-a3ef-2f65d7f5014a" />
     <Project Path="src/UsingRAGInAgentFramework/UsingRAGInAgentFramework.csproj" Id="11bf0b5c-8a06-4a3f-b70c-148730d2db08" />

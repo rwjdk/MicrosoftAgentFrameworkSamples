@@ -11,7 +11,7 @@ class PizzaWarningExecutor(ChatClientAgent warningToCustomerAgent) : ReflectingE
 {
     public async ValueTask HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
     {
-        Utils.WriteLineError("Can't create the pizza in full");
+        Utils.WriteLineRed("Can't create the pizza in full");
 
         StringBuilder sb = new();
         foreach (KeyValuePair<WarningType, string> warning in message.Warnings)

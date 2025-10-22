@@ -43,7 +43,7 @@ AIAgent numberAgent = client
     .Use(FunctionCallMiddleware) //Middleware
     .Build();
 
-Utils.WriteLineSuccess("DELEGATE AGENT");
+Utils.WriteLineGreen("DELEGATE AGENT");
 
 AIAgent delegationAgent = client
     .GetChatClient(configuration.ChatDeploymentName)
@@ -72,7 +72,7 @@ responseFromDelegate.Usage.OutputAsInformation();
 
 Utils.Separator();
 
-Utils.WriteLineSuccess("JACK OF ALL TRADE AGENT");
+Utils.WriteLineGreen("JACK OF ALL TRADE AGENT");
 
 AIAgent jackOfAllTradesAgent = client
     .GetChatClient(configuration.ChatDeploymentName)
@@ -105,7 +105,7 @@ async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, FunctionIn
         functionCallDetails.Append($" (Args: {string.Join(",", context.Arguments.Select(x => $"[{x.Key} = {x.Value}]"))}");
     }
 
-    Utils.WriteLineInformation(functionCallDetails.ToString());
+    Utils.WriteLineDarkGray(functionCallDetails.ToString());
 
     return await next(context, cancellationToken);
 }

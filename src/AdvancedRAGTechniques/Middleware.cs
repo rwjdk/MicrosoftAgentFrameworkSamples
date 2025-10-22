@@ -16,7 +16,7 @@ public class Middleware
             functionCallDetails.Append($" (Args: {string.Join(",", context.Arguments.Select(x => $"[{x.Key} = {x.Value}]"))}");
         }
 
-        Utils.WriteLineInformation(functionCallDetails.ToString());
+        Utils.WriteLineDarkGray(functionCallDetails.ToString());
 
         return await next(context, cancellationToken);
     }

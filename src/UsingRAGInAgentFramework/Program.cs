@@ -28,7 +28,7 @@ ChatClientAgent agent = client
 
 #region Let's give the model all data upfront
 
-Utils.WriteLineSuccess("Sample 1 - Preload all data");
+Utils.WriteLineGreen("Sample 1 - Preload all data");
 List<ChatMessage> preloadEverythingChatMessages =
 [
     new(ChatRole.Assistant, "Here are all the movies")
@@ -50,7 +50,7 @@ Console.Clear();
 
 #region That is too expensive!... Let's use RAG
 
-Utils.WriteLineSuccess("Sample 2 - Preload RAG Data");
+Utils.WriteLineGreen("Sample 2 - Preload RAG Data");
 
 Microsoft.Extensions.AI.IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
     .GetEmbeddingClient("text-embedding-3-small")
@@ -124,7 +124,7 @@ Console.Clear();
 
 #region Let's do the same as above but as function calling [Smart if the use example just say 'Hello' we do not preload any movies]
 
-Utils.WriteLineSuccess("Sample 3 RAG via Tool Call");
+Utils.WriteLineGreen("Sample 3 RAG via Tool Call");
 
 SearchTool searchTool = new(collection);
 
@@ -150,7 +150,7 @@ async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, FunctionIn
         functionCallDetails.Append($" (Args: {string.Join(",", context.Arguments.Select(x => $"[{x.Key} = {x.Value}]"))}");
     }
 
-    Utils.WriteLineInformation(functionCallDetails.ToString());
+    Utils.WriteLineDarkGray(functionCallDetails.ToString());
 
     return await next(context, cancellationToken);
 }

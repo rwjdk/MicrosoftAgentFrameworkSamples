@@ -5,12 +5,12 @@ namespace Shared;
 [PublicAPI]
 public static class Utils
 {
-    public static void WriteLineError(Exception e)
+    public static void WriteLineRed(Exception e)
     {
-        WriteLineError(e.ToString());
+        WriteLineRed(e.ToString());
     }
 
-    public static void WriteLineError(string text)
+    public static void WriteLineRed(string text)
     {
         WriteLine(text, ConsoleColor.Red);
     }
@@ -20,17 +20,12 @@ public static class Utils
         WriteLine(text, ConsoleColor.Yellow);
     }
 
-    public static void WriteLineWarning(string text)
-    {
-        WriteLine(text, ConsoleColor.Yellow);
-    }
-
-    public static void WriteLineInformation(string text)
+    public static void WriteLineDarkGray(string text)
     {
         WriteLine(text, ConsoleColor.DarkGray);
     }
 
-    public static void WriteLineSuccess(string text)
+    public static void WriteLineGreen(string text)
     {
         WriteLine(text, ConsoleColor.Green);
     }

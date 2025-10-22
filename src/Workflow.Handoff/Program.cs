@@ -47,14 +47,14 @@ static async Task<List<ChatMessage>> RunWorkflowAsync(Workflow workflow, List<Ch
                 {
                     lastExecutorId = e.ExecutorId;
                     Console.WriteLine();
-                    Utils.WriteLineSuccess(e.Update.AuthorName ?? e.ExecutorId);
+                    Utils.WriteLineGreen(e.Update.AuthorName ?? e.ExecutorId);
                 }
 
                 Console.Write(e.Update.Text);
                 if (e.Update.Contents.OfType<FunctionCallContent>().FirstOrDefault() is FunctionCallContent call)
                 {
                     Console.WriteLine();
-                    Utils.WriteLineInformation($"Call '{call.Name}' with arguments: {JsonSerializer.Serialize(call.Arguments)}]");
+                    Utils.WriteLineDarkGray($"Call '{call.Name}' with arguments: {JsonSerializer.Serialize(call.Arguments)}]");
                 }
 
                 break;

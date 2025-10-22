@@ -21,9 +21,9 @@ string question = "What is the capital of France and how many people live there?
 AgentRunResponse response = await agent.RunAsync(question);
 Console.WriteLine(response);
 
-Utils.WriteLineInformation($"- Input Tokens: {response.Usage?.InputTokenCount}");
-Utils.WriteLineInformation($"- Output Tokens: {response.Usage?.OutputTokenCount} " +
-                           $"({response.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
+Utils.WriteLineDarkGray($"- Input Tokens: {response.Usage?.InputTokenCount}");
+Utils.WriteLineDarkGray($"- Output Tokens: {response.Usage?.OutputTokenCount} " +
+                        $"({response.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
 
 //------------------------------------------------------------------------------------------------------------------------
 Utils.Separator();
@@ -39,9 +39,9 @@ await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(question
 Console.WriteLine();
 
 AgentRunResponse collectedResponseFromStreaming = updates.ToAgentRunResponse();
-Utils.WriteLineInformation($"- Input Tokens (Streaming): {collectedResponseFromStreaming.Usage?.InputTokenCount}");
-Utils.WriteLineInformation($"- Output Tokens (Streaming): {collectedResponseFromStreaming.Usage?.OutputTokenCount} " +
-                           $"({collectedResponseFromStreaming.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
+Utils.WriteLineDarkGray($"- Input Tokens (Streaming): {collectedResponseFromStreaming.Usage?.InputTokenCount}");
+Utils.WriteLineDarkGray($"- Output Tokens (Streaming): {collectedResponseFromStreaming.Usage?.OutputTokenCount} " +
+                        $"({collectedResponseFromStreaming.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
 
 Utils.Separator();
 Console.ReadKey();

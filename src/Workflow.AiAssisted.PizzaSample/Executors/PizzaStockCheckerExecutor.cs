@@ -13,7 +13,7 @@ class PizzaStockCheckerExecutor() : ReflectingExecutor<PizzaStockCheckerExecutor
         {
             if (topping == "Mushrooms") //Sample out of stock
             {
-                Utils.WriteLineInformation($"--- Add out of stock warning: {topping}");
+                Utils.WriteLineDarkGray($"--- Add out of stock warning: {topping}");
                 message.Warnings.Add(WarningType.OutOfIngredient, topping);
             }
             else
