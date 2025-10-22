@@ -24,7 +24,12 @@
     <Project Path="src/Workflow.AiAssisted.PizzaSample/Workflow.AiAssisted.PizzaSample.csproj" Id="ebb01b83-7e68-44be-a89a-4574848c00fa" />
   </Folder>
   <Folder Name="/OpenAiResponesApi/">
+    <File Path="C:/Users/rasmu/Desktop/ResponsesAPIFeatureMatrixSupport.png" />
+    <Project Path="src/OpenAIResponsesApi.CodeInterpreter/OpenAIResponsesApi.CodeInterpreter.csproj" Id="1d0ae3d5-3cb0-439c-acf2-311d15621421" />
+    <Project Path="src/OpenAIResponsesApi.FileSearchTool/OpenAIResponsesApi.FileSearchTool.csproj" Id="959e5bb4-a8d6-4530-a893-b2430c51b921" />
     <Project Path="src/OpenAIResponsesApi.ReasoningSummary/OpenAIResponsesApi.ReasoningSummary.csproj" Id="aa7c1934-b057-43d6-ba0a-92375c4e47f4" />
+    <Project Path="src/OpenAIResponsesApi.ResumeConversation/OpenAIResponsesApi.ResumeConversation.csproj" Id="109fe4ed-2aaf-4373-b93b-b5a72fedc742" />
+    <Project Path="src/OpenAIResponsesApi.SpecialModels/OpenAIResponsesApi.SpecialModels.csproj" Id="34ae1899-0fb6-41ca-85e4-e13d85196263" />
     <Project Path="src/OpenAIResponsesApi.WebSearch/OpenAIResponsesApi.WebSearch.csproj" Id="9dc49e05-421b-4e1d-9384-579ddefd2763" />
   </Folder>
   <Folder Name="/RAG/">
@@ -33,6 +38,7 @@
   </Folder>
   <Folder Name="/SettingsAndConfiguration/">
     <Project Path="src/SettingsOnAiAgent/SettingsOnAiAgent.csproj" Id="86d8fd4d-bf34-488d-8f30-94e9b808419a" />
+    <Project Path="src/WatchRawRequestAndResponse/WatchRawRequestAndResponse.csproj" Id="bbfd2a79-7962-499a-8428-4fdcee484295" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
