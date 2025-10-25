@@ -25,7 +25,8 @@ Console.Clear();
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-await FileTool.Run(configuration);
+await AzureOpenAiFoundry.Run(configuration);
+//await FileTool.Run(configuration);
 //await CodeTool.Run(configuration);
 //await ReasoningSummary.Run(configuration);
 //await CodexSpecialModels.Run(configuration);

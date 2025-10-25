@@ -1,4 +1,6 @@
-﻿#pragma warning disable OPENAI001
+﻿//YouTube video that cover this sample: https://youtu.be/pqLWICXRtyA
+
+#pragma warning disable OPENAI001
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Shared;

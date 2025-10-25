@@ -11,4 +11,5 @@ public record Configuration(
     string BingApiKey,
     string GitHubPatToken,
     string HuggingFaceApiKey,
-    string OpenRouterApiKey);
+    string OpenRouterApiKey,
+    string ApplicationInsightsConnectionString);

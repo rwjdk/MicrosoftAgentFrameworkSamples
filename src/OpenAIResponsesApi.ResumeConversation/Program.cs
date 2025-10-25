@@ -1,4 +1,6 @@
-﻿using System.ClientModel;
+﻿//YouTube video that cover this sample: https://youtu.be/sfXaW4fZrh0
+
+using System.ClientModel;
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;

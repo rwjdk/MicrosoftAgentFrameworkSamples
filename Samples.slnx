@@ -1,4 +1,13 @@
 <Solution>
+  <Folder Name="/Aspire/">
+    <Project Path="Samples.AppHost/Samples.AppHost.csproj" Id="42cace91-95d9-45d2-ba66-5e73a5ab6771" />
+    <Project Path="Samples.ServiceDefaults/Samples.ServiceDefaults.csproj" />
+    <Project Path="src/AspireBlazorDemo/AspireBlazorDemo.csproj" />
+  </Folder>
+  <Folder Name="/AzureAiFoundry/">
+    <Project Path="src/AzureAiFoundry.Administration/AzureAiFoundry.Administration.csproj" Id="968b00b8-e6a9-4891-95d9-adc89a34ae2a" />
+    <Project Path="src/AzureAiFoundry.Models/AzureAiFoundry.Models.csproj" Id="e3e015ec-1504-4b3c-9af8-c3a7028d3931" />
+  </Folder>
   <Folder Name="/Features/">
     <Project Path="src/AgentInputData/AgentInputData.csproj" Id="56751bff-8f82-4754-9d16-6f46b0b82fe1" />
     <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />
@@ -42,6 +51,9 @@
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Telemetry/">
+    <Project Path="src/Telemetry/Telemetry.csproj" Id="5fd6ed24-957b-4541-9be2-e2e23c6f606a" />
   </Folder>
   <Folder Name="/ZeroToFirstAgent/" />
   <Folder Name="/ZeroToFirstAgent/Non-OpenAI Based/">

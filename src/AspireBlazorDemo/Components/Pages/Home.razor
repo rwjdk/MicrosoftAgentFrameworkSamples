@@ -1,0 +1,34 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using Microsoft.Agents.AI
+
+<PageTitle>Home</PageTitle>
+
+<input @bind="@_question"/>
+<button @onclick="AskAi">Submit</button>
+
+@if (!string.IsNullOrWhiteSpace(_answer))
+{
+    <h2>Answer</h2>
+    @_answer
+}
+
+@code 
+{
+    [Inject]
+    public required AIAgent Agent { get; set; }
+    private string? _question;
+    private string? _answer;
+
+    private async Task AskAi()
+    {
+        if (string.IsNullOrWhiteSpace(_question))
+        {
+            return;
+        }
+        
+        AgentRunResponse response = await Agent.RunAsync(_question);
+        _answer = response.Text;
+        StateHasChanged();
+    }
+}

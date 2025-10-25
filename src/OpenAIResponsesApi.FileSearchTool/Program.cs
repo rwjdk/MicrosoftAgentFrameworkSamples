@@ -1,4 +1,6 @@
-﻿using Microsoft.Agents.AI;
+﻿//YouTube video that cover this sample: https://youtu.be/jq_gIydI8m4
+
+using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI;
 using OpenAI.Files;

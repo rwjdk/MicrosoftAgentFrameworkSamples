@@ -8,6 +8,7 @@
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Azure.Identity" Version="1.17.0" />
+		<PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.4.0" />
 		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251009.1" />
 		<PackageReference Include="Microsoft.Agents.AI.A2A" Version="1.0.0-preview.251009.1" />
 		<PackageReference Include="Microsoft.Agents.AI.AzureAI" Version="1.0.0-preview.251009.1" />
@@ -19,9 +20,16 @@
 		<PackageReference Include="OpenAI" Version="2.5.0" />
 		<PackageReference Include="Azure.AI.OpenAI" Version="2.5.0-beta.1" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251009.1" />
+		<PackageReference Include="OpenTelemetry" Version="1.13.1" />
+		<PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.13.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="OpenTelemetry">
+	    <HintPath>C:\Users\rasmu\.nuget\packages\opentelemetry\1.13.1\lib\net9.0\OpenTelemetry.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="Data\secretData.pdf">
