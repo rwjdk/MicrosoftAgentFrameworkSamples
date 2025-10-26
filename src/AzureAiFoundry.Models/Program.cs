@@ -1,6 +1,4 @@
-﻿//*********************************************
-//WARNING: THIS SAMPLE IS WORK IN PROGRESS
-//*********************************************
+﻿//YouTube video that cover this sample: https://youtu.be/arfBt6-wbnw
 
 using Azure;
 using Azure.AI.Agents.Persistent;
@@ -10,15 +8,13 @@ using Microsoft.Agents.AI;
 using OpenAI;
 using Shared;
 using System.ClientModel;
-using System.Net;
-using System.Reflection;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
 string questionToAsk = "What is the capital of the USA?";
 
-//await CreateAndCallNormalClientAgent("gpt-4.1-mini", questionToAsk); //Works
-//await CreateAndCallNormalClientAgent("DeepSeek-R1-0528", questionToAsk); //Works
+await CreateAndCallNormalClientAgent("gpt-4.1-mini", questionToAsk); //Works
+await CreateAndCallNormalClientAgent("DeepSeek-R1-0528", questionToAsk); //Works
 
 await CreateAndCallFoundryAgent("gpt-4.1-mini", questionToAsk); //Works
 await CreateAndCallFoundryAgent("DeepSeek-R1-0528", questionToAsk); //This does NOT work with non-OpenAI Models (but do also not throw an exception ?!?)

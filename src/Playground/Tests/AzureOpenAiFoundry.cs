@@ -52,10 +52,6 @@ public class AzureOpenAiFoundry
                 .Build();
 
             AgentThread thread = agent.GetNewThread();
-            if (thread is ChatClientAgentThread agentThread)
-            {
-                chatClientAgentThread = agentThread;
-            }
 
             List<AgentRunResponseUpdate> updates = [];
             await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)", thread))

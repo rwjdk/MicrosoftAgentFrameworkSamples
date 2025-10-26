@@ -1,36 +1,34 @@
-﻿//*********************************************
-//WARNING: THIS SAMPLE IS WORK IN PROGRESS
-//*********************************************
+﻿//YouTube video that cover this sample: https://youtu.be/V2piYocabI8
 
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
+using Microsoft.Agents.AI;
 using Shared;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 PersistentAgentsClient client = new(configuration.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
+PersistentAgentsFiles files = client.Files; //Files CRUD
 
-string? vectorStoreId = null;
-try
-{
-    //Data + Indexes
-    Response<PersistentAgentsVectorStore> vectorStore = await client.VectorStores.CreateVectorStoreAsync(name: "MyVectorStore");
-}
-finally
-{
-    if (vectorStoreId != null)
-    {
-        await client.VectorStores.DeleteVectorStoreAsync(vectorStoreId);
-    }
-}
+VectorStores vectorStores = client.VectorStores; //Vector Store CRUD + Add/Remove Files to/from them
 
+Threads threads = client.Threads; //Thread CRUD
 
-//Agents
+ThreadMessages messages = client.Messages; //Messages CRUD (associated with Threads)
+
+ThreadRuns runs = client.Runs; //The Invocation of asking the LLM (+ stats on it)
+
+PersistentAgentsAdministrationClient administration = client.Administration; //The Agents CRUD
+
+//Agents Details
 CancellationToken cancellationToken = new CancellationTokenSource().Token;
 
+Response<PersistentAgent> existingPersistentAgent = await administration.GetAgentAsync("asst_44Z3VVpGZXuD91HRKohhvC68");
+ChatClientAgent afAgentFromExisting = await client.GetAIAgentAsync(existingPersistentAgent.Value.Id);
 
-client.Administration.CreateAgent(
+
+Response<PersistentAgent> newPersistentAgent = administration.CreateAgent(
     model: "gpt-4.1-mini",
     name: "NameOfClient",
     description: "DescriptionOfClient",
@@ -66,7 +64,9 @@ client.Administration.CreateAgent(
     },
     cancellationToken: cancellationToken);
 
+ChatClientAgent afAgentFromNew = await client.GetAIAgentAsync(newPersistentAgent.Value.Id);
 
+//Example:
 //await DeleteAllThreads(client);//WARNING: DELETE ALL THREADS
 
 async Task DeleteAllThreads(PersistentAgentsClient persistentAgentsClient)
