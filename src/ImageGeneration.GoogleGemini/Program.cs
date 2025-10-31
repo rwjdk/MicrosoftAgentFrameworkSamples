@@ -1,4 +1,5 @@
-﻿//NB: This samples is not as such related to Microsoft Agent Framework, but output can of cause be used
+﻿//YouTube video that cover this sample https://youtu.be/F8BxvnpWJ9s
+//NB: This samples is not as such related to Microsoft Agent Framework, but output can of cause be used
 
 using GenerativeAI;
 using GenerativeAI.Clients;
