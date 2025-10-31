@@ -36,7 +36,7 @@ Console.OutputEncoding = Encoding.UTF8;
 
 const string input = "Make a big Pepperoni Pizza with mushrooms and onions";
 
-StreamingRun run = await InProcessExecution.StreamAsync(workflow, input);
+StreamingRun run = await InProcessExecution.StreamAsync(workflow: workflow, input: input);
 await foreach (WorkflowEvent evt in run.WatchStreamAsync())
 {
     if (evt is ExecutorCompletedEvent executorComplete)
