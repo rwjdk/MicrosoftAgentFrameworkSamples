@@ -12,4 +12,6 @@ public record Configuration(
     string GitHubPatToken,
     string HuggingFaceApiKey,
     string OpenRouterApiKey,
-    string ApplicationInsightsConnectionString);
+    string ApplicationInsightsConnectionString,
+    string GoogleGeminiApiKey,
+    string XAiGrokApiKey);

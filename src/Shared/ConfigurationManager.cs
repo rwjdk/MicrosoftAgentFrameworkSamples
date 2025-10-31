@@ -18,7 +18,9 @@ public class ConfigurationManager
       "HuggingFaceApiKey": "todo",
       "OpenRouterApiKet" : "todo",
       "OpenRouterApiKey" : "todo",
-      "ApplicationInsightsConnectionString" : "todo"
+      "ApplicationInsightsConnectionString" : "todo",
+      "GoogleGeminiApiKey" : "todo",
+      "XAiGrokApiKey" : "todo",
     }
     ************************************************************************************************************************************************
     - See the how-to guides on how to create your Azure Resources in the ReadMe
@@ -41,6 +43,8 @@ public class ConfigurationManager
         string huggingFaceApiKey = configurationRoot["HuggingFaceApiKey"] ?? string.Empty;
         string openRouterApiKey = configurationRoot["OpenRouterApiKey"] ?? string.Empty;
         string applicationInsightsConnectionString = configurationRoot["ApplicationInsightsConnectionString"] ?? string.Empty;
+        string googleGeminiApiKey = configurationRoot["GoogleGeminiApiKey"] ?? string.Empty;
+        string xAiGrokApiKey = configurationRoot["XAiGrokApiKey"] ?? string.Empty;
 
         return new Configuration(
             openAiApiKey,
@@ -54,6 +58,8 @@ public class ConfigurationManager
             githubPatToken,
             huggingFaceApiKey,
             openRouterApiKey,
-            applicationInsightsConnectionString);
+            applicationInsightsConnectionString,
+            googleGeminiApiKey,
+            xAiGrokApiKey);
     }
 }

@@ -1,0 +1,1 @@
+Anthropic Claude does not support Image Generation as of 1st of November 2025

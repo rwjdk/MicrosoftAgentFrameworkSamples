@@ -1,0 +1,1 @@
+As Grok kan use the OpenAI Spec, use that
