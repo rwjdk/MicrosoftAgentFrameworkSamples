@@ -62,6 +62,13 @@ static async Task<List<ChatMessage>> RunWorkflowAsync(Workflow workflow, List<Ch
             case WorkflowOutputEvent output:
                 Utils.Separator();
                 return output.As<List<ChatMessage>>()!;
+            case ExecutorFailedEvent failedEvent:
+                if (failedEvent.Data is Exception ex)
+                {
+                    Utils.WriteLineRed($"Error in agent {failedEvent.ExecutorId}: " + ex);
+                }
+
+                break;
         }
     }
 
