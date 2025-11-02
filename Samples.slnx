@@ -1,4 +1,13 @@
 <Solution>
+  <Folder Name="/- Nuget Package Candidates -/">
+    <Project Path="src/MicrosoftAgentFramework.Toolkit.Tests/MicrosoftAgentFramework.Toolkit.Tests.csproj" Id="da263526-188b-4d54-bd3d-1490e2eaccf4" />
+    <Project Path="src/MicrosoftAgentFramework.Toolkit/MicrosoftAgentFramework.Toolkit.csproj" Id="3db98eb0-8f14-4784-a755-b7d5c1a1d340" />
+    <Project Path="src/MicrosoftAgentFramework.Utilities/MicrosoftAgentFramework.Utilities.csproj" Id="997d075c-8a83-4d22-94b3-09af8550aed5" />
+  </Folder>
+  <Folder Name="/- Playground and Work in Progress -/">
+    <Project Path="src/Playground/Playground.csproj" Id="cbfc6bab-e8ea-4566-a695-56d84b6e5f68" />
+    <Project Path="src/Trello.Agent/Trello.Agent.csproj" Id="efbcd89b-d888-4f52-9e9c-250134c4d908" />
+  </Folder>
   <Folder Name="/- Special AI Features not using Agent Framework -/" />
   <Folder Name="/- Special AI Features not using Agent Framework -/ImageGeneration/">
     <File Path="Anthropic-Claude.txt" />
@@ -20,6 +29,7 @@
   </Folder>
   <Folder Name="/Features/">
     <Project Path="src/AgentInputData/AgentInputData.csproj" Id="56751bff-8f82-4754-9d16-6f46b0b82fe1" />
+    <Project Path="src/ChatHistoryReducer/ChatHistoryReducer.csproj" Id="96cb4db1-2675-4f7d-a5d8-960f07b7e0fd" />
     <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />
     <Project Path="src/ReasoningEffort/ReasoningEffort.csproj" Id="caba07b0-4551-4b07-b2b6-d895836bda18" />
     <Project Path="src/StructuredOutput/StructuredOutput.csproj" Id="3f844d4f-0435-468f-a6ef-ff35ac8f7983" />
@@ -57,6 +67,7 @@
   </Folder>
   <Folder Name="/SettingsAndConfiguration/">
     <Project Path="src/SettingsOnAiAgent/SettingsOnAiAgent.csproj" Id="86d8fd4d-bf34-488d-8f30-94e9b808419a" />
+    <Project Path="src/TheDifferentAgents/TheDifferentAgents.csproj" Id="443e0db8-204b-403d-8145-7133496bf9c8" />
     <Project Path="src/WatchRawRequestAndResponse/WatchRawRequestAndResponse.csproj" Id="bbfd2a79-7962-499a-8428-4fdcee484295" />
   </Folder>
   <Folder Name="/Solution Items/">
@@ -85,7 +96,5 @@
   <Folder Name="/ZeroToFirstAgent/OpenAI Based/Offline/">
     <Project Path="src/ZeroToFirstAgent.FoundryLocal/ZeroToFirstAgent.FoundryLocal.csproj" Id="420ee7f5-fa0f-4303-a68c-630ede8086e4" />
   </Folder>
-  <Project Path="src/MicrosoftAgentFramework.Utilities/MicrosoftAgentFramework.Utilities.csproj" Id="997d075c-8a83-4d22-94b3-09af8550aed5" />
-  <Project Path="src/Playground/Playground.csproj" Id="cbfc6bab-e8ea-4566-a695-56d84b6e5f68" />
   <Project Path="src/Shared/Shared.csproj" />
 </Solution>

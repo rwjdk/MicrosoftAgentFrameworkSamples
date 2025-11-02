@@ -21,6 +21,8 @@ public class ConfigurationManager
       "ApplicationInsightsConnectionString" : "todo",
       "GoogleGeminiApiKey" : "todo",
       "XAiGrokApiKey" : "todo",
+      "TrelloApiKey" : "todo",
+      "TrelloToken" : "todo"
     }
     ************************************************************************************************************************************************
     - See the how-to guides on how to create your Azure Resources in the ReadMe
@@ -45,6 +47,8 @@ public class ConfigurationManager
         string applicationInsightsConnectionString = configurationRoot["ApplicationInsightsConnectionString"] ?? string.Empty;
         string googleGeminiApiKey = configurationRoot["GoogleGeminiApiKey"] ?? string.Empty;
         string xAiGrokApiKey = configurationRoot["XAiGrokApiKey"] ?? string.Empty;
+        string trelloApiKey = configurationRoot["TrelloApiKey"] ?? string.Empty;
+        string trelloToken = configurationRoot["TrelloToken"] ?? string.Empty;
 
         return new Configuration(
             openAiApiKey,
@@ -60,6 +64,8 @@ public class ConfigurationManager
             openRouterApiKey,
             applicationInsightsConnectionString,
             googleGeminiApiKey,
-            xAiGrokApiKey);
+            xAiGrokApiKey,
+            trelloApiKey,
+            trelloToken);
     }
 }

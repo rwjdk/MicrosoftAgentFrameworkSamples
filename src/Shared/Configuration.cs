@@ -14,4 +14,6 @@ public record Configuration(
     string OpenRouterApiKey,
     string ApplicationInsightsConnectionString,
     string GoogleGeminiApiKey,
-    string XAiGrokApiKey);
+    string XAiGrokApiKey,
+    string TrelloApiKey,
+    string TrelloToken);

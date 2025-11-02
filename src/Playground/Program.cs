@@ -31,6 +31,7 @@ Configuration configuration = ConfigurationManager.GetConfiguration();
 
 //AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 OpenAIClient client = new(configuration.OpenAiApiKey);
+
 ImageClient imageClient = client.GetImageClient("gpt-image-1");
 ClientResult<GeneratedImage> image = await imageClient.GenerateImageAsync("A Tiger in a jungle with a party-hat", new ImageGenerationOptions
 {
