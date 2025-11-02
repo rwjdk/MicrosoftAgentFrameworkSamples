@@ -71,8 +71,6 @@ AIAgent aiAgentWithOpenTelemetryAndFunctionCallingMiddleware = rawOpenAiClient
     .UseOpenTelemetry("test")
     .Build(); //<< Always AIAgent
 
-string? fullName = aiAgentWithOpenTelemetryAndFunctionCallingMiddleware.GetType().FullName;
-
 //These AsBuilder() agents are often DelegatingAIAgents (meaning they are not based directly on IChatClient)
 if (aiAgentWithOpenTelemetryMiddleware is DelegatingAIAgent delegatingAIAgent1)
 {
@@ -90,7 +88,7 @@ if (aiAgentWithFunctionCallingMiddleware is DelegatingAIAgent delegatingAIAgent2
 //In an OpenTelemetry scenario this delegating Agent is also an OpenTelemetryAgent (which implement DelegatingAIAgent)
 if (aiAgentWithOpenTelemetryMiddleware is OpenTelemetryAgent openTelemetryAgent)
 {
-    Console.WriteLine("This is a DelegatingAIAgent");
+    Console.WriteLine("This is a OpenTelemetryAgent");
 }
 
 //In an FunctionCallingMiddleware scenario this delegating Agent is also technically a FunctionInvocationDelegatingAgent
