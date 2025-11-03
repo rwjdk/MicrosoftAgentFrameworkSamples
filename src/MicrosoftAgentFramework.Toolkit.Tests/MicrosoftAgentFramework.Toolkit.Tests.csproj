@@ -20,6 +20,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\MicrosoftAgentFramework.Toolkit.AzureOpenAI\MicrosoftAgentFramework.Toolkit.AzureOpenAI.csproj" />
+	  <ProjectReference Include="..\MicrosoftAgentFramework.Toolkit.Google\MicrosoftAgentFramework.Toolkit.Google.csproj" />
 	  <ProjectReference Include="..\MicrosoftAgentFramework.Toolkit\MicrosoftAgentFramework.Toolkit.csproj" />
+	  <ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 </Project>

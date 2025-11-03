@@ -4,56 +4,64 @@
 //- Microsoft.Agents.AI.Hosting.AgentCatalog TODO: Guess this is something to be used in AI Foundry
 
 #pragma warning disable OPENAI001
-using A2A;
-using Azure;
-using Azure.AI.Agents.Persistent;
 using Azure.AI.OpenAI;
-using Azure.Identity;
 using Microsoft.Agents.AI;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.Extensions.AI;
 using OpenAI;
-using OpenAI.Images;
-using Playground.Tests;
 using Shared;
-using Shared.Extensions;
 using System.ClientModel;
-using System.Collections;
-using System.Reflection;
 using System.Text;
-using System.Threading;
-using ImageGenerationOptions = OpenAI.Images.ImageGenerationOptions;
 
 Console.WriteLine("");
 Console.Clear();
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-//AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
-OpenAIClient client = new(configuration.OpenAiApiKey);
+AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
-ImageClient imageClient = client.GetImageClient("gpt-image-1");
-ClientResult<GeneratedImage> image = await imageClient.GenerateImageAsync("A Tiger in a jungle with a party-hat", new ImageGenerationOptions
+AIAgent agentFast = client
+    .GetOpenAIResponseClient("gpt-5")
+    .CreateAIAgent();
+
+Utils.WriteLineGreen("AgentFast-BEGIN");
+AgentRunResponse response1 = await agentFast.RunAsync("What is the capital of France?");
+Console.WriteLine(response1);
+Utils.WriteLineGreen("AgentFast-END");
+
+Console.Clear();
+
+AIAgent agentSlow = client
+    .GetOpenAIResponseClient(configuration.ChatDeploymentName)
+    .CreateAIAgent();
+
+Utils.WriteLineGreen("AgentSlow-BEGIN");
+AgentRunResponse response2 = await agentSlow.RunAsync("Write a 2000 word essay on Pigs in Space");
+Console.WriteLine(response2);
+Utils.WriteLineGreen("AgentSlow-END");
+
+Console.Clear();
+
+Utils.WriteLineGreen("AgentSlow-BACKGROUND-BEGIN");
+AgentThread agentThread = agentSlow.GetNewThread();
+ChatClientAgentRunOptions options = new ChatClientAgentRunOptions
 {
-    Background = GeneratedImageBackground.Auto,
-    Quality = GeneratedImageQuality.Auto,
-    Size = GeneratedImageSize.W1024xH1024,
-    OutputFileFormat = GeneratedImageFileFormat.Png,
-});
-byte[] bytes = image.Value.ImageBytes.ToArray();
-string path = Path.Combine(Path.GetTempPath(), "image.png");
-File.WriteAllBytes(path, bytes);
+    AllowBackgroundResponses = true
+};
+AgentRunResponse response3 = await agentSlow.RunAsync("Write a 2000 word essay on Pigs in Space", agentThread, options: options);
+Utils.WriteLineGreen("AgentSlow-BACKGROUND-END");
 
-await Task.Factory.StartNew(() =>
+int counter = 0;
+while (response3.ContinuationToken is not null)
 {
-    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-    {
-        FileName = path,
-        UseShellExecute = true
-    });
-});
+    await Task.Delay(TimeSpan.FromSeconds(2));
+    counter++;
+    Utils.WriteLineDarkGray($"- Waited: {(counter * 2)} seconds...");
 
-Console.WriteLine();
+    options.ContinuationToken = response3.ContinuationToken;
+    response3 = await agentSlow.RunAsync(agentThread, options);
+}
+
+Console.WriteLine(response3.Text);
 
 //await AzureOpenAiFoundry.Run(configuration);
 //await FileTool.Run(configuration);

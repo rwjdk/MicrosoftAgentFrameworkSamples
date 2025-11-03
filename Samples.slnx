@@ -1,5 +1,7 @@
 <Solution>
   <Folder Name="/- Nuget Package Candidates -/">
+    <Project Path="src/MicrosoftAgentFramework.Toolkit.AzureOpenAI/MicrosoftAgentFramework.Toolkit.AzureOpenAI.csproj" Id="051b069a-9d36-43c9-b4ac-db6fd7b1cd84" />
+    <Project Path="src/MicrosoftAgentFramework.Toolkit.Google/MicrosoftAgentFramework.Toolkit.Google.csproj" Id="71c5f543-d0e9-419e-9eb5-ccf18e4786ea" />
     <Project Path="src/MicrosoftAgentFramework.Toolkit.Tests/MicrosoftAgentFramework.Toolkit.Tests.csproj" Id="da263526-188b-4d54-bd3d-1490e2eaccf4" />
     <Project Path="src/MicrosoftAgentFramework.Toolkit/MicrosoftAgentFramework.Toolkit.csproj" Id="3db98eb0-8f14-4784-a755-b7d5c1a1d340" />
     <Project Path="src/MicrosoftAgentFramework.Utilities/MicrosoftAgentFramework.Utilities.csproj" Id="997d075c-8a83-4d22-94b3-09af8550aed5" />
@@ -29,6 +31,7 @@
   </Folder>
   <Folder Name="/Features/">
     <Project Path="src/AgentInputData/AgentInputData.csproj" Id="56751bff-8f82-4754-9d16-6f46b0b82fe1" />
+    <Project Path="src/AllowBackgroundResponses/AllowBackgroundResponses.csproj" Id="816a1755-2efb-42d2-af96-408282ee50ea" />
     <Project Path="src/ChatHistoryReducer/ChatHistoryReducer.csproj" Id="96cb4db1-2675-4f7d-a5d8-960f07b7e0fd" />
     <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />
     <Project Path="src/ReasoningEffort/ReasoningEffort.csproj" Id="caba07b0-4551-4b07-b2b6-d895836bda18" />
