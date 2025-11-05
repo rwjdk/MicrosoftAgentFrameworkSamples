@@ -1,3 +1,5 @@
+//YouTube video that cover this sample: https://youtu.be/q-mHdd6iJJo
+
 using Azure.AI.OpenAI;
 using DependencyInjection.Components;
 using System.ClientModel;

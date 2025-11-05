@@ -1,4 +1,6 @@
-﻿using Azure.AI.Agents.Persistent;
+﻿//YouTube video that cover this sample: https://youtu.be/pN-WV5FD_-Y
+
+using Azure.AI.Agents.Persistent;
 using Azure.AI.OpenAI;
 using Azure.Identity;
 using Microsoft.Agents.AI;

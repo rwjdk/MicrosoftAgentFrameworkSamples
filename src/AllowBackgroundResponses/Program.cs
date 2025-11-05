@@ -1,4 +1,6 @@
-﻿using Azure.AI.OpenAI;
+﻿//YouTube video that cover this sample: https://youtu.be/6sM6nTk_UBs
+
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Shared;
 using System.ClientModel;
