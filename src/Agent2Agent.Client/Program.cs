@@ -1,7 +1,6 @@
 ﻿using A2A;
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
-using Microsoft.Extensions.AI;
 using Shared;
 using System.ClientModel;
 using OpenAI;
@@ -15,8 +14,6 @@ Utils.WriteLineDarkGray("- Connecting to Remote Agent");
 A2ACardResolver agentCardResolver = new A2ACardResolver(new Uri("http://localhost:5000/"));
 AIAgent remoteAgent = await agentCardResolver.GetAIAgentAsync();
 
-List<AITool> tools = [remoteAgent.AsAIFunction()];
-
 Utils.Separator();
 
 Utils.WriteLineDarkGray("Ready for questions");
@@ -26,7 +23,7 @@ ChatClientAgent agent = azureOpenAIClient
     .CreateAIAgent(
         name: "ClientAgent",
         instructions: "You specialize in handling queries for users and using your tools to provide answers.",
-        tools: tools);
+        tools: [remoteAgent.AsAIFunction()]);
 
 AgentThread thread = agent.GetNewThread();
 while (true)
