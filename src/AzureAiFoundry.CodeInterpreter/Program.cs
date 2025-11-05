@@ -7,8 +7,6 @@ using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Shared;
 
-#pragma warning disable OPENAI001
-
 Console.Clear();
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
