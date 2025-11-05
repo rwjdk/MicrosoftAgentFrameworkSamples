@@ -36,7 +36,7 @@ public class CodeTool
                     CollectionResult<ContainerFileResource> containerFileResources = containerClient.GetContainerFiles(containerId);
                     foreach (ContainerFileResource fileResource in containerFileResources)
                     {
-                        ClientResult<BinaryData> fileContent = await containerClient.GetContainerFileContentAsync(containerId, fileResource.Id);
+                        ClientResult<BinaryData> fileContent = await containerClient.DownloadContainerFileAsync(containerId, fileResource.Id);
                         string path = Path.Combine(Path.GetTempPath(), fileResource.Path.Replace("/", "_"));
                         await File.WriteAllBytesAsync(path, fileContent.Value.ToArray());
                         await Task.Factory.StartNew(() =>

@@ -69,6 +69,7 @@
     <Project Path="src/UsingRAGInAgentFramework/UsingRAGInAgentFramework.csproj" Id="11bf0b5c-8a06-4a3f-b70c-148730d2db08" />
   </Folder>
   <Folder Name="/SettingsAndConfiguration/">
+    <Project Path="src/LifeOfAnLLMCall/LifeOfAnLLMCall.csproj" Id="9f72e70c-6171-4a9c-87f3-f888518c4a43" />
     <Project Path="src/SettingsOnAiAgent/SettingsOnAiAgent.csproj" Id="86d8fd4d-bf34-488d-8f30-94e9b808419a" />
     <Project Path="src/TheDifferentAgents/TheDifferentAgents.csproj" Id="443e0db8-204b-403d-8145-7133496bf9c8" />
     <Project Path="src/WatchRawRequestAndResponse/WatchRawRequestAndResponse.csproj" Id="bbfd2a79-7962-499a-8428-4fdcee484295" />

@@ -7,7 +7,7 @@ using OpenAI.Containers;
 using Shared;
 using Shared.Extensions;
 using System.ClientModel;
-using Utils = Shared.Utils;
+using OpenAI.Responses;
 
 #pragma warning disable OPENAI001
 Configuration configuration = ConfigurationManager.GetConfiguration();
@@ -26,26 +26,11 @@ foreach (var message in response.Messages)
     {
         foreach (AIAnnotation annotation in content.Annotations ?? [])
         {
-            if (annotation is CitationAnnotation citationAnnotation)
+            if (annotation.RawRepresentation is ContainerFileCitationMessageAnnotation containerFileCitation)
             {
-                Console.WriteLine("The intended way to get file, but not working at the moment due to a bug in the OpenAI SDK");
-            }
-        }
-
-        //This is the workaround
-        if (content.RawRepresentation is OpenAI.Responses.CodeInterpreterCallResponseItem codeInterpreterCallResponse)
-        {
-            Utils.WriteLineGreen("The Code");
-            Utils.WriteLineDarkGray(codeInterpreterCallResponse.Code);
-
-            Utils.WriteLineGreen("The File");
-            ContainerClient containerClient = client.GetContainerClient();
-            string containerId = codeInterpreterCallResponse.ContainerId;
-            CollectionResult<ContainerFileResource> containerFileResources = containerClient.GetContainerFiles(containerId);
-            foreach (ContainerFileResource fileResource in containerFileResources)
-            {
-                ClientResult<BinaryData> fileContent = await containerClient.GetContainerFileContentAsync(containerId, fileResource.Id);
-                string path = Path.Combine(Path.GetTempPath(), fileResource.Path.Replace("/", "_"));
+                ContainerClient containerClient = client.GetContainerClient();
+                ClientResult<BinaryData> fileContent = await containerClient.DownloadContainerFileAsync(containerFileCitation.ContainerId, containerFileCitation.FileId);
+                string path = Path.Combine(Path.GetTempPath(), containerFileCitation.Filename);
                 await File.WriteAllBytesAsync(path, fileContent.Value.ToArray());
                 await Task.Factory.StartNew(() =>
                 {

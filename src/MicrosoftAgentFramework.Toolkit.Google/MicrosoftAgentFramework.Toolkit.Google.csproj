@@ -7,7 +7,7 @@
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Google_GenerativeAI.Microsoft" Version="3.4.0" />
-		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251028.1" />
+		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251104.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\MicrosoftAgentFramework.Toolkit\MicrosoftAgentFramework.Toolkit.csproj" />
