@@ -14,9 +14,8 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Text;
 using System.Text.Json;
+using A2A;
 
-using var handler = new CustomClientHttpHandler();
-using var httpClient = new HttpClient(handler);
 Console.WriteLine("");
 Console.Clear();
 
@@ -24,8 +23,9 @@ Configuration configuration = ConfigurationManager.GetConfiguration();
 
 AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey), new AzureOpenAIClientOptions
 {
-    Transport = new HttpClientPipelineTransport(httpClient)
+    //Transport = new HttpClientPipelineTransport(httpClient)
 });
+
 
 AIAgent agent = client
     .GetOpenAIResponseClient("gpt-5-mini")
@@ -42,27 +42,3 @@ Console.WriteLine(response);
 //await SpaceNewsWebSearch.Run(configuration);
 //await ResumeConversation.Run(configuration);
 //await AzureOpenAiCodex.Run(configuration);
-
-class CustomClientHttpHandler() : HttpClientHandler
-{
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        string requestString = await request.Content?.ReadAsStringAsync(cancellationToken)!;
-        Utils.WriteLineGreen($"Raw Request ({request.RequestUri})");
-        Utils.WriteLineDarkGray(MakePretty(requestString));
-        Utils.Separator();
-        var response = await base.SendAsync(request, cancellationToken);
-
-        string responseString = await response.Content.ReadAsStringAsync(cancellationToken);
-        Utils.WriteLineGreen("Raw Response");
-        Utils.WriteLineDarkGray(MakePretty(responseString));
-        Utils.Separator();
-        return response;
-    }
-
-    private string MakePretty(string input)
-    {
-        var jsonElement = JsonSerializer.Deserialize<JsonElement>(input);
-        return JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
-    }
-}
