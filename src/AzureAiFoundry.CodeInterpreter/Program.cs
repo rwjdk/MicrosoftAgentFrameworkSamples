@@ -32,52 +32,23 @@ try
 
     AgentThread thread = agent.GetNewThread();
 
-    AgentRunResponse response = await agent.RunAsync("Make a png image with graph listing population of the top 10 US States in year 2000", thread);
-    Console.WriteLine(response);
+    AgentRunResponse response = await agent.RunAsync("Make a jpg image with graph listing population of the top 10 US States in year 2000", thread);
 
     string? fileId = null;
+    string? filename = null;
+    string? filePath = null;
+    string? textToReplace = null;
     foreach (ChatMessage message in response.Messages)
     {
         foreach (AIContent content in message.Contents)
         {
             foreach (AIAnnotation annotation in content.Annotations ?? [])
             {
-                if (annotation is CitationAnnotation citationAnnotation)
+                if (annotation.RawRepresentation is TextAnnotationUpdate citationAnnotation)
                 {
-                    Console.WriteLine("The intended way to get file, but not working consistently at the moment due to a bug in the OpenAI SDK");
-                    fileId = citationAnnotation.FileId;
-                }
-            }
-        }
-    }
-
-    if (fileId == null)
-    {
-        //The Workaround
-        string threadId = ((ChatClientAgentThread)thread).ConversationId!;
-        string runId = response.ResponseId!;
-        await foreach (PersistentThreadMessage persistentThreadMessage in client.Messages.GetMessagesAsync(threadId, runId))
-        {
-            foreach (MessageContent contentItem in persistentThreadMessage.ContentItems)
-            {
-                if (contentItem is MessageImageFileContent messageImageFileContent)
-                {
-                    fileId = messageImageFileContent.FileId;
-                }
-                else if (contentItem is MessageTextContent messageTextContent)
-                {
-                    foreach (MessageTextAnnotation annotation in messageTextContent.Annotations)
-                    {
-                        if (annotation is MessageTextFilePathAnnotation messageTextFilePathAnnotation)
-                        {
-                            fileId = messageTextFilePathAnnotation.FileId;
-                        }
-
-                        if (annotation is MessageTextFileCitationAnnotation messageTextFileCitationAnnotation)
-                        {
-                            fileId = messageTextFileCitationAnnotation.FileId;
-                        }
-                    }
+                    fileId = citationAnnotation.OutputFileId;
+                    textToReplace = citationAnnotation.TextToReplace;
+                    filename = Path.GetFileName(textToReplace);
                 }
             }
         }
@@ -86,17 +57,19 @@ try
     if (fileId != null)
     {
         Response<BinaryData> fileContent = await client.Files.GetFileContentAsync(fileId);
-        string path = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".png");
-        await File.WriteAllBytesAsync(path, fileContent.Value.ToArray());
+        filePath = Path.Combine(Path.GetTempPath(), filename!);
+        await File.WriteAllBytesAsync(filePath, fileContent.Value.ToArray());
         await Task.Factory.StartNew(() =>
         {
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
             {
-                FileName = path,
+                FileName = filePath,
                 UseShellExecute = true
             });
         });
     }
+
+    Console.WriteLine(textToReplace != null ? response.Text.Replace(textToReplace, filePath) : response.Text);
 }
 finally
 {
