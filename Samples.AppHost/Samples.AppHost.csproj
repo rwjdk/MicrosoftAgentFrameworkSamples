@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\AspireBlazorDemo\AspireBlazorDemo.csproj" />
+    <ProjectReference Include="..\src\DependencyInjection\DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>
