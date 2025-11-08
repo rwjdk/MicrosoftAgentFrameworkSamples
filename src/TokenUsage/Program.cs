@@ -2,7 +2,7 @@
 
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
-using MicrosoftAgentFramework.Utilities.Extensions;
+using AgentFramework.Utilities.Extensions;
 using OpenAI;
 using Shared;
 using System.ClientModel;

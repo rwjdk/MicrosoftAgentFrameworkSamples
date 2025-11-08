@@ -4,7 +4,7 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Logging;
 using OpenAI.Chat;
 
-namespace MicrosoftAgentFramework.Utilities.Extensions;
+namespace AgentFramework.Utilities.Extensions;
 
 [PublicAPI]
 public static class ChatClientExtensions

@@ -1,9 +1,9 @@
 <Solution>
   <Folder Name="/- Nuget Package Candidates -/">
-    <Project Path="src/MicrosoftAgentFramework.Toolkit.AzureOpenAI/MicrosoftAgentFramework.Toolkit.AzureOpenAI.csproj" Id="051b069a-9d36-43c9-b4ac-db6fd7b1cd84" />
-    <Project Path="src/MicrosoftAgentFramework.Toolkit.Google/MicrosoftAgentFramework.Toolkit.Google.csproj" Id="71c5f543-d0e9-419e-9eb5-ccf18e4786ea" />
-    <Project Path="src/MicrosoftAgentFramework.Toolkit.Tests/MicrosoftAgentFramework.Toolkit.Tests.csproj" Id="da263526-188b-4d54-bd3d-1490e2eaccf4" />
-    <Project Path="src/MicrosoftAgentFramework.Toolkit/MicrosoftAgentFramework.Toolkit.csproj" Id="3db98eb0-8f14-4784-a755-b7d5c1a1d340" />
+    <Project Path="src/AgentFramework.Toolkit.AzureOpenAI/AgentFramework.Toolkit.AzureOpenAI.csproj" Id="051b069a-9d36-43c9-b4ac-db6fd7b1cd84" />
+    <Project Path="src/AgentFramework.Toolkit.Google/AgentFramework.Toolkit.Google.csproj" Id="71c5f543-d0e9-419e-9eb5-ccf18e4786ea" />
+    <Project Path="src/AgentFramework.Toolkit.Tests/AgentFramework.Toolkit.Tests.csproj" Id="da263526-188b-4d54-bd3d-1490e2eaccf4" />
+    <Project Path="src/AgentFramework.Toolkit/AgentFramework.Toolkit.csproj" Id="3db98eb0-8f14-4784-a755-b7d5c1a1d340" />
     <Project Path="src/MicrosoftAgentFramework.Utilities/MicrosoftAgentFramework.Utilities.csproj" Id="997d075c-8a83-4d22-94b3-09af8550aed5" />
   </Folder>
   <Folder Name="/- Playground and Work in Progress -/">
@@ -22,9 +22,9 @@
     <Project Path="src/Agent2Agent.Server/Agent2Agent.Server.csproj" Id="b09023f3-c25e-4668-a956-4e60cd2678d1" />
   </Folder>
   <Folder Name="/Aspire/">
-    <Project Path="Samples.AppHost/Samples.AppHost.csproj" Id="42cace91-95d9-45d2-ba66-5e73a5ab6771" />
-    <Project Path="Samples.ServiceDefaults/Samples.ServiceDefaults.csproj" />
     <Project Path="src/AspireBlazorDemo/AspireBlazorDemo.csproj" />
+    <Project Path="src/Samples.AppHost/Samples.AppHost.csproj" Id="42cace91-95d9-45d2-ba66-5e73a5ab6771" />
+    <Project Path="src/Samples.ServiceDefaults/Samples.ServiceDefaults.csproj" />
   </Folder>
   <Folder Name="/AzureAiFoundry/">
     <Project Path="src/AzureAiFoundry.Administration/AzureAiFoundry.Administration.csproj" Id="968b00b8-e6a9-4891-95d9-adc89a34ae2a" />
@@ -59,7 +59,7 @@
     <Project Path="src/Workflow.AiAssisted.PizzaSample/Workflow.AiAssisted.PizzaSample.csproj" Id="ebb01b83-7e68-44be-a89a-4574848c00fa" />
   </Folder>
   <Folder Name="/OpenAiResponesApi/">
-    <File Path="C:/Users/rasmu/Desktop/ResponsesAPIFeatureMatrixSupport.png" />
+    <File Path="ResponsesAPIFeatureMatrixSupport.png" />
     <Project Path="src/AllowBackgroundResponses/AllowBackgroundResponses.csproj" Id="816a1755-2efb-42d2-af96-408282ee50ea" />
     <Project Path="src/OpenAIResponsesApi.CodeInterpreter/OpenAIResponsesApi.CodeInterpreter.csproj" Id="1d0ae3d5-3cb0-439c-acf2-311d15621421" />
     <Project Path="src/OpenAIResponsesApi.FileSearchTool/OpenAIResponsesApi.FileSearchTool.csproj" Id="959e5bb4-a8d6-4530-a893-b2430c51b921" />
@@ -84,6 +84,9 @@
   </Folder>
   <Folder Name="/Telemetry/">
     <Project Path="src/Telemetry/Telemetry.csproj" Id="5fd6ed24-957b-4541-9be2-e2e23c6f606a" />
+  </Folder>
+  <Folder Name="/Toolkit Nuget Comparison/">
+    <Project Path="src/Toolkit.Comparison/Toolkit.Comparison.csproj" Id="5f7fee24-b6d6-45b9-94c5-bddb02148e1f" />
   </Folder>
   <Folder Name="/ZeroToFirstAgent/" />
   <Folder Name="/ZeroToFirstAgent/Non-OpenAI Based/">

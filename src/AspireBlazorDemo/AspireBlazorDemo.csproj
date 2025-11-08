@@ -11,11 +11,8 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.10" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\Samples.ServiceDefaults\Samples.ServiceDefaults.csproj" />
 		<ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-    <ProjectReference Include="..\..\Samples.ServiceDefaults\Samples.ServiceDefaults.csproj" />
-  </ItemGroup>
 
 </Project>

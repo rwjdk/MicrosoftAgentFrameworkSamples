@@ -1,18 +1,34 @@
-﻿using JetBrains.Annotations;
-using Microsoft.Agents.AI;
+﻿using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
-namespace AgentFramework.Utilities.Extensions;
+namespace AgentFramework.Toolkit.AIAgents;
 
-// ReSharper disable once InconsistentNaming
-[PublicAPI]
-public static class AIAgentExtensions
+public class Agent(AIAgent innerAgent) : AIAgent
 {
-    public static async Task<ChatClientAgentRunResponse<T>> RunAsync<T>(
-        this AIAgent agent,
+    public override AgentThread GetNewThread()
+    {
+        return innerAgent.GetNewThread();
+    }
+
+    public override AgentThread DeserializeThread(JsonElement serializedThread, JsonSerializerOptions? jsonSerializerOptions = null)
+    {
+        return innerAgent.DeserializeThread(serializedThread, jsonSerializerOptions);
+    }
+
+    public override Task<AgentRunResponse> RunAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, CancellationToken cancellationToken = default)
+    {
+        return innerAgent.RunAsync(messages, thread, options, cancellationToken);
+    }
+
+    public override IAsyncEnumerable<AgentRunResponseUpdate> RunStreamingAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, CancellationToken cancellationToken = new CancellationToken())
+    {
+        return innerAgent.RunStreamingAsync(messages, thread, options, cancellationToken);
+    }
+
+    public async Task<ChatClientAgentRunResponse<T>> RunAsync<T>(
         IEnumerable<ChatMessage> messages,
         AgentThread? thread = null,
         JsonSerializerOptions? serializerOptions = null,
@@ -20,7 +36,7 @@ public static class AIAgentExtensions
         bool? useJsonSchemaResponseFormat = null,
         CancellationToken cancellationToken = default)
     {
-        if (agent is ChatClientAgent chatClientAgent)
+        if (innerAgent is ChatClientAgent chatClientAgent)
         {
             return await chatClientAgent.RunAsync<T>(messages, thread, serializerOptions, options, useJsonSchemaResponseFormat, cancellationToken);
         }
@@ -54,32 +70,20 @@ public static class AIAgentExtensions
             };
         }
 
-        Type agentType = agent.GetType();
-
-        //FunctionInvocationDelegatingAgent (which is internal so need to be called using dynamic reflection)
-        if (agentType.Name == "FunctionInvocationDelegatingAgent")
-        {
-            dynamic functionInvocationDelegatingAgent = agent;
-            AgentRunResponse responseFromFunctionInvocationDelegatingAgent = await functionInvocationDelegatingAgent.RunAsync(messages, thread, options, cancellationToken);
-            return new ChatClientAgentRunResponse<T>(new ChatResponse<T>(responseFromFunctionInvocationDelegatingAgent.AsChatResponse(), jsonSerializerOptions));
-        }
-
         //Normal other agent (Lets try and see if it works)
-        AgentRunResponse response = await agent.RunAsync(messages, thread, options, cancellationToken);
+        AgentRunResponse response = await innerAgent.RunAsync(messages, thread, options, cancellationToken);
         return new ChatClientAgentRunResponse<T>(new ChatResponse<T>(response.AsChatResponse(), jsonSerializerOptions));
     }
 
-    public static async Task<ChatClientAgentRunResponse<T>> RunAsync<T>(
-        this AIAgent agent,
+    public async Task<ChatClientAgentRunResponse<T>> RunAsync<T>(
         AgentThread? thread = null,
         JsonSerializerOptions? serializerOptions = null,
         AgentRunOptions? options = null,
         bool? useJsonSchemaResponseFormat = null,
         CancellationToken cancellationToken = default) =>
-        await agent.RunAsync<T>([], thread, serializerOptions, options, useJsonSchemaResponseFormat, cancellationToken);
+        await RunAsync<T>([], thread, serializerOptions, options, useJsonSchemaResponseFormat, cancellationToken);
 
-    public static async Task<ChatClientAgentRunResponse<T>> RunAsync<T>(
-        this AIAgent agent,
+    public async Task<ChatClientAgentRunResponse<T>> RunAsync<T>(
         string message,
         AgentThread? thread = null,
         JsonSerializerOptions? serializerOptions = null,
@@ -87,11 +91,10 @@ public static class AIAgentExtensions
         bool? useJsonSchemaResponseFormat = null,
         CancellationToken cancellationToken = default)
     {
-        return await agent.RunAsync<T>(new ChatMessage(ChatRole.User, message), thread, serializerOptions, options, useJsonSchemaResponseFormat, cancellationToken);
+        return await RunAsync<T>(new ChatMessage(ChatRole.User, message), thread, serializerOptions, options, useJsonSchemaResponseFormat, cancellationToken);
     }
 
-    public static async Task<ChatClientAgentRunResponse<T>> RunAsync<T>(
-        this AIAgent agent,
+    public async Task<ChatClientAgentRunResponse<T>> RunAsync<T>(
         ChatMessage message,
         AgentThread? thread = null,
         JsonSerializerOptions? serializerOptions = null,
@@ -99,6 +102,6 @@ public static class AIAgentExtensions
         bool? useJsonSchemaResponseFormat = null,
         CancellationToken cancellationToken = default)
     {
-        return await agent.RunAsync<T>([message], thread, serializerOptions, options, useJsonSchemaResponseFormat, cancellationToken);
+        return await RunAsync<T>([message], thread, serializerOptions, options, useJsonSchemaResponseFormat, cancellationToken);
     }
 }

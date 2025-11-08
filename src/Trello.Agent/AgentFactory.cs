@@ -4,7 +4,6 @@ using Microsoft.Extensions.AI;
 using ModelContextProtocol.Client;
 using OpenAI;
 using System.Reflection;
-using MicrosoftAgentFramework.Toolkit.AITools;
 using Trello.Agent.Models;
 using Trello.Agent.Tools;
 using TrelloDotNet;
@@ -31,6 +30,8 @@ public class AgentFactory(AzureOpenAIClient azureOpenAiClient, TrelloCredentials
 
     public async Task<ChatClientAgent> GetTrelloAgent()
     {
+        throw new NotImplementedException();
+        /*
         TrelloInformationTools trelloInformationTools = new(TrelloClient);
         var aiTools = AIToolsFactory.GetToolsFromMethods(trelloInformationTools);
 
@@ -42,10 +43,10 @@ public class AgentFactory(AzureOpenAIClient azureOpenAiClient, TrelloCredentials
             .CreateAIAgent(
                 name: "TrelloInformation",
                 instructions: """
-                              You are Trello Information Agent that have various tools to 
+                              You are Trello Information Agent that have various tools to
                               give the user information about their Trello data",
                               Never ask question. Use your best judgement
                               """,
-                tools: aiTools);
+                tools: aiTools);*/
     }
 }
