@@ -17,7 +17,10 @@
     <Project Path="src/ImageGeneration.XAiGrok/ImageGeneration.XAiGrok.csproj" Id="c03ed37b-f16b-450f-a0cf-bdc4ebfb77f0" />
     <Project Path="src/ImageGeneration/ImageGeneration.OpenAi.csproj" Id="89214eeb-354b-4726-a3c1-39766ef219e7" />
   </Folder>
-  <Folder Name="/AG-UI/" />
+  <Folder Name="/Agent User Interaction (AG-UI)/">
+    <Project Path="src/AgentUserInteraction.Client/AgentUserInteraction.Client.csproj" Id="ddd3b08d-041a-449f-80dc-6bd66e302958" />
+    <Project Path="src/AgentUserInteraction.Server/AgentUserInteraction.Server.csproj" Id="8e71efad-1080-45a1-b1e9-17c9496ba99c" />
+  </Folder>
   <Folder Name="/Agent2Agent (A2A)/">
     <Project Path="src/Agent2Agent.Client/Agent2Agent.Client.csproj" Id="4a4508d5-732d-4fe2-b0ad-dcf111e98be9" />
     <Project Path="src/Agent2Agent.Server/Agent2Agent.Server.csproj" Id="b09023f3-c25e-4668-a956-4e60cd2678d1" />

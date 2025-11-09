@@ -19,6 +19,7 @@ using A2A;
 Console.WriteLine("");
 Console.Clear();
 
+
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
 AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey), new AzureOpenAIClientOptions
