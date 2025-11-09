@@ -1,5 +1,4 @@
-﻿using AgentFramework.Toolkit.AzureOpenAI.AIAgents;
-using Azure.AI.OpenAI;
+﻿using Azure.AI.OpenAI;
 using System.ClientModel;
 using System.ClientModel.Primitives;
 using Microsoft.Agents.AI;
@@ -7,29 +6,35 @@ using Microsoft.Extensions.AI;
 using OpenAI;
 using OpenAI.Chat;
 using OpenAI.Responses;
+using AgentFramework.Toolkit.AIAgents.Models;
 
 #pragma warning disable OPENAI001
 
 // ReSharper disable once CheckNamespace
 namespace AgentFramework.Toolkit.AIAgents;
 
-public class AzureOpenAIAgentFactory(AzureOpenAIAgentFactoryConfiguration configuration)
+public class AgentFactoryAzureOpenAI(AzureOpenAIAgentFactoryConfiguration configuration)
 {
-    public Agent Create(ResponsesApiNonReasoningOptions options)
+    public Agent CreateAgent(ResponsesApiNonReasoning options)
     {
         AzureOpenAIClient client = CreateClient(options);
 
         ChatClientAgentOptions chatClientAgentOptions = CreateChatClientAgentOptions(options, options, null, null);
 
-        AIAgent innerAgent = client
+        ChatClientAgent innerAgent = client
             .GetOpenAIResponseClient(options.DeploymentModelName)
             .CreateAIAgent(chatClientAgentOptions);
 
-        innerAgent = ApplyMiddleware(options, innerAgent);
+        // ReSharper disable once ConvertIfStatementToReturnStatement
+        if (options.RawToolCallDetails != null)
+        {
+            return new Agent(ApplyMiddleware(options, innerAgent));
+        }
+
         return new Agent(innerAgent);
     }
 
-    public Agent Create(ResponsesApiReasoningOptions options)
+    public Agent CreateAgent(ResponsesApiReasoning options)
     {
         AzureOpenAIClient client = CreateClient(options);
 
@@ -39,11 +44,16 @@ public class AzureOpenAIAgentFactory(AzureOpenAIAgentFactoryConfiguration config
             .GetOpenAIResponseClient(options.DeploymentModelName)
             .CreateAIAgent(chatClientAgentOptions);
 
-        innerAgent = ApplyMiddleware(options, innerAgent);
+        // ReSharper disable once ConvertIfStatementToReturnStatement
+        if (options.RawToolCallDetails != null)
+        {
+            return new Agent(ApplyMiddleware(options, innerAgent));
+        }
+
         return new Agent(innerAgent);
     }
 
-    public Agent Create(ChatClientNonReasoningOptions options)
+    public Agent CreateAgent(ChatClientNonReasoning options)
     {
         AzureOpenAIClient client = CreateClient(options);
 
@@ -53,11 +63,16 @@ public class AzureOpenAIAgentFactory(AzureOpenAIAgentFactoryConfiguration config
             .GetChatClient(options.DeploymentModelName)
             .CreateAIAgent(chatClientAgentOptions);
 
-        innerAgent = ApplyMiddleware(options, innerAgent);
+        // ReSharper disable once ConvertIfStatementToReturnStatement
+        if (options.RawToolCallDetails != null)
+        {
+            return new Agent(ApplyMiddleware(options, innerAgent));
+        }
+
         return new Agent(innerAgent);
     }
 
-    public Agent Create(ChatClientReasoningOptions options)
+    public Agent CreateAgent(ChatClientReasoning options)
     {
         AzureOpenAIClient client = CreateClient(options);
 
@@ -67,11 +82,16 @@ public class AzureOpenAIAgentFactory(AzureOpenAIAgentFactoryConfiguration config
             .GetChatClient(options.DeploymentModelName)
             .CreateAIAgent(chatClientAgentOptions);
 
-        innerAgent = ApplyMiddleware(options, innerAgent);
+        // ReSharper disable once ConvertIfStatementToReturnStatement
+        if (options.RawToolCallDetails != null)
+        {
+            return new Agent(ApplyMiddleware(options, innerAgent));
+        }
+
         return new Agent(innerAgent);
     }
 
-    private AzureOpenAIClient CreateClient(Options options)
+    private AzureOpenAIClient CreateClient(AgentOptions options)
     {
         //todo - support RBAC
         AzureOpenAIClientOptions azureOpenAIClientOptions = new()
@@ -92,7 +112,7 @@ public class AzureOpenAIAgentFactory(AzureOpenAIAgentFactoryConfiguration config
             azureOpenAIClientOptions);
     }
 
-    private static AIAgent ApplyMiddleware(Options options, AIAgent innerAgent)
+    private static AIAgent ApplyMiddleware(AgentOptions options, AIAgent innerAgent)
     {
         //todo - more middleware options
         if (options.RawToolCallDetails != null)
@@ -103,7 +123,7 @@ public class AzureOpenAIAgentFactory(AzureOpenAIAgentFactoryConfiguration config
         return innerAgent;
     }
 
-    private static ChatClientAgentOptions CreateChatClientAgentOptions(Options options, NonReasoningOptions? nonReasoningOptions, ResponsesApiReasoningOptions? responsesApiReasoningOptions, ChatClientReasoningOptions? chatClientReasoningOptions)
+    private static ChatClientAgentOptions CreateChatClientAgentOptions(AgentOptions options, NonReasoningAgentOptions? nonReasoningOptions, ResponsesApiReasoning? responsesApiReasoningOptions, ChatClientReasoning? chatClientReasoningOptions)
     {
         bool anyOptionsSet = false;
         ChatOptions chatOptions = new();

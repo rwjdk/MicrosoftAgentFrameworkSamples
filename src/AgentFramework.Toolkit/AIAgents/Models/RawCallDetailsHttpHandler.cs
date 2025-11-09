@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace AgentFramework.Toolkit;
+namespace AgentFramework.Toolkit.AIAgents.Models;
 
 public class RawCallDetailsHttpHandler(Action<RawCallDetails> rawCallDetails) : HttpClientHandler
 {

@@ -1,4 +1,4 @@
-﻿using AgentFramework.Toolkit.AIAgents;
+﻿using AgentFramework.Toolkit.AIAgents.Models;
 using AgentFramework.Toolkit.AIModels;
 using GenerativeAI.Microsoft;
 using Microsoft.Agents.AI;

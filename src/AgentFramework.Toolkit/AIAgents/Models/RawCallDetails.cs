@@ -1,4 +1,4 @@
-﻿namespace AgentFramework.Toolkit;
+﻿namespace AgentFramework.Toolkit.AIAgents.Models;
 
 public class RawCallDetails
 {

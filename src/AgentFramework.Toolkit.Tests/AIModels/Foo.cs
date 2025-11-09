@@ -3,6 +3,7 @@ using GenerativeAI;
 using Microsoft.Agents.AI;
 using AgentFramework.Toolkit.AIModels;
 using Shared;
+using AgentFramework.Toolkit.AIAgents.Models;
 
 namespace AgentFramework.Toolkit.Tests.AIModels;
 

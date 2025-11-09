@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
-namespace AgentFramework.Toolkit.AIAgents;
+namespace AgentFramework.Toolkit.AIAgents.Models;
 
 public class Agent(AIAgent innerAgent) : AIAgent
 {

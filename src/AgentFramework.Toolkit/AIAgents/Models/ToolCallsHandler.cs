@@ -1,7 +1,7 @@
 ﻿using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 
-namespace AgentFramework.Toolkit;
+namespace AgentFramework.Toolkit.AIAgents.Models;
 
 public class ToolCallsHandler(Action<ToolCallingDetails> toolCallDetails)
 {
