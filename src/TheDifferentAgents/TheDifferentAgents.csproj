@@ -8,11 +8,11 @@
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Azure.AI.OpenAI" Version="2.5.0-beta.1" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251105.1" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251107.1" />
 		<PackageReference Include="Microsoft.Agents.AI.AzureAI" Version="1.0.0-preview.251104.1" />
 		<PackageReference Include="Azure.Identity" Version="1.17.0" />
-		<PackageReference Include="Microsoft.Agents.AI.Hosting" Version="1.0.0-preview.251105.1" />
-		<PackageReference Include="Microsoft.Agents.AI.CopilotStudio" Version="1.0.0-preview.251105.1" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting" Version="1.0.0-preview.251107.1" />
+		<PackageReference Include="Microsoft.Agents.AI.CopilotStudio" Version="1.0.0-preview.251107.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
