@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.AI.Inference" Version="1.0.0-beta.5" />
-    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251107.1" />
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251110.1" />
     <PackageReference Include="Microsoft.Extensions.AI.AzureAIInference" Version="9.10.0-preview.1.25513.3" />
   </ItemGroup>
 

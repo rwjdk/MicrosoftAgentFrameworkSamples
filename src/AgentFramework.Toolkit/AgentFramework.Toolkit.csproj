@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251107.1" />
+		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251110.1" />
 		<PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
 	</ItemGroup>
 </Project>
