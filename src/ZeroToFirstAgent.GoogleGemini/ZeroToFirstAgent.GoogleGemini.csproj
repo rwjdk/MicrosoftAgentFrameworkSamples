@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google_GenerativeAI.Microsoft" Version="3.4.1" />
-    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251110.1" />
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251110.2" />
   </ItemGroup>
 
 </Project>

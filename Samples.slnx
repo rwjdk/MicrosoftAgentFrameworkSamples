@@ -112,5 +112,6 @@
   <Folder Name="/ZeroToFirstAgent/OpenAI Based/Offline/">
     <Project Path="src/ZeroToFirstAgent.FoundryLocal/ZeroToFirstAgent.FoundryLocal.csproj" Id="420ee7f5-fa0f-4303-a68c-630ede8086e4" />
   </Folder>
+  <Project Path="src/DevUI/DevUI.csproj" />
   <Project Path="src/Shared/Shared.csproj" />
 </Solution>

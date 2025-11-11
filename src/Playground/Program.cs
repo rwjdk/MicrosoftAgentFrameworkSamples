@@ -15,12 +15,38 @@ using System.ClientModel.Primitives;
 using System.Text;
 using System.Text.Json;
 using A2A;
+using GenerativeAI;
+using GenerativeAI.Microsoft;
 
 Console.WriteLine("");
 Console.Clear();
 
-
 Configuration configuration = ConfigurationManager.GetConfiguration();
+
+string apiKey = configuration.GoogleGeminiApiKey;
+const string model = GoogleAIModels.Gemini25Pro;
+
+IChatClient clientG = new GenerativeAIChatClient(apiKey, model);
+
+await foreach (ChatResponseUpdate update in clientG.GetStreamingResponseAsync("What is the weather like in Paris", new ChatOptions
+               {
+                   Tools = [AIFunctionFactory.Create(GetWeather)]
+               }))
+{
+    Console.WriteLine(update);
+}
+
+
+ChatClientAgent agentF = new(clientG, tools: [AIFunctionFactory.Create(GetWeather)]);
+
+AgentRunResponse agentRunResponse = await agentF.RunAsync("What is the weather like in Paris");
+Console.WriteLine(agentRunResponse);
+
+await foreach (AgentRunResponseUpdate update in agentF.RunStreamingAsync("What is the weather like in Paris"))
+{
+    Console.Write(update);
+}
+
 
 AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey), new AzureOpenAIClientOptions
 {
@@ -43,3 +69,8 @@ Console.WriteLine(response);
 //await SpaceNewsWebSearch.Run(configuration);
 //await ResumeConversation.Run(configuration);
 //await AzureOpenAiCodex.Run(configuration);
+
+static string GetWeather(string city)
+{
+    return "It is sunny and 19 degrees today";
+}
