@@ -5,6 +5,7 @@ using OpenAI;
 using OpenAI.Responses;
 using Shared;
 using System.ClientModel;
+using System.ClientModel.Primitives;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -27,7 +28,8 @@ public class WithoutToolkit
             new ApiKeyCredential(configuration.AzureOpenAiKey),
             new AzureOpenAIClientOptions
             {
-                NetworkTimeout = TimeSpan.FromMinutes(5)
+                NetworkTimeout = TimeSpan.FromMinutes(5),
+                Transport = new HttpClientPipelineTransport(httpClient)
             });
 
         ChatClientAgent commonAgent = client

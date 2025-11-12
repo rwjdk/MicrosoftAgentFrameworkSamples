@@ -20,7 +20,6 @@ public class WithToolkit
             ApiKey = configuration.AzureOpenAiKey
         });
 
-
         Agent commonAgent = agentFactory.CreateAgent(new ResponsesApiReasoning
         {
             DeploymentModelName = "gpt-5-mini",

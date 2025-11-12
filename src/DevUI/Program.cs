@@ -23,11 +23,10 @@ AIAgent myAgent = azureOpenAIClient
     .UseOpenTelemetry()
     .Build();
 
-//builder.Services.AddChatClient(chatClient);
+builder.Services.AddChatClient(chatClient);
 
 builder.AddAIAgent("myAgent", (provider, agentKey) => myAgent);
 
-/*
 // Register sample agents
 builder.AddAIAgent("assistant", "You are a helpful assistant. Answer questions concisely and accurately.");
 builder.AddAIAgent("poet", "You are a creative poet. Respond to all requests with beautiful poetry.");
@@ -42,9 +41,9 @@ builder.AddWorkflow("review-workflow", (sp, key) =>
     var agents = new List<IHostedAgentBuilder>() { assistantBuilder, reviewerBuilder }.Select(ab => sp.GetRequiredKeyedService<AIAgent>(ab.Name));
     return AgentWorkflowBuilder.BuildSequential(workflowName: key, agents: agents);
 }).AddAsAIAgent();
-*/
+
 builder.Services.AddOpenAIResponses();
-//builder.Services.AddOpenAIConversations();
+builder.Services.AddOpenAIConversations();
 
 var app = builder.Build();
 
