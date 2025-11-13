@@ -9,44 +9,46 @@ using System.ClientModel;
 using OpenAI;
 
 Configuration configuration = Shared.ConfigurationManager.GetConfiguration();
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
-IChatClient chatClient = azureOpenAIClient
-    .GetChatClient("gpt-4.1")
-    .AsIChatClient();
 
-AIAgent myAgent = azureOpenAIClient
-    .GetChatClient("gpt-4.1")
-    .CreateAIAgent(name: "myAgent", instructions: "speak like a pirate", tools: [AIFunctionFactory.Create(GetWeather)])
-    .AsBuilder()
-    .UseOpenTelemetry()
-    .Build();
-
-builder.Services.AddChatClient(chatClient);
-
-builder.AddAIAgent("myAgent", (provider, agentKey) => myAgent);
-
-// Register sample agents
-builder.AddAIAgent("assistant", "You are a helpful assistant. Answer questions concisely and accurately.");
-builder.AddAIAgent("poet", "You are a creative poet. Respond to all requests with beautiful poetry.");
-builder.AddAIAgent("coder", "You are an expert programmer. Help users with coding questions and provide code examples.");
-
-
-// Register sample workflows
-var assistantBuilder = builder.AddAIAgent("workflow-assistant", "You are a helpful assistant in a workflow.");
-var reviewerBuilder = builder.AddAIAgent("workflow-reviewer", "You are a reviewer. Review and critique the previous response.");
-builder.AddWorkflow("review-workflow", (sp, key) =>
-{
-    var agents = new List<IHostedAgentBuilder>() { assistantBuilder, reviewerBuilder }.Select(ab => sp.GetRequiredKeyedService<AIAgent>(ab.Name));
-    return AgentWorkflowBuilder.BuildSequential(workflowName: key, agents: agents);
-}).AddAsAIAgent();
-
+// Register Services needed to run DevUI
+builder.Services.AddChatClient(azureOpenAIClient.GetChatClient("gpt-4.1").AsIChatClient()); //You need to register a chat client for the dummy agents to use
 builder.Services.AddOpenAIResponses();
 builder.Services.AddOpenAIConversations();
 
-var app = builder.Build();
+// Register "dummy" Agent
+builder.AddAIAgent("Comic Book Guy", "You are comic-book guy from South Park")
+    .WithAITool(AIFunctionFactory.Create(GetWeather));
 
+//Build a "normal" Agent
+string realAgentName = "Real Agent";
+AIAgent myAgent = azureOpenAIClient
+    .GetChatClient("gpt-4.1")
+    .CreateAIAgent(name: realAgentName, instructions: "Speak like a pirate", tools: [AIFunctionFactory.Create(GetWeather)]);
+
+builder.AddAIAgent(realAgentName, (serviceProvider, key) => myAgent); //Get registered as a keyed singleton so name on real agent and key must match
+
+// Register sample workflows
+IHostedAgentBuilder frenchTranslator = builder.AddAIAgent("french-translator", "Translate any text you get into French");
+IHostedAgentBuilder germanTranslator = builder.AddAIAgent("german-translator", "Translate any text you get into German");
+builder.AddWorkflow("translation-workflow-sequential", (sp, key) =>
+{
+    IEnumerable<AIAgent> agentsForWorkflow = new List<IHostedAgentBuilder>() { frenchTranslator, germanTranslator }.Select(ab => sp.GetRequiredKeyedService<AIAgent>(ab.Name));
+    return AgentWorkflowBuilder.BuildSequential(workflowName: key, agents: agentsForWorkflow);
+}).AddAsAIAgent();
+
+builder.AddWorkflow("translation-workflow-concurrent", (sp, key) =>
+{
+    IEnumerable<AIAgent> agentsForWorkflow = new List<IHostedAgentBuilder>() { frenchTranslator, germanTranslator }.Select(ab => sp.GetRequiredKeyedService<AIAgent>(ab.Name));
+    return AgentWorkflowBuilder.BuildConcurrent(workflowName: key, agents: agentsForWorkflow);
+}).AddAsAIAgent();
+
+
+WebApplication app = builder.Build();
+
+//Needed for DevUI to function 
 app.MapOpenAIResponses();
 app.MapOpenAIConversations();
 
@@ -54,10 +56,6 @@ if (builder.Environment.IsDevelopment())
 {
     app.MapDevUI();
 }
-
-Console.WriteLine("DevUI is available at: https://localhost:50516/devui");
-Console.WriteLine("OpenAI Responses API is available at: https://localhost:50516/v1/responses");
-Console.WriteLine("Press Ctrl+C to stop the server.");
 
 app.Run();
 
