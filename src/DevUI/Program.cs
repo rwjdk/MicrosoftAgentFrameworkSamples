@@ -48,12 +48,11 @@ builder.AddWorkflow("translation-workflow-concurrent", (sp, key) =>
 
 WebApplication app = builder.Build();
 
-//Needed for DevUI to function 
-app.MapOpenAIResponses();
-app.MapOpenAIConversations();
-
 if (builder.Environment.IsDevelopment())
 {
+    //Needed for DevUI to function 
+    app.MapOpenAIResponses();
+    app.MapOpenAIConversations();
     app.MapDevUI();
 }
 
