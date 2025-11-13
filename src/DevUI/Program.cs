@@ -33,6 +33,7 @@ builder.AddAIAgent(realAgentName, (serviceProvider, key) => myAgent); //Get regi
 // Register sample workflows
 IHostedAgentBuilder frenchTranslator = builder.AddAIAgent("french-translator", "Translate any text you get into French");
 IHostedAgentBuilder germanTranslator = builder.AddAIAgent("german-translator", "Translate any text you get into German");
+
 builder.AddWorkflow("translation-workflow-sequential", (sp, key) =>
 {
     IEnumerable<AIAgent> agentsForWorkflow = new List<IHostedAgentBuilder>() { frenchTranslator, germanTranslator }.Select(ab => sp.GetRequiredKeyedService<AIAgent>(ab.Name));
