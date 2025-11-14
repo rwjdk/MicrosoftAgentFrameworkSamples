@@ -1,18 +1,21 @@
 ﻿using Microsoft.Extensions.AI;
 
-namespace AgentFramework.Utilities.Extensions;
+namespace MicrosoftAgentFramework.Utilities.Extensions;
 
 public static class UsageDetailsExtensions
 {
     private const string ReasonTokenCountKey = "OutputTokenDetails.ReasoningTokenCount";
 
-    public static long? GetOutputTokensUsedForReasoning(this UsageDetails? usageDetails)
+    extension(UsageDetails? usageDetails)
     {
-        if (usageDetails?.AdditionalCounts?.TryGetValue(ReasonTokenCountKey, out long tokenCount) ?? false)
+        public long? GetOutputTokensUsedForReasoning()
         {
-            return tokenCount;
-        }
+            if (usageDetails?.AdditionalCounts?.TryGetValue(ReasonTokenCountKey, out long tokenCount) ?? false)
+            {
+                return tokenCount;
+            }
 
-        return null;
+            return null;
+        }
     }
 }

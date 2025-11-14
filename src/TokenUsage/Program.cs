@@ -2,10 +2,10 @@
 
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
-using AgentFramework.Utilities.Extensions;
 using OpenAI;
 using Shared;
 using System.ClientModel;
+using MicrosoftAgentFramework.Utilities.Extensions;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 

@@ -6,7 +6,7 @@ using OpenAI.Chat;
 using Shared;
 using Shared.Extensions;
 using System.ClientModel;
-using AgentFramework.Utilities.Extensions;
+using MicrosoftAgentFramework.Utilities.Extensions;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 

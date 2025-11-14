@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 using Microsoft.Extensions.AI;
-using AgentFramework.Utilities.Extensions;
+using MicrosoftAgentFramework.Utilities.Extensions;
 
 namespace Shared.Extensions;
 
