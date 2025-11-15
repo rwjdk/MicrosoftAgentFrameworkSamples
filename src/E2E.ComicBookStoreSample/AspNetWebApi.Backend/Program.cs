@@ -33,6 +33,7 @@ builder.Services.AddCors(options =>
 WebApplication app = builder.Build();
 
 AzureOpenAIClient azureOpenAIClient = app.Services.GetRequiredService<AzureOpenAIClient>();
+
 AIAgent comicBookGuyAgent = azureOpenAIClient
     .GetChatClient(comicBookGuyModel)
     .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons. Do not use Markdown in the answers")
