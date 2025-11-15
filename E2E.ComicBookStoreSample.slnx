@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/E2E.ComicBookStoreSample/AppHost/AppHost.csproj" Id="6db8f102-a129-44ff-80eb-b450c3275581" />
+  <Project Path="src/E2E.ComicBookStoreSample/AspNetWebApi.Backend/AspNetWebApi.Backend.csproj" />
+  <Project Path="src/E2E.ComicBookStoreSample/BlazorWasm.FrontEnd/BlazorWasm.FrontEnd.csproj" />
+  <Project Path="src/E2E.ComicBookStoreSample/ServiceDefaults/ServiceDefaults.csproj" Id="10a4cf52-eec3-45cf-8b5b-80d302696a5a" />
+</Solution>

@@ -1,0 +1,58 @@
+using Azure.AI.OpenAI;
+using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Hosting.AGUI.AspNetCore;
+using OpenAI;
+using System.ClientModel;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
+
+builder.Services.AddOpenApi();
+
+//Configuration
+string azureOpenAIEndpoint = builder.Configuration["azureOpenAIEndpoint"] ?? throw new ApplicationException("azureOpenAIEndpoint env. variable is missing");
+string azureOpenAIKey = builder.Configuration["azureOpenAIKey"] ?? throw new ApplicationException("azureOpenAIKey env. variable is missing");
+string comicBookGuyModel = builder.Configuration["comic-book-guy-agent-model"] ?? throw new ApplicationException("comic-book-guy-agent-model env. variable is missing");
+string assistantModel = builder.Configuration["assistant-agent-model"] ?? throw new ApplicationException("assistant-agent-model env. variable is missing");
+
+builder.Services.AddSingleton(new AzureOpenAIClient(new Uri(azureOpenAIEndpoint), new ApiKeyCredential(azureOpenAIKey)));
+builder.Services.AddAGUI();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Cors",
+        policy =>
+        {
+            policy.WithOrigins("*")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
+WebApplication app = builder.Build();
+
+AzureOpenAIClient azureOpenAIClient = app.Services.GetRequiredService<AzureOpenAIClient>();
+ChatClientAgent comicBookGuyAgent = azureOpenAIClient
+    .GetChatClient(comicBookGuyModel)
+    .CreateAIAgent(instructions: "You are comic-book-guy from South Park");
+
+ChatClientAgent assistantAgent = azureOpenAIClient
+    .GetChatClient(assistantModel)
+    .CreateAIAgent(instructions: "You are comic-book-guy from South Park sane assistant when he become a bit too much");
+
+app.MapDefaultEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+app.MapAGUI("/comic-book-guy", comicBookGuyAgent);
+app.MapAGUI("/assistant", assistantAgent);
+
+app.UseCors("Cors");
+
+app.UseHttpsRedirection();
+
+app.Run();
