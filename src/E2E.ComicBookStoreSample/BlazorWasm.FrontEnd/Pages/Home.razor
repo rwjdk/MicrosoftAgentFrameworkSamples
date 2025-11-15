@@ -23,21 +23,24 @@
                 <span>Comic Emporium on the Internet</span>
             </h1>
 
-            <p class="comic-monologue">Greetings, humble browsers of the multiverse. You have arrived at the premier comic book store
+            <p class="comic-monologue">
+                Greetings, humble browsers of the multiverse. You have arrived at the premier comic book store
                 website. Please, try to contain your awe while exploring treasures clearly far beyond the comprehension of
-                the average fan.</p>
+                the average fan.
+            </p>
 
             <div class="cta-row">
-                <input @bind="@_question"/>
-                <br/>
-                <button type="button">Ask Question</button>
-
-                @if (!string.IsNullOrWhiteSpace(_answer))
-                {
-                    <h2>Answer</h2>
-                    @_answer
-                }
+                <input class="hero-input"
+                       placeholder="Ask the snark overlords anything…" @bind="@_question" />
+                <button type="button" @onclick="AskAi">Ask Question</button>
             </div>
+            
+            @if (!string.IsNullOrWhiteSpace(_answer))
+            {
+                <div class="answer-board" aria-live="polite">
+                    <p>@_answer</p>
+                </div>
+            }
         </article>
 
         <aside class="panel vibe-panel">
@@ -52,9 +55,3 @@
         </aside>
     </div>
 </section>
-
-            @code
-            {
-                private string? _question;
-                private string? _answer;
-            }

@@ -112,6 +112,7 @@ code {
         content: "";
         position: absolute;
         inset: 0;
+        pointer-events: none;
         background-image: repeating-radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 2px, transparent 3px, transparent 8px);
         opacity: 0.15;
         animation: drift 24s linear infinite;
@@ -130,6 +131,7 @@ code {
     border-radius: 40%;
     filter: blur(25px);
     opacity: 0.25;
+    pointer-events: none;
 }
 
 .starfield {
@@ -151,6 +153,7 @@ code {
     gap: clamp(1.5rem, 2vw, 2.5rem);
     max-width: 1100px;
     margin: 0 auto;
+    z-index: 1;
 }
 
 .panel {
@@ -231,6 +234,32 @@ code {
     margin-top: 1.75rem;
 }
 
+    .cta-row .hero-input {
+        flex: 2 1 260px;
+        min-width: 220px;
+        border: 3px solid var(--comic-ink);
+        border-radius: 1.1rem;
+        padding: 0.85rem 1.1rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--comic-ink);
+        background: #fff;
+        box-shadow: 4px 4px 0 var(--comic-ink);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .cta-row .hero-input:focus {
+            outline: none;
+            transform: translateY(-2px) rotate(-0.5deg);
+            box-shadow: 5px 5px 0 var(--comic-ink);
+        }
+
+        .cta-row .hero-input::placeholder {
+            color: rgba(12, 12, 12, 0.65);
+            font-weight: 400;
+            font-style: italic;
+        }
+
     .cta-row button {
         flex: 1;
         min-width: 180px;
@@ -255,6 +284,35 @@ code {
             transform: translateY(-4px) rotate(-1deg);
             box-shadow: 6px 6px 0 var(--comic-ink);
         }
+
+.answer-board {
+    margin-top: 1.75rem;
+    background: #fff;
+    color: var(--comic-ink);
+    border: 4px solid var(--comic-ink);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 6px 6px 0 var(--comic-ink);
+    max-width: 520px;
+}
+
+    .answer-board h2 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .answer-board p {
+        margin: 0;
+        font-size: 1.05rem;
+        font-weight: 600;
+    }
+
+.answer-placeholder {
+    color: var(--comic-purple);
+    opacity: 0.85;
+}
 
 .vibe-panel {
     background: linear-gradient(145deg, rgba(255, 77, 157, 0.9), rgba(255, 224, 102, 0.9));
@@ -345,5 +403,9 @@ code {
 
     .cta-row button {
         min-width: 140px;
+    }
+
+    .answer-board {
+        max-width: 100%;
     }
 }
