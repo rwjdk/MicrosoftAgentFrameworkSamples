@@ -33,13 +33,20 @@ builder.Services.AddCors(options =>
 WebApplication app = builder.Build();
 
 AzureOpenAIClient azureOpenAIClient = app.Services.GetRequiredService<AzureOpenAIClient>();
-ChatClientAgent comicBookGuyAgent = azureOpenAIClient
+AIAgent comicBookGuyAgent = azureOpenAIClient
     .GetChatClient(comicBookGuyModel)
-    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons");
+    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons")
+    .AsBuilder()
+    .UseOpenTelemetry("ComicBookGuySource", telemetryAgent => telemetryAgent.EnableSensitiveData = true)
+    .Build();
+;
 
-ChatClientAgent assistantAgent = azureOpenAIClient
+AIAgent assistantAgent = azureOpenAIClient
     .GetChatClient(assistantModel)
-    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons sane assistant when he become a bit too much");
+    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons sane assistant when he become a bit too much")
+    .AsBuilder()
+    .UseOpenTelemetry("AssistantSource", telemetryAgent => telemetryAgent.EnableSensitiveData = true)
+    .Build();
 
 app.MapDefaultEndpoints();
 

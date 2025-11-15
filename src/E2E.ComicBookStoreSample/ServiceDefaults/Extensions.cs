@@ -9,6 +9,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
 namespace Microsoft.Extensions.Hosting;
+
 // Adds common Aspire services: service discovery, resilience, health checks, and OpenTelemetry.
 // This project should be referenced by each service project in your solution.
 // To learn more about using this project, see https://aka.ms/dotnet/aspire/service-defaults
@@ -61,6 +62,8 @@ public static class Extensions
             .WithTracing(tracing =>
             {
                 tracing.AddSource(builder.Environment.ApplicationName)
+                    .AddSource("ComicBookGuySource")
+                    .AddSource("AssistantSource")
                     .AddAspNetCoreInstrumentation(tracing =>
                         // Exclude health check requests from tracing
                         tracing.Filter = context =>

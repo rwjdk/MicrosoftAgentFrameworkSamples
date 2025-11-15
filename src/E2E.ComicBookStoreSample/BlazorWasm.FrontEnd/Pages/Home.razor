@@ -1,11 +1,6 @@
 @page "/"
-
+<!-- 42 FTW! -->
 <PageTitle>Most Impressive Comic Emporium on the Internet</PageTitle>
-
-<style>
-
-</style>
-
 <section class="comic-stage">
     <div class="starfield" aria-hidden="true"></div>
     <div class="halftone" aria-hidden="true"></div>
@@ -34,13 +29,11 @@
                 <div class="persona-buttons">
                     <button type="button"
                             class="@GetPersonaButtonClass(ChatPersona.ComicBookGuy)"
-                            aria-pressed='@(_selectedPersona == ChatPersona.ComicBookGuy ? "true" : "false")'
                             @onclick="@(() => SetPersona(ChatPersona.ComicBookGuy))">
                         Comic Book Guy
                     </button>
                     <button type="button"
                             class="@GetPersonaButtonClass(ChatPersona.Assistant)"
-                            aria-pressed='@(_selectedPersona == ChatPersona.Assistant ? "true" : "false")'
                             @onclick="@(() => SetPersona(ChatPersona.Assistant))">
                         Sane Assistant
                     </button>
