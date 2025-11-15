@@ -29,12 +29,32 @@
                 the average fan.
             </p>
 
+            <div class="persona-toggle" role="group" aria-label="Choose your oracle">
+                <span class="persona-label">Choose your oracle</span>
+                <div class="persona-buttons">
+                    <button type="button"
+                            class="@GetPersonaButtonClass(ChatPersona.ComicBookGuy)"
+                            aria-pressed='@(_selectedPersona == ChatPersona.ComicBookGuy ? "true" : "false")'
+                            @onclick="@(() => SetPersona(ChatPersona.ComicBookGuy))">
+                        Comic Book Guy
+                    </button>
+                    <button type="button"
+                            class="@GetPersonaButtonClass(ChatPersona.Assistant)"
+                            aria-pressed='@(_selectedPersona == ChatPersona.Assistant ? "true" : "false")'
+                            @onclick="@(() => SetPersona(ChatPersona.Assistant))">
+                        Sane Assistant
+                    </button>
+                </div>
+            </div>
+
             <div class="cta-row">
                 <input class="hero-input"
-                       placeholder="Ask the snark overlords anything…" @bind="@_question" />
+                       placeholder="Ask the snark overlords anything."
+                       @bind="_question"
+                       @bind:event="oninput" />
                 <button type="button" @onclick="AskAi">Ask Question</button>
             </div>
-            
+
             @if (!string.IsNullOrWhiteSpace(_answer))
             {
                 <div class="answer-board" aria-live="polite">

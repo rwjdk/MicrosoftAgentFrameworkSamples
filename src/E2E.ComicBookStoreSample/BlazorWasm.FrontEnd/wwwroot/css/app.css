@@ -227,6 +227,55 @@ code {
     max-width: 42ch;
 }
 
+.persona-toggle {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    max-width: 420px;
+    color: var(--comic-ink);
+}
+
+.persona-label {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.persona-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.persona-button {
+    flex: 1 1 160px;
+    border: 3px solid var(--comic-ink);
+    border-radius: 999px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--comic-ink);
+    background: #fff;
+    box-shadow: 4px 4px 0 var(--comic-ink);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+    .persona-button:hover {
+        transform: translateY(-2px);
+    }
+
+    .persona-button.active {
+        background: linear-gradient(135deg, var(--comic-pink), var(--comic-yellow));
+        color: #050214;
+        box-shadow: 6px 6px 0 var(--comic-ink);
+        transform: translateY(-3px);
+    }
+
 .cta-row {
     display: flex;
     flex-wrap: wrap;
