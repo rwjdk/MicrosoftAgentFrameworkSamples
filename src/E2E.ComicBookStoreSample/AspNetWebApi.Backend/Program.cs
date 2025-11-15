@@ -35,7 +35,7 @@ WebApplication app = builder.Build();
 AzureOpenAIClient azureOpenAIClient = app.Services.GetRequiredService<AzureOpenAIClient>();
 AIAgent comicBookGuyAgent = azureOpenAIClient
     .GetChatClient(comicBookGuyModel)
-    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons")
+    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons. Do not use Markdown in the answers")
     .AsBuilder()
     .UseOpenTelemetry("ComicBookGuySource", telemetryAgent => telemetryAgent.EnableSensitiveData = true)
     .Build();
@@ -43,7 +43,7 @@ AIAgent comicBookGuyAgent = azureOpenAIClient
 
 AIAgent assistantAgent = azureOpenAIClient
     .GetChatClient(assistantModel)
-    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons sane assistant when he become a bit too much")
+    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons sane assistant when he become a bit too much. Do not use Markdown in the answers")
     .AsBuilder()
     .UseOpenTelemetry("AssistantSource", telemetryAgent => telemetryAgent.EnableSensitiveData = true)
     .Build();

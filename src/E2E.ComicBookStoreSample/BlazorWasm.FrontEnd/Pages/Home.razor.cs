@@ -17,21 +17,19 @@ public partial class Home([FromKeyedServices("comic-book-guy-agent")] ChatClient
             return;
         }
 
-        AgentRunResponse response;
-        switch (_selectedPersona)
+        AIAgent agentToUse = _selectedPersona switch
         {
-            case ChatPersona.ComicBookGuy:
-                response = await comicBookAgent.RunAsync(_question);
-                break;
-            case ChatPersona.Assistant:
-                response = await assistantAgent.RunAsync(_question);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+            ChatPersona.ComicBookGuy => comicBookAgent,
+            ChatPersona.Assistant => assistantAgent,
+            _ => throw new ArgumentOutOfRangeException()
+        };
 
-        _answer = response.Text;
-        StateHasChanged();
+        _answer = string.Empty;
+        await foreach (AgentRunResponseUpdate update in agentToUse.RunStreamingAsync(_question))
+        {
+            _answer += update.Text;
+            StateHasChanged();
+        }
     }
 
     private void SetPersona(ChatPersona persona)
