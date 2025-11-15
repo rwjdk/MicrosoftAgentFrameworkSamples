@@ -35,11 +35,11 @@ WebApplication app = builder.Build();
 AzureOpenAIClient azureOpenAIClient = app.Services.GetRequiredService<AzureOpenAIClient>();
 ChatClientAgent comicBookGuyAgent = azureOpenAIClient
     .GetChatClient(comicBookGuyModel)
-    .CreateAIAgent(instructions: "You are comic-book-guy from South Park");
+    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons");
 
 ChatClientAgent assistantAgent = azureOpenAIClient
     .GetChatClient(assistantModel)
-    .CreateAIAgent(instructions: "You are comic-book-guy from South Park sane assistant when he become a bit too much");
+    .CreateAIAgent(instructions: "You are comic-book-guy from the Simpsons sane assistant when he become a bit too much");
 
 app.MapDefaultEndpoints();
 

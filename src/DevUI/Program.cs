@@ -19,7 +19,7 @@ builder.Services.AddOpenAIResponses();
 builder.Services.AddOpenAIConversations();
 
 // Register "dummy" Agent
-builder.AddAIAgent("Comic Book Guy", "You are comic-book guy from South Park")
+builder.AddAIAgent("Comic Book Guy", "You are comic-book guy from The Simpsons")
     .WithAITool(AIFunctionFactory.Create(GetWeather));
 
 //Build a "normal" Agent
