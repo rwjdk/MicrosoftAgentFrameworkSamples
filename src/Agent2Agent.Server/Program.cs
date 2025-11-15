@@ -1,4 +1,6 @@
-﻿using A2A;
+﻿//YouTube video that cover this sample: https://youtu.be/g72ks3rY9qQ
+
+using A2A;
 using A2A.AspNetCore;
 using Agent2Agent.Server;
 using Azure.AI.OpenAI;

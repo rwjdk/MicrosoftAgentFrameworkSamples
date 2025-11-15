@@ -1,4 +1,6 @@
-﻿using Azure.AI.OpenAI;
+﻿//YouTube video that cover this sample: https://youtu.be/tDQc6lZUbYc
+
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.Hosting.AGUI.AspNetCore;
 using Microsoft.AspNetCore.Builder;

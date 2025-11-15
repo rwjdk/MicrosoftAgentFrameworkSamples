@@ -1,3 +1,5 @@
+//YouTube video that cover this sample: https://youtu.be/y4k200pcMRY
+
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.DevUI;

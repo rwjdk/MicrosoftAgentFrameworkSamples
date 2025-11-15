@@ -1,4 +1,6 @@
-﻿using Microsoft.Agents.AI;
+﻿//YouTube video that cover this sample: https://youtu.be/tDQc6lZUbYc
+
+using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.AGUI;
 using Microsoft.Extensions.AI;
 using System.Text;
