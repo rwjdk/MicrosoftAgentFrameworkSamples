@@ -96,7 +96,7 @@ foreach (Movie movie in movieDataForRag)
 }
 
 Console.WriteLine();
-Console.WriteLine("\rEmbedding complete... Let's as the question again using RAG");
+Console.WriteLine("\rEmbedding complete... Let's ask the question again using RAG");
 
 List<ChatMessage> ragPreloadChatMessages =
 [
