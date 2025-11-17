@@ -1,9 +1,5 @@
-﻿using AgentFramework.Toolkit.AIAgents;
-using GenerativeAI;
-using Microsoft.Agents.AI;
-using AgentFramework.Toolkit.AIModels;
+﻿using Microsoft.Agents.AI;
 using Shared;
-using AgentFramework.Toolkit.AIAgents.Models;
 
 namespace AgentFramework.Toolkit.Tests.AIModels;
 
@@ -25,8 +21,8 @@ public class Foo
     {
         Configuration configuration = ConfigurationManager.GetConfiguration(); //todo - should not be dependent on this!
 
-        GoogleAgentFactory factory = new(configuration.GoogleGeminiApiKey);
-        Agent agent = factory.GetAgent(new GoogleModel(GoogleAIModels.Gemini25Flash));
-        AgentRunResponse response = await agent.RunAsync("Hello");
+        //AgentFactoryGoogle factory = new(configuration.GoogleGeminiApiKey);
+        //Agent agent = factory.GetAgent(new GoogleModel(GoogleAIModels.Gemini25Flash));
+        //AgentRunResponse response = await agent.RunAsync("Hello");
     }
 }

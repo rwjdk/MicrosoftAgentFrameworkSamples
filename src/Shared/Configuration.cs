@@ -16,4 +16,5 @@ public record Configuration(
     string GoogleGeminiApiKey,
     string XAiGrokApiKey,
     string TrelloApiKey,
-    string TrelloToken);
+    string TrelloToken,
+    string AnthropicApiKey);

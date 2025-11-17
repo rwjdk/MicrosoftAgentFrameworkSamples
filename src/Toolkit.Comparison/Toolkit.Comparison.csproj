@@ -8,7 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AgentFramework.Toolkit.AnthropicSDK\AgentFramework.Toolkit.AnthropicSDK.csproj" />
     <ProjectReference Include="..\AgentFramework.Toolkit.AzureOpenAI\AgentFramework.Toolkit.AzureOpenAI.csproj" />
+    <ProjectReference Include="..\AgentFramework.Toolkit.GoogleGenerativeAI\AgentFramework.Toolkit.GoogleGenerativeAI.csproj" />
+    <ProjectReference Include="..\AgentFramework.Toolkit.OpenAI\AgentFramework.Toolkit.OpenAI.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 

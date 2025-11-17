@@ -16,5 +16,5 @@ Console.Clear();
   - use structured output
 */
 
-await WithoutToolkit.Run();
+//await WithoutToolkit.Run();
 await WithToolkit.Run();

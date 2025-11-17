@@ -1,5 +1,5 @@
-﻿using AgentFramework.Toolkit.AITools;
-using AgentFramework.Toolkit.Tests.AITools.SampleTools;
+﻿using AgentFramework.Toolkit.Tests.AITools.SampleTools;
+using AgentFramework.Toolkit.Tools;
 using Microsoft.Extensions.AI;
 
 namespace AgentFramework.Toolkit.Tests.AITools;
@@ -10,7 +10,7 @@ public class AIToolsFactory
     public void OnlyPublic()
     {
         MethodClassWithTools instance = new();
-        IList<AITool> tools = Toolkit.AITools.AIToolsFactory.GetToolsFromMethods(instance);
+        IList<AITool> tools = Tools.AIToolsFactory.GetToolsFromMethods(instance);
         Assert.Equal(2, tools.Count);
         string[] toolNames = tools.Select(x => x.Name).ToArray();
         Assert.Contains("public_static_tool", toolNames);
@@ -21,7 +21,7 @@ public class AIToolsFactory
     public void PublicAndPrivate()
     {
         MethodClassWithTools instance = new();
-        IList<AITool> tools = Toolkit.AITools.AIToolsFactory.GetToolsFromMethods(instance, new AIToolsFactoryMethodOptions
+        IList<AITool> tools = Tools.AIToolsFactory.GetToolsFromMethods(instance, new AIToolsFactoryMethodOptions
         {
             IncludeNonPublicStaticMethods = true,
             IncludeNonPublicMethods = true,

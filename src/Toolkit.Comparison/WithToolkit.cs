@@ -1,5 +1,11 @@
-﻿using AgentFramework.Toolkit.AIAgents;
-using AgentFramework.Toolkit.AIAgents.Models;
+﻿using AgentFramework.Toolkit.Agents;
+using AgentFramework.Toolkit.AnthropicSDK;
+using AgentFramework.Toolkit.AnthropicSDK.Agents;
+using AgentFramework.Toolkit.AnthropicSDK.Agents.Models;
+using AgentFramework.Toolkit.AzureOpenAI;
+using AgentFramework.Toolkit.AzureOpenAI.Agents;
+using AgentFramework.Toolkit.OpenAI.Agents.Models;
+using AgentFramework.Toolkit.OpenAI.Usage;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI.Responses;
@@ -14,24 +20,78 @@ public class WithToolkit
     public static async Task Run()
     {
         Configuration configuration = ConfigurationManager.GetConfiguration();
-        AgentFactoryAzureOpenAI agentFactory = new(new AzureOpenAIAgentFactoryConfiguration
+
+        AgentFactoryAnthropicSDK aa = new(new AnthropicSDKConnection
+        {
+            ApiKey = configuration.AnthropicApiKey
+        });
+
+        Agent aaAgent = aa.CreateAgent(new AnthropicSDKOptions
+        {
+            DeploymentModelName = "claude-sonnet-4-5-20250929",
+            MaxOutputTokens = 1000,
+            Tools =
+            [
+                AIFunctionFactory.Create(GetWeather)
+            ],
+        });
+
+        AgentRunResponse aaRun = await aaAgent.RunAsync("What is the weather like in Paris?");
+
+
+        /*
+        AgentFactoryGoogleGenerativeAI googleFactory = new(new GoogleGenerativeAIConfiguration
+        {
+            ApiKey = configuration.GoogleGeminiApiKey
+        });
+
+        Agent agent = googleFactory.CreateAgent(new GoogleGenerativeAIOptions
+        {
+            Temperature = 0,
+            MaxOutputTokens = 100,
+            Tools =
+            [
+                AIFunctionFactory.Create(GetWeather)
+            ],
+            DeploymentModelName = GenerativeAI.GoogleAIModels.Gemini25Flash
+        });
+
+        AgentRunResponse response = await agent.RunAsync("What is the weather like in paris?");
+        */
+
+        AgentFactoryAzureOpenAI agentFactoryAzureOpenAI = new(new AzureOpenAIConnection
         {
             Endpoint = configuration.AzureOpenAiEndpoint,
             ApiKey = configuration.AzureOpenAiKey
         });
 
-        Agent commonAgent = agentFactory.CreateAgent(new ResponsesApiReasoning
+        Agent commonAgent = agentFactoryAzureOpenAI.CreateAgent(new OpenAIResponseWithReasoningOptions()
         {
-            DeploymentModelName = "gpt-5-mini",
+            DeploymentModelName = "gpt-5-nano",
+            MaxOutputTokens = 200,
             ReasoningEffort = ResponseReasoningEffortLevel.Low,
             ReasoningSummaryVerbosity = ResponseReasoningSummaryVerbosity.Detailed,
             Tools = [AIFunctionFactory.Create(GetWeather)],
+            AdditionalChatClientAgentOptions = options =>
+            {
+                options.Name = "NO!";
+            }
         });
+
+
+        AgentRunResponse agentRunResponse = await commonAgent.RunAsync("What is the weather like in Paris?");
+
+        UsageDetails usageDetails = agentRunResponse.Usage!;
+        long? a = usageDetails.InputTokenCount;
+        long? b = usageDetails.OutputTokenCount;
+        long d = usageDetails.OutputReasoningTokenCount;
+        long c = usageDetails.InputCachedTokenCount;
+        
 
         ChatClientAgentRunResponse<Weather> commonResponse = await commonAgent.RunAsync<Weather>("What is the weather like in Paris?");
         Weather commonWeather = commonResponse.Result;
 
-        Agent fullBlownAgent = agentFactory.CreateAgent(new ResponsesApiReasoning
+        Agent fullBlownAgent = agentFactoryAzureOpenAI.CreateAgent(new OpenAIResponseWithReasoningOptions
         {
             Id = "1234",
             Name = "MyAgent",
@@ -66,4 +126,5 @@ public class WithToolkit
         public required int DegreesCelsius { get; set; }
         public required int DegreesFahrenheit { get; set; }
     }
+
 }
