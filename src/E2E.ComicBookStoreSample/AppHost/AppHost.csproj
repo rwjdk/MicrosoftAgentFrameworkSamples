@@ -7,7 +7,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <UserSecretsId>35f4154e-dac9-47cc-aa8c-9c4e2832cc0e</UserSecretsId>
+    <UserSecretsId>comic-book-store</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

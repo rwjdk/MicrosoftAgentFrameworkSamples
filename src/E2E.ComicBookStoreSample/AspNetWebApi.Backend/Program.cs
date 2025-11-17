@@ -11,10 +11,10 @@ builder.AddServiceDefaults();
 builder.Services.AddOpenApi();
 
 //Configuration
-string azureOpenAIEndpoint = builder.Configuration["azureOpenAIEndpoint"] ?? throw new ApplicationException("azureOpenAIEndpoint env. variable is missing");
-string azureOpenAIKey = builder.Configuration["azureOpenAIKey"] ?? throw new ApplicationException("azureOpenAIKey env. variable is missing");
-string comicBookGuyModel = builder.Configuration["comic-book-guy-agent-model"] ?? throw new ApplicationException("comic-book-guy-agent-model env. variable is missing");
-string assistantModel = builder.Configuration["assistant-agent-model"] ?? throw new ApplicationException("assistant-agent-model env. variable is missing");
+string azureOpenAIEndpoint = builder.Configuration["CBS_AZURE_OPEN_AI_ENDPOINT"] ?? throw new ApplicationException("azureOpenAIEndpoint env. variable is missing");
+string azureOpenAIKey = builder.Configuration["CBS_AZURE_OPEN_AI_KEY"] ?? throw new ApplicationException("azureOpenAIKey env. variable is missing");
+string comicBookGuyModel = builder.Configuration["CBS_COMIC_BOOK_GUY_AGENT_MODEL"] ?? throw new ApplicationException("comic-book-guy-agent-model env. variable is missing");
+string assistantModel = builder.Configuration["CBS_ASSISTANT_AGENT_MODEL"] ?? throw new ApplicationException("assistant-agent-model env. variable is missing");
 
 builder.Services.AddSingleton(new AzureOpenAIClient(new Uri(azureOpenAIEndpoint), new ApiKeyCredential(azureOpenAIKey)));
 builder.Services.AddAGUI();
