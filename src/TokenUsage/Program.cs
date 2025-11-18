@@ -5,7 +5,7 @@ using Microsoft.Agents.AI;
 using OpenAI;
 using Shared;
 using System.ClientModel;
-using MicrosoftAgentFramework.Utilities.Extensions;
+using Shared.Extensions;
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 

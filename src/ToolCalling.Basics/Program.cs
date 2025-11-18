@@ -3,12 +3,12 @@
 //- Advanced: https://youtu.be/dCtojrK8bKk
 //- MCP: https://youtu.be/Y5IKdt9vdJM
 
-using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI;
 using Shared;
 using System.ClientModel;
+using Azure.AI.OpenAI;
 using ToolCalling.Basics;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 

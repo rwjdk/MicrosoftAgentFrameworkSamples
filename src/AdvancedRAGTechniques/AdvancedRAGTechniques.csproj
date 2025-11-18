@@ -13,6 +13,7 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Azure.AI.OpenAI" Version="2.5.0-beta.1" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251114.1" />
 		<PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureAISearch" Version="1.67.1-preview" />
 		<PackageReference Include="Microsoft.SemanticKernel.Connectors.CosmosNoSql" Version="1.67.1-preview" />

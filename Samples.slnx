@@ -1,12 +1,11 @@
 <Solution>
   <Folder Name="/- Nuget Package Candidates -/">
-    <Project Path="src/AgentFramework.Toolkit.AnthropicSDK/AgentFramework.Toolkit.AnthropicSDK.csproj" Id="9fdaa7a7-bf70-49a1-80d5-309ab74689f1" />
-    <Project Path="src/AgentFramework.Toolkit.AzureOpenAI/AgentFramework.Toolkit.AzureOpenAI.csproj" Id="051b069a-9d36-43c9-b4ac-db6fd7b1cd84" />
-    <Project Path="src/AgentFramework.Toolkit.GoogleGenerativeAI/AgentFramework.Toolkit.GoogleGenerativeAI.csproj" />
-    <Project Path="src/AgentFramework.Toolkit.OpenAI/AgentFramework.Toolkit.OpenAI.csproj" Id="3cbec3f4-30ce-4a6c-a4b6-34297f3974e5" />
-    <Project Path="src/AgentFramework.Toolkit.Tests/AgentFramework.Toolkit.Tests.csproj" Id="da263526-188b-4d54-bd3d-1490e2eaccf4" />
-    <Project Path="src/AgentFramework.Toolkit/AgentFramework.Toolkit.csproj" Id="3db98eb0-8f14-4784-a755-b7d5c1a1d340" />
-    <Project Path="src/MicrosoftAgentFramework.Utilities/MicrosoftAgentFramework.Utilities.csproj" Id="997d075c-8a83-4d22-94b3-09af8550aed5" />
+    <Project Path="src/AgentFramework.Utilities.AnthropicSDK/AgentFramework.Utilities.AnthropicSDK.csproj" Id="9fdaa7a7-bf70-49a1-80d5-309ab74689f1" />
+    <Project Path="src/AgentFramework.Utilities.AzureOpenAI/AgentFramework.Utilities.AzureOpenAI.csproj" Id="051b069a-9d36-43c9-b4ac-db6fd7b1cd84" />
+    <Project Path="src/AgentFramework.Utilities.GoogleGenerativeAI/AgentFramework.Utilities.GoogleGenerativeAI.csproj" />
+    <Project Path="src/AgentFramework.Utilities.Grok/AgentFramework.Utilities.Grok.csproj" Id="f42dfc10-e47c-4590-b9ac-c652ec265844" />
+    <Project Path="src/AgentFramework.Utilities.OpenAI/AgentFramework.Utilities.OpenAI.csproj" Id="3cbec3f4-30ce-4a6c-a4b6-34297f3974e5" />
+    <Project Path="src/AgentFramework.Utilities/AgentFramework.Utilities.csproj" Id="3db98eb0-8f14-4784-a755-b7d5c1a1d340" />
   </Folder>
   <Folder Name="/- Playground and Work in Progress -/">
     <Project Path="src/Playground/Playground.csproj" Id="cbfc6bab-e8ea-4566-a695-56d84b6e5f68" />

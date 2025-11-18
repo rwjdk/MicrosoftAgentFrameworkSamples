@@ -17,7 +17,7 @@
 		<PackageReference Include="ModelContextProtocol" Version="0.4.0-preview.3" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\AgentFramework.Toolkit\AgentFramework.Toolkit.csproj" />
+		<ProjectReference Include="..\AgentFramework.Utilities\AgentFramework.Utilities.csproj" />
 		<ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 </Project>
