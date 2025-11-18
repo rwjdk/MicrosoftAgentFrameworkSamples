@@ -1,12 +1,4 @@
 <Solution>
-  <Folder Name="/- Nuget Package Candidates -/">
-    <Project Path="src/AgentFramework.Utilities.AnthropicSDK/AgentFramework.Utilities.AnthropicSDK.csproj" Id="9fdaa7a7-bf70-49a1-80d5-309ab74689f1" />
-    <Project Path="src/AgentFramework.Utilities.AzureOpenAI/AgentFramework.Utilities.AzureOpenAI.csproj" Id="051b069a-9d36-43c9-b4ac-db6fd7b1cd84" />
-    <Project Path="src/AgentFramework.Utilities.GoogleGenerativeAI/AgentFramework.Utilities.GoogleGenerativeAI.csproj" />
-    <Project Path="src/AgentFramework.Utilities.Grok/AgentFramework.Utilities.Grok.csproj" Id="f42dfc10-e47c-4590-b9ac-c652ec265844" />
-    <Project Path="src/AgentFramework.Utilities.OpenAI/AgentFramework.Utilities.OpenAI.csproj" Id="3cbec3f4-30ce-4a6c-a4b6-34297f3974e5" />
-    <Project Path="src/AgentFramework.Utilities/AgentFramework.Utilities.csproj" Id="3db98eb0-8f14-4784-a755-b7d5c1a1d340" />
-  </Folder>
   <Folder Name="/- Playground and Work in Progress -/">
     <Project Path="src/Playground/Playground.csproj" Id="cbfc6bab-e8ea-4566-a695-56d84b6e5f68" />
     <Project Path="src/Trello.Agent/Trello.Agent.csproj" Id="efbcd89b-d888-4f52-9e9c-250134c4d908" />
@@ -92,9 +84,6 @@
   </Folder>
   <Folder Name="/Telemetry/">
     <Project Path="src/Telemetry/Telemetry.csproj" Id="5fd6ed24-957b-4541-9be2-e2e23c6f606a" />
-  </Folder>
-  <Folder Name="/Toolkit Nuget Comparison/">
-    <Project Path="src/Toolkit.Comparison/Toolkit.Comparison.csproj" Id="5f7fee24-b6d6-45b9-94c5-bddb02148e1f" />
   </Folder>
   <Folder Name="/ZeroToFirstAgent/" />
   <Folder Name="/ZeroToFirstAgent/Non-OpenAI Based/">
