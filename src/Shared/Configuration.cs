@@ -17,4 +17,5 @@ public record Configuration(
     string XAiGrokApiKey,
     string TrelloApiKey,
     string TrelloToken,
-    string AnthropicApiKey);
+    string AnthropicApiKey,
+    string MistralApiKey);
