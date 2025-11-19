@@ -23,16 +23,6 @@
     <Project Path="src/Samples.AppHost/Samples.AppHost.csproj" Id="42cace91-95d9-45d2-ba66-5e73a5ab6771" />
     <Project Path="src/Samples.ServiceDefaults/Samples.ServiceDefaults.csproj" />
   </Folder>
-  <Folder Name="/AzureAiFoundry/">
-    <Project Path="src/AzureAiFoundry.NewNovember2025NuGet/AzureAiFoundry.NewNovember2025NuGet.csproj" Id="1756c13a-a00a-4ca0-81a9-e1cfe15c578e" />
-  </Folder>
-  <Folder Name="/AzureAiFoundry/Old Way/">
-    <Project Path="src/AzureAiFoundry.Administration/AzureAiFoundry.Administration.csproj" Id="968b00b8-e6a9-4891-95d9-adc89a34ae2a" />
-    <Project Path="src/AzureAiFoundry.CodeInterpreter/AzureAiFoundry.CodeInterpreter.csproj" Id="4b99038e-d260-4ddf-b411-8f5564a399f1" />
-    <Project Path="src/AzureAiFoundry.FileSearchTool/AzureAiFoundry.FileSearchTool.csproj" Id="c78815a1-4fe2-44d1-8de5-25cd4af2d56d" />
-    <Project Path="src/AzureAiFoundry.Models/AzureAiFoundry.Models.csproj" Id="e3e015ec-1504-4b3c-9af8-c3a7028d3931" />
-    <Project Path="src/AzureAiFoundry.WebSearch/AzureAiFoundry.WebSearch.csproj" Id="70bb89f4-0795-4b8e-ad3f-858f035901b3" />
-  </Folder>
   <Folder Name="/Features/">
     <Project Path="src/AgentInputData/AgentInputData.csproj" Id="56751bff-8f82-4754-9d16-6f46b0b82fe1" />
     <Project Path="src/ChatHistoryReducer/ChatHistoryReducer.csproj" Id="96cb4db1-2675-4f7d-a5d8-960f07b7e0fd" />
@@ -45,6 +35,16 @@
     <Project Path="src/ToolCalling.Advanced/ToolCalling.Advanced.csproj" Id="c8428d24-c838-4a61-ab71-ecffcde4b8d9" />
     <Project Path="src/ToolCalling.Basics/ToolCalling.Basics.csproj" Id="0157ef69-5a6c-4470-9a9d-43bca4ea9649" />
     <Project Path="src/Toolcalling.FromAnMcpServer/Toolcalling.FromAnMcpServer.csproj" Id="427477f9-a17e-4284-a66f-fea0f9411701" />
+  </Folder>
+  <Folder Name="/Microsoft Foundry/">
+    <Project Path="src/AzureAiFoundry.NewNovember2025NuGet/AzureAiFoundry.NewNovember2025NuGet.csproj" Id="1756c13a-a00a-4ca0-81a9-e1cfe15c578e" />
+  </Folder>
+  <Folder Name="/Microsoft Foundry/Classic Agents (Legacy AI Foundry, do not use anymore)/">
+    <Project Path="src/AzureAiFoundry.Administration/AzureAiFoundry.Administration.csproj" Id="968b00b8-e6a9-4891-95d9-adc89a34ae2a" />
+    <Project Path="src/AzureAiFoundry.CodeInterpreter/AzureAiFoundry.CodeInterpreter.csproj" Id="4b99038e-d260-4ddf-b411-8f5564a399f1" />
+    <Project Path="src/AzureAiFoundry.FileSearchTool/AzureAiFoundry.FileSearchTool.csproj" Id="c78815a1-4fe2-44d1-8de5-25cd4af2d56d" />
+    <Project Path="src/AzureAiFoundry.Models/AzureAiFoundry.Models.csproj" Id="e3e015ec-1504-4b3c-9af8-c3a7028d3931" />
+    <Project Path="src/AzureAiFoundry.WebSearch/AzureAiFoundry.WebSearch.csproj" Id="70bb89f4-0795-4b8e-ad3f-858f035901b3" />
   </Folder>
   <Folder Name="/MultiAgents &amp; Workflows/">
     <Project Path="src/MultiAgent.AgentAsTool/MultiAgent.AgentAsTool.csproj" Id="41434d93-72ba-43d0-b7b0-117e3c6eb7bb" />
