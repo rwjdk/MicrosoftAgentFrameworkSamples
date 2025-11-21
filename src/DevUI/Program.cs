@@ -8,6 +8,10 @@ using Microsoft.Agents.AI.Workflows;
 using Microsoft.Extensions.AI;
 using Shared;
 using System.ClientModel;
+using AgentFrameworkToolkit.Anthropic;
+using AgentFrameworkToolkit.Google;
+using Anthropic.SDK.Constants;
+using GenerativeAI;
 using OpenAI;
 
 Configuration configuration = Shared.ConfigurationManager.GetConfiguration();
@@ -31,6 +35,36 @@ AIAgent myAgent = azureOpenAIClient
     .CreateAIAgent(name: realAgentName, instructions: "Speak like a pirate", tools: [AIFunctionFactory.Create(GetWeather)]);
 
 builder.AddAIAgent(realAgentName, (serviceProvider, key) => myAgent); //Get registered as a keyed singleton so name on real agent and key must match
+
+if (!string.IsNullOrWhiteSpace(configuration.GoogleGeminiApiKey))
+{
+    //Build a Google Agent (Using AgentFrameworkToolkit)
+    string agentName = "Google Agent";
+    GoogleAgentFactory agentFactory = new(new GoogleConnection { ApiKey = configuration.GoogleGeminiApiKey });
+
+    GoogleAgent googleAgent = agentFactory.CreateAgent(new GoogleAgentOptions
+    {
+        Name = agentName,
+        DeploymentModelName = GoogleAIModels.Gemini25Flash
+    });
+    builder.AddAIAgent(agentName, (serviceProvider, key) => googleAgent);
+}
+
+if (!string.IsNullOrWhiteSpace(configuration.AnthropicApiKey))
+{
+    //Build a Claude Agent (Using AgentFrameworkToolkit)
+    string agentName = "Anthropic Agent";
+    AnthropicAgentFactory agentFactory = new(new AnthropicConnection { ApiKey = configuration.AnthropicApiKey });
+
+    AnthropicAgent anthropicAgent = agentFactory.CreateAgent(new AnthropicAgentOptions
+    {
+        Name = agentName,
+        DeploymentModelName = AnthropicModels.Claude45Haiku,
+        MaxOutputTokens = 1000
+    });
+
+    builder.AddAIAgent(agentName, (serviceProvider, key) => anthropicAgent);
+}
 
 // Register sample workflows
 IHostedAgentBuilder frenchTranslator = builder.AddAIAgent("french-translator", "Translate any text you get into French");
