@@ -66,7 +66,7 @@
     <Project Path="src/StructuredOutput/StructuredOutput.csproj" Id="3f844d4f-0435-468f-a6ef-ff35ac8f7983" />
   </Folder>
   <Folder Name="/Telemetry &amp; Observability/">
-    <Project Path="src/Telemetry/OpenTelemetry.csproj" Id="5fd6ed24-957b-4541-9be2-e2e23c6f606a" />
+    <Project Path="src/Telemetry/Telemetry.csproj" Id="5fd6ed24-957b-4541-9be2-e2e23c6f606a" />
     <Project Path="src/WatchRawRequestAndResponse/WatchRawRequestAndResponse.csproj" Id="bbfd2a79-7962-499a-8428-4fdcee484295" />
   </Folder>
   <Folder Name="/Telemetry &amp; Observability/Aspire (Observability)/">
