@@ -1,0 +1,62 @@
+﻿@page "/"
+
+<PageTitle>AG-UI Advanced</PageTitle>
+
+<div style="background-color: @(Color ?? "white")">
+
+    <h1>Color Changer Agent (Client Tool)</h1>
+    Change BG Color to:
+    <input type="text" @bind="_requestedColor" />
+    <input type="button" @onclick="ChangeColor" value="Change Color" />
+    
+    <hr />
+
+    <h1>Weather Agent (Server Tool - Text Result)</h1>
+    City to get weather for:
+    <input type="text" @bind="_city" />
+    <input type="button" @onclick="WeatherLookup" value="Get Weather" />
+    @if (_weatherText != null)
+    {
+        <span>@_weatherText</span>
+    }
+
+    <hr />
+
+    <h1>Weather Agent (Server Tool - Structured Result + Story about city)</h1>
+    City to get weather for:
+    <input type="text" @bind="_cityStructured" />
+    <input type="button" @onclick="WeatherLookupWithStructuredContent" value="Get Weather" />
+    @if (_weatherTextStructure != null)
+    {
+        <span>@_weatherTextStructure</span>
+    }
+    @if (_weather != null)
+    {
+        <span>@_weatherText</span>
+        <div>Condition: @_weather.Condition</div>
+        <div>Degrees C: @_weather.DegreesC</div>
+        <div>Degrees F: @_weather.DegreesF</div>
+    }
+
+    
+    <hr />
+    
+
+    <h1>Movie Agent (Direct Structured Output)</h1>
+    Movie Name:
+    <input type="text" @bind="_movieName" />
+    <input type="button" @onclick="MovieLookup" value="Lookup" />
+
+    @if (_movieResult != null)
+    {
+        <span>
+            Title: <strong>@_movieResult.Title</strong> |
+            Year of Release: <strong>@_movieResult.YearOfRelease</strong> |
+            Director: <strong>@_movieResult.Director</strong> |
+        </span>
+    }
+
+    <hr />
+
+</div>
+

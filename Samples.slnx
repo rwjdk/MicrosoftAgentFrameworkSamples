@@ -8,6 +8,12 @@
     <Project Path="src/Agent2Agent.Server/Agent2Agent.Server.csproj" Id="b09023f3-c25e-4668-a956-4e60cd2678d1" />
   </Folder>
   <Folder Name="/AG-UI (Agent User Interaction)/" />
+  <Folder Name="/AG-UI (Agent User Interaction)/Advanced/">
+    <Project Path="src/AgentUserInteraction.Advanced.BlazorWasmClient/AgentUserInteraction.Advanced.BlazorWasmClient.csproj" Id="8e28142c-91a0-47d6-8986-d1a46365f05b" />
+    <Project Path="src/AgentUserInteraction.Advanced.Server/AgentUserInteraction.Advanced.Server.csproj" Id="72ab5e60-50a7-4f9e-9c5e-ddbe2c564dc7" />
+    <Project Path="src/AgentUserInteraction.Advanced.SharedModels/AgentUserInteraction.Advanced.SharedModels.csproj" Id="bfb4de14-5d56-4211-a9c8-13cab67eca34" />
+    <Project Path="src/AppHost.AG-UI.Advanced/AppHost.AG-UI.Advanced.csproj" Id="4ed36c00-5299-4a52-af1f-ed4ffac452f7" />
+  </Folder>
   <Folder Name="/AG-UI (Agent User Interaction)/Basic/">
     <Project Path="src/AgentUserInteraction.Client/AgentUserInteraction.Client.csproj" Id="ddd3b08d-041a-449f-80dc-6bd66e302958" />
     <Project Path="src/AgentUserInteraction.Server/AgentUserInteraction.Server.csproj" Id="8e71efad-1080-45a1-b1e9-17c9496ba99c" />
