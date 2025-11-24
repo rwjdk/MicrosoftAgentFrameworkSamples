@@ -1,0 +1,590 @@
+[
+  {
+    "Name": "Albert Einstein",
+    "Country": "Germany",
+    "Sex": "Male",
+    "Type": "Scientist"
+  },
+  {
+    "Name": "Marie Curie",
+    "Country": "Poland",
+    "Sex": "Female",
+    "Type": "Scientist"
+  },
+  {
+    "Name": "Nelson Mandela",
+    "Country": "South Africa",
+    "Sex": "Male",
+    "Type": "Politician"
+  },
+  {
+    "Name": "Leonardo da Vinci",
+    "Country": "Italy",
+    "Sex": "Male",
+    "Type": "Artist"
+  },
+  {
+    "Name": "Frida Kahlo",
+    "Country": "Mexico",
+    "Sex": "Female",
+    "Type": "Artist"
+  },
+  {
+    "Name": "Barack Obama",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Politician"
+  },
+  {
+    "Name": "Oprah Winfrey",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "TV Host"
+  },
+  {
+    "Name": "Lionel Messi",
+    "Country": "Argentina",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Cristiano Ronaldo",
+    "Country": "Portugal",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Serena Williams",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Usain Bolt",
+    "Country": "Jamaica",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Adele",
+    "Country": "United Kingdom",
+    "Sex": "Female",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Taylor Swift",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Elon Musk",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Entrepreneur"
+  },
+  {
+    "Name": "Jeff Bezos",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Entrepreneur"
+  },
+  {
+    "Name": "Mark Zuckerberg",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Entrepreneur"
+  },
+  {
+    "Name": "Bill Gates",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Entrepreneur"
+  },
+  {
+    "Name": "Stephen Hawking",
+    "Country": "United Kingdom",
+    "Sex": "Male",
+    "Type": "Scientist"
+  },
+  {
+    "Name": "Charles Darwin",
+    "Country": "United Kingdom",
+    "Sex": "Male",
+    "Type": "Scientist"
+  },
+  {
+    "Name": "Isaac Newton",
+    "Country": "United Kingdom",
+    "Sex": "Male",
+    "Type": "Scientist"
+  },
+  {
+    "Name": "Galileo Galilei",
+    "Country": "Italy",
+    "Sex": "Male",
+    "Type": "Scientist"
+  },
+  {
+    "Name": "Pablo Picasso",
+    "Country": "Spain",
+    "Sex": "Male",
+    "Type": "Artist"
+  },
+  {
+    "Name": "Vincent van Gogh",
+    "Country": "Netherlands",
+    "Sex": "Male",
+    "Type": "Artist"
+  },
+  {
+    "Name": "Madonna",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Beyonc\u00e9",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Shakira",
+    "Country": "Colombia",
+    "Sex": "Female",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Jennifer Lopez",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Rihanna",
+    "Country": "Barbados",
+    "Sex": "Female",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Morgan Freeman",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Tom Hanks",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Meryl Streep",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Denzel Washington",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Robert De Niro",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Scarlett Johansson",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Emma Watson",
+    "Country": "United Kingdom",
+    "Sex": "Female",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Keanu Reeves",
+    "Country": "Canada",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Jackie Chan",
+    "Country": "Hong Kong",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Bruce Lee",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Arnold Schwarzenegger",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Harrison Ford",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "The Weeknd",
+    "Country": "Canada",
+    "Sex": "Male",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Ed Sheeran",
+    "Country": "United Kingdom",
+    "Sex": "Male",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Bruno Mars",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Chris Hemsworth",
+    "Country": "Australia",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Hugh Jackman",
+    "Country": "Australia",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Celine Dion",
+    "Country": "Canada",
+    "Sex": "Female",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Justin Bieber",
+    "Country": "Canada",
+    "Sex": "Male",
+    "Type": "Musician"
+  },
+  {
+    "Name": "David Beckham",
+    "Country": "United Kingdom",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Roger Federer",
+    "Country": "Switzerland",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Novak Djokovic",
+    "Country": "Serbia",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Rafael Nadal",
+    "Country": "Spain",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Greta Thunberg",
+    "Country": "Sweden",
+    "Sex": "Female",
+    "Type": "Activist"
+  },
+  {
+    "Name": "Malala Yousafzai",
+    "Country": "Pakistan",
+    "Sex": "Female",
+    "Type": "Activist"
+  },
+  {
+    "Name": "Angela Merkel",
+    "Country": "Germany",
+    "Sex": "Female",
+    "Type": "Politician"
+  },
+  {
+    "Name": "Vladimir Putin",
+    "Country": "Russia",
+    "Sex": "Male",
+    "Type": "Politician"
+  },
+  {
+    "Name": "Xi Jinping",
+    "Country": "China",
+    "Sex": "Male",
+    "Type": "Politician"
+  },
+  {
+    "Name": "Shinzo Abe",
+    "Country": "Japan",
+    "Sex": "Male",
+    "Type": "Politician"
+  },
+  {
+    "Name": "Kylian Mbapp\u00e9",
+    "Country": "France",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Zinedine Zidane",
+    "Country": "France",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Aung San Suu Kyi",
+    "Country": "Myanmar",
+    "Sex": "Female",
+    "Type": "Politician"
+  },
+  {
+    "Name": "J.K. Rowling",
+    "Country": "United Kingdom",
+    "Sex": "Female",
+    "Type": "Author"
+  },
+  {
+    "Name": "George R.R. Martin",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Author"
+  },
+  {
+    "Name": "Stephen King",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Author"
+  },
+  {
+    "Name": "Hula Johnson",
+    "Country": "Bolivia",
+    "Sex": "Male",
+    "Type": "AI Expert"
+  },
+  {
+    "Name": "Neil Armstrong",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Astronaut"
+  },
+  {
+    "Name": "Buzz Aldrin",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Astronaut"
+  },
+  {
+    "Name": "Yuri Gagarin",
+    "Country": "Russia",
+    "Sex": "Male",
+    "Type": "Astronaut"
+  },
+  {
+    "Name": "Amelia Earhart",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "Aviator"
+  },
+  {
+    "Name": "Walt Disney",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Entrepreneur"
+  },
+  {
+    "Name": "Stan Lee",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Writer"
+  },
+  {
+    "Name": "Quentin Tarantino",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Director"
+  },
+  {
+    "Name": "Steven Spielberg",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Director"
+  },
+  {
+    "Name": "Christopher Nolan",
+    "Country": "United Kingdom",
+    "Sex": "Male",
+    "Type": "Director"
+  },
+  {
+    "Name": "Greta Garbo",
+    "Country": "Sweden",
+    "Sex": "Female",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Ingrid Bergman",
+    "Country": "Sweden",
+    "Sex": "Female",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Aishwarya Rai",
+    "Country": "India",
+    "Sex": "Female",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Shah Rukh Khan",
+    "Country": "India",
+    "Sex": "Male",
+    "Type": "Actor"
+  },
+  {
+    "Name": "Sachin Tendulkar",
+    "Country": "India",
+    "Sex": "Male",
+    "Type": "Athlete"
+  },
+  {
+    "Name": "Mother Teresa",
+    "Country": "North Macedonia",
+    "Sex": "Female",
+    "Type": "Humanitarian"
+  },
+  {
+    "Name": "Dalai Lama",
+    "Country": "Tibet",
+    "Sex": "Male",
+    "Type": "Religious Leader"
+  },
+  {
+    "Name": "Pope Francis",
+    "Country": "Argentina",
+    "Sex": "Male",
+    "Type": "Religious Leader"
+  },
+  {
+    "Name": "Kim Kardashian",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "TV Personality"
+  },
+  {
+    "Name": "Kanye West",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Jimmy Fallon",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "TV Host"
+  },
+  {
+    "Name": "Ellen DeGeneres",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "TV Host"
+  },
+  {
+    "Name": "Gordon Ramsay",
+    "Country": "United Kingdom",
+    "Sex": "Male",
+    "Type": "Chef"
+  },
+  {
+    "Name": "Jamie Oliver",
+    "Country": "United Kingdom",
+    "Sex": "Male",
+    "Type": "Chef"
+  },
+  {
+    "Name": "Michelangelo",
+    "Country": "Italy",
+    "Sex": "Male",
+    "Type": "Artist"
+  },
+  {
+    "Name": "Rembrandt",
+    "Country": "Netherlands",
+    "Sex": "Male",
+    "Type": "Artist"
+  },
+  {
+    "Name": "Johann Sebastian Bach",
+    "Country": "Germany",
+    "Sex": "Male",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Ludwig van Beethoven",
+    "Country": "Germany",
+    "Sex": "Male",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Wolfgang Amadeus Mozart",
+    "Country": "Austria",
+    "Sex": "Male",
+    "Type": "Musician"
+  },
+  {
+    "Name": "Nikola Tesla",
+    "Country": "Serbia",
+    "Sex": "Male",
+    "Type": "Inventor"
+  },
+  {
+    "Name": "Thomas Edison",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Inventor"
+  },
+  {
+    "Name": "Steve Jobs",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Entrepreneur"
+  },
+  {
+    "Name": "Andy Warhol",
+    "Country": "United States",
+    "Sex": "Male",
+    "Type": "Artist"
+  },
+  {
+    "Name": "Banksy",
+    "Country": "United Kingdom",
+    "Sex": "Male",
+    "Type": "Artist"
+  },
+  {
+    "Name": "Emma Stone",
+    "Country": "United States",
+    "Sex": "Female",
+    "Type": "Actor"
+  }
+]

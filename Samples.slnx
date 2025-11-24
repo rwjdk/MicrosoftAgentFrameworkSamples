@@ -85,6 +85,7 @@
   </Folder>
   <Folder Name="/Token Usage/">
     <Project Path="src/TokenUsage/TokenUsage.csproj" Id="e3accc36-005a-4900-be4e-0d1d35142a2a" />
+    <Project Path="src/UseToonToSaveTokens/UseToonToSaveTokens.csproj" Id="a84ca59e-b13d-4c0f-aaed-ff183d09d198" />
   </Folder>
   <Folder Name="/Tool Calling &amp; MCP/">
     <Project Path="src/ToolCalling.Advanced/ToolCalling.Advanced.csproj" Id="c8428d24-c838-4a61-ab71-ecffcde4b8d9" />
