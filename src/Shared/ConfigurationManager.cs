@@ -25,6 +25,7 @@ public class ConfigurationManager
       "TrelloToken" : "todo",
       "AnthropicApiKey" : "todo",
       "MistralApiKey" : "todo",
+      "AmazonBedrockApiKey" : "todo"
     }
     ************************************************************************************************************************************************
     - See the how-to guides on how to create your Azure Resources in the ReadMe
@@ -53,6 +54,7 @@ public class ConfigurationManager
         string trelloToken = configurationRoot["TrelloToken"] ?? string.Empty;
         string anthropicApiKey = configurationRoot["AnthropicApiKey"] ?? string.Empty;
         string mistralApiKey = configurationRoot["MistralApiKey"] ?? string.Empty;
+        string amazonBedrockApiKey = configurationRoot["AmazonBedrockApiKey"] ?? string.Empty;
 
         return new Configuration(
             openAiApiKey,
@@ -72,6 +74,7 @@ public class ConfigurationManager
             trelloApiKey,
             trelloToken,
             anthropicApiKey,
-            mistralApiKey);
+            mistralApiKey,
+            amazonBedrockApiKey);
     }
 }

@@ -104,6 +104,7 @@
   <Folder Name="/ZeroToFirstAgent/" />
   <Folder Name="/ZeroToFirstAgent/Non-OpenAI Based/">
     <Project Path="src/ZeroToFirstAgent.AnthropicClaude/ZeroToFirstAgent.AnthropicClaude.csproj" Id="9c1d090f-f91a-44df-90e4-e4f1e6ae546a" />
+    <Project Path="src/ZeroToFirstAgent.AwsBedrock/ZeroToFirstAgent.AwsBedrock.csproj" Id="8922f978-7277-4ac1-9ef4-2c5de3939da3" />
     <Project Path="src/ZeroToFirstAgent.GitHubModels/ZeroToFirstAgent.GitHubModels.csproj" Id="7b3f5942-8fc7-4f7b-94b3-fd21f32ebb44" />
     <Project Path="src/ZeroToFirstAgent.GoogleGemini/ZeroToFirstAgent.GoogleGemini.csproj" Id="eb32963b-fc60-4285-8d93-df88ed73e247" />
     <Project Path="src/ZeroToFirstAgent.Mistral/ZeroToFirstAgent.Mistral.csproj" Id="bd8b351f-7e5b-47b8-9c89-4d472ad49dd5" />

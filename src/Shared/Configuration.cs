@@ -18,4 +18,5 @@ public record Configuration(
     string TrelloApiKey,
     string TrelloToken,
     string AnthropicApiKey,
-    string MistralApiKey);
+    string MistralApiKey,
+    string AmazonBedrockApiKey);
