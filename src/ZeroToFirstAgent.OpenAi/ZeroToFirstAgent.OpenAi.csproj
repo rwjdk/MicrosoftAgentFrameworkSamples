@@ -9,6 +9,5 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251114.1" />    
-    <PackageReference Include="OpenAI" Version="2.7.0" />
   </ItemGroup>
 </Project>

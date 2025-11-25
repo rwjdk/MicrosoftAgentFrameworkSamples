@@ -4,12 +4,11 @@ using Amazon;
 using Amazon.BedrockRuntime;
 using Microsoft.Agents.AI;
 
-string apiKey = "<YourApiKey>";
-Environment.SetEnvironmentVariable("AWS_BEARER_TOKEN_BEDROCK", apiKey);
+Environment.SetEnvironmentVariable("AWS_BEARER_TOKEN_BEDROCK", "<YourApiKey>");
 
-AmazonBedrockRuntimeClient runtimeClient = new(RegionEndpoint.EUNorth1);
+AmazonBedrockRuntimeClient runtimeClient = new(RegionEndpoint.EUNorth1); //<-- Your region
 
-ChatClientAgent agent = new(runtimeClient.AsIChatClient("eu.anthropic.claude-haiku-4-5-20251001-v1:0"));
+ChatClientAgent agent = new(runtimeClient.AsIChatClient("<YourModel>"));
 
 AgentRunResponse response = await agent.RunAsync("Hello");
 Console.WriteLine(response);
