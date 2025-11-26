@@ -14,4 +14,5 @@ All Samples in this repo are part of this [YouTube video series](https://youtube
 [<img width="773" height="435" alt="image" src="https://github.com/user-attachments/assets/5909cce1-6191-4c54-8371-234b75ccc059" />](https://youtube.com/playlist?list=PLhGl0l5La4sYXjYOBv7h9l7x6qNuW34Cx&si=ukOYLJaSbt9p4hf5)
 
 
-
+## Where is the Comic Book E2E Sample?
+It's been moved to it's [own repo](https://github.com/rwjdk/AIExample-ComicBookStore) to make it easier to maintain
