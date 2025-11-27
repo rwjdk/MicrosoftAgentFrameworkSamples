@@ -8,13 +8,13 @@
 		<UserSecretsId>1593718c-8c2c-4c01-851b-4974f46d73aa</UserSecretsId>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Azure.AI.OpenAI" Version="2.5.0-beta.1" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251114.1" />
-		<PackageReference Include="Microsoft.Agents.AI.Workflows" Version="1.0.0-preview.251114.1" />
+		<PackageReference Include="Azure.AI.OpenAI" Version="2.7.0-beta.1" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251125.1" />
+		<PackageReference Include="Microsoft.Agents.AI.Workflows" Version="1.0.0-preview.251125.1" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.0" />
 		<PackageReference Include="TrelloDotNet" Version="2.1.2" />
-		<PackageReference Include="ModelContextProtocol" Version="0.4.0-preview.3" />
+		<PackageReference Include="ModelContextProtocol" Version="0.4.1-preview.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />

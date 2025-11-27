@@ -10,7 +10,6 @@ using Shared;
 using System.ClientModel;
 using AgentFrameworkToolkit.Anthropic;
 using AgentFrameworkToolkit.Google;
-using Anthropic.SDK.Constants;
 using GenerativeAI;
 using OpenAI;
 
@@ -59,7 +58,7 @@ if (!string.IsNullOrWhiteSpace(configuration.AnthropicApiKey))
     AnthropicAgent anthropicAgent = agentFactory.CreateAgent(new AnthropicAgentOptions
     {
         Name = agentName,
-        DeploymentModelName = AnthropicModels.Claude45Haiku,
+        DeploymentModelName = AnthropicChatModels.ClaudeHaiku45,
         MaxOutputTokens = 1000
     });
 

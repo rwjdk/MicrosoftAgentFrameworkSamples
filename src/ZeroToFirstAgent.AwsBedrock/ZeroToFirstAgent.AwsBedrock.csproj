@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="AWSSDK.Extensions.Bedrock.MEAI" Version="4.0.4.9" />
-    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251114.1" />
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251125.1" />
   </ItemGroup>
 
 </Project>
