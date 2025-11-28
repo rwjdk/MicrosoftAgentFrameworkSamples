@@ -3,9 +3,6 @@
     <Project Path="src/Playground/Playground.csproj" Id="cbfc6bab-e8ea-4566-a695-56d84b6e5f68" />
     <Project Path="src/Trello.Agent/Trello.Agent.csproj" Id="efbcd89b-d888-4f52-9e9c-250134c4d908" />
   </Folder>
-  <Folder Name="/- Playground and Work in Progress -/DurableAgentFramework (Azure Functions)/">
-    <Project Path="src/FunctionApp.HelloAI/FunctionApp.HelloAI.csproj" Id="967397ed-0e3d-4a50-ac57-076a6b077b7f" />
-  </Folder>
   <Folder Name="/A2A (Agent2Agent)/">
     <Project Path="src/Agent2Agent.Client/Agent2Agent.Client.csproj" Id="4a4508d5-732d-4fe2-b0ad-dcf111e98be9" />
     <Project Path="src/Agent2Agent.Server/Agent2Agent.Server.csproj" Id="b09023f3-c25e-4668-a956-4e60cd2678d1" />
@@ -27,6 +24,9 @@
   </Folder>
   <Folder Name="/DevUI/">
     <Project Path="src/DevUI/DevUI.csproj" />
+  </Folder>
+  <Folder Name="/DurableAgentFramework (Azure Functions)/">
+    <Project Path="src/FunctionApp.HelloAI/FunctionApp.HelloAI.csproj" Id="967397ed-0e3d-4a50-ac57-076a6b077b7f" />
   </Folder>
   <Folder Name="/Image Generation (Not using Agent Framework)/">
     <File Path="Anthropic-Claude.txt" />
