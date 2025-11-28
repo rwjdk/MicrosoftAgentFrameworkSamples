@@ -1,5 +1,4 @@
 using System.ClientModel;
-using System.Configuration;
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.Hosting.AzureFunctions;
