@@ -18,6 +18,9 @@
     <Project Path="src/AgentUserInteraction.Client/AgentUserInteraction.Client.csproj" Id="ddd3b08d-041a-449f-80dc-6bd66e302958" />
     <Project Path="src/AgentUserInteraction.Server/AgentUserInteraction.Server.csproj" Id="8e71efad-1080-45a1-b1e9-17c9496ba99c" />
   </Folder>
+  <Folder Name="/AIContextProviderFactory/">
+    <Project Path="src/AIContextProviderFactory/AIContextProviderFactory.Custom.csproj" Id="5100b6b0-ce98-4a6a-bdc9-3541771b28f1" />
+  </Folder>
   <Folder Name="/Conversations (AgentThread)/">
     <Project Path="src/ChatHistoryReducer/ChatHistoryReducer.csproj" Id="96cb4db1-2675-4f7d-a5d8-960f07b7e0fd" />
     <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />
