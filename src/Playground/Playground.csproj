@@ -9,6 +9,7 @@
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Azure.Identity" Version="1.17.0" />
+		<PackageReference Include="CSCore" Version="1.2.1.2" />
 		<PackageReference Include="Google_GenerativeAI.Microsoft" Version="3.4.1" />
 		<PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.5.0" />
 		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251125.1" />

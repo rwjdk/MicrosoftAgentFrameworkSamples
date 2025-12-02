@@ -21,6 +21,9 @@
   <Folder Name="/AIContextProviderFactory/">
     <Project Path="src/AIContextProviderFactory/AIContextProviderFactory.Custom.csproj" Id="5100b6b0-ce98-4a6a-bdc9-3541771b28f1" />
   </Folder>
+  <Folder Name="/Audio (Not using Agent Framework)/">
+    <Project Path="src/GenerateSpeech/GenerateSpeech.csproj" Id="18b4fc86-718e-4525-a284-8b243182db3c" />
+  </Folder>
   <Folder Name="/Conversations (AgentThread)/">
     <Project Path="src/ChatHistoryReducer/ChatHistoryReducer.csproj" Id="96cb4db1-2675-4f7d-a5d8-960f07b7e0fd" />
     <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />
