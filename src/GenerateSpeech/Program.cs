@@ -18,6 +18,7 @@ AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(configuratio
  */
 
 AudioClient audioClient = azureOpenAIClient.GetAudioClient("tts");
+
 GeneratedSpeechVoice voice = new GeneratedSpeechVoice("shimmer"); //nova, shimmer, echo, onyx, fable, alloy'.
 string text = "Hi! Welcome to this video about OpenAI's AudioClient. I'm an AI speaking the words Rasmus entered in his program";
 ClientResult<BinaryData> result = audioClient.GenerateSpeech(text, voice, new SpeechGenerationOptions

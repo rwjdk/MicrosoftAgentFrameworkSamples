@@ -1,0 +1,58 @@
+﻿using Azure.AI.OpenAI;
+using NAudio.Utils;
+using NAudio.Wave;
+using OpenAI.Audio;
+using Shared;
+using System.ClientModel;
+using Microsoft.Agents.AI;
+using OpenAI;
+
+Console.Clear();
+Configuration configuration = ConfigurationManager.GetConfiguration();
+
+AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AudioClient audioClient = azureOpenAIClient.GetAudioClient("whisper");
+
+var agent = azureOpenAIClient
+    .GetChatClient(configuration.ChatDeploymentName)
+    .CreateAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
+
+AgentThread agentThread = agent.GetNewThread();
+
+while (true)
+{
+    Console.WriteLine("Press any key to start recording...");
+    Console.ReadKey();
+
+    //Record the Audio
+    using MemoryStream audioStream = RecordAudio();
+
+    //Turn Audio into Text
+    ClientResult<AudioTranscription> result = await audioClient.TranscribeAudioAsync(audioStream, "audio.wav");
+
+    string questionFromAudio = result.Value.Text;
+    Console.WriteLine($"> {questionFromAudio}");
+
+    AgentRunResponse response = await agent.RunAsync(questionFromAudio, agentThread);
+    Console.WriteLine(response);
+
+    Utils.Separator();
+}
+
+MemoryStream RecordAudio()
+{
+    MemoryStream stream = new();
+    using WaveInEvent waveIn = new();
+    waveIn.WaveFormat = new WaveFormat(16000, 16, 1);
+    WaveFileWriter writer = new(new IgnoreDisposeStream(stream), waveIn.WaveFormat);
+
+    waveIn.DataAvailable += (_, args) => { writer.Write(args.Buffer, 0, args.BytesRecorded); };
+    waveIn.StartRecording();
+
+    Console.WriteLine("Recording... Press any key to stop");
+    Console.ReadKey();
+
+    waveIn.StopRecording();
+    stream.Position = 0;
+    return stream;
+}

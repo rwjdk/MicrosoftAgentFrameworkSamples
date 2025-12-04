@@ -6,14 +6,6 @@
 #pragma warning disable OPENAI001
 using A2A;
 using Azure.AI.OpenAI;
-using CSCore;
-using CSCore;
-using CSCore.Codecs;
-using CSCore.Codecs;
-using CSCore.Codecs;
-using CSCore.Codecs.MP3;
-using CSCore.SoundOut;
-using CSCore.SoundOut;
 using GenerativeAI;
 using GenerativeAI.Microsoft;
 using Microsoft.Agents.AI;
@@ -37,6 +29,11 @@ Configuration configuration = ConfigurationManager.GetConfiguration();
 
 OpenAIClient openAiClient = new OpenAIClient(configuration.OpenAiApiKey);
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+
+ChatClientAgent a = openAiClient.GetOpenAIResponseClient("gpt-4.1").CreateAIAgent();
+List<ChatMessage> chatMessages = new List<ChatMessage>();
+chatMessages.Add(new ChatMessage(ChatRole.User, []));
+a.RunAsync(chatMessages);
 
 ServiceCollection services = new();
 services.AddScoped<HttpClient>();
