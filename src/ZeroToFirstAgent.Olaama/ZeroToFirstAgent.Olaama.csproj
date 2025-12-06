@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251204.1" />
-		<PackageReference Include="OllamaSharp" Version="5.4.11" />
+		<PackageReference Include="OllamaSharp" Version="5.4.12" />
 	</ItemGroup>
 	
 </Project>
