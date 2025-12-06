@@ -101,11 +101,10 @@ ChatClientAgent advancedAgent = client.GetChatClient(configuration.ChatDeploymen
     {
         ChatOptions = new ChatOptions
         {
-            //Various options on model behaviour (Temperature, Reasoning Effort, ect.)
+            Instructions = "Speak like a Pirate"
         },
         AIContextProviderFactory = null, //Option to intercept before and after LLM call
         ChatMessageStoreFactory = null, //Option to inject a store for thread conversations,
-        Instructions = "Speak like a Pirate",
         Name = "My Agent",
         Description = "Description that is not used by the AI, but some of the online Agent Framework have a description",
         Id = "1234",

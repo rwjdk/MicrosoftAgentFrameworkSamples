@@ -23,7 +23,10 @@ ChatClientAgent agent = client
     .GetChatClient(configuration.ChatDeploymentName)
     .CreateAIAgent(new ChatClientAgentOptions
     {
-        Instructions = "You are a Friendly AI Bot, answering questions",
+        ChatOptions = new()
+        {
+            Instructions = "You are a Friendly AI Bot, answering questions",
+        },
         ChatMessageStoreFactory = context => new InMemoryChatMessageStore(chatReducer2, context.SerializedState, context.JsonSerializerOptions)
     });
 

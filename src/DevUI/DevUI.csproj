@@ -6,11 +6,11 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="AgentFrameworkToolkit.Anthropic" Version="1.0.0-preview.251126.2" />
-		<PackageReference Include="AgentFrameworkToolkit.Google" Version="1.0.0-preview.251126.2" />
-		<PackageReference Include="Azure.AI.OpenAI" Version="2.7.0-beta.1" />
-		<PackageReference Include="Microsoft.Agents.AI.DevUI" Version="1.0.0-preview.251125.1" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251125.1" />
+		<PackageReference Include="AgentFrameworkToolkit.Anthropic" Version="1.0.0-preview.251204.1" />
+		<PackageReference Include="AgentFrameworkToolkit.Google" Version="1.0.0-preview.251204.1" />
+		<PackageReference Include="Azure.AI.OpenAI" Version="2.7.0-beta.2" />
+		<PackageReference Include="Microsoft.Agents.AI.DevUI" Version="1.0.0-preview.251204.1" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251204.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />

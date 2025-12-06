@@ -89,7 +89,6 @@ public static class ChatClientExtensions
             {
                 Name = name,
                 Description = description,
-                Instructions = instructions,
                 ChatOptions = options
             };
 

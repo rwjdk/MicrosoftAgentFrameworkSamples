@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ML.OnnxRuntimeGenAI" Version="0.11.2" />
-    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251125.1" />
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.251204.1" />
   </ItemGroup>
 
 </Project>

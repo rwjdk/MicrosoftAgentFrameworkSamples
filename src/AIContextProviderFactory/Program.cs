@@ -22,7 +22,10 @@ ChatClientAgent memoryExtractorAgent = client
 ChatClientAgent agentWithCustomMemory = client.GetChatClient(configuration.ChatDeploymentName).AsIChatClient()
     .CreateAIAgent(new ChatClientAgentOptions
     {
-        Instructions = "You are a nice AI",
+        ChatOptions = new()
+        {
+            Instructions = "You are a nice AI"
+        },
         AIContextProviderFactory = _ => new CustomContextProvider(memoryExtractorAgent, userId)
     });
 

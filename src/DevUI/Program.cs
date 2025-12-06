@@ -44,7 +44,7 @@ if (!string.IsNullOrWhiteSpace(configuration.GoogleGeminiApiKey))
     GoogleAgent googleAgent = agentFactory.CreateAgent(new GoogleAgentOptions
     {
         Name = agentName,
-        DeploymentModelName = GoogleAIModels.Gemini25Flash
+        Model = GoogleAIModels.Gemini25Flash
     });
     builder.AddAIAgent(agentName, (serviceProvider, key) => googleAgent);
 }
@@ -58,7 +58,7 @@ if (!string.IsNullOrWhiteSpace(configuration.AnthropicApiKey))
     AnthropicAgent anthropicAgent = agentFactory.CreateAgent(new AnthropicAgentOptions
     {
         Name = agentName,
-        DeploymentModelName = AnthropicChatModels.ClaudeHaiku45,
+        Model = AnthropicChatModels.ClaudeHaiku45,
         MaxOutputTokens = 1000
     });
 
