@@ -33,7 +33,7 @@ AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(configuratio
 ChatClientAgent a = openAiClient.GetOpenAIResponseClient("gpt-4.1").CreateAIAgent();
 List<ChatMessage> chatMessages = new List<ChatMessage>();
 chatMessages.Add(new ChatMessage(ChatRole.User, []));
-a.RunAsync(chatMessages);
+await a.RunAsync(chatMessages);
 
 ServiceCollection services = new();
 services.AddScoped<HttpClient>();
@@ -57,8 +57,3 @@ Console.WriteLine(response);
 //await SpaceNewsWebSearch.Run(configuration);
 //await ResumeConversation.Run(configuration);
 //await AzureOpenAiCodex.Run(configuration);
-
-static string GetWeather(string city)
-{
-    return "It is sunny and 19 degrees today";
-}
