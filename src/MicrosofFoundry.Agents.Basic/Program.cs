@@ -1,16 +1,12 @@
-﻿using Azure;
-using Azure.AI.Projects;
+﻿using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
-using OpenAI.Assistants;
 using OpenAI.Containers;
-using OpenAI.Files;
 using OpenAI.Responses;
 using Shared;
 using System.ClientModel;
-using System.Threading;
 
 #pragma warning disable OPENAI001
 
