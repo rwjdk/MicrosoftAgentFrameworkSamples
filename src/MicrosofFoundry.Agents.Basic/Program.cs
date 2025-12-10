@@ -21,7 +21,7 @@ Configuration configuration = ConfigurationManager.GetConfiguration();
 AIProjectClient client = new AIProjectClient(new Uri(configuration.AzureAiFoundryAgentEndpoint), new AzureCliCredential());
 
 string modelDeploymentName = "gpt-4.1-mini";
-string myAgentName = "myAgent";
+string myAgentName = "myAgent4";
 string myInstructions = "You are a nice AI";
 
 //Step 0 (Optional): Ensure Model for Agent is Deployed
@@ -68,6 +68,9 @@ ChatClientAgent agentByName = client.GetAIAgent(name: myAgentName);
 AgentRunResponse response = await agentByName.RunAsync("Hi there");
 Console.WriteLine(response);
 
+response = await agentByName.RunAsync("What options do the AddCardAsync method in 'TrelloDotNet' (use tools)");
+Console.WriteLine(response);
+
 response = await agentByName.RunAsync("What is 23434343*3434343/2323232 (use tools to calculate)");
 Console.WriteLine(response);
 
@@ -103,8 +106,12 @@ async Task CreateAgent(string instructions)
                 {
                     new CodeInterpreterTool(new CodeInterpreterToolContainer(new AutomaticCodeInterpreterToolContainerConfiguration())),
                     new WebSearchTool(),
-                    //MCP Tools can be defined by can't be properly consumed by MS Agent Framework :-(
-                    //new McpTool("TrelloDotNetToolAssistant", new Uri("https://trellodotnetassistantbackend.azurewebsites.net/runtime/webhooks/mcp?code=Tools")),
+
+                    //MCP Tools does work, but if add it the Portal GUI claim that it the tool is wrongly configured and you can't save more versions :-(
+                    //new McpTool("TrelloDotNetToolAssistant", new Uri("https://trellodotnetassistantbackend.azurewebsites.net/runtime/webhooks/mcp?code=Tools"))
+                    //{
+                    //    ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(new GlobalMcpToolCallApprovalPolicy("never"))
+                    //},
                 },
                 Instructions = instructions,
 
