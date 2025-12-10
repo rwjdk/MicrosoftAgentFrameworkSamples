@@ -25,6 +25,9 @@
     <Project Path="src/GenerateSpeech/GenerateSpeech.csproj" Id="18b4fc86-718e-4525-a284-8b243182db3c" />
     <Project Path="src/SpeechToText/SpeechToText.csproj" Id="5424a206-fd7a-4957-818b-24a586331971" />
   </Folder>
+  <Folder Name="/ChatMessageStoreFactory/">
+    <Project Path="src/ChatMessageStoreFactory.Custom/ChatMessageStoreFactory.Custom.csproj" Id="82c31fc6-4203-4d3f-97d6-c49e3e9a6d53" />
+  </Folder>
   <Folder Name="/Conversations (AgentThread)/">
     <Project Path="src/ChatHistoryReducer/ChatHistoryReducer.csproj" Id="96cb4db1-2675-4f7d-a5d8-960f07b7e0fd" />
     <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />

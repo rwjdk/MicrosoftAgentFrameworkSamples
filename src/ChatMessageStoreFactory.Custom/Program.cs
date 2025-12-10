@@ -1,26 +1,19 @@
-﻿//WARNING: This is a playground area for the creator of the Repo to test and tinker. Nothing in this project is as such educational and might not even execute properly
-
-//Notes
-//- Microsoft.Agents.AI.Hosting.AgentCatalog TODO: Guess this is something to be used in AI Foundry
-
-#pragma warning disable OPENAI001
-using Azure.AI.OpenAI;
+﻿using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
-using Microsoft.Extensions.AI;
-using OpenAI;
 using Shared;
 using System.ClientModel;
 using System.Text.Json;
+using Microsoft.Extensions.AI;
+using OpenAI;
 
-Console.WriteLine("");
 Console.Clear();
 
 Configuration configuration = ConfigurationManager.GetConfiguration();
 
-AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient azureOpenAIClient = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
 
-ChatClientAgent a = azureOpenAIClient
-    .GetChatClient("gpt-4.1")
+ChatClientAgent agent = azureOpenAIClient
+    .GetChatClient("gpt-4.1-mini")
     .CreateAIAgent(
         new ChatClientAgentOptions
         {
@@ -28,10 +21,9 @@ ChatClientAgent a = azureOpenAIClient
         }
     );
 
+AgentThread thread = agent.GetNewThread();
 
-AgentThread thread = a.GetNewThread();
-
-AgentRunResponse response = await a.RunAsync("Who is Barack Obama", thread);
+AgentRunResponse response = await agent.RunAsync("Who is Barack Obama", thread);
 Console.WriteLine(response);
 
 JsonElement threadElement = thread.Serialize();
@@ -41,21 +33,10 @@ string toStoreForTheUser = JsonSerializer.Serialize(threadElement);
 
 JsonElement restoredThreadElement = JsonSerializer.Deserialize<JsonElement>(toStoreForTheUser);
 
-AgentThread restoredThread = a.DeserializeThread(restoredThreadElement);
+AgentThread restoredThread = agent.DeserializeThread(restoredThreadElement);
 
-AgentRunResponse someTimeLaterResponse = await a.RunAsync("How Tall is he?", restoredThread);
+AgentRunResponse someTimeLaterResponse = await agent.RunAsync("How Tall is he?", restoredThread);
 Console.WriteLine(someTimeLaterResponse);
-
-
-//await AzureOpenAiFoundry.Run(configuration);
-//await FileTool.Run(configuration);
-//await CodeTool.Run(configuration);
-//await ReasoningSummary.Run(configuration);
-//await CodexSpecialModels.Run(configuration);
-//await SpaceNewsWebSearch.Run(configuration);
-//await ResumeConversation.Run(configuration);
-//await AzureOpenAiCodex.Run(configuration);
-
 
 class MyMessageStore(ChatClientAgentOptions.ChatMessageStoreFactoryContext context) : ChatMessageStore
 {
