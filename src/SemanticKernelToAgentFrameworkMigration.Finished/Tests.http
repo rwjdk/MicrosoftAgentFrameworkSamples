@@ -1,0 +1,49 @@
+
+POST https://localhost:7087/chat
+Content-Type: application/json
+{
+    "question": "What is the capital of France?"
+}
+
+###
+
+POST https://localhost:7087/chatWithStreaming
+Content-Type: application/json
+{
+    "question": "How to Make Soup?"
+}
+
+###
+
+
+POST https://localhost:7087/chatHistory
+Content-Type: application/json
+{
+    "question": "Who is Barack Obarma?"
+}
+
+###
+
+POST https://localhost:7087/toolCalling
+Content-Type: application/json
+{
+    "question": "What is the weather like in Paris and What time is it there?"
+}
+
+###
+
+POST https://localhost:7087/structuredOutput
+Content-Type: application/json
+{
+    "question": "Give me top 3 movies on IMDB"
+}
+
+###
+
+POST https://localhost:7087/rag
+Content-Type: application/json
+{
+    "question": "What is the Wifi Password?"
+}
+
+###

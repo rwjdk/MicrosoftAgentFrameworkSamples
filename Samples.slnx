@@ -79,6 +79,10 @@
     <Project Path="src/AdvancedRAGTechniques/AdvancedRAGTechniques.csproj" Id="222d4527-f7ca-4e02-a3ef-2f65d7f5014a" />
     <Project Path="src/UsingRAGInAgentFramework/UsingRAGInAgentFramework.csproj" Id="11bf0b5c-8a06-4a3f-b70c-148730d2db08" />
   </Folder>
+  <Folder Name="/Semantic Kernel to Agent Framework Migration/">
+    <Project Path="src/SemanticKernelToAgentFrameworkMigration.Before/SemanticKernelToAgentFrameworkMigration.Before.csproj" Id="ddde0d2a-eebc-4208-ad1f-d9029cbbb355" />
+    <Project Path="src/SemanticKernelToAgentFrameworkMigration.Finished/SemanticKernelToAgentFrameworkMigration.Finished.csproj" />
+  </Folder>
   <Folder Name="/Structured Output/">
     <Project Path="src/StructuredOutput/StructuredOutput.csproj" Id="3f844d4f-0435-468f-a6ef-ff35ac8f7983" />
   </Folder>
