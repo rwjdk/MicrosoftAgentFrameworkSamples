@@ -1,10 +1,16 @@
-﻿using Azure.AI.Projects;
+﻿using Azure;
+using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using OpenAI.Assistants;
+using OpenAI.Containers;
+using OpenAI.Files;
+using OpenAI.Responses;
 using Shared;
 using System.ClientModel;
-using OpenAI.Responses;
+using System.Threading;
 
 #pragma warning disable OPENAI001
 
@@ -65,6 +71,9 @@ Console.WriteLine(response);
 response = await agentByName.RunAsync("What is 23434343*3434343/2323232 (use tools to calculate)");
 Console.WriteLine(response);
 
+response = await agentByName.RunAsync("Make a jpg image with graph listing population of the top 10 US States in year 2000");
+await GetAndLaunchCodeInterpreterGeneratedFile(response, client);
+
 response = await agentByName.RunAsync("What is the biggest news story today?");
 Console.WriteLine(response);
 
@@ -107,4 +116,32 @@ async Task CreateAgent(string instructions)
             }
         )
     );
+}
+
+async Task GetAndLaunchCodeInterpreterGeneratedFile(AgentRunResponse agentRunResponse, AIProjectClient aiProjectClient)
+{
+    foreach (ChatMessage message in agentRunResponse.Messages)
+    {
+        foreach (AIContent content in message.Contents)
+        {
+            foreach (AIAnnotation annotation in content.Annotations ?? [])
+            {
+                if (annotation.RawRepresentation is ContainerFileCitationMessageAnnotation containerFileCitation)
+                {
+                    ContainerClient containerClient = aiProjectClient.OpenAI.GetContainerClient();
+                    ClientResult<BinaryData> fileContent = await containerClient.DownloadContainerFileAsync(containerFileCitation.ContainerId, containerFileCitation.FileId);
+                    string path = Path.Combine(Path.GetTempPath(), containerFileCitation.Filename);
+                    await File.WriteAllBytesAsync(path, fileContent.Value.ToArray());
+                    await Task.Factory.StartNew(() =>
+                    {
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = path,
+                            UseShellExecute = true
+                        });
+                    });
+                }
+            }
+        }
+    }
 }
