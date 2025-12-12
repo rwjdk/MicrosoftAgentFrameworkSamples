@@ -6,7 +6,7 @@
       "dotnetRunMessages": true,
       "launchUrl": "devui",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:8080",
+      "applicationUrl": "http://localhost:8081",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -16,7 +16,7 @@
       "dotnetRunMessages": true,
       "launchUrl": "devui",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7183;http://localhost:8080",
+      "applicationUrl": "https://localhost:7183;http://localhost:8081",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
