@@ -16,7 +16,6 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 using Shared;
 using System.ClientModel;
-using ConfigurationManager = Shared.ConfigurationManager;
 
 namespace Microsoft.Extensions.Hosting;
 
@@ -31,11 +30,11 @@ public static class Extensions
     public static TBuilder AddServiceDefaults<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
         /* ADDED FOR SAMPLE - BEGIN */
-        global::Shared.Configuration configuration = ConfigurationManager.GetConfiguration();
-        AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+        global::Shared.Secrets secrets = SecretManager.GetConfiguration();
+        AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
         AIAgent agent = client
-            .GetChatClient(configuration.ChatDeploymentName)
+            .GetChatClient(secrets.ChatDeploymentName)
             .CreateAIAgent(
                 name: "MyBlazorAgent",
                 instructions: "You are a Friendly AI Bot, answering questions")
@@ -106,7 +105,7 @@ public static class Extensions
         }
 
         // Uncomment the following lines to enable the Azure Monitor exporter (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
-        //if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
+        //if (!string.IsNullOrEmpty(builder.Secrets["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
         //{
         //    builder.Services.AddOpenTelemetry()
         //       .UseAzureMonitor();

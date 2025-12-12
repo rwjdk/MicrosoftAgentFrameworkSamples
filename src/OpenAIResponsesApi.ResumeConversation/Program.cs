@@ -10,10 +10,10 @@ using Shared;
 
 #pragma warning disable OPENAI001
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-OpenAIClient client = new(configuration.OpenAiApiKey);
-/*AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));*/
+OpenAIClient client = new(secrets.OpenAiApiKey);
+/*AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));*/
 OpenAIResponseClient responseClient = client
     .GetOpenAIResponseClient("gpt-4.1");
 

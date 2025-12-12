@@ -7,11 +7,11 @@ using JetBrains.Annotations;
 using OpenAI;
 
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
 string userId = "rwj1234";
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 ChatClientAgent memoryExtractorAgent = client
     .GetChatClient("gpt-4.1-nano")
@@ -19,7 +19,7 @@ ChatClientAgent memoryExtractorAgent = client
         instructions: "Look at the user's message and extract any memory that we do not already know (or non if there aren't any memories to store)"
     );
 
-ChatClientAgent agentWithCustomMemory = client.GetChatClient(configuration.ChatDeploymentName).AsIChatClient()
+ChatClientAgent agentWithCustomMemory = client.GetChatClient(secrets.ChatDeploymentName).AsIChatClient()
     .CreateAIAgent(new ChatClientAgentOptions
     {
         ChatOptions = new()

@@ -8,9 +8,9 @@ using Shared.Extensions;
 using System.ClientModel;
 using MicrosoftAgentFramework.Utilities.Extensions;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient azureOpenAiClient = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey), new AzureOpenAIClientOptions
+AzureOpenAIClient azureOpenAiClient = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey), new AzureOpenAIClientOptions
 {
     NetworkTimeout = TimeSpan.FromMinutes(5) //NB: You might need to adjust timeout when using long thinking Agents
 });

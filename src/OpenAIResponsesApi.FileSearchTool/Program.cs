@@ -11,8 +11,8 @@ using System.ClientModel;
 
 #pragma warning disable OPENAI001
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
-OpenAIClient client = new(configuration.OpenAiApiKey);
+Secrets secrets = SecretManager.GetConfiguration();
+OpenAIClient client = new(secrets.OpenAiApiKey);
 //NB: I was unable to get this to work with Azure OpenAI in regard to uploading files
 
 OpenAIFileClient fileClient = client.GetOpenAIFileClient();

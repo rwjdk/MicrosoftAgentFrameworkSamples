@@ -9,8 +9,8 @@ using Shared;
 
 Console.Clear();
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
-PersistentAgentsClient client = new(configuration.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
+Secrets secrets = SecretManager.GetConfiguration();
+PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 Response<PersistentAgent>? aiFoundryAgent = null;
 ChatClientAgentThread? chatClientAgentThread = null;
@@ -25,7 +25,7 @@ try
     await client.VectorStores.CreateVectorStoreFileAsync(vectorStore.Value.Id, file.Value.Id);
 
     aiFoundryAgent = await client.Administration.CreateAgentAsync(
-        configuration.ChatDeploymentName,
+        secrets.ChatDeploymentName,
         "FileAgent",
         "",
         "You are a File-expert. ALWAYS use tools to answer all questions (do not use you world-knowledge)",

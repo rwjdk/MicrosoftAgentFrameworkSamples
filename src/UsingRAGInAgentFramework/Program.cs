@@ -19,11 +19,11 @@ Movie[] movieDataForRag = JsonSerializer.Deserialize<Movie[]>(jsonWithMovies)!;
 
 ChatMessage question = new(ChatRole.User, "What is the 3 highest rated adventure movies (list their titles, plots and ratings)");
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+Secrets secrets = SecretManager.GetConfiguration();
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 ChatClientAgent agent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(instructions: "You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)");
 
 #region Let's give the model all data upfront
@@ -129,7 +129,7 @@ Utils.WriteLineGreen("Sample 3 RAG via Tool Call");
 SearchTool searchTool = new(collection);
 
 AIAgent agentWithTools = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         instructions: "You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)",
         tools: [AIFunctionFactory.Create(searchTool.SearchVectorStore)]

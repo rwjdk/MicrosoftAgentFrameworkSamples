@@ -12,9 +12,9 @@ using System.ClientModel;
 
 Console.Clear();
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AIProjectClient client = new AIProjectClient(new Uri(configuration.AzureAiFoundryAgentEndpoint), new AzureCliCredential());
+AIProjectClient client = new AIProjectClient(new Uri(secrets.AzureAiFoundryAgentEndpoint), new AzureCliCredential());
 
 string modelDeploymentName = "gpt-4.1-mini";
 string myAgentName = "myAgent4";

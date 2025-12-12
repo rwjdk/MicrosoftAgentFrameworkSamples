@@ -15,9 +15,9 @@ Console.Clear();
 using CustomClientHttpHandler handler = new CustomClientHttpHandler();
 using HttpClient httpClient = new HttpClient(handler);
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey), new AzureOpenAIClientOptions
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey), new AzureOpenAIClientOptions
 {
     Transport = new HttpClientPipelineTransport(httpClient)
 });

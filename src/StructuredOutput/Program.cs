@@ -11,15 +11,15 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 string question = "What are the top 10 Movies according to IMDB?";
 
 //Without Structured Output
 AIAgent agent1 = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(instructions: "You are an expert in IMDB Lists");
 
 AgentRunResponse response1 = await agent1.RunAsync(question);
@@ -29,7 +29,7 @@ Utils.Separator();
 
 //With Structured Output
 ChatClientAgent agent2 = client //<--- Notice that this is not an AIAgent but have it as baseclass!
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(instructions: "You are an expert in IMDB Lists");
 
 AgentRunResponse<MovieResult> response2 = await agent2.RunAsync<MovieResult>(question);
@@ -49,7 +49,7 @@ JsonSerializerOptions jsonSerializerOptions = new()
 };
 
 AIAgent agent3 = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(instructions: "You are an expert in IMDB Lists");
 
 ChatResponseFormatJson chatResponseFormatJson = ChatResponseFormat.ForJsonSchema<MovieResult>(jsonSerializerOptions);

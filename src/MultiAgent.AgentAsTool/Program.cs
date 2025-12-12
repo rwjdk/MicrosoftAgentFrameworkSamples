@@ -10,12 +10,12 @@ using Shared.Extensions;
 using System.ClientModel;
 using System.Text;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 AIAgent stringAgent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         name: "StringAgent",
         instructions: "You are string manipulator",
@@ -30,7 +30,7 @@ AIAgent stringAgent = client
     .Build();
 
 AIAgent numberAgent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         name: "NumberAgent",
         instructions: "You are a number expert",
@@ -46,7 +46,7 @@ AIAgent numberAgent = client
 Utils.WriteLineGreen("DELEGATE AGENT");
 
 AIAgent delegationAgent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         name: "DelegateAgent",
         instructions: "Are a Delegator of String and Number Tasks. Never does such work yourself",
@@ -75,7 +75,7 @@ Utils.Separator();
 Utils.WriteLineGreen("JACK OF ALL TRADE AGENT");
 
 AIAgent jackOfAllTradesAgent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         name: "JackOfAllTradesAgent",
         instructions: "Are a Agent that can answer questions on strings and numbers",

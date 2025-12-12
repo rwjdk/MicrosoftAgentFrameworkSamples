@@ -10,9 +10,9 @@ using OpenAI;
 #pragma warning disable OPENAI001
 
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
-//OpenAIClient client = new(configuration.OpenAiApiKey);
+Secrets secrets = SecretManager.GetConfiguration();
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+//OpenAIClient client = new(secrets.OpenAiApiKey);
 
 ImageClient imageClient = client.GetImageClient("gpt-image-1");
 ClientResult<GeneratedImage> image = await imageClient.GenerateImageAsync("A Tiger in a jungle with a party-hat", new ImageGenerationOptions

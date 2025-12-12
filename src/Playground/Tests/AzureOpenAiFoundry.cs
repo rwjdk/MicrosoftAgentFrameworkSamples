@@ -14,22 +14,22 @@ namespace Playground.Tests;
 
 public class AzureOpenAiFoundry
 {
-    public static async Task Run(Configuration configuration)
+    public static async Task Run(Secrets secrets)
     {
         string sourceName = Guid.NewGuid().ToString("N");
         var tracerProviderBuilder = Sdk.CreateTracerProviderBuilder()
             .AddSource(sourceName)
             .AddConsoleExporter();
-        if (!string.IsNullOrWhiteSpace(configuration.ApplicationInsightsConnectionString))
+        if (!string.IsNullOrWhiteSpace(secrets.ApplicationInsightsConnectionString))
         {
-            tracerProviderBuilder.AddAzureMonitorTraceExporter(options => options.ConnectionString = configuration.ApplicationInsightsConnectionString);
+            tracerProviderBuilder.AddAzureMonitorTraceExporter(options => options.ConnectionString = secrets.ApplicationInsightsConnectionString);
         }
 
         using var tracerProvider = tracerProviderBuilder.Build();
 
-        PersistentAgentsClient client = new(configuration.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
+        PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
-        BingGroundingSearchConfiguration bingToolConfiguration = new(configuration.BingApiKey);
+        BingGroundingSearchConfiguration bingToolConfiguration = new(secrets.BingApiKey);
         BingGroundingSearchToolParameters bingToolParameters = new([bingToolConfiguration]);
 
         Response<PersistentAgent>? aiFoundryAgent = null;
@@ -37,7 +37,7 @@ public class AzureOpenAiFoundry
         try
         {
             aiFoundryAgent = await client.Administration.CreateAgentAsync(
-                configuration.ChatDeploymentName,
+                secrets.ChatDeploymentName,
                 "PlaygroundAgent",
                 "Some description",
                 "You are a nice AI",

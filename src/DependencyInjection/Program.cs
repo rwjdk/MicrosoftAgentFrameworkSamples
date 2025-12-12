@@ -13,9 +13,9 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-Shared.Configuration configuration = Shared.ConfigurationManager.GetConfiguration();
+Shared.Secrets secrets = Shared.SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 builder.Services.AddSingleton(client);
 
 ChatClient chatClient = client.GetChatClient("gpt-4.1");

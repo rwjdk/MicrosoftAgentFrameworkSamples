@@ -17,13 +17,13 @@ using Microsoft.Extensions.Logging;
 using OpenTelemetry.Trace;
 
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
-ChatClientAgent noSettingAgent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
+ChatClientAgent noSettingAgent = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent();
 
-ChatClientAgent agent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent(
+ChatClientAgent agent = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent(
     instructions: "You are a cool surfer dude",
     tools: [ /*Todo: In a separate video*/]);
 
@@ -41,7 +41,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddConsoleExporter()
     .Build();
 
-AIAgent agentWithAllSettings = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent
+AIAgent agentWithAllSettings = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent
     (
         //Optional system instructions that define the agent's behavior and personality.
         instructions: "Speak like a Pirate",
@@ -96,7 +96,7 @@ Console.WriteLine(response);
 
 #region Even more options via ChatClientAgentOptions
 
-ChatClientAgent advancedAgent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent(
+ChatClientAgent advancedAgent = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent(
     new ChatClientAgentOptions
     {
         ChatOptions = new ChatOptions

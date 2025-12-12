@@ -6,8 +6,8 @@ using Azure.Identity;
 using Microsoft.Agents.AI;
 using Shared;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
-PersistentAgentsClient client = new(configuration.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
+Secrets secrets = SecretManager.GetConfiguration();
+PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 PersistentAgentsFiles files = client.Files; //Files CRUD
 

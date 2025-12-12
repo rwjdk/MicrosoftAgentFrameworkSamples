@@ -1,6 +1,6 @@
 ﻿namespace Shared;
 
-public record Configuration(
+public record Secrets(
     string OpenAiApiKey,
     string AzureOpenAiEndpoint,
     string AzureOpenAiKey,

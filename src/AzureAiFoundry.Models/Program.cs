@@ -9,7 +9,7 @@ using OpenAI;
 using Shared;
 using System.ClientModel;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
 string questionToAsk = "What is the capital of the USA?";
 
@@ -21,7 +21,7 @@ await CreateAndCallFoundryAgent("DeepSeek-R1-0528", questionToAsk); //This does 
 
 async Task CreateAndCallNormalClientAgent(string model, string question)
 {
-    AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+    AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
     ChatClientAgent agent = client
         .GetChatClient(model)
@@ -35,7 +35,7 @@ async Task CreateAndCallNormalClientAgent(string model, string question)
 
 async Task CreateAndCallFoundryAgent(string model, string question)
 {
-    PersistentAgentsClient client = new(configuration.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
+    PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
     string? agentIdToDelete = null;
     try
     {

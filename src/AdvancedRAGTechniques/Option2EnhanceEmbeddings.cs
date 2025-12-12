@@ -13,15 +13,15 @@ namespace AdvancedRAGTechniques;
 
 public static class Option2EnhanceEmbeddings
 {
-    public static async Task Run(bool importData, Movie[] movieDataForRag, ChatMessage question, AzureOpenAIClient client, SqlServerCollection<Guid, MovieVectorStoreRecord> collection, Configuration configuration)
+    public static async Task Run(bool importData, Movie[] movieDataForRag, ChatMessage question, AzureOpenAIClient client, SqlServerCollection<Guid, MovieVectorStoreRecord> collection, Secrets secrets)
     {
         if (importData)
         {
-            await EnhanceDataEmbedding.Embed(client, configuration, collection, movieDataForRag);
+            await EnhanceDataEmbedding.Embed(client, secrets, collection, movieDataForRag);
         }
 
         EnhancedSearchTool searchTool = new(collection);
-        AIAgent agent = client.GetChatClient(configuration.ChatDeploymentName)
+        AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
             .CreateAIAgent(
                 instructions: """
                               You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)

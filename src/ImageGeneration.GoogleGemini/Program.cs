@@ -8,9 +8,9 @@ using Shared;
 
 Console.Clear();
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-GoogleAi googleAi = new(configuration.GoogleGeminiApiKey);
+GoogleAi googleAi = new(secrets.GoogleGeminiApiKey);
 
 await UsingGeminiModel(googleAi);
 await UsingImageModel(googleAi);

@@ -9,9 +9,9 @@ using Shared;
 #pragma warning disable OPENAI001
 Console.Clear();
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AIProjectClient client = new Azure.AI.Projects.AIProjectClient(new Uri(configuration.AzureAiFoundryAgentEndpoint), new AzureCliCredential());
+AIProjectClient client = new Azure.AI.Projects.AIProjectClient(new Uri(secrets.AzureAiFoundryAgentEndpoint), new AzureCliCredential());
 
 string? foundryAgentName = null;
 try

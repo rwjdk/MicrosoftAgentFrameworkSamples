@@ -15,9 +15,9 @@ using System.Text;
 using ToolCalling.Advanced.Tools;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 //Get tools via reflection
 FileSystemTools target = new();
@@ -28,7 +28,7 @@ List<AITool> listOfTools = methods.Select(x => AIFunctionFactory.Create(x, targe
 listOfTools.Add(new ApprovalRequiredAIFunction(AIFunctionFactory.Create(DangerousTools.SomethingDangerous)));
 
 AIAgent agent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         instructions: "You are a File Expert. When working with files you need to provide the full path; not just the filename",
         tools: listOfTools

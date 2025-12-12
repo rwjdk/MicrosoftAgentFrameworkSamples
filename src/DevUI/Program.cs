@@ -13,10 +13,10 @@ using AgentFrameworkToolkit.Google;
 using GenerativeAI;
 using OpenAI;
 
-Configuration configuration = Shared.ConfigurationManager.GetConfiguration();
+Secrets secrets = Shared.SecretManager.GetConfiguration();
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 // Register Services needed to run DevUI
 builder.Services.AddChatClient(azureOpenAIClient.GetChatClient("gpt-4.1").AsIChatClient()); //You need to register a chat client for the dummy agents to use
@@ -35,11 +35,11 @@ AIAgent myAgent = azureOpenAIClient
 
 builder.AddAIAgent(realAgentName, (serviceProvider, key) => myAgent); //Get registered as a keyed singleton so name on real agent and key must match
 
-if (!string.IsNullOrWhiteSpace(configuration.GoogleGeminiApiKey))
+if (!string.IsNullOrWhiteSpace(secrets.GoogleGeminiApiKey))
 {
     //Build a Google Agent (Using AgentFrameworkToolkit)
     string agentName = "Google Agent";
-    GoogleAgentFactory agentFactory = new(new GoogleConnection { ApiKey = configuration.GoogleGeminiApiKey });
+    GoogleAgentFactory agentFactory = new(new GoogleConnection { ApiKey = secrets.GoogleGeminiApiKey });
 
     GoogleAgent googleAgent = agentFactory.CreateAgent(new GoogleAgentOptions
     {
@@ -49,11 +49,11 @@ if (!string.IsNullOrWhiteSpace(configuration.GoogleGeminiApiKey))
     builder.AddAIAgent(agentName, (serviceProvider, key) => googleAgent);
 }
 
-if (!string.IsNullOrWhiteSpace(configuration.AnthropicApiKey))
+if (!string.IsNullOrWhiteSpace(secrets.AnthropicApiKey))
 {
     //Build a Claude Agent (Using AgentFrameworkToolkit)
     string agentName = "Anthropic Agent";
-    AnthropicAgentFactory agentFactory = new(new AnthropicConnection { ApiKey = configuration.AnthropicApiKey });
+    AnthropicAgentFactory agentFactory = new(new AnthropicConnection { ApiKey = secrets.AnthropicApiKey });
 
     AnthropicAgent anthropicAgent = agentFactory.CreateAgent(new AnthropicAgentOptions
     {

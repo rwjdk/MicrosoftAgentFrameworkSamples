@@ -7,11 +7,11 @@ using OpenAI;
 using Shared;
 
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(
-    new Uri(configuration.AzureOpenAiEndpoint),
-    new ApiKeyCredential(configuration.AzureOpenAiKey));
+    new Uri(secrets.AzureOpenAiEndpoint),
+    new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 ServiceCollection services = new();
 services.AddScoped<HttpClient>();

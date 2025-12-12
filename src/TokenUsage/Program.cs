@@ -7,12 +7,12 @@ using Shared;
 using System.ClientModel;
 using Shared.Extensions;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 ChatClientAgent agent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
 string question = "What is the capital of France and how many people live there?";

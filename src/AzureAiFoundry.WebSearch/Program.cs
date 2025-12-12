@@ -10,10 +10,10 @@ using Shared.Extensions;
 
 Console.Clear();
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
-PersistentAgentsClient client = new(configuration.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
+Secrets secrets = SecretManager.GetConfiguration();
+PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
-BingGroundingSearchConfiguration bingToolConfiguration = new(configuration.BingApiKey);
+BingGroundingSearchConfiguration bingToolConfiguration = new(secrets.BingApiKey);
 BingGroundingSearchToolParameters bingToolParameters = new([bingToolConfiguration]);
 
 Response<PersistentAgent>? aiFoundryAgent = null;
@@ -21,7 +21,7 @@ ChatClientAgentThread? chatClientAgentThread = null;
 try
 {
     aiFoundryAgent = await client.Administration.CreateAgentAsync(
-        configuration.ChatDeploymentName,
+        secrets.ChatDeploymentName,
         "CurrentNewsAgent",
         "",
         "You report about Space News",

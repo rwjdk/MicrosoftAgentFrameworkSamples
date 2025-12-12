@@ -14,9 +14,9 @@ using ChatMessageContent = Microsoft.SemanticKernel.ChatMessageContent;
 #pragma warning disable OPENAI001
 #pragma warning disable SKEXP0010
 
-Configuration configuration = Shared.ConfigurationManager.GetConfiguration();
-string endpoint = configuration.AzureOpenAiEndpoint;
-string apiKey = configuration.AzureOpenAiKey;
+Secrets secrets = Shared.SecretManager.GetConfiguration();
+string endpoint = secrets.AzureOpenAiEndpoint;
+string apiKey = secrets.AzureOpenAiKey;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

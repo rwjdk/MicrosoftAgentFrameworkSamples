@@ -16,9 +16,9 @@ namespace Playground.Tests;
 #pragma warning disable OPENAI001
 public class FileTool
 {
-    public static async Task Run(Configuration configuration)
+    public static async Task Run(Secrets secrets)
     {
-        OpenAIClient client = new(configuration.OpenAiApiKey);
+        OpenAIClient client = new(secrets.OpenAiApiKey);
         //NB: I was unable to get this to work with Azure OpenAI in regard to downloading files from Code Interpreter
 
         OpenAIFileClient fileClient = client.GetOpenAIFileClient();

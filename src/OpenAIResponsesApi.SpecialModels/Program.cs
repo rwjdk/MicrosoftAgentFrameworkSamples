@@ -8,10 +8,10 @@ using System.ClientModel;
 using OpenAI;
 using Shared.Extensions;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 Console.Clear();
-//OpenAIClient client = new(configuration.OpenAiApiKey);
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+//OpenAIClient client = new(secrets.OpenAiApiKey);
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 AIAgent agent = client
     .GetOpenAIResponseClient("gpt-5-codex")

@@ -15,8 +15,8 @@ using System.Text;
 
 //Start with Business as Usual
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+Secrets secrets = SecretManager.GetConfiguration();
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 FileSystemTools target = new();
 MethodInfo[] methods = typeof(FileSystemTools).GetMethods(BindingFlags.Public | BindingFlags.Instance);

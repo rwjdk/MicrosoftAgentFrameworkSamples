@@ -12,22 +12,22 @@ Console.Clear();
 using var handler = new CustomClientHttpHandler();
 using var httpClient = new HttpClient(handler);
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
 /*
-OpenAIClient client = new(new ApiKeyCredential(configuration.OpenAiApiKey), new OpenAIClientOptions
+OpenAIClient client = new(new ApiKeyCredential(secrets.OpenAiApiKey), new OpenAIClientOptions
 {
     Transport = new HttpClientPipelineTransport(httpClient)
 });
 */
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey), new AzureOpenAIClientOptions
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey), new AzureOpenAIClientOptions
 {
     Transport = new HttpClientPipelineTransport(httpClient)
 });
 
 
-ChatClientAgent agent = client.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent(
+ChatClientAgent agent = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent(
     instructions: "You are a Raw Agent"
 );
 

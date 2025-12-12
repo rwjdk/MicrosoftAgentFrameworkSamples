@@ -7,8 +7,8 @@ using Workflow.AiAssisted.PizzaSample;
 using Workflow.AiAssisted.PizzaSample.Models;
 using Workflow.AiAssisted.PizzaSample.Executors;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
-AgentFactory agentFactory = new(configuration);
+Secrets secrets = SecretManager.GetConfiguration();
+AgentFactory agentFactory = new(secrets);
 
 PizzaOrderParserExecutor orderParser = new(agentFactory.CreateOrderTakerAgent());
 PizzaStockCheckerExecutor stockChecker = new();

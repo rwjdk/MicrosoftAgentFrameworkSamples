@@ -9,9 +9,9 @@ using Shared;
 using System.ClientModel;
 using System.Text.Json;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 ChatClientAgent intentAgent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent(name: "IntentAgent", instructions: "Determine what type of question was asked. Never answer yourself");
 

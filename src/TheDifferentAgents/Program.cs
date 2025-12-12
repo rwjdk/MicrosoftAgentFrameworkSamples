@@ -10,20 +10,19 @@ using Shared;
 using System.ClientModel;
 using System.Text;
 using Microsoft.Agents.AI.Hosting;
-using ConfigurationManager = Shared.ConfigurationManager;
 
 #pragma warning disable OPENAI001
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 string model = "gpt-4.1";
 
 //The Raw client (OpenAIClient and AzureOpenAIClient works that same)
-OpenAIClient rawOpenAiClient = new(configuration.OpenAiApiKey);
-AzureOpenAIClient rawAzureOpenAiClient = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+OpenAIClient rawOpenAiClient = new(secrets.OpenAiApiKey);
+AzureOpenAIClient rawAzureOpenAiClient = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 //--------------------------------------------------------------------------
 
 //Azure AI Foundry's PersistentAgentsClient is unique to that service
-PersistentAgentsClient persistentAgentsClient = new(configuration.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
+PersistentAgentsClient persistentAgentsClient = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 //--------------------------------------------------------------------------
 

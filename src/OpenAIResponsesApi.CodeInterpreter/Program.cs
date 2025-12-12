@@ -10,9 +10,9 @@ using System.ClientModel;
 using OpenAI.Responses;
 
 #pragma warning disable OPENAI001
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-OpenAIClient client = new(configuration.OpenAiApiKey);
+OpenAIClient client = new(secrets.OpenAiApiKey);
 //NB: I was unable to get this to work with Azure OpenAI in regard to downloading files from Code Interpreter
 AIAgent agent = client
     .GetOpenAIResponseClient("gpt-4.1")

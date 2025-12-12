@@ -9,13 +9,13 @@ using Shared;
 using Shared.Extensions;
 using System.ClientModel;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient azureOpenAiClient = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
-OpenAIClient openAiClient = new(new ApiKeyCredential(configuration.OpenAiApiKey));
+AzureOpenAIClient azureOpenAiClient = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+OpenAIClient openAiClient = new(new ApiKeyCredential(secrets.OpenAiApiKey));
 
-ChatClientAgent azureOpenAiAgent = azureOpenAiClient.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
-ChatClientAgent openAiAgent = openAiClient.GetChatClient(configuration.ChatDeploymentName).CreateAIAgent();
+ChatClientAgent azureOpenAiAgent = azureOpenAiClient.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent();
+ChatClientAgent openAiAgent = openAiClient.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent();
 
 Scenario scenario = Scenario.Image;
 

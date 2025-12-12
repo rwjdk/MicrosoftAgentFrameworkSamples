@@ -15,10 +15,10 @@ namespace Playground.Tests;
 
 public class ReasoningSummary
 {
-    public static async Task Run(Configuration configuration)
+    public static async Task Run(Secrets secrets)
     {
-        //OpenAIClient client = new(configuration.OpenAiApiKey);
-        AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+        //OpenAIClient client = new(secrets.OpenAiApiKey);
+        AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
         ChatClientAgent agent = client
             .GetOpenAIResponseClient("gpt-5-mini")

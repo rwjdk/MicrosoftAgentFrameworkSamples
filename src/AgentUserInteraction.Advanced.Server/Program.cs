@@ -7,10 +7,9 @@ using Shared;
 using System.ClientModel;
 using AgentUserInteraction.Advanced.Server.AgUiSpecializedAgents;
 using AgentUserInteraction.Advanced.SharedModels;
-using ConfigurationManager = Shared.ConfigurationManager;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+Secrets secrets = SecretManager.GetConfiguration();
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 string model = "gpt-4.1-mini";
 

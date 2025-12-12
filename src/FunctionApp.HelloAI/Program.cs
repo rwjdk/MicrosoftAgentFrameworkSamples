@@ -13,11 +13,11 @@ var builder = FunctionsApplication.CreateBuilder(args);
 
 builder.ConfigureFunctionsWebApplication();
 
-Shared.Configuration configuration = Shared.ConfigurationManager.GetConfiguration();
+Shared.Secrets secrets = Shared.SecretManager.GetConfiguration();
 
 AzureOpenAIClient azureOpenAIClient = new(
-    new Uri(configuration.AzureOpenAiEndpoint),
-    new ApiKeyCredential(configuration.AzureOpenAiKey));
+    new Uri(secrets.AzureOpenAiEndpoint),
+    new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 ChatClientAgent myAgent = azureOpenAIClient
     .GetChatClient("gpt-4.1-mini")

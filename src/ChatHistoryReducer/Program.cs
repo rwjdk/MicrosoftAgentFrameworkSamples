@@ -11,16 +11,16 @@ using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 #pragma warning disable MEAI001
 
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
-ChatClient chatClient = client.GetChatClient(configuration.ChatDeploymentName);
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+ChatClient chatClient = client.GetChatClient(secrets.ChatDeploymentName);
 
 IChatReducer chatReducer = new MessageCountingChatReducer(targetCount: 4);
 IChatReducer chatReducer2 = new SummarizingChatReducer(chatClient.AsIChatClient(), targetCount: 1, threshold: 4);
 
 ChatClientAgent agent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(new ChatClientAgentOptions
     {
         ChatOptions = new()

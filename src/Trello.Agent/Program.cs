@@ -11,11 +11,11 @@ using Trello.Agent;
 using Trello.Agent.Models;
 
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
 HostApplicationBuilder builder = new();
-builder.Services.AddSingleton(new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey)));
-builder.Services.AddSingleton(new TrelloCredentials(configuration.TrelloApiKey, configuration.TrelloToken));
+builder.Services.AddSingleton(new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey)));
+builder.Services.AddSingleton(new TrelloCredentials(secrets.TrelloApiKey, secrets.TrelloToken));
 builder.Services.AddSingleton<AgentFactory>();
 
 IHost host = builder.Build();

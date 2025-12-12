@@ -9,24 +9,24 @@ using System.ClientModel;
 using Azure.Monitor.OpenTelemetry.Exporter;
 using OpenTelemetry.Trace;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
 //Setup Telemetry
 string sourceName = "AiSource";
 var tracerProviderBuilder = Sdk.CreateTracerProviderBuilder()
     .AddSource(sourceName)
     .AddConsoleExporter();
-if (!string.IsNullOrWhiteSpace(configuration.ApplicationInsightsConnectionString))
+if (!string.IsNullOrWhiteSpace(secrets.ApplicationInsightsConnectionString))
 {
-    tracerProviderBuilder.AddAzureMonitorTraceExporter(options => options.ConnectionString = configuration.ApplicationInsightsConnectionString);
+    tracerProviderBuilder.AddAzureMonitorTraceExporter(options => options.ConnectionString = secrets.ApplicationInsightsConnectionString);
 }
 
 using TracerProvider tracerProvider = tracerProviderBuilder.Build();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 AIAgent agent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         name: "MyObservedAgent",
         instructions: "You are a Friendly AI Bot, answering questions")

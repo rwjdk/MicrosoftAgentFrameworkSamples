@@ -9,15 +9,15 @@ using Shared;
 
 Console.Clear();
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
-PersistentAgentsClient client = new(configuration.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
+Secrets secrets = SecretManager.GetConfiguration();
+PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 Response<PersistentAgent>? aiFoundryAgent = null;
 ChatClientAgentThread? chatClientAgentThread = null;
 try
 {
     aiFoundryAgent = await client.Administration.CreateAgentAsync(
-        configuration.ChatDeploymentName,
+        secrets.ChatDeploymentName,
         "CodeGraphAgent",
         "",
         "You are a Graph-expert on US States",

@@ -8,13 +8,13 @@ using Microsoft.Agents.AI;
 using OpenAI;
 
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 AudioClient audioClient = azureOpenAIClient.GetAudioClient("whisper");
 
 var agent = azureOpenAIClient
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
 AgentThread agentThread = agent.GetNewThread();

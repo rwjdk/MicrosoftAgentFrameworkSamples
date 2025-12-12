@@ -6,10 +6,10 @@ using Shared;
 using System.ClientModel;
 
 Console.Clear();
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-//OpenAIClient openAiClient = new OpenAIClient(configuration.OpenAiApiKey);
-AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+//OpenAIClient openAiClient = new OpenAIClient(secrets.OpenAiApiKey);
+AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 /* Pricing (as of 1st of December 2025)
  * - gpt-4o-mini-tts    ~0.015 USD / minute

@@ -2,9 +2,9 @@
 
 namespace Shared;
 
-public class ConfigurationManager
+public class SecretManager
 {
-    /* This ConfigurationManager relies on .NET User Secrets in the following format
+    /* This SecretManager relies on .NET User Secrets in the following format
     ************************************************************************************************************************************************
     {
       "OpenAiApiKey": "todo", //URL of your OpenAI API Key
@@ -33,9 +33,9 @@ public class ConfigurationManager
     ************************************************************************************************************************************************
     */
 
-    public static Configuration GetConfiguration()
+    public static Secrets GetConfiguration()
     {
-        IConfigurationRoot configurationRoot = new ConfigurationBuilder().AddUserSecrets<ConfigurationManager>().Build();
+        IConfigurationRoot configurationRoot = new ConfigurationBuilder().AddUserSecrets<SecretManager>().Build();
         string openAiApiKey = configurationRoot["OpenAiApiKey"] ?? string.Empty;
         string azureOpenAiEndpoint = configurationRoot["AzureOpenAiEndpoint"] ?? string.Empty;
         string azureOpenAiKey = configurationRoot["AzureOpenAiKey"] ?? string.Empty;
@@ -56,7 +56,7 @@ public class ConfigurationManager
         string mistralApiKey = configurationRoot["MistralApiKey"] ?? string.Empty;
         string amazonBedrockApiKey = configurationRoot["AmazonBedrockApiKey"] ?? string.Empty;
 
-        return new Configuration(
+        return new Secrets(
             openAiApiKey,
             azureOpenAiEndpoint,
             azureOpenAiKey,

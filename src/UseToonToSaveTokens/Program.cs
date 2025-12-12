@@ -8,9 +8,9 @@ using Shared;
 using Shared.Extensions;
 using UseToonToSaveTokens;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 string json = await File.ReadAllTextAsync("famous_people.json");
 List<FamousPerson> list = JsonSerializer.Deserialize<List<FamousPerson>>(json)!;
@@ -19,13 +19,13 @@ string instructions = "You answer questions about famous people. Always use tool
 string question = "Tell me about Hula Johnson";
 
 ChatClientAgent agentWithJsonTool = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         instructions: instructions,
         tools: [AIFunctionFactory.Create(GetFamousPeopleAsJson, name: "get_famous_people")]);
 
 ChatClientAgent agentWithToonTool = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         instructions: instructions,
         tools: [AIFunctionFactory.Create(GetFamousPeopleAsToon, name: "get_famous_people")]);

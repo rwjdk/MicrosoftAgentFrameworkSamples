@@ -13,9 +13,9 @@ using System.Text;
 using ModelContextProtocol.Client;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
-Configuration configuration = ConfigurationManager.GetConfiguration();
+Secrets secrets = SecretManager.GetConfiguration();
 
-AzureOpenAIClient client = new(new Uri(configuration.AzureOpenAiEndpoint), new ApiKeyCredential(configuration.AzureOpenAiKey));
+AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 await using McpClient gitHubMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
 {
@@ -23,14 +23,14 @@ await using McpClient gitHubMcpClient = await McpClient.CreateAsync(new HttpClie
     Endpoint = new Uri("https://api.githubcopilot.com/mcp/"),
     AdditionalHeaders = new Dictionary<string, string>
     {
-        { "Authorization", configuration.GitHubPatToken }
+        { "Authorization", secrets.GitHubPatToken }
     }
 }));
 
 IList<McpClientTool> toolsInGitHubMcp = await gitHubMcpClient.ListToolsAsync();
 
 AIAgent agent = client
-    .GetChatClient(configuration.ChatDeploymentName)
+    .GetChatClient(secrets.ChatDeploymentName)
     .CreateAIAgent(
         instructions: "You are a GitHub Expert",
         tools: toolsInGitHubMcp.Cast<AITool>().ToList()
