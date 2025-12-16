@@ -7,20 +7,10 @@ using TrelloDotNet.Model.Options.GetBoardOptions;
 using TrelloDotNet.Model.Options.GetCardOptions;
 using TrelloDotNet.Model.Options.GetListOptions;
 
-namespace Trello.Agent.Tools;
+namespace The_Trello_Experiment.Tools;
 
-public class TrelloInformationTools(TrelloClient trelloClient)
+public class TrelloTools(TrelloClient trelloClient)
 {
-    private string Private()
-    {
-        return "Hello";
-    }
-
-    private static string PrivateStatic()
-    {
-        return "Private Static";
-    }
-
     public async Task<List<Board>> GetBoards()
     {
         return await trelloClient.GetBoardsCurrentTokenCanAccessAsync(new GetBoardOptions
@@ -29,7 +19,6 @@ public class TrelloInformationTools(TrelloClient trelloClient)
         });
     }
 
-    [Description("Get the Lists on the board")]
     public async Task<List<List>> GetListsOnBoard(string boardId)
     {
         return await trelloClient.GetListsOnBoardAsync(boardId, new GetListOptions
@@ -43,13 +32,18 @@ public class TrelloInformationTools(TrelloClient trelloClient)
         return await trelloClient.GetCardsOnBoardAsync(boardId, getCardOptions);
     }
 
+    public async Task<List<Label>> GetLabelsOnBoard(string boardId)
+    {
+        return await trelloClient.GetLabelsOfBoardAsync(boardId);
+    }
+
     public async Task<Card> AddNewCard(AddCardOptions addCardOptions)
     {
         return await trelloClient.AddCardAsync(addCardOptions);
     }
 
-    public async Task<Card> UpdateCard(string cardId, List<CardUpdate> updates)
+    public async Task<Card> MoveCard(string cardId, string newListId)
     {
-        return await trelloClient.UpdateCardAsync(cardId, updates);
+        return await trelloClient.MoveCardToListAsync(cardId, newListId);
     }
 }

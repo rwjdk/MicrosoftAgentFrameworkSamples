@@ -1,7 +1,6 @@
 <Solution>
   <Folder Name="/- Playground and Work in Progress -/">
     <Project Path="src/Playground/Playground.csproj" Id="cbfc6bab-e8ea-4566-a695-56d84b6e5f68" />
-    <Project Path="src/Trello.Agent/Trello.Agent.csproj" Id="efbcd89b-d888-4f52-9e9c-250134c4d908" />
   </Folder>
   <Folder Name="/A2A (Agent2Agent)/">
     <Project Path="src/Agent2Agent.Client/Agent2Agent.Client.csproj" Id="4a4508d5-732d-4fe2-b0ad-dcf111e98be9" />
@@ -97,6 +96,9 @@
     <Project Path="src/AspireBlazorDemo/AspireBlazorDemo.csproj" />
     <Project Path="src/Samples.AppHost/Samples.AppHost.csproj" Id="42cace91-95d9-45d2-ba66-5e73a5ab6771" />
     <Project Path="src/Samples.ServiceDefaults/Samples.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/The Trello Experiment/">
+    <Project Path="src/The Trello Experiment/The Trello Experiment.csproj" Id="d4d8961f-a27b-4a37-bcff-bf5675d36c4d" />
   </Folder>
   <Folder Name="/Thinking &amp; Reasoning Settings/">
     <Project Path="src/ReasoningEffort/ReasoningEffort.OpenAI.csproj" Id="caba07b0-4551-4b07-b2b6-d895836bda18" />
