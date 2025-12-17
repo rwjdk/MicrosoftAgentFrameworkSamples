@@ -7,7 +7,7 @@ using OpenAI;
 using Shared;
 
 Console.Clear();
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(
     new Uri(secrets.AzureOpenAiEndpoint),
@@ -27,6 +27,9 @@ ToolClass2 toolClass2Instance = serviceProvider.GetRequiredService<ToolClass2>()
 ChatClientAgent agent = azureOpenAIClient
     .GetChatClient("gpt-4.1")
     .CreateAIAgent(
+        new ChatClientAgentOptions
+        {
+        },
         tools:
         [
             AIFunctionFactory.Create(StaticTool, "tool1"),

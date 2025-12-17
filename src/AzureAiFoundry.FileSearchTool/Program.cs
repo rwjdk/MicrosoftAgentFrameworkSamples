@@ -9,7 +9,7 @@ using Shared;
 
 Console.Clear();
 
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 Response<PersistentAgent>? aiFoundryAgent = null;

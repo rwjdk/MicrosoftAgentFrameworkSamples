@@ -9,7 +9,7 @@ using OpenAI;
 #pragma warning disable OPENAI001
 
 Console.Clear();
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 OpenAIClient client = new(new ApiKeyCredential(secrets.XAiGrokApiKey), new OpenAIClientOptions
 {
     Endpoint = new Uri("https://api.x.ai/v1")

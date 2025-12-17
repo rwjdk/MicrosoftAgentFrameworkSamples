@@ -13,7 +13,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-Shared.Secrets secrets = Shared.SecretManager.GetConfiguration();
+Shared.Secrets secrets = Shared.SecretManager.GetSecrets();
 
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 builder.Services.AddSingleton(client);

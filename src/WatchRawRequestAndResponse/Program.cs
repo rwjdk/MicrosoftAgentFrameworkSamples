@@ -12,7 +12,7 @@ Console.Clear();
 using var handler = new CustomClientHttpHandler();
 using var httpClient = new HttpClient(handler);
 
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 /*
 OpenAIClient client = new(new ApiKeyCredential(secrets.OpenAiApiKey), new OpenAIClientOptions

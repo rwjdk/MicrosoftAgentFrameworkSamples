@@ -13,7 +13,7 @@ using AgentFrameworkToolkit.Google;
 using GenerativeAI;
 using OpenAI;
 
-Secrets secrets = Shared.SecretManager.GetConfiguration();
+Secrets secrets = Shared.SecretManager.GetSecrets();
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));

@@ -11,7 +11,7 @@ using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 #pragma warning disable MEAI001
 
 Console.Clear();
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 ChatClient chatClient = client.GetChatClient(secrets.ChatDeploymentName);

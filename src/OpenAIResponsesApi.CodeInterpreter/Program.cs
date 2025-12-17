@@ -10,7 +10,7 @@ using System.ClientModel;
 using OpenAI.Responses;
 
 #pragma warning disable OPENAI001
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 OpenAIClient client = new(secrets.OpenAiApiKey);
 //NB: I was unable to get this to work with Azure OpenAI in regard to downloading files from Code Interpreter

@@ -9,7 +9,7 @@ using OpenAI;
 using Shared;
 using System.ClientModel;
 
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 string questionToAsk = "What is the capital of the USA?";
 

@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 using OpenAI;
 
 Console.Clear();
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 string userId = "rwj1234";
 

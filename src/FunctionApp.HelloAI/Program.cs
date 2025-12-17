@@ -13,7 +13,7 @@ var builder = FunctionsApplication.CreateBuilder(args);
 
 builder.ConfigureFunctionsWebApplication();
 
-Shared.Secrets secrets = Shared.SecretManager.GetConfiguration();
+Shared.Secrets secrets = Shared.SecretManager.GetSecrets();
 
 AzureOpenAIClient azureOpenAIClient = new(
     new Uri(secrets.AzureOpenAiEndpoint),

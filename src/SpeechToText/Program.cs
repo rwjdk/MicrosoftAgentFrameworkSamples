@@ -8,7 +8,7 @@ using Microsoft.Agents.AI;
 using OpenAI;
 
 Console.Clear();
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 AudioClient audioClient = azureOpenAIClient.GetAudioClient("whisper");

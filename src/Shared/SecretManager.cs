@@ -33,7 +33,7 @@ public class SecretManager
     ************************************************************************************************************************************************
     */
 
-    public static Secrets GetConfiguration()
+    public static Secrets GetSecrets()
     {
         IConfigurationRoot configurationRoot = new ConfigurationBuilder().AddUserSecrets<SecretManager>().Build();
         string openAiApiKey = configurationRoot["OpenAiApiKey"] ?? string.Empty;

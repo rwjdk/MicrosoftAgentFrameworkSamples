@@ -5,7 +5,7 @@ using Shared;
 using Shared.Extensions;
 
 Console.Clear();
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 OpenAIClient client = new(secrets.OpenAiApiKey);
 //NB: Azure OpenAI is NOT SUPPORTED
 #pragma warning disable OPENAI001

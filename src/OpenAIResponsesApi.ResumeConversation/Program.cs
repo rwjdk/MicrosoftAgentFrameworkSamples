@@ -10,7 +10,7 @@ using Shared;
 
 #pragma warning disable OPENAI001
 Console.Clear();
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 OpenAIClient client = new(secrets.OpenAiApiKey);
 /*AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));*/

@@ -4,7 +4,7 @@ using System.ClientModel;
 using The_Trello_Experiment;
 
 Console.Clear();
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(
     new Uri(secrets.AzureOpenAiEndpoint),

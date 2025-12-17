@@ -30,7 +30,7 @@ public static class Extensions
     public static TBuilder AddServiceDefaults<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
         /* ADDED FOR SAMPLE - BEGIN */
-        global::Shared.Secrets secrets = SecretManager.GetConfiguration();
+        global::Shared.Secrets secrets = SecretManager.GetSecrets();
         AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
         AIAgent agent = client

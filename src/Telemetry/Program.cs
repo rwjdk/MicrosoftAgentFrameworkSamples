@@ -9,7 +9,7 @@ using System.ClientModel;
 using Azure.Monitor.OpenTelemetry.Exporter;
 using OpenTelemetry.Trace;
 
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 
 //Setup Telemetry
 string sourceName = "AiSource";

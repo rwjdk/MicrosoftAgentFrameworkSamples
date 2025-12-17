@@ -12,7 +12,7 @@ using System.Text;
 using Microsoft.Agents.AI.Hosting;
 
 #pragma warning disable OPENAI001
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 string model = "gpt-4.1";
 
 //The Raw client (OpenAIClient and AzureOpenAIClient works that same)

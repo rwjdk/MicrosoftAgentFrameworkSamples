@@ -8,7 +8,7 @@ using System.ClientModel;
 using OpenAI;
 using Shared.Extensions;
 
-Secrets secrets = SecretManager.GetConfiguration();
+Secrets secrets = SecretManager.GetSecrets();
 Console.Clear();
 //OpenAIClient client = new(secrets.OpenAiApiKey);
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
