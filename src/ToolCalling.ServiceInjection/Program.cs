@@ -27,9 +27,6 @@ ToolClass2 toolClass2Instance = serviceProvider.GetRequiredService<ToolClass2>()
 ChatClientAgent agent = azureOpenAIClient
     .GetChatClient("gpt-4.1")
     .CreateAIAgent(
-        new ChatClientAgentOptions
-        {
-        },
         tools:
         [
             AIFunctionFactory.Create(StaticTool, "tool1"),
