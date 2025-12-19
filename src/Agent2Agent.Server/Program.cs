@@ -12,6 +12,7 @@ using Shared;
 using System.ClientModel;
 using System.Reflection;
 using System.Text;
+using OpenAI.Chat;
 
 //Start with Business as Usual
 Console.Clear();

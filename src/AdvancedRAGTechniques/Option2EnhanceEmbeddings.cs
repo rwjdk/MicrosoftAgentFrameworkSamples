@@ -4,10 +4,11 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel.Connectors.SqlServer;
-using OpenAI;
+using OpenAI.Chat;
 using Shared;
 using Shared.Extensions;
 using UsingRAGInAgentFramework.Models;
+using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 namespace AdvancedRAGTechniques;
 

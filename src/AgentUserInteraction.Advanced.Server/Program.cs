@@ -7,6 +7,7 @@ using Shared;
 using System.ClientModel;
 using AgentUserInteraction.Advanced.Server.AgUiSpecializedAgents;
 using AgentUserInteraction.Advanced.SharedModels;
+using OpenAI.Chat;
 
 Secrets secrets = SecretManager.GetSecrets();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));

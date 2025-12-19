@@ -12,6 +12,7 @@ using AgentFrameworkToolkit.Anthropic;
 using AgentFrameworkToolkit.Google;
 using GenerativeAI;
 using OpenAI;
+using OpenAI.Chat;
 
 Secrets secrets = Shared.SecretManager.GetSecrets();
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

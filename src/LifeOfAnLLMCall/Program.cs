@@ -10,6 +10,7 @@ using System.ClientModel.Primitives;
 using System.ComponentModel;
 using System.Text.Json;
 using LifeOfAnLLMCall;
+using OpenAI.Chat;
 
 Console.Clear();
 using CustomClientHttpHandler handler = new CustomClientHttpHandler();

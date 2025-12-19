@@ -3,13 +3,14 @@
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
-using OpenAI;
+using OpenAI.Chat;
 using Shared;
 using StructuredOutput.Models;
 using System.ClientModel;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
+using ChatResponseFormat = Microsoft.Extensions.AI.ChatResponseFormat;
 
 Secrets secrets = SecretManager.GetSecrets();
 

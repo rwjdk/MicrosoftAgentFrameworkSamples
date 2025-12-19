@@ -5,13 +5,14 @@ using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
 using Microsoft.SemanticKernel.Connectors.InMemory;
-using OpenAI;
+using OpenAI.Chat;
 using Shared;
 using Shared.Extensions;
 using System.ClientModel;
 using System.Text;
 using System.Text.Json;
 using UsingRAGInAgentFramework.Models;
+using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 //Prep
 string jsonWithMovies = await File.ReadAllTextAsync("made_up_movies.json");

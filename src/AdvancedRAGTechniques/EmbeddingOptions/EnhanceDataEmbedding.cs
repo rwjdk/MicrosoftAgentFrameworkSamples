@@ -2,6 +2,7 @@
 using Microsoft.Agents.AI;
 using Microsoft.SemanticKernel.Connectors.SqlServer;
 using OpenAI;
+using OpenAI.Chat;
 using Shared;
 using UsingRAGInAgentFramework.Models;
 

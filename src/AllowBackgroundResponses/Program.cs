@@ -5,6 +5,7 @@ using Microsoft.Agents.AI;
 using Shared;
 using System.ClientModel;
 using OpenAI;
+using OpenAI.Responses;
 
 #pragma warning disable OPENAI001
 
@@ -15,7 +16,7 @@ Secrets secrets = SecretManager.GetSecrets();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 AIAgent agent = client
-    .GetOpenAIResponseClient("gpt-5")
+    .GetResponsesClient("gpt-5")
     .CreateAIAgent();
 
 Utils.WriteLineGreen("SimpleQuestion-BEGIN");

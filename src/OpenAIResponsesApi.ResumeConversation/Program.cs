@@ -14,8 +14,8 @@ Secrets secrets = SecretManager.GetSecrets();
 
 OpenAIClient client = new(secrets.OpenAiApiKey);
 /*AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));*/
-OpenAIResponseClient responseClient = client
-    .GetOpenAIResponseClient("gpt-4.1");
+ResponsesClient responseClient = client
+    .GetResponsesClient("gpt-4.1");
 
 AIAgent agent = responseClient
     .CreateAIAgent(
@@ -34,7 +34,7 @@ Console.WriteLine(response2);
 string? responseId = response2.ResponseId;
 
 //Get previous text calling this multiple times
-ClientResult<OpenAIResponse> result = await responseClient.GetResponseAsync(responseId);
+ClientResult<ResponseResult>? result = await responseClient.GetResponseAsync(responseId);
 
 AgentRunResponse response3 = await agent.RunAsync("What city is he from", options: new ChatClientAgentRunOptions
 {

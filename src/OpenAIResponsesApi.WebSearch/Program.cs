@@ -1,6 +1,7 @@
 ﻿using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI;
+using OpenAI.Responses;
 using Shared;
 using Shared.Extensions;
 
@@ -11,7 +12,7 @@ OpenAIClient client = new(secrets.OpenAiApiKey);
 #pragma warning disable OPENAI001
 AIAgent agent = client
     //.GetChatClient("gpt-4.1")
-    .GetOpenAIResponseClient("gpt-4.1")
+    .GetResponsesClient("gpt-4.1")
 #pragma warning restore OPENAI001
     .CreateAIAgent(
         instructions: "You are a Space News AI Reporter",

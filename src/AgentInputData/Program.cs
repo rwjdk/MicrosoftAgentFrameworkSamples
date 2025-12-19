@@ -5,9 +5,11 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI;
+using OpenAI.Chat;
 using Shared;
 using Shared.Extensions;
 using System.ClientModel;
+using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Secrets secrets = SecretManager.GetSecrets();
 

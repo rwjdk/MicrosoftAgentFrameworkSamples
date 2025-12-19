@@ -4,6 +4,7 @@ using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI;
+using OpenAI.Chat;
 using Shared;
 
 Console.Clear();

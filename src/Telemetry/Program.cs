@@ -7,6 +7,7 @@ using OpenTelemetry;
 using Shared;
 using System.ClientModel;
 using Azure.Monitor.OpenTelemetry.Exporter;
+using OpenAI.Chat;
 using OpenTelemetry.Trace;
 
 Secrets secrets = SecretManager.GetSecrets();

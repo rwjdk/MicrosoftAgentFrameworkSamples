@@ -9,6 +9,7 @@ using Microsoft.Agents.AI;
 using Microsoft.AI.Foundry.Local;
 using OpenAI;
 using System.Diagnostics;
+using OpenAI.Chat;
 
 #region Check if Foundry Local is installed
 

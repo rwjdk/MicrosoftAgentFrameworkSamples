@@ -11,6 +11,7 @@ using Shared;
 using System.ClientModel;
 using System.Text;
 using ModelContextProtocol.Client;
+using OpenAI.Chat;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Secrets secrets = SecretManager.GetSecrets();

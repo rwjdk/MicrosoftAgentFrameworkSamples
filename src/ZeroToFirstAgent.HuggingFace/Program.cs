@@ -9,6 +9,7 @@
 using System.ClientModel;
 using Microsoft.Agents.AI;
 using OpenAI;
+using OpenAI.Chat;
 
 const string apiKey = "<YourAPIKey>";
 const string model = "<yourModelName>"; //Example: Qwen/Qwen3-Coder-30B-A3B-Instruct

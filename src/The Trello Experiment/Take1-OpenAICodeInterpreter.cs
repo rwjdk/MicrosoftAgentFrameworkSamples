@@ -2,6 +2,8 @@
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI;
+using OpenAI.Responses;
+
 #pragma warning disable OPENAI001
 
 namespace The_Trello_Experiment;
@@ -11,7 +13,7 @@ public static class Take1OpenAICodeInterpreter
     public static async Task Run(AzureOpenAIClient azureOpenAIClient, string trelloApiKey, string trelloToken)
     {
         ChatClientAgent agent = azureOpenAIClient
-            .GetOpenAIResponseClient("gpt-5-mini")
+            .GetResponsesClient("gpt-5-mini")
             .CreateAIAgent(
                 instructions: $"""
                                You are a Trello Expert with access to the Trello and the API

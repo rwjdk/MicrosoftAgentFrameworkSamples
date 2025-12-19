@@ -12,6 +12,7 @@ using System.ClientModel;
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using OpenAI;
+using OpenAI.Chat;
 
 const string endpoint = "https://<yourEndpoint>.openai.azure.com/";
 const string apiKey = "<yourApiKey>";

@@ -9,6 +9,7 @@
 using System.ClientModel;
 using Microsoft.Agents.AI;
 using OpenAI;
+using OpenAI.Chat;
 
 const string apiKey = "<YourApiKey>";
 const string model = "<yourModelName>";

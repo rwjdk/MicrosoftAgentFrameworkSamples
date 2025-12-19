@@ -6,6 +6,7 @@ using Shared;
 using System.ClientModel;
 using Microsoft.Agents.AI;
 using OpenAI;
+using OpenAI.Chat;
 
 Console.Clear();
 Secrets secrets = SecretManager.GetSecrets();

@@ -15,12 +15,12 @@ Secrets secrets = SecretManager.GetSecrets();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 ChatClientAgent agent = client
-    .GetOpenAIResponseClient("gpt-5-mini")
+    .GetResponsesClient("gpt-5-mini")
     .CreateAIAgent(new ChatClientAgentOptions
     {
         ChatOptions = new ChatOptions
         {
-            RawRepresentationFactory = _ => new ResponseCreationOptions() //<--- Notice this is different from out ChatCompletionOptions
+            RawRepresentationFactory = _ => new CreateResponseOptions //<--- Notice this is different from out ChatCompletionOptions
             {
                 ReasoningOptions = new ResponseReasoningOptions
                 {

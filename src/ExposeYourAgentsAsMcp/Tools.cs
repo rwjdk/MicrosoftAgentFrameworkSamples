@@ -3,6 +3,7 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using ModelContextProtocol.Server;
 using OpenAI;
+using OpenAI.Chat;
 
 namespace ExposeYourAgentsAsRemoteMcp;
 

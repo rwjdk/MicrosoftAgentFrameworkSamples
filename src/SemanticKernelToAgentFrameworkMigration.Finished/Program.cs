@@ -8,6 +8,7 @@ using OpenAI;
 using Shared;
 using System.ClientModel;
 using System.Text;
+using OpenAI.Chat;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 #pragma warning disable OPENAI001

@@ -3,6 +3,7 @@ using Microsoft.Agents.AI;
 using Shared;
 using System.ClientModel;
 using OpenAI;
+using OpenAI.Chat;
 
 namespace Workflow.AiAssisted.PizzaSample;
 

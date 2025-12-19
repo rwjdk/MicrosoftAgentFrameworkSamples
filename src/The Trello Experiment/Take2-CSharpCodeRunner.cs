@@ -2,6 +2,7 @@
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI;
+using OpenAI.Responses;
 using Shared;
 using The_Trello_Experiment.Tools;
 
@@ -14,7 +15,7 @@ public static class Take2CSharpCodeRunner
     public static async Task Run(AzureOpenAIClient azureOpenAIClient, string trelloApiKey, string trelloToken)
     {
         ChatClientAgent agent = azureOpenAIClient
-            .GetOpenAIResponseClient("gpt-4.1-mini")
+            .GetResponsesClient("gpt-4.1-mini")
             .CreateAIAgent(
                 instructions: $"""
                                You are a Trello Expert with access to the Trello and the API

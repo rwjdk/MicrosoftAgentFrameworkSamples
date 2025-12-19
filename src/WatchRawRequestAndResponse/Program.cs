@@ -7,6 +7,7 @@ using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Text.Json;
 using Microsoft.Agents.AI;
+using OpenAI.Chat;
 
 Console.Clear();
 using var handler = new CustomClientHttpHandler();

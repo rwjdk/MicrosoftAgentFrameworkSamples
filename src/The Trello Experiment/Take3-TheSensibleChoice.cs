@@ -4,6 +4,7 @@ using Microsoft.Extensions.AI;
 using OpenAI;
 using Shared;
 using System.Text;
+using OpenAI.Responses;
 using The_Trello_Experiment.Tools;
 using TrelloDotNet;
 
@@ -18,7 +19,7 @@ public static class Take3TheSensibleChoice
         TrelloTools trelloTools = new(new TrelloClient(trelloApiKey, trelloToken));
 
         AIAgent agent = azureOpenAIClient
-            .GetOpenAIResponseClient("gpt-4.1-mini")
+            .GetResponsesClient("gpt-4.1-mini")
             .CreateAIAgent(
                 instructions: """
                               You are a Trello Expert 

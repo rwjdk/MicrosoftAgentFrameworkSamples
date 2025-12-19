@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Shared;
 using System.ClientModel;
-using OpenAI;
+using OpenAI.Chat;
 using Microsoft.Extensions.AI;
 
 //Start with Business as Usual

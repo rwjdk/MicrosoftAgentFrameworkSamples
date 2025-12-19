@@ -9,6 +9,7 @@ using Shared;
 using Shared.Extensions;
 using System.ClientModel;
 using System.Text;
+using OpenAI.Chat;
 
 Secrets secrets = SecretManager.GetSecrets();
 

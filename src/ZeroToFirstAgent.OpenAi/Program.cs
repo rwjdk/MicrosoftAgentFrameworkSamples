@@ -10,6 +10,7 @@
 
 using Microsoft.Agents.AI;
 using OpenAI;
+using OpenAI.Chat;
 
 const string apiKey = "<YourAPIKey>";
 const string model = "<yourModelName>"; //Example: gpt-4.1

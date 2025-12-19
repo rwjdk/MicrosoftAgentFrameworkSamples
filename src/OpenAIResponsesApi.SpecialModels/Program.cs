@@ -6,6 +6,7 @@ using Microsoft.Agents.AI;
 using Shared;
 using System.ClientModel;
 using OpenAI;
+using OpenAI.Responses;
 using Shared.Extensions;
 
 Secrets secrets = SecretManager.GetSecrets();
@@ -14,7 +15,7 @@ Console.Clear();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 AIAgent agent = client
-    .GetOpenAIResponseClient("gpt-5-codex")
+    .GetResponsesClient("gpt-5-codex")
     .CreateAIAgent(
         instructions: "You are a C# Developer"
     );

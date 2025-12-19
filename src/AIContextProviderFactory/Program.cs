@@ -4,7 +4,8 @@ using Microsoft.Extensions.AI;
 using Shared;
 using System.ClientModel;
 using JetBrains.Annotations;
-using OpenAI;
+using OpenAI.Chat;
+using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Console.Clear();
 Secrets secrets = SecretManager.GetSecrets();

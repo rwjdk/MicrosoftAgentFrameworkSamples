@@ -4,6 +4,7 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI;
+using OpenAI.Responses;
 using Shared;
 using Shared.Extensions;
 
@@ -17,7 +18,7 @@ public class SpaceNewsWebSearch
         OpenAIClient client = new(secrets.OpenAiApiKey);
         //NB: Azure OpenAI is NOT SUPPORTED
         AIAgent agent = client
-            .GetOpenAIResponseClient("gpt-4.1")
+            .GetResponsesClient("gpt-4.1")
             .CreateAIAgent(
                 instructions: "You are a Space News AI Reporter",
                 tools: [new HostedWebSearchTool()]

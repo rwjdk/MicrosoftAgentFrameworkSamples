@@ -6,6 +6,7 @@ using Microsoft.Agents.AI;
 using Shared;
 using System.ClientModel;
 using OpenAI;
+using OpenAI.Chat;
 
 Utils.WriteLineDarkGray("Initializing");
 Utils.WriteLineDarkGray("- Waiting 1 sec for the server to be ready");

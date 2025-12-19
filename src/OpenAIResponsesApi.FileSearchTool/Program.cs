@@ -8,6 +8,7 @@ using OpenAI.VectorStores;
 using Shared;
 using Shared.Extensions;
 using System.ClientModel;
+using OpenAI.Responses;
 
 #pragma warning disable OPENAI001
 Console.Clear();
@@ -38,7 +39,7 @@ try
 
     //NB: I was unable to get this to work with Azure OpenAI in regard to downloading files from Code Interpreter
     AIAgent agent = client
-        .GetOpenAIResponseClient("gpt-4.1")
+        .GetResponsesClient("gpt-4.1")
         .CreateAIAgent(
             instructions: "Only use tools. Never your world-knowledge",
             tools:

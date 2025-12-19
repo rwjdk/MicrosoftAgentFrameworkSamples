@@ -16,6 +16,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 using Shared;
 using System.ClientModel;
+using OpenAI.Chat;
 
 namespace Microsoft.Extensions.Hosting;
 

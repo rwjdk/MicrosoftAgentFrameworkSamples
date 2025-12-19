@@ -10,6 +10,8 @@ using Shared;
 using System.ClientModel;
 using System.Text;
 using Microsoft.Agents.AI.Hosting;
+using OpenAI.Chat;
+using OpenAI.Responses;
 
 #pragma warning disable OPENAI001
 Secrets secrets = SecretManager.GetSecrets();
@@ -33,7 +35,7 @@ IChatClient iChatClient = rawOpenAiClient.GetChatClient(model).AsIChatClient();
 
 //All Agents are AI Agents (which is an abstract class)
 AIAgent aiAgentFromChatClient = rawOpenAiClient.GetChatClient(model).CreateAIAgent();
-AIAgent aiAgentFromResponsesClient = rawOpenAiClient.GetOpenAIResponseClient(model).CreateAIAgent();
+AIAgent aiAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient(model).CreateAIAgent();
 AIAgent aiAgentFromPersistentClient = await persistentAgentsClient.GetAIAgentAsync(persistentAgentsClient.Administration.CreateAgent(model).Value.Id);
 AIAgent aiAgentFromIChatClient = new ChatClientAgent(iChatClient);
 
@@ -41,7 +43,7 @@ AIAgent aiAgentFromIChatClient = new ChatClientAgent(iChatClient);
 
 //Most is however a ChatClientAgent behind the scenes
 ChatClientAgent chatClientAgentFromChatClient = rawOpenAiClient.GetChatClient(model).CreateAIAgent();
-ChatClientAgent chatClientAgentFromResponsesClient = rawOpenAiClient.GetOpenAIResponseClient(model).CreateAIAgent();
+ChatClientAgent chatClientAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient(model).CreateAIAgent();
 ChatClientAgent chatClientAgentFromPersistentClient = await persistentAgentsClient.GetAIAgentAsync(persistentAgentsClient.Administration.CreateAgent(model).Value.Id);
 ChatClientAgent chatClientAgentFromIChatClient = new ChatClientAgent(iChatClient);
 
@@ -99,10 +101,6 @@ string fullNameOfAiAgentWithFunctionCallingMiddleware = aiAgentWithFunctionCalli
 //NOTE: The 'aiAgentWithOpenTelemetryAndFunctionCallingMiddleware' become the type of agent the first middleware is
 
 //--------------------------------------------------------------------------
-
-//You can also build a OpenAI specific DelegatingAIAgents based on a raw chat-client (can't see a reason for doing this really)
-OpenAIChatClientAgent openAIChatClientAgent = new OpenAIChatClientAgent(rawOpenAiClient.GetChatClient(model));
-OpenAIResponseClientAgent openAIResponsesClientAgent = new OpenAIResponseClientAgent(rawOpenAiClient.GetOpenAIResponseClient(model));
 
 //A Copilot Studio Agent
 //CopilotStudioAgent copilotStudioAgent = new CopilotStudioAgent(new CopilotClient(<settings>));

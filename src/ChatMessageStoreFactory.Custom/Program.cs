@@ -4,7 +4,8 @@ using Shared;
 using System.ClientModel;
 using System.Text.Json;
 using Microsoft.Extensions.AI;
-using OpenAI;
+using OpenAI.Chat;
+using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Console.Clear();
 
@@ -57,7 +58,7 @@ class MyMessageStore(ChatClientAgentOptions.ChatMessageStoreFactoryContext conte
         return JsonSerializer.Deserialize<List<ChatMessage>>(json)!;
     }
 
-    public override async Task AddMessagesAsync(IEnumerable<ChatMessage> messages, CancellationToken cancellationToken = default)
+    public override async Task AddMessagesAsync(IEnumerable<ChatMessage> messages, CancellationToken cancellationToken = new CancellationToken())
     {
         _messages.AddRange(messages);
         await File.WriteAllTextAsync(ThreadPath, JsonSerializer.Serialize(_messages, context.JsonSerializerOptions), cancellationToken);
