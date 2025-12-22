@@ -47,10 +47,10 @@ tools = aiToolsFactory.GetTools(instance); //If you do not have an empty constru
 //or from MCP tools
 
 //Either remote MCP Server
-IList<AITool> toolsFromRemoteMcp = await aiToolsFactory.GetToolsFromRemoteMcpAsync("http://mcp.relewise.com");
+McpClientTools toolsFromRemoteMcp = await aiToolsFactory.GetToolsFromRemoteMcpAsync("http://mcp.relewise.com");
 
 //Or local MCP Server
-IList<AITool> toolsFromLocalMcp = await aiToolsFactory.GetToolsFromLocalMcpAsync("npx", ["@playwright/mcp@latest"]);
+McpClientTools toolsFromLocalMcp = await aiToolsFactory.GetToolsFromLocalMcpAsync("npx", ["@playwright/mcp@latest"]);
 
 #endregion
 
