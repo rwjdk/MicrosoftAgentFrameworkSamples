@@ -6,11 +6,14 @@
 #pragma warning disable OPENAI001
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.Workflows;
 using Microsoft.Extensions.AI;
+using OpenAI;
 using OpenAI.Chat;
 using Shared;
 using System.ClientModel;
 using System.Text.Json;
+using System.Threading;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Console.WriteLine("");
@@ -18,73 +21,50 @@ Console.Clear();
 
 Secrets secrets = SecretManager.GetSecrets();
 
-AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+const string model = "gpt-5-nano";
 
-ChatClientAgent a = azureOpenAIClient
-    .GetChatClient("gpt-4.1")
-    .CreateAIAgent(
-        new ChatClientAgentOptions
-        {
-            ChatMessageStoreFactory = context => new MyMessageStore(context)
-        }
-    );
+AzureOpenAIClient client = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+var chatClient = client.GetChatClient(model);
 
+var summaryAgent = chatClient.CreateAIAgent(name: "SummaryAgent", instructions: "Summarize the text you are given to max 20 words");
+var translationAgent = chatClient.CreateAIAgent(name: "TranslationAgent", instructions: "Given a text Translate it to French (you need to translate the summary and not the original text)");
 
-AgentThread thread = a.GetNewThread();
+var workflow = AgentWorkflowBuilder.BuildSequential(summaryAgent, translationAgent);
 
-AgentRunResponse response = await a.RunAsync("Who is Barack Obama", thread);
-Console.WriteLine(response);
+var legalText = """
+                This Legal Disclaimer (“Agreement”) governs the ownership, maintenance, and care of domesticated ducks 
+                kept as personal pets. By acquiring or housing a duck, the Owner hereby acknowledges and agrees to 
+                comply with all applicable municipal and federal regulations concerning the keeping of live poultry. 
+                The Owner affirms responsibility for providing humane living conditions, including adequate shelter, 
+                food, and access to clean water. Ducks must not be subjected to neglect, cruelty, or abandonment.
+                The Owner shall maintain sanitary standards to prevent odors, noise disturbance, or the spread of 
+                disease to neighboring properties. Local authorities reserve the right to inspect premises upon 
+                reasonable notice to ensure compliance. Any sale or transfer of pet ducks must include written 
+                documentation verifying the animal’s health status and vaccination records where required.
+                This Agreement does not confer any breeding or commercial rights unless expressly authorized in 
+                writing by the relevant agency. The Owner indemnifies and holds harmless all regulatory bodies 
+                against claims arising from damage or injury caused by said animals. Failure to adhere to the 
+                provisions herein may result in fines, forfeiture, or legal action.
+                Acceptance of a duck as a pet constitutes full consent to these terms and any subsequent 
+                amendments or revisions adopted by the governing authority.
+                """;
 
-JsonElement threadElement = thread.Serialize();
-string toStoreForTheUser = JsonSerializer.Serialize(threadElement);
+var messages = new List<ChatMessage> { new(ChatRole.User, legalText) };
 
-//Some time passes.... 
+var run = await InProcessExecution.StreamAsync(workflow, messages);
+await run.TrySendMessageAsync(new TurnToken(emitEvents: true));
 
-JsonElement restoredThreadElement = JsonSerializer.Deserialize<JsonElement>(toStoreForTheUser);
-
-AgentThread restoredThread = a.DeserializeThread(restoredThreadElement);
-
-AgentRunResponse someTimeLaterResponse = await a.RunAsync("How Tall is he?", restoredThread);
-Console.WriteLine(someTimeLaterResponse);
-
-
-//await AzureOpenAiFoundry.Run(configuration);
-//await FileTool.Run(configuration);
-//await CodeTool.Run(configuration);
-//await ReasoningSummary.Run(configuration);
-//await CodexSpecialModels.Run(configuration);
-//await SpaceNewsWebSearch.Run(configuration);
-//await ResumeConversation.Run(configuration);
-//await AzureOpenAiCodex.Run(configuration);
-
-
-class MyMessageStore(ChatClientAgentOptions.ChatMessageStoreFactoryContext context) : ChatMessageStore
+List<ChatMessage> result = [];
+await foreach (var evt in run.WatchStreamAsync().ConfigureAwait(false))
 {
-    public string ThreadId { get; set; } = context.SerializedState.ValueKind is JsonValueKind.String ? context.SerializedState.Deserialize<string>()! : Guid.NewGuid().ToString();
+    if (evt is not WorkflowOutputEvent completed) continue;
+    result = (List<ChatMessage>)completed.Data!;
+    break;
+}
 
-    public string ThreadPath => Path.Combine(Path.GetTempPath(), $"{ThreadId}.json");
-
-    private readonly List<ChatMessage> _messages = [];
-
-    public override async Task<IEnumerable<ChatMessage>> GetMessagesAsync(CancellationToken cancellationToken = default)
-    {
-        if (!File.Exists(ThreadPath))
-        {
-            return [];
-        }
-
-        string json = await File.ReadAllTextAsync(ThreadPath, cancellationToken);
-        return JsonSerializer.Deserialize<List<ChatMessage>>(json)!;
-    }
-
-    public override async Task AddMessagesAsync(IEnumerable<ChatMessage> messages, CancellationToken cancellationToken = default)
-    {
-        _messages.AddRange(messages);
-        await File.WriteAllTextAsync(ThreadPath, JsonSerializer.Serialize(_messages, context.JsonSerializerOptions), cancellationToken);
-    }
-
-    public override JsonElement Serialize(JsonSerializerOptions? jsonSerializerOptions = null)
-    {
-        return JsonSerializer.SerializeToElement(ThreadId, context.JsonSerializerOptions);
-    }
+foreach (var message in result.Where(x => x.Role != ChatRole.User))
+{
+    Utils.WriteLineGreen(message.AuthorName ?? "Unknown");
+    Console.WriteLine($"{message.Text}");
+    Utils.Separator();
 }
