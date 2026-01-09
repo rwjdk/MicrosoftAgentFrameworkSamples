@@ -40,8 +40,7 @@ while (true)
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 
-    ChatClientAgentThread chatClientAgentThread = (ChatClientAgentThread)thread;
-    List<ChatMessage> messagesInThread = (await chatClientAgentThread.MessageStore!.GetMessagesAsync()).ToList();
+    IList<ChatMessage> messagesInThread = thread.GetService<IList<ChatMessage>>()!;
     Utils.WriteLineDarkGray("- Number of messages in thread: " + messagesInThread.Count());
     foreach (ChatMessage message in messagesInThread)
     {

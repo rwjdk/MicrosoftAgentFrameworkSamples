@@ -62,9 +62,8 @@ app.MapPost("/chatHistory", async Task<IResult> ([FromBody] ChatRequest chatRequ
 
     AgentRunResponse response2 = await agent.RunAsync("how tall is he?", thread);
 
-    ChatClientAgentThread chatClientAgentThread = (ChatClientAgentThread)thread;
-    IEnumerable<ChatMessage> messages = await chatClientAgentThread.MessageStore!.GetMessagesAsync();
-    return Results.Ok(messages);
+    IList<ChatMessage>? messagesInThread = thread.GetService<IList<ChatMessage>>();
+    return Results.Ok(messagesInThread);
 });
 
 app.MapPost("/toolCalling", async Task<IResult> ([FromBody] ChatRequest chatRequest, AzureOpenAIClient client) =>

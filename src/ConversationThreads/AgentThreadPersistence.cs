@@ -33,8 +33,8 @@ public static class AgentThreadPersistence
         ChatClientAgentThread chatClientAgentThread = (ChatClientAgentThread)resumedThread;
         if (chatClientAgentThread.MessageStore != null)
         {
-            IEnumerable<ChatMessage> messages = await chatClientAgentThread.MessageStore.GetMessagesAsync();
-            foreach (ChatMessage message in messages)
+            IList<ChatMessage>? messages = resumedThread.GetService<IList<ChatMessage>>();
+            foreach (ChatMessage message in messages!)
             {
                 if (message.Role == ChatRole.User)
                 {
