@@ -2,20 +2,18 @@
 
 /* Steps:
  * 1: Get a Google API Gemini API Key (https://aistudio.google.com/app/api-keys)
- * 2: Add Nuget Packages (Google_GenerativeAI.Microsoft + Microsoft.Agents.AI)
- * 3: Create an GenerativeAIChatClient for an ChatClientAgent
+ * 2: Add Nuget Packages (Google.GenAI + Microsoft.Agents.AI)
+ * 3: Create an Google.GenAI.Client for an ChatClientAgent
  * 4: Call RunAsync or RunStreamingAsync
  */
 
-using GenerativeAI;
-using GenerativeAI.Microsoft;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 
 const string apiKey = "<yourApiKey>";
-const string model = GoogleAIModels.Gemini25Pro;
+const string model = "gemini-3-pro-preview";
 
-IChatClient client = new GenerativeAIChatClient(apiKey, model);
+IChatClient client = new Google.GenAI.Client(apiKey: apiKey).AsIChatClient(model);
 ChatClientAgent agent = new(client);
 
 AgentRunResponse response = await agent.RunAsync("What is the Capital of Australia?");
