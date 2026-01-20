@@ -9,7 +9,7 @@ The Framework is open-source and can be used in C# and Python (this Repo explore
 
 ## Udemy Course
 
-If you wish to learn Microsoft Agent Framework the best way is to follow this [Udemy Course](https://www.udemy.com/course/ai-in-c-sharp-using-the-microsoft-agent-framework/?referralCode=34AF1BFA81E5E0C407A2)
+If you wish to learn Microsoft Agent Framework, the best way is to follow this [Udemy Course](https://www.udemy.com/course/ai-in-c-sharp-using-the-microsoft-agent-framework/?referralCode=34AF1BFA81E5E0C407A2)
 
 ## YouTube video series
 
@@ -19,4 +19,4 @@ All Samples in this repo are part of this [YouTube video series](https://youtube
 
 
 ## Where is the Comic Book E2E Sample?
-It's been moved to it's [own repo](https://github.com/rwjdk/AIExample-ComicBookStore) to make it easier to maintain
+It's been moved to its [own repo](https://github.com/rwjdk/AIExample-ComicBookStore) to make it easier to maintain
