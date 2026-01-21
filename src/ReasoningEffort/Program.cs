@@ -1,60 +1,160 @@
 ﻿using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
-using OpenAI;
 using OpenAI.Chat;
 using Shared;
 using Shared.Extensions;
 using System.ClientModel;
-using MicrosoftAgentFramework.Utilities.Extensions;
+using AgentFrameworkToolkit;
+using AgentFrameworkToolkit.AzureOpenAI;
+using AgentFrameworkToolkit.OpenAI;
+using OpenAI.Responses;
+using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
-Secrets secrets = SecretManager.GetSecrets();
-
-AzureOpenAIClient azureOpenAiClient = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey), new AzureOpenAIClientOptions
-{
-    NetworkTimeout = TimeSpan.FromMinutes(5) //NB: You might need to adjust timeout when using long thinking Agents
-});
-
-//Let's try and use reasoning model with default (medium) settings
-ChatClientAgent agentDefault = azureOpenAiClient
-    .GetChatClient("gpt-5-mini")
-    .CreateAIAgent();
-
-AgentRunResponse response1 = await agentDefault.RunAsync("What is the Capital of France and how many people live there?");
-Console.WriteLine(response1);
-response1.Usage.OutputAsInformation();
-
-
-Utils.Separator();
-
-//Let's control the reasoning effort for faster answer and lower cost
-ChatClientAgent agentControllingReasoningEffort = azureOpenAiClient
-    .GetChatClient("gpt-5-mini")
-    .CreateAIAgent(
-        options: new ChatClientAgentOptions
-        {
-            ChatOptions = new ChatOptions
-            {
-                RawRepresentationFactory = _ => new ChatCompletionOptions
-                {
 #pragma warning disable OPENAI001
-                    ReasoningEffortLevel = "minimal", //'minimal', 'low', 'medium' (default) or 'high'
-#pragma warning restore OPENAI001
-                },
-            }
-        });
+Secrets secrets = SecretManager.GetSecrets();
+string endpoint = secrets.AzureOpenAiEndpoint;
+string apiKey = secrets.AzureOpenAiKey;
+string question = "What is the Capital of France and how many people live there? (Answer back in max 3 words)";
 
-AgentRunResponse response2 = await agentControllingReasoningEffort.RunAsync("What is the Capital of France and how many people live there?");
-Console.WriteLine(response2);
-response2.Usage.OutputAsInformation();
+/* OpenAI Models that can use reasoning:
+ - o1 models
+ - o3 models
+ - o4 models
+ - gpt-5 models
+ (expect all future model can do reasoning)
+ */
 
+Console.Clear();
+Utils.WriteLineGreen("Baseline (Reason = Default (Medium))");
+await Baseline();
 Utils.Separator();
+Utils.WriteLineGreen("Raw: ChatClient (Reason = Minimal)");
+await RawChatClient();
+Utils.Separator();
+Utils.WriteLineGreen("Raw: ResponseAPI (Reason = High)");
+await RawResponsesApi();
+Utils.Separator();
+Utils.WriteLineGreen("Agent Framework Toolkit: ChatClient (Reason = Minimal)");
+await AgentFrameworkToolkitChatClient();
+Utils.Separator();
+Utils.WriteLineGreen("Agent Framework Toolkit: ResponsesAPI (Reason = High)");
+await AgentFrameworkToolkitResponseApi();
 
-//Simpler version of above using my own extension method
-ChatClientAgent agentControllingReasoningEffortSimplified = azureOpenAiClient
-    .GetChatClient("gpt-5-mini")
-    .CreateAIAgentForAzureOpenAi(reasoningEffort: "minimal");
+/* Notes on various OpenAI-Based Models:
+   - xAI (Grok) seems unable to use this (Throw an exception if set).
+   - DeepSeek (via example OpenRouter) allow this to be set, but it seems to ignore it. 
+ */
 
-AgentRunResponse response3 = await agentControllingReasoningEffortSimplified.RunAsync("What is the Capital of France and how many people live there?");
-Console.WriteLine(response3);
-response3.Usage.OutputAsInformation();
+return;
+
+async Task Baseline()
+{
+    AzureOpenAIClient azureOpenAiClient = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
+    ChatClientAgent agent = azureOpenAiClient
+        .GetChatClient("gpt-5-mini")
+        .CreateAIAgent();
+    AgentRunResponse response = await agent.RunAsync(question);
+    response.Usage.OutputAsInformation();
+    Console.WriteLine(response);
+}
+
+async Task RawChatClient()
+{
+    AzureOpenAIClient azureOpenAiClient = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
+    ChatClientAgent agent = azureOpenAiClient
+        .GetChatClient("gpt-5-mini")
+        .CreateAIAgent(
+            options: new ChatClientAgentOptions
+            {
+                ChatOptions = new ChatOptions
+                {
+                    RawRepresentationFactory = _ => new ChatCompletionOptions
+                    {
+                        ReasoningEffortLevel = ChatReasoningEffortLevel.Minimal
+                    },
+                }
+            });
+
+    AgentRunResponse response = await agent.RunAsync(question);
+    //Note that the reasoning summary is not possible to get with ChatClient
+    Console.WriteLine(response);
+    response.Usage.OutputAsInformation();
+}
+
+async Task RawResponsesApi()
+{
+    AzureOpenAIClient azureOpenAiClient = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
+    ChatClientAgent agent = azureOpenAiClient
+        .GetResponsesClient("gpt-5-mini")
+        .CreateAIAgent(
+            options: new ChatClientAgentOptions
+            {
+                ChatOptions = new ChatOptions
+                {
+                    RawRepresentationFactory = _ => new CreateResponseOptions
+                    {
+                        ReasoningOptions = new ResponseReasoningOptions
+                        {
+                            ReasoningEffortLevel = ResponseReasoningEffortLevel.High,
+                            ReasoningSummaryVerbosity = ResponseReasoningSummaryVerbosity.Detailed
+                        }
+                    }
+                }
+            });
+
+    AgentRunResponse response = await agent.RunAsync(question);
+    foreach (ChatMessage message in response.Messages)
+    {
+        foreach (AIContent content in message.Contents)
+        {
+            if (content is TextReasoningContent textReasoningContent)
+            {
+                Utils.WriteLineYellow("Reasoning Text");
+                Utils.WriteLineDarkGray(textReasoningContent.Text);
+            }
+        }
+    }
+
+    Console.WriteLine(response);
+    response.Usage.OutputAsInformation();
+}
+
+async Task AgentFrameworkToolkitChatClient()
+{
+    AzureOpenAIAgentFactory agentFactory = new(endpoint, apiKey);
+
+    AzureOpenAIAgent agent = agentFactory.CreateAgent(new AgentOptions
+    {
+        Model = OpenAIChatModels.Gpt5Mini,
+        ReasoningEffort = OpenAIReasoningEffort.Minimal
+    });
+
+    AgentRunResponse response = await agent.RunAsync(question);
+    Console.WriteLine(response);
+    response.Usage.OutputAsInformation();
+}
+
+async Task AgentFrameworkToolkitResponseApi()
+{
+    AzureOpenAIAgentFactory agentFactory = new(endpoint, apiKey);
+
+    AzureOpenAIAgent agent = agentFactory.CreateAgent(new AgentOptions
+    {
+        ClientType = ClientType.ResponsesApi,
+        Model = OpenAIChatModels.Gpt5Mini,
+        ReasoningEffort = OpenAIReasoningEffort.High,
+        ReasoningSummaryVerbosity = OpenAIReasoningSummaryVerbosity.Detailed
+    });
+
+    AgentRunResponse response = await agent.RunAsync(question);
+    Console.WriteLine(response);
+    TextReasoningContent? reasoningContent = response.GetTextReasoningContent();
+    if (reasoningContent != null)
+    {
+        Utils.WriteLineYellow("Reasoning Text");
+        Utils.WriteLineDarkGray(reasoningContent.Text);
+    }
+
+    response.Usage.OutputAsInformation();
+}

@@ -107,6 +107,8 @@
     <Project Path="src/The Trello Experiment/The Trello Experiment.csproj" Id="d4d8961f-a27b-4a37-bcff-bf5675d36c4d" />
   </Folder>
   <Folder Name="/Thinking &amp; Reasoning Settings/">
+    <Project Path="src/ReasoningEffort.Anthropic/ReasoningEffort.Anthropic.csproj" Id="310efaa3-9397-49cc-9a78-a05a917bd0c2" />
+    <Project Path="src/ReasoningEffort.Google/ReasoningEffort.Google.csproj" Id="31032388-d86a-47a2-8d9d-bb7d5aaf5d0a" />
     <Project Path="src/ReasoningEffort/ReasoningEffort.OpenAI.csproj" Id="caba07b0-4551-4b07-b2b6-d895836bda18" />
   </Folder>
   <Folder Name="/Token Usage/">
