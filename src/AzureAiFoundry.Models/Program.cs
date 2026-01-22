@@ -26,9 +26,9 @@ async Task CreateAndCallNormalClientAgent(string model, string question)
 
     ChatClientAgent agent = client
         .GetChatClient(model)
-        .CreateAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
+        .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Utils.WriteLineYellow($"Answer from ChatClient using Model: '{model}'");
     Console.WriteLine($"Answer ='{response}'");
     Utils.Separator();
@@ -46,7 +46,7 @@ async Task CreateAndCallFoundryAgent(string model, string question)
         agentIdToDelete = foundryAgent.Value.Id;
 
         ChatClientAgent agent = await client.GetAIAgentAsync(foundryAgent.Value.Id);
-        AgentRunResponse response = await agent.RunAsync(question);
+        AgentResponse response = await agent.RunAsync(question);
         Utils.WriteLineYellow($"Answer from FoundryAgent using Model: '{model}'");
         Console.WriteLine($"Answer ='{response}'");
         Utils.Separator();

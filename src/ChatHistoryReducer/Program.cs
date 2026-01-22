@@ -21,22 +21,22 @@ IChatReducer chatReducer2 = new SummarizingChatReducer(chatClient.AsIChatClient(
 
 ChatClientAgent agent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(new ChatClientAgentOptions
+    .AsAIAgent(new ChatClientAgentOptions
     {
         ChatOptions = new()
         {
             Instructions = "You are a Friendly AI Bot, answering questions",
         },
-        ChatMessageStoreFactory = context => new InMemoryChatMessageStore(chatReducer2, context.SerializedState, context.JsonSerializerOptions)
+        ChatMessageStoreFactory = (context, token) => ValueTask.FromResult<ChatMessageStore>(new InMemoryChatMessageStore(chatReducer2, context.SerializedState, context.JsonSerializerOptions))
     });
 
-AgentThread thread = agent.GetNewThread();
+AgentThread thread = await agent.GetNewThreadAsync();
 
 while (true)
 {
     Console.Write("> ");
     string input = Console.ReadLine() ?? string.Empty;
-    AgentRunResponse response = await agent.RunAsync(input, thread);
+    AgentResponse response = await agent.RunAsync(input, thread);
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 

@@ -20,14 +20,14 @@ OpenAIClient client = new(new ApiKeyCredential(apiKey), new OpenAIClientOptions
 {
     Endpoint = new Uri("https://api.groq.com/openai/v1")
 });
-ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(model).AsAIAgent();
 
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Finland?");
+AgentResponse response = await agent.RunAsync("What is the Capital of Finland?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

@@ -16,10 +16,10 @@ OpenAIClient client = new(secrets.OpenAiApiKey);
 //NB: I was unable to get this to work with Azure OpenAI in regard to downloading files from Code Interpreter
 AIAgent agent = client
     .GetResponsesClient("gpt-4.1")
-    .CreateAIAgent(tools: [new HostedCodeInterpreterTool()]);
+    .AsAIAgent(tools: [new HostedCodeInterpreterTool()]);
 
 string question = "Find Top 10 Countries in the world and make a Bar chart should each countries population in millions";
-AgentRunResponse response = await agent.RunAsync(question);
+AgentResponse response = await agent.RunAsync(question);
 foreach (var message in response.Messages)
 {
     foreach (AIContent content in message.Contents)

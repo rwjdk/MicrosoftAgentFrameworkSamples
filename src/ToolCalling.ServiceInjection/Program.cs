@@ -27,7 +27,7 @@ ToolClass2 toolClass2Instance = serviceProvider.GetRequiredService<ToolClass2>()
 
 ChatClientAgent agent = azureOpenAIClient
     .GetChatClient("gpt-4.1")
-    .CreateAIAgent(
+    .AsAIAgent(
         tools:
         [
             AIFunctionFactory.Create(StaticTool, "tool1"),
@@ -37,7 +37,7 @@ ChatClientAgent agent = azureOpenAIClient
         ],
         services: serviceProvider);
 
-AgentRunResponse response = await agent.RunAsync("Call Tool1");
+AgentResponse response = await agent.RunAsync("Call Tool1");
 Console.WriteLine(response);
 
 response = await agent.RunAsync("Call Tool2");

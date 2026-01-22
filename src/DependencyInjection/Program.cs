@@ -21,7 +21,7 @@ builder.Services.AddSingleton(client);
 ChatClient chatClient = client.GetChatClient("gpt-4.1");
 builder.Services.AddKeyedSingleton("gpt-4.1", chatClient);
 
-ChatClientAgent agent = chatClient.CreateAIAgent();
+ChatClientAgent agent = chatClient.AsAIAgent();
 builder.Services.AddKeyedSingleton("gpt-4.1", agent);
 
 WebApplication app = builder.Build();

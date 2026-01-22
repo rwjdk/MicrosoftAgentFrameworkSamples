@@ -14,16 +14,16 @@ AzureOpenAIClient azureOpenAIClient = new(new Uri(secrets.AzureOpenAiEndpoint), 
 
 ChatClientAgent agent = azureOpenAIClient
     .GetChatClient("gpt-4.1-mini")
-    .CreateAIAgent(
+    .AsAIAgent(
         new ChatClientAgentOptions
         {
-            ChatMessageStoreFactory = context => new MyMessageStore(context)
+            ChatMessageStoreFactory = (context, token) => ValueTask.FromResult<ChatMessageStore>(new MyMessageStore(context))
         }
     );
 
-AgentThread thread = agent.GetNewThread();
+AgentThread thread = await agent.GetNewThreadAsync();
 
-AgentRunResponse response = await agent.RunAsync("Who is Barack Obama", thread);
+AgentResponse response = await agent.RunAsync("Who is Barack Obama", thread);
 Console.WriteLine(response);
 
 JsonElement threadElement = thread.Serialize();
@@ -37,9 +37,9 @@ Utils.WriteLineGreen("Some time passes, and we restore the thread...");
 
 JsonElement restoredThreadElement = JsonSerializer.Deserialize<JsonElement>(toStoreForTheUser);
 
-AgentThread restoredThread = agent.DeserializeThread(restoredThreadElement);
+AgentThread restoredThread = await agent.DeserializeThreadAsync(restoredThreadElement);
 
-AgentRunResponse someTimeLaterResponse = await agent.RunAsync("How Tall is he?", restoredThread);
+AgentResponse someTimeLaterResponse = await agent.RunAsync("How Tall is he?", restoredThread);
 Console.WriteLine(someTimeLaterResponse);
 
 class MyMessageStore(ChatClientAgentOptions.ChatMessageStoreFactoryContext factoryContext) : ChatMessageStore

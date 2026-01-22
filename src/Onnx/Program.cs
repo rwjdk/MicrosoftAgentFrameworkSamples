@@ -13,8 +13,8 @@ string? folderPath = Console.ReadLine();
 if (folderPath != null && Directory.Exists(folderPath))
 {
     OnnxRuntimeGenAIChatClient chatClient = new(folderPath);
-    ChatClientAgent agent = chatClient.CreateAIAgent();
+    ChatClientAgent agent = chatClient.AsAIAgent();
 
-    AgentRunResponse response = await agent.RunAsync("What is the Capital of Bulgaria?");
+    AgentResponse response = await agent.RunAsync("What is the Capital of Bulgaria?");
     Console.WriteLine(response);
 }

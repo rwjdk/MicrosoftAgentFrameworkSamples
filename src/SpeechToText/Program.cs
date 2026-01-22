@@ -16,9 +16,9 @@ AudioClient audioClient = azureOpenAIClient.GetAudioClient("whisper");
 
 var agent = azureOpenAIClient
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
+    .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
-AgentThread agentThread = agent.GetNewThread();
+AgentThread agentThread = await agent.GetNewThreadAsync();
 
 while (true)
 {
@@ -34,7 +34,7 @@ while (true)
     string questionFromAudio = result.Value.Text;
     Console.WriteLine($"> {questionFromAudio}");
 
-    AgentRunResponse response = await agent.RunAsync(questionFromAudio, agentThread);
+    AgentResponse response = await agent.RunAsync(questionFromAudio, agentThread);
     Console.WriteLine(response);
 
     Utils.Separator();

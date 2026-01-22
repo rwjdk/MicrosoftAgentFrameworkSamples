@@ -26,12 +26,12 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 ChatClientAgent agent = client
     .GetChatClient("gpt-5")
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: "Speak like a pirate!",
         tools: [AIFunctionFactory.Create(Tools.GetWeather)]
     );
 
-ChatClientAgentRunResponse<WeatherResponse> response = await agent.RunAsync<WeatherResponse>("What is the Weather like in Paris?");
+ChatClientAgentResponse<WeatherResponse> response = await agent.RunAsync<WeatherResponse>("What is the Weather like in Paris?");
 WeatherResponse result = response.Result;
 Console.WriteLine(response);
 

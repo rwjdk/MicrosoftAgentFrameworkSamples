@@ -16,12 +16,12 @@ Secrets secrets = SecretManager.GetSecrets();
 AzureOpenAIClient azureOpenAiClient = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 OpenAIClient openAiClient = new(new ApiKeyCredential(secrets.OpenAiApiKey));
 
-ChatClientAgent azureOpenAiAgent = azureOpenAiClient.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent();
-ChatClientAgent openAiAgent = openAiClient.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent();
+ChatClientAgent azureOpenAiAgent = azureOpenAiClient.GetChatClient(secrets.ChatDeploymentName).AsAIAgent();
+ChatClientAgent openAiAgent = openAiClient.GetChatClient(secrets.ChatDeploymentName).AsAIAgent();
 
 Scenario scenario = Scenario.Image;
 
-AgentRunResponse response;
+AgentResponse response;
 switch (scenario)
 {
     case Scenario.Text:
@@ -100,10 +100,10 @@ switch (scenario)
 }
 
 
-void ShowResponse(AgentRunResponse agentRunResponse)
+void ShowResponse(AgentResponse AgentResponse)
 {
-    Console.WriteLine(agentRunResponse);
-    agentRunResponse.Usage.OutputAsInformation();
+    Console.WriteLine(AgentResponse);
+    AgentResponse.Usage.OutputAsInformation();
 }
 
 enum Scenario

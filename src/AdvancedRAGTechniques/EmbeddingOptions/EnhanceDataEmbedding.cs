@@ -14,7 +14,7 @@ public static class EnhanceDataEmbedding
     {
         ChatClientAgent genreAgent = client
             .GetChatClient(secrets.ChatDeploymentName) //You might get away with a cheaper model here as task is easy for AI
-            .CreateAIAgent("""
+            .AsAIAgent("""
                            You are an expert in finding the Genre of a movie based on it's title and plot
                            Pick a single genre based on the following:
                            - Adventure
@@ -31,7 +31,7 @@ public static class EnhanceDataEmbedding
         int counter = 0;
         foreach (Movie movie in movieDataForRag)
         {
-            ChatClientAgentRunResponse<string> genreResponse = await genreAgent.RunAsync<string>($"What is the genre of this movie: {movie.GetTitleAndDetails()}?");
+            ChatClientAgentResponse<string> genreResponse = await genreAgent.RunAsync<string>($"What is the genre of this movie: {movie.GetTitleAndDetails()}?");
             string genre = genreResponse.Result;
 
             counter++;

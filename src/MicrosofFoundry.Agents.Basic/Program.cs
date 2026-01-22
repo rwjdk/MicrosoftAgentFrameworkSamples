@@ -59,9 +59,9 @@ catch (ClientResultException e)
     }
 }
 
-ChatClientAgent agentByName = client.GetAIAgent(name: myAgentName);
+ChatClientAgent agentByName = client.AsAIAgent(myAgentName);
 
-AgentRunResponse response = await agentByName.RunAsync("Hi there");
+AgentResponse response = await agentByName.RunAsync("Hi there");
 Console.WriteLine(response);
 
 response = await agentByName.RunAsync("What options do the AddCardAsync method in 'TrelloDotNet' (use tools)");
@@ -79,12 +79,12 @@ Console.WriteLine(response);
 //Let's make a V2 with new instructions
 await CreateAgent("Speak like a pirate");
 
-ChatClientAgent agentV2 = client.GetAIAgent(name: myAgentName);
+ChatClientAgent agentV2 = client.AsAIAgent(myAgentName);
 response = await agentV2.RunAsync("Hi there");
 Console.WriteLine(response);
 
 AgentVersion agentV1 = (await client.Agents.GetAgentVersionAsync(myAgentName, "1")).Value;
-ChatClientAgent agentByVersion = client.GetAIAgent(agentV1);
+ChatClientAgent agentByVersion = client.AsAIAgent(agentV1);
 
 response = await agentByVersion.RunAsync("Hi Agent 1");
 Console.WriteLine(response);
@@ -121,9 +121,9 @@ async Task CreateAgent(string instructions)
     );
 }
 
-async Task GetAndLaunchCodeInterpreterGeneratedFile(AgentRunResponse agentRunResponse, AIProjectClient aiProjectClient)
+async Task GetAndLaunchCodeInterpreterGeneratedFile(AgentResponse AgentResponse, AIProjectClient aiProjectClient)
 {
-    foreach (ChatMessage message in agentRunResponse.Messages)
+    foreach (ChatMessage message in AgentResponse.Messages)
     {
         foreach (AIContent content in message.Contents)
         {

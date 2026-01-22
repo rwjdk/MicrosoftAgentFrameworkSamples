@@ -19,16 +19,16 @@ const string apiKey = "<yourApiKey>";
 const string model = "<yourModelDeploymentName>";
 
 AzureOpenAIClient client = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
-ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(model).AsAIAgent();
 
 //Simple Response
-AgentRunResponse response = await agent.RunAsync("What is the capital of France?");
+AgentResponse response = await agent.RunAsync("What is the capital of France?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
 //Streaming Result
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

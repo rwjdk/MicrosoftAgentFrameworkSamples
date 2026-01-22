@@ -30,7 +30,7 @@ listOfTools.Add(new ApprovalRequiredAIFunction(AIFunctionFactory.Create(Dangerou
 
 AIAgent agent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: "You are a File Expert. When working with files you need to provide the full path; not just the filename",
         tools: listOfTools
     )
@@ -38,14 +38,14 @@ AIAgent agent = client
     .Use(FunctionCallMiddleware) //Middleware
     .Build();
 
-AgentThread thread = agent.GetNewThread();
+AgentThread thread = await agent.GetNewThreadAsync();
 
 while (true)
 {
     Console.Write("> ");
     string? input = Console.ReadLine();
     ChatMessage message = new(ChatRole.User, input);
-    AgentRunResponse response = await agent.RunAsync(message, thread);
+    AgentResponse response = await agent.RunAsync(message, thread);
     List<UserInputRequestContent> userInputRequests = response.UserInputRequests.ToList();
     while (userInputRequests.Count > 0)
     {
@@ -89,7 +89,7 @@ var services = new ServiceCollection()
 
 AIAgent agent = client
     .GetChatClient(configuration.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: "You are a File Expert. When working with files you need to provide the full path; not just the filename",
         tools: listOfTools
     )

@@ -37,7 +37,7 @@ async Task Baseline25()
 {
     Google.GenAI.Client client = new(apiKey: apiKey);
     ChatClientAgent agent = new ChatClientAgent(client.AsIChatClient("gemini-2.5-flash"));
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 }
@@ -46,7 +46,7 @@ async Task Baseline3()
 {
     Google.GenAI.Client client = new(apiKey: apiKey);
     ChatClientAgent agent = new ChatClientAgent(client.AsIChatClient("gemini-3-flash-preview"));
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 }
@@ -70,7 +70,7 @@ async Task Raw25()
         }
     });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     foreach (ChatMessage message in response.Messages)
     {
@@ -106,7 +106,7 @@ async Task Raw3()
         }
     });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     foreach (ChatMessage message in response.Messages)
     {
@@ -133,7 +133,7 @@ async Task AgentFrameworkToolkit25()
         //ThinkingLevel not supported (Setting Both >> Exception)
     });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     TextReasoningContent? reasoningContent = response.GetTextReasoningContent();
     if (reasoningContent != null)
@@ -155,7 +155,7 @@ async Task AgentFrameworkToolkit3()
         ThinkingLevel = ThinkingLevel.HIGH //Pro can set HIGH/LOW - Flash can set HIGH/MEDIUM/LOW/MINIMAL
     });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     TextReasoningContent? reasoningContent = response.GetTextReasoningContent();
     if (reasoningContent != null)

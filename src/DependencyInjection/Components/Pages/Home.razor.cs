@@ -19,13 +19,13 @@ public partial class Home(AzureOpenAIClient azureOpenAIClient, [FromKeyedService
 
         ChatClientAgent agent = azureOpenAIClient
             .GetChatClient("gpt-4.1")
-            .CreateAIAgent();
+            .AsAIAgent();
 
         //Alternatives
-        //agent = chatClient.CreateAIAgent();
+        //agent = chatClient.AsAIAgent();
         //agent = agentInjected;
 
-        AgentRunResponse response = await agent.RunAsync(_question);
+        AgentResponse response = await agent.RunAsync(_question);
         _answer = response.Text;
         StateHasChanged();
     }

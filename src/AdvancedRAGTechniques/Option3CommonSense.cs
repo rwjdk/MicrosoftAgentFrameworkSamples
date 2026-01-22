@@ -24,9 +24,9 @@ public static class Option3CommonSense
 
         ChatClientAgent intentAgent = client
             .GetChatClient(secrets.ChatDeploymentName)
-            .CreateAIAgent(instructions: "You are good at inferring the intent of the user");
+            .AsAIAgent(instructions: "You are good at inferring the intent of the user");
 
-        ChatClientAgentRunResponse<IntentResponse> intentResponse = await intentAgent.RunAsync<IntentResponse>(question);
+        ChatClientAgentResponse<IntentResponse> intentResponse = await intentAgent.RunAsync<IntentResponse>(question);
         IntentResponse intent = intentResponse.Result;
         switch (intent.TypeOfQuestion)
         {
@@ -41,13 +41,13 @@ public static class Option3CommonSense
                 MovieVectorStoreRecord[] topMovies = matchingMovies.OrderByDescending(x => x.Rating).Take(intent.NumberOfResults).ToArray();
 
                 AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
-                    .CreateAIAgent(
+                    .AsAIAgent(
                         instructions: $"""
                                        You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)
                                        You are given the data for the user's question '{question.Text}' and need to present it as if you did the answer
                                        """);
 
-                AgentRunResponse response = await agent.RunAsync(string.Join(";", topMovies.Select(x => x.GetTitleAndDetails())));
+                AgentResponse response = await agent.RunAsync(string.Join(";", topMovies.Select(x => x.GetTitleAndDetails())));
                 Console.WriteLine(response);
                 response.Usage.OutputAsInformation();
                 break;
@@ -56,7 +56,7 @@ public static class Option3CommonSense
             {
                 EnhancedSearchTool searchTool = new(collection);
                 AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
-                    .CreateAIAgent(
+                    .AsAIAgent(
                         instructions: """
                                       You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)
                                       When using tools use keywords only based on the users question so it is better for similarity search
@@ -67,7 +67,7 @@ public static class Option3CommonSense
                     .Use(Middleware.FunctionCallMiddleware)
                     .Build();
 
-                AgentRunResponse response = await agent.RunAsync(question);
+                AgentResponse response = await agent.RunAsync(question);
                 Console.WriteLine(response);
                 response.Usage.OutputAsInformation();
             }
@@ -76,7 +76,7 @@ public static class Option3CommonSense
             {
                 OriginalSearchTool searchTool = new(collection);
                 AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
-                    .CreateAIAgent(
+                    .AsAIAgent(
                         instructions: """
                                       You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)
                                       When using tools use keywords only based on the users question so it is better for similarity search
@@ -87,7 +87,7 @@ public static class Option3CommonSense
                     .Use(Middleware.FunctionCallMiddleware)
                     .Build();
 
-                AgentRunResponse response = await agent.RunAsync(question);
+                AgentResponse response = await agent.RunAsync(question);
                 Console.WriteLine(response);
                 response.Usage.OutputAsInformation();
                 break;

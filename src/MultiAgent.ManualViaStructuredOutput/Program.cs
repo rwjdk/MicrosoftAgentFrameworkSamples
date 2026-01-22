@@ -19,9 +19,9 @@ Console.Write("> ");
 string question = Console.ReadLine()!;
 
 //Determine initial intent
-ChatClientAgent intentAgent = chatClientMini.CreateAIAgent(name: "IntentAgent", instructions: "Determine what type of question was asked. Never answer yourself");
+ChatClientAgent intentAgent = chatClientMini.AsAIAgent(name: "IntentAgent", instructions: "Determine what type of question was asked. Never answer yourself");
 
-AgentRunResponse<IntentResult> initialResponse = await intentAgent.RunAsync<IntentResult>(question);
+AgentResponse<IntentResult> initialResponse = await intentAgent.RunAsync<IntentResult>(question);
 IntentResult intentResult = initialResponse.Result;
 
 //Branch out based on Intent
@@ -29,20 +29,20 @@ switch (intentResult.Intent)
 {
     case Intent.MusicQuestion:
         Utils.WriteLineGreen("Music Question");
-        ChatClientAgent musicNerdAgent = chatClient.CreateAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd answering questions (Give a question on max 200 chars)");
-        AgentRunResponse responseFromMusicNerd = await musicNerdAgent.RunAsync(question);
+        ChatClientAgent musicNerdAgent = chatClient.AsAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd answering questions (Give a question on max 200 chars)");
+        AgentResponse responseFromMusicNerd = await musicNerdAgent.RunAsync(question);
         Console.WriteLine(responseFromMusicNerd);
         break;
     case Intent.MovieQuestion:
         Utils.WriteLineGreen("Movie Question");
-        ChatClientAgent movieNerdAgent = chatClient.CreateAIAgent(name: "MovieNerd", instructions: "You are a Movie Nerd answering questions (Give a question on max 200 chars)");
-        AgentRunResponse responseFromMovieNerd = await movieNerdAgent.RunAsync(question);
+        ChatClientAgent movieNerdAgent = chatClient.AsAIAgent(name: "MovieNerd", instructions: "You are a Movie Nerd answering questions (Give a question on max 200 chars)");
+        AgentResponse responseFromMovieNerd = await movieNerdAgent.RunAsync(question);
         Console.WriteLine(responseFromMovieNerd);
         break;
     case Intent.Other:
         Utils.WriteLineGreen("Other Question");
         //Let Intent agent answer itself
-        AgentRunResponse otherResponse = await intentAgent.RunAsync(question);
+        AgentResponse otherResponse = await intentAgent.RunAsync(question);
         Console.WriteLine(otherResponse);
         break;
     default:

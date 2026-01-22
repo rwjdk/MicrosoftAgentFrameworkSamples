@@ -16,14 +16,14 @@ const string apiKey = "<YourAPIKey>";
 const string model = "<yourModelName>"; //Example: gpt-4.1
 
 OpenAIClient client = new(apiKey);
-ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(model).AsAIAgent();
 
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Germany?");
+AgentResponse response = await agent.RunAsync("What is the Capital of Germany?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

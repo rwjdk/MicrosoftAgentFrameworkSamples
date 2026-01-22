@@ -25,7 +25,7 @@ List<AITool> listOfTools = methods.Select(x => AIFunctionFactory.Create(x, targe
 
 AIAgent agent = client
     .GetChatClient("gpt-4.1-mini")
-    .CreateAIAgent(
+    .AsAIAgent(
         name: "FileAgent",
         instructions: "You are a File Expert. When working with files you need to provide the full path; not just the filename",
         tools: listOfTools

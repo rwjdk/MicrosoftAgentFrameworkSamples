@@ -40,7 +40,7 @@ try
     //NB: I was unable to get this to work with Azure OpenAI in regard to downloading files from Code Interpreter
     AIAgent agent = client
         .GetResponsesClient("gpt-4.1")
-        .CreateAIAgent(
+        .AsAIAgent(
             instructions: "Only use tools. Never your world-knowledge",
             tools:
             [
@@ -50,7 +50,7 @@ try
                 }
             ]);
 
-    AgentRunResponse response = await agent.RunAsync("What is word of the day?");
+    AgentResponse response = await agent.RunAsync("What is word of the day?");
     Console.Write(response);
     response.Usage.OutputAsInformation();
 }

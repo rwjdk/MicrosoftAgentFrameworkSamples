@@ -19,7 +19,7 @@ class PizzaWarningExecutor(ChatClientAgent warningToCustomerAgent) : ReflectingE
             sb.AppendLine($" - {warning}: {warning.Value}");
         }
 
-        AgentRunResponse response = await warningToCustomerAgent.RunAsync($"Explain to the use can't we can't for-fill their order do to the following: {sb}", cancellationToken: cancellationToken);
+        AgentResponse response = await warningToCustomerAgent.RunAsync($"Explain to the use can't we can't for-fill their order do to the following: {sb}", cancellationToken: cancellationToken);
         Console.WriteLine("Send as email: " + response);
     }
 }

@@ -13,10 +13,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 HttpClient httpClient = new();
 string serverRoot = "https://localhost:7219";
 
-ChatClientAgent changeColorAgent = (new AGUIChatClient(httpClient, $"{serverRoot}/clientToolAgent")).CreateAIAgent(tools: [AIFunctionFactory.Create(ChangeColor)]);
-ChatClientAgent weatherAgent = (new AGUIChatClient(httpClient, $"{serverRoot}/weatherAgent")).CreateAIAgent();
-ChatClientAgent weatherAgentWithStructuredContent = (new AGUIChatClient(httpClient, $"{serverRoot}/weatherAgentWithStructuredContent")).CreateAIAgent();
-ChatClientAgent movieAgent = (new AGUIChatClient(httpClient, $"{serverRoot}/movieAgent")).CreateAIAgent();
+ChatClientAgent changeColorAgent = (new AGUIChatClient(httpClient, $"{serverRoot}/clientToolAgent")).AsAIAgent(tools: [AIFunctionFactory.Create(ChangeColor)]);
+ChatClientAgent weatherAgent = (new AGUIChatClient(httpClient, $"{serverRoot}/weatherAgent")).AsAIAgent();
+ChatClientAgent weatherAgentWithStructuredContent = (new AGUIChatClient(httpClient, $"{serverRoot}/weatherAgentWithStructuredContent")).AsAIAgent();
+ChatClientAgent movieAgent = (new AGUIChatClient(httpClient, $"{serverRoot}/movieAgent")).AsAIAgent();
 
 builder.Services.AddSingleton(new AgentCollection(movieAgent, weatherAgent, weatherAgentWithStructuredContent, changeColorAgent));
 

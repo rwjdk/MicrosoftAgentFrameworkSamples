@@ -14,12 +14,12 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 ChatClientAgent agent = client
     .GetChatClient("gpt-5-mini")
-    .CreateAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
+    .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
 string question = "What is the capital of France and how many people live there?";
 
 //Simple
-AgentRunResponse response = await agent.RunAsync(question);
+AgentResponse response = await agent.RunAsync(question);
 Console.WriteLine(response);
 
 Utils.WriteLineDarkGray($"- Input Tokens: {response.Usage?.InputTokenCount}");
@@ -30,8 +30,8 @@ Utils.WriteLineDarkGray($"- Output Tokens: {response.Usage?.OutputTokenCount} " 
 Utils.Separator();
 
 //Streaming
-List<AgentRunResponseUpdate> updates = [];
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(question))
+List<AgentResponseUpdate> updates = [];
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(question))
 {
     updates.Add(update);
     Console.Write(update);
@@ -39,7 +39,7 @@ await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(question
 
 Console.WriteLine();
 
-AgentRunResponse collectedResponseFromStreaming = updates.ToAgentRunResponse();
+AgentResponse collectedResponseFromStreaming = updates.ToAgentResponse();
 Utils.WriteLineDarkGray($"- Input Tokens (Streaming): {collectedResponseFromStreaming.Usage?.InputTokenCount}");
 Utils.WriteLineDarkGray($"- Output Tokens (Streaming): {collectedResponseFromStreaming.Usage?.OutputTokenCount} " +
                         $"({collectedResponseFromStreaming.Usage?.ReasoningTokenCount} was used for reasoning)");

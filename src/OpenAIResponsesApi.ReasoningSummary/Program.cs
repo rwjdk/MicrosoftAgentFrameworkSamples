@@ -16,7 +16,7 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 ChatClientAgent agent = client
     .GetResponsesClient("gpt-5-mini")
-    .CreateAIAgent(new ChatClientAgentOptions
+    .AsAIAgent(new ChatClientAgentOptions
     {
         ChatOptions = new ChatOptions
         {
@@ -31,7 +31,7 @@ ChatClientAgent agent = client
         }
     });
 
-AgentRunResponse response = await agent.RunAsync("What is the capital of france and how many live there?");
+AgentResponse response = await agent.RunAsync("What is the capital of france and how many live there?");
 
 foreach (ChatMessage message in response.Messages)
 {

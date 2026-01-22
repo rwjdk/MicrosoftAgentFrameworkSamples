@@ -10,5 +10,5 @@ AmazonBedrockRuntimeClient runtimeClient = new(RegionEndpoint.EUNorth1); //<-- Y
 
 ChatClientAgent agent = new(runtimeClient.AsIChatClient("<YourModel>"));
 
-AgentRunResponse response = await agent.RunAsync("Hello");
+AgentResponse response = await agent.RunAsync("Hello");
 Console.WriteLine(response);

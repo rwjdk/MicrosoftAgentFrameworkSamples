@@ -13,7 +13,7 @@ const string apiKey = "<yourApiKey>";
 const string model = Mistral.SDK.ModelDefinitions.MistralSmall;
 
 MistralClient mistralClient = new MistralClient(new APIAuthentication(apiKey));
-AIAgent agent = mistralClient.Completions.CreateAIAgent(new ChatClientAgentOptions
+AIAgent agent = mistralClient.Completions.AsAIAgent(new ChatClientAgentOptions
 {
     ChatOptions = new ChatOptions
     {
@@ -21,12 +21,12 @@ AIAgent agent = mistralClient.Completions.CreateAIAgent(new ChatClientAgentOptio
     }
 });
 
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Australia?");
+AgentResponse response = await agent.RunAsync("What is the Capital of Australia?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

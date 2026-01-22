@@ -23,9 +23,9 @@ public class Tools(AzureOpenAIClient azureOpenAIClient)
     {
         ChatClientAgent agent = azureOpenAIClient
             .GetChatClient("gpt-4.1-mini")
-            .CreateAIAgent(instructions: "You are John the Pirate, answering children's questions about Pirates");
+            .AsAIAgent(instructions: "You are John the Pirate, answering children's questions about Pirates");
 
-        AgentRunResponse response = await agent.RunAsync(question);
+        AgentResponse response = await agent.RunAsync(question);
         return response.Text;
     }
 

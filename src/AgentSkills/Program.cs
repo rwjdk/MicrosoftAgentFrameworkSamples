@@ -43,14 +43,14 @@ AzureOpenAIAgent agent = agentFactory.CreateAgent(new AgentOptions
     }
 });
 
-AgentThread thread = agent.GetNewThread();
+AgentThread thread = await agent.GetNewThreadAsync();
 
 Console.OutputEncoding = Encoding.UTF8;
 while (true)
 {
     Console.Write("> ");
     string message = Console.ReadLine() ?? "";
-    AgentRunResponse response = await agent.RunAsync(message, thread);
+    AgentResponse response = await agent.RunAsync(message, thread);
     Console.WriteLine(response);
     Console.WriteLine();
     Console.ForegroundColor = ConsoleColor.Gray;

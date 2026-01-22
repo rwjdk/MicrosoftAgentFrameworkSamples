@@ -17,14 +17,14 @@ const string model = "<yourModelName>"; //Example: deepseek/DeepSeek-V3-0324
 ChatClientAgent agent = new ChatCompletionsClient(
     new Uri("https://models.github.ai/inference"),
     new AzureKeyCredential(gitHubPatToken),
-    new AzureAIInferenceClientOptions()).AsIChatClient(model).CreateAIAgent();
+    new AzureAIInferenceClientOptions()).AsIChatClient(model).AsAIAgent();
 
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Denmark?");
+AgentResponse response = await agent.RunAsync("What is the Capital of Denmark?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

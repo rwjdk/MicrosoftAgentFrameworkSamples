@@ -49,9 +49,9 @@ try
 
     AIAgent agent = (await client.GetAIAgentAsync(aiFoundryAgent.Value.Id));
 
-    AgentThread thread = agent.GetNewThread();
+    AgentThread thread = await agent.GetNewThreadAsync();
 
-    AgentRunResponse response = await agent.RunAsync("What is word of the day?", thread);
+    AgentResponse response = await agent.RunAsync("What is word of the day?", thread);
     Console.WriteLine(response);
     foreach (ChatMessage message in response.Messages)
     {

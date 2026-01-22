@@ -32,7 +32,7 @@ IList<McpClientTool> toolsInGitHubMcp = await gitHubMcpClient.ListToolsAsync();
 
 AIAgent agent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: "You are a GitHub Expert",
         tools: toolsInGitHubMcp.Cast<AITool>().ToList()
     )
@@ -40,14 +40,14 @@ AIAgent agent = client
     .Use(FunctionCallMiddleware) //Middleware
     .Build();
 
-AgentThread thread = agent.GetNewThread();
+AgentThread thread = await agent.GetNewThreadAsync();
 
 while (true)
 {
     Console.Write("> ");
     string? input = Console.ReadLine();
     ChatMessage message = new(ChatRole.User, input);
-    AgentRunResponse response = await agent.RunAsync(message, thread);
+    AgentResponse response = await agent.RunAsync(message, thread);
 
     Console.WriteLine(response);
 

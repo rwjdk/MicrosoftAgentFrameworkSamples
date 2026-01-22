@@ -11,7 +11,7 @@ const string serverUrl = "http://localhost:5000";
 ConsoleColor textColor = ConsoleColor.White;
 
 AGUIChatClient chatClient = new AGUIChatClient(httpClient, serverUrl);
-AIAgent agent = chatClient.CreateAIAgent(tools: [AIFunctionFactory.Create(ChangeColor, name: "change_color")]);
+AIAgent agent = chatClient.AsAIAgent(tools: [AIFunctionFactory.Create(ChangeColor, name: "change_color")]);
 
 //Note that certain Agent Feature do not work in AG-UI (Instructions and Threads) so need to initialized/maintained manually
 List<ChatMessage> messages = [new ChatMessage(ChatRole.System, "You are a nice AI Agent")];
@@ -27,8 +27,8 @@ while (true)
 
     messages.Add(new ChatMessage(ChatRole.User, message));
 
-    List<AgentRunResponseUpdate> updates = [];
-    await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(messages))
+    List<AgentResponseUpdate> updates = [];
+    await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(messages))
     {
         updates.Add(update);
         foreach (AIContent content in update.Contents)
@@ -70,7 +70,7 @@ while (true)
         }
     }
 
-    AgentRunResponse fullResponse = updates.ToAgentRunResponse();
+    AgentResponse fullResponse = updates.ToAgentResponse();
     messages.AddRange(fullResponse.Messages);
 
     Console.WriteLine();

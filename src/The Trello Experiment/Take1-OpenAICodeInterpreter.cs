@@ -14,7 +14,7 @@ public static class Take1OpenAICodeInterpreter
     {
         ChatClientAgent agent = azureOpenAIClient
             .GetResponsesClient("gpt-5-mini")
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: $"""
                                You are a Trello Expert with access to the Trello and the API
 
@@ -27,7 +27,7 @@ public static class Take1OpenAICodeInterpreter
                 tools: [new HostedCodeInterpreterTool()]
             );
 
-        AgentRunResponse response = await agent.RunAsync("What Trello Boards do I have?");
+        AgentResponse response = await agent.RunAsync("What Trello Boards do I have?");
         Console.WriteLine(response);
     }
 }

@@ -18,14 +18,14 @@ OpenAIClient client = new(new ApiKeyCredential(apiKey), new OpenAIClientOptions
 {
     Endpoint = new Uri("https://openrouter.ai/api/v1")
 });
-ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(model).AsAIAgent();
 
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Norway?");
+AgentResponse response = await agent.RunAsync("What is the Capital of Norway?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

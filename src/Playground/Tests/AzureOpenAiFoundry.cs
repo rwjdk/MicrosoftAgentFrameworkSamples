@@ -51,16 +51,16 @@ public class AzureOpenAiFoundry
                 .UseOpenTelemetry(sourceName: sourceName, telemetryAgent => { telemetryAgent.EnableSensitiveData = true; })
                 .Build();
 
-            AgentThread thread = agent.GetNewThread();
+            AgentThread thread = await agent.GetNewThreadAsync();
 
-            List<AgentRunResponseUpdate> updates = [];
-            await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)", thread))
+            List<AgentResponseUpdate> updates = [];
+            await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)", thread))
             {
                 updates.Add(update);
                 Console.Write(update);
             }
 
-            AgentRunResponse fullResponse = updates.ToAgentRunResponse();
+            AgentResponse fullResponse = updates.ToAgentResponse();
             fullResponse.Usage.OutputAsInformation();
 
             //Get citations

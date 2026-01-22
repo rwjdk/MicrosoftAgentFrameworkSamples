@@ -20,7 +20,7 @@ public static class Take3TheSensibleChoice
 
         AIAgent agent = azureOpenAIClient
             .GetResponsesClient("gpt-4.1-mini")
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: """
                               You are a Trello Expert 
 
@@ -37,7 +37,7 @@ public static class Take3TheSensibleChoice
                 ]
             ).AsBuilder().Use(FunctionCallMiddleware).Build();
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();
 
         while (true)
         {
@@ -46,7 +46,7 @@ public static class Take3TheSensibleChoice
             if (!string.IsNullOrWhiteSpace(input))
             {
                 ChatMessage message = new(ChatRole.User, input);
-                await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(message, thread))
+                await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(message, thread))
                 {
                     Console.Write(update);
                 }

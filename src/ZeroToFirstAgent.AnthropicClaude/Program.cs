@@ -28,12 +28,12 @@ ChatClientAgentRunOptions chatClientAgentRunOptions = new(new()
 });
 
 ChatClientAgent agent = new(client);
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Australia?", options: chatClientAgentRunOptions);
+AgentResponse response = await agent.RunAsync("What is the Capital of Australia?", options: chatClientAgentRunOptions);
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?", options: chatClientAgentRunOptions))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?", options: chatClientAgentRunOptions))
 {
     Console.Write(update);
 }

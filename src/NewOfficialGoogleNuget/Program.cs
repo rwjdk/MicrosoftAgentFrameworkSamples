@@ -22,7 +22,7 @@ IChatClient iChatClient = client
 
 //Normal Agent
 ChatClientAgent chatAgent = new ChatClientAgent(iChatClient);
-AgentRunResponse chatResponse = await chatAgent.RunAsync("What is the capital of France?");
+AgentResponse chatResponse = await chatAgent.RunAsync("What is the capital of France?");
 Console.WriteLine(chatResponse);
 
 //----------------------------------------------------------------------------------------------------------------
@@ -37,14 +37,14 @@ ChatClientAgent toolAgent = new ChatClientAgent(iChatClient,
     services: serviceProvider // 👍👍👍 was not possible in the unofficial NuGet
 );
 
-List<AgentRunResponseUpdate> updates = [];
-await foreach (AgentRunResponseUpdate update in toolAgent.RunStreamingAsync("What is the weather like in paris?"))
+List<AgentResponseUpdate> updates = [];
+await foreach (AgentResponseUpdate update in toolAgent.RunStreamingAsync("What is the weather like in paris?"))
 {
     updates.Add(update);
     Console.Write(update); // 👍👍👍 was not possible in the unofficial NuGet
 }
 
-AgentRunResponse response = updates.ToAgentRunResponse();
+AgentResponse response = updates.ToAgentResponse();
 foreach (ChatMessage message in response.Messages)
 {
     Console.WriteLine("- Role: " + message.Role); // 👍👍👍 was not possible in the unofficial NuGet
@@ -57,14 +57,14 @@ AIToolsFactory toolsFactory = new AIToolsFactory();
 await using McpClientTools mcpClientTools = await toolsFactory.GetToolsFromRemoteMcpAsync("https://trellodotnetassistantbackend.azurewebsites.net/runtime/webhooks/mcp?code=Tools");
 ChatClientAgent mcpToolAgent = new ChatClientAgent(iChatClient, tools: mcpClientTools.Tools);
 
-AgentRunResponse mcpToolResponse = await mcpToolAgent.RunAsync("Call the 'getting_started' tool to find what URL the nuget is on");
+AgentResponse mcpToolResponse = await mcpToolAgent.RunAsync("Call the 'getting_started' tool to find what URL the nuget is on");
 Console.WriteLine(mcpToolResponse); // 👍👍👍 was not possible in the unofficial NuGet
 
 //----------------------------------------------------------------------------------------------------------------
 
 //Structured Output
 ChatClientAgent structuredOutputAgent = new ChatClientAgent(iChatClient); //This did not work with the unofficial NuGet
-ChatClientAgentRunResponse<MovieResult> structuredOutputResponse = await structuredOutputAgent.RunAsync<MovieResult>("List top 3 movies according to IMDB");
+ChatClientAgentResponse<MovieResult> structuredOutputResponse = await structuredOutputAgent.RunAsync<MovieResult>("List top 3 movies according to IMDB");
 Console.WriteLine(structuredOutputResponse);
 
 //----------------------------------------------------------------------------------------------------------------
@@ -98,7 +98,7 @@ ChatClientAgent agent = new ChatClientAgent(iChatClient, new ChatClientAgentOpti
     }
 });
 
-AgentRunResponse thinkingResponse = await agent.RunAsync("Why is the Sky Blue");
+AgentResponse thinkingResponse = await agent.RunAsync("Why is the Sky Blue");
 Console.WriteLine(thinkingResponse);
 
 Console.WriteLine("- Reasoning Token: " + thinkingResponse.Usage!.ReasoningTokenCount); // 👍👍👍 was not possible in the unofficial NuGet

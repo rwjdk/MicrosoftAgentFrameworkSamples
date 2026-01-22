@@ -36,7 +36,7 @@ public static class Extensions
 
         AIAgent agent = client
             .GetChatClient(secrets.ChatDeploymentName)
-            .CreateAIAgent(
+            .AsAIAgent(
                 name: "MyBlazorAgent",
                 instructions: "You are a Friendly AI Bot, answering questions")
             .AsBuilder()

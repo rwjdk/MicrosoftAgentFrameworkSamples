@@ -24,7 +24,7 @@ public partial class Home(AgentCollection agentCollection)
         if (!string.IsNullOrWhiteSpace(_city))
         {
             _weatherText = null;
-            await foreach (AgentRunResponseUpdate update in agentCollection.WeatherAgent.RunStreamingAsync(_city))
+            await foreach (AgentResponseUpdate update in agentCollection.WeatherAgent.RunStreamingAsync(_city))
             {
                 _weatherText += update;
             }
@@ -37,7 +37,7 @@ public partial class Home(AgentCollection agentCollection)
         {
             _weatherTextStructure = null;
 
-            await foreach (AgentRunResponseUpdate update in agentCollection.WeatherAgentWithStructuredContent.RunStreamingAsync(_cityStructured))
+            await foreach (AgentResponseUpdate update in agentCollection.WeatherAgentWithStructuredContent.RunStreamingAsync(_cityStructured))
             {
                 _weatherTextStructure += update;
                 foreach (AIContent content in update.Contents)
@@ -56,7 +56,7 @@ public partial class Home(AgentCollection agentCollection)
     {
         if (!string.IsNullOrWhiteSpace(_movieName))
         {
-            AgentRunResponse response = await agentCollection.MovieAgent.RunAsync(_movieName);
+            AgentResponse response = await agentCollection.MovieAgent.RunAsync(_movieName);
             _movieResult = MovieResult.FromJson(response.Text);
         }
     }

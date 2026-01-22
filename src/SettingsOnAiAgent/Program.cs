@@ -21,9 +21,9 @@ Secrets secrets = SecretManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
-ChatClientAgent noSettingAgent = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent();
+ChatClientAgent noSettingAgent = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent();
 
-ChatClientAgent agent = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent(
+ChatClientAgent agent = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent(
     instructions: "You are a cool surfer dude",
     tools: [ /*Todo: In a separate video*/]);
 
@@ -41,7 +41,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddConsoleExporter()
     .Build();
 
-AIAgent agentWithAllSettings = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent
+AIAgent agentWithAllSettings = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent
     (
         //Optional system instructions that define the agent's behavior and personality.
         instructions: "Speak like a Pirate",
@@ -89,14 +89,14 @@ AIAgent agentWithAllSettings = client.GetChatClient(secrets.ChatDeploymentName).
     .UseOpenTelemetry(sourceName) //Middleware
     .Build();
 
-AgentRunResponse response = await agentWithAllSettings.RunAsync("What is the capital of France?");
+AgentResponse response = await agentWithAllSettings.RunAsync("What is the capital of France?");
 Console.WriteLine(response);
 
 #endregion
 
 #region Even more options via ChatClientAgentOptions
 
-ChatClientAgent advancedAgent = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent(
+ChatClientAgent advancedAgent = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent(
     new ChatClientAgentOptions
     {
         ChatOptions = new ChatOptions

@@ -16,17 +16,17 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 AIAgent agent = client
     .GetResponsesClient("gpt-5-codex")
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: "You are a C# Developer"
     );
 
-List<AgentRunResponseUpdate> updates = [];
+List<AgentResponseUpdate> updates = [];
 string question = "Show me an C# Example of a method adding two numbers";
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(question))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(question))
 {
     updates.Add(update);
     Console.Write(update);
 }
 
-AgentRunResponse fullResponse = updates.ToAgentRunResponse();
+AgentResponse fullResponse = updates.ToAgentResponse();
 fullResponse.Usage.OutputAsInformation();

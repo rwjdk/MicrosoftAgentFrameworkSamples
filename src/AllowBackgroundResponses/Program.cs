@@ -17,29 +17,29 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 AIAgent agent = client
     .GetResponsesClient("gpt-5")
-    .CreateAIAgent();
+    .AsAIAgent();
 
 Utils.WriteLineGreen("SimpleQuestion-BEGIN");
-AgentRunResponse response1 = await agent.RunAsync("What is the capital of France?");
+AgentResponse response1 = await agent.RunAsync("What is the capital of France?");
 Console.WriteLine(response1);
 Utils.WriteLineGreen("SimpleQuestion-END");
 
 Console.Clear();
 
 Utils.WriteLineGreen("BigQuestion-BEGIN");
-AgentRunResponse response2 = await agent.RunAsync("Write a 1000 word essay on Pigs in Space");
+AgentResponse response2 = await agent.RunAsync("Write a 1000 word essay on Pigs in Space");
 Console.WriteLine(response2);
 Utils.WriteLineGreen("BigQuestion-END");
 
 Console.Clear();
 
 Utils.WriteLineGreen("BigQuestion-BACKGROUND-BEGIN");
-AgentThread agentThread = agent.GetNewThread();
+AgentThread agentThread = await agent.GetNewThreadAsync();
 ChatClientAgentRunOptions options = new ChatClientAgentRunOptions
 {
     AllowBackgroundResponses = true
 };
-AgentRunResponse response3 = await agent.RunAsync("Write a 2000 word essay on Pigs in Space", agentThread, options: options);
+AgentResponse response3 = await agent.RunAsync("Write a 2000 word essay on Pigs in Space", agentThread, options: options);
 Utils.WriteLineGreen("BigQuestion-BACKGROUND-END");
 
 int counter = 0;

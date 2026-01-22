@@ -17,7 +17,7 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 AIAgent stringAgent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         name: "StringAgent",
         instructions: "You are string manipulator",
         tools:
@@ -32,7 +32,7 @@ AIAgent stringAgent = client
 
 AIAgent numberAgent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         name: "NumberAgent",
         instructions: "You are a number expert",
         tools:
@@ -48,7 +48,7 @@ Utils.WriteLineGreen("DELEGATE AGENT");
 
 AIAgent delegationAgent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         name: "DelegateAgent",
         instructions: "Are a Delegator of String and Number Tasks. Never does such work yourself",
         tools:
@@ -67,7 +67,7 @@ AIAgent delegationAgent = client
     .Use(FunctionCallMiddleware)
     .Build();
 
-AgentRunResponse responseFromDelegate = await delegationAgent.RunAsync("Uppercase 'Hello World'");
+AgentResponse responseFromDelegate = await delegationAgent.RunAsync("Uppercase 'Hello World'");
 Console.WriteLine(responseFromDelegate);
 responseFromDelegate.Usage.OutputAsInformation();
 
@@ -77,7 +77,7 @@ Utils.WriteLineGreen("JACK OF ALL TRADE AGENT");
 
 AIAgent jackOfAllTradesAgent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         name: "JackOfAllTradesAgent",
         instructions: "Are a Agent that can answer questions on strings and numbers",
         tools:
@@ -93,7 +93,7 @@ AIAgent jackOfAllTradesAgent = client
     .Use(FunctionCallMiddleware)
     .Build();
 
-AgentRunResponse responseFromJackOfAllTrade = await jackOfAllTradesAgent.RunAsync("Uppercase 'Hello World'");
+AgentResponse responseFromJackOfAllTrade = await jackOfAllTradesAgent.RunAsync("Uppercase 'Hello World'");
 Console.WriteLine(responseFromJackOfAllTrade);
 responseFromJackOfAllTrade.Usage.OutputAsInformation();
 

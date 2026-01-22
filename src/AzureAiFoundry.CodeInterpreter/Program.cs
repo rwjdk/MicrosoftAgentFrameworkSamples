@@ -28,9 +28,9 @@ try
 
     AIAgent agent = await client.GetAIAgentAsync(aiFoundryAgent.Value.Id);
 
-    AgentThread thread = agent.GetNewThread();
+    AgentThread thread = await agent.GetNewThreadAsync();
 
-    AgentRunResponse response = await agent.RunAsync("Make a jpg image with graph listing population of the top 10 US States in year 2000", thread);
+    AgentResponse response = await agent.RunAsync("Make a jpg image with graph listing population of the top 10 US States in year 2000", thread);
 
     string? fileId = null;
     string? filename = null;

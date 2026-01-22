@@ -18,18 +18,18 @@ public class CodexSpecialModels
         //OpenAIClient client = new(secrets.OpenAiApiKey);
         AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
         AIAgent agent = client.GetResponsesClient("gpt-5-codex")
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: "You are a C# Developer"
             );
 
-        List<AgentRunResponseUpdate> updates = [];
-        await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("Show me an C# Example of a method adding two numbers"))
+        List<AgentResponseUpdate> updates = [];
+        await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("Show me an C# Example of a method adding two numbers"))
         {
             updates.Add(update);
             Console.Write(update);
         }
 
-        AgentRunResponse fullResponse = updates.ToAgentRunResponse();
+        AgentResponse fullResponse = updates.ToAgentResponse();
         fullResponse.Usage.OutputAsInformation();
     }
 }

@@ -28,14 +28,14 @@ try
 
     ChatClientAgent agent = await client.GetAIAgentAsync(aiFoundryAgent.Value.Id);
 
-    AgentThread thread = agent.GetNewThread();
+    AgentThread thread = await agent.GetNewThreadAsync();
 
-    AgentRunResponse response = await agent.RunAsync("What is the capital of France?", thread);
+    AgentResponse response = await agent.RunAsync("What is the capital of France?", thread);
     Console.WriteLine(response);
 
     Console.WriteLine("---");
 
-    await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?", thread))
+    await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?", thread))
     {
         Console.Write(update);
     }

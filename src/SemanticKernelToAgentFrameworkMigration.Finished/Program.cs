@@ -31,19 +31,19 @@ WebApplication app = builder.Build();
 
 app.MapPost("/chat", async Task<IResult> ([FromBody] ChatRequest chatRequest, AzureOpenAIClient client) =>
 {
-    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent();
-    AgentRunResponse response = await agent.RunAsync(chatRequest.Question);
+    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent();
+    AgentResponse response = await agent.RunAsync(chatRequest.Question);
     return Results.Ok(new ChatResponse(response.Text));
 });
 
 app.MapPost("/chatWithStreaming", async Task<IResult> ([FromBody] ChatRequest chatRequest, AzureOpenAIClient client) =>
 {
     //Not really streaming, but simulating it
-    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent(
+    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(
         instructions: "You are a nice AI");
 
     string answer = string.Empty;
-    await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(chatRequest.Question))
+    await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(chatRequest.Question))
     {
         answer += update;
     }
@@ -53,14 +53,14 @@ app.MapPost("/chatWithStreaming", async Task<IResult> ([FromBody] ChatRequest ch
 
 app.MapPost("/chatHistory", async Task<IResult> ([FromBody] ChatRequest chatRequest, AzureOpenAIClient client) =>
 {
-    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent(
+    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(
         instructions: "You answer questions about People");
 
-    AgentThread thread = agent.GetNewThread();
+    AgentThread thread = await agent.GetNewThreadAsync();
 
-    AgentRunResponse response1 = await agent.RunAsync(chatRequest.Question, thread);
+    AgentResponse response1 = await agent.RunAsync(chatRequest.Question, thread);
 
-    AgentRunResponse response2 = await agent.RunAsync("how tall is he?", thread);
+    AgentResponse response2 = await agent.RunAsync("how tall is he?", thread);
 
     IList<ChatMessage>? messagesInThread = thread.GetService<IList<ChatMessage>>();
     return Results.Ok(messagesInThread);
@@ -70,7 +70,7 @@ app.MapPost("/toolCalling", async Task<IResult> ([FromBody] ChatRequest chatRequ
 {
     MyTools myTools = new();
 
-    AIAgent agent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent(
+    AIAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(
         instructions: "You answer questions about Weather and Time (use your tools to do so)",
         tools:
         [
@@ -78,16 +78,16 @@ app.MapPost("/toolCalling", async Task<IResult> ([FromBody] ChatRequest chatRequ
             AIFunctionFactory.Create(myTools.GetDateAndTime, "get_date_and_time_utc"),
         ]).AsBuilder().Use(FunctionCallMiddleware).Build();
 
-    AgentRunResponse response = await agent.RunAsync(chatRequest.Question);
+    AgentResponse response = await agent.RunAsync(chatRequest.Question);
     return Results.Ok(new ChatResponse(response.Text));
 });
 
 app.MapPost("/structuredOutput", async Task<IResult> ([FromBody] ChatRequest chatRequest, AzureOpenAIClient client) =>
 {
-    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent(
+    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(
         instructions: "You answer Movie Questions"
     );
-    ChatClientAgentRunResponse<MovieResult> response = await agent.RunAsync<MovieResult>();
+    ChatClientAgentResponse<MovieResult> response = await agent.RunAsync<MovieResult>();
     return Results.Ok(response.Result);
 });
 
@@ -126,7 +126,7 @@ app.MapPost("/rag", async Task<IResult> ([FromBody] ChatRequest chatRequest, IEm
         });
     }
 
-    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent(
+    ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(
         instructions: "You answer Knowledge Base Questions"
     );
 
@@ -138,7 +138,7 @@ app.MapPost("/rag", async Task<IResult> ([FromBody] ChatRequest chatRequest, IEm
         ragData += $"<knowledge>Q: {searchResult.Record.Question} - A: {searchResult.Record.Answer}</knowledge>";
     }
 
-    AgentRunResponse response = await agent.RunAsync($"Knowledge: {ragData} - Question: {chatRequest.Question}");
+    AgentResponse response = await agent.RunAsync($"Knowledge: {ragData} - Question: {chatRequest.Question}");
 
     return Results.Ok(new ChatResponse(response.Text));
 });

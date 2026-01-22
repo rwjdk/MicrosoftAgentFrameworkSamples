@@ -10,8 +10,6 @@ using Shared;
 using System.ClientModel;
 using AgentFrameworkToolkit.Anthropic;
 using AgentFrameworkToolkit.Google;
-using GenerativeAI;
-using OpenAI;
 using OpenAI.Chat;
 
 Secrets secrets = Shared.SecretManager.GetSecrets();
@@ -32,7 +30,7 @@ builder.AddAIAgent("Comic Book Guy", "You are comic-book guy from The Simpsons")
 string realAgentName = "Real Agent";
 AIAgent myAgent = azureOpenAIClient
     .GetChatClient("gpt-4.1")
-    .CreateAIAgent(name: realAgentName, instructions: "Speak like a pirate", tools: [AIFunctionFactory.Create(GetWeather)]);
+    .AsAIAgent(name: realAgentName, instructions: "Speak like a pirate", tools: [AIFunctionFactory.Create(GetWeather)]);
 
 builder.AddAIAgent(realAgentName, (serviceProvider, key) => myAgent); //Get registered as a keyed singleton so name on real agent and key must match
 
@@ -45,7 +43,7 @@ if (!string.IsNullOrWhiteSpace(secrets.GoogleGeminiApiKey))
     GoogleAgent googleAgent = agentFactory.CreateAgent(new GoogleAgentOptions
     {
         Name = agentName,
-        Model = GoogleAIModels.Gemini25Flash
+        Model = "gemini-2.5-flash"
     });
     builder.AddAIAgent(agentName, (serviceProvider, key) => googleAgent);
 }

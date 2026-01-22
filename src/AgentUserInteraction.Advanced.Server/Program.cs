@@ -16,21 +16,21 @@ string model = "gpt-4.1-mini";
 
 ChatClientAgent clientToolAgent = client
     .GetChatClient(model)
-    .CreateAIAgent(instructions: "You are a nice AI");
+    .AsAIAgent(instructions: "You are a nice AI");
 
 ChatClientAgent weatherAgent = client
     .GetChatClient(model)
-    .CreateAIAgent(instructions: "You Report the Weather.",
+    .AsAIAgent(instructions: "You Report the Weather.",
         tools: [AIFunctionFactory.Create(GetWeather, name: "get_weather")]);
 
 ChatClientAgent weatherAgentStructured = client
     .GetChatClient(model)
-    .CreateAIAgent(instructions: "Always call tool 'get_weather' first. Then tell a story about the city but leave out the weather details",
+    .AsAIAgent(instructions: "Always call tool 'get_weather' first. Then tell a story about the city but leave out the weather details",
         tools: [AIFunctionFactory.Create(GetWeather, name: "get_weather")]);
 
 ChatClientAgent movieStructuredOutputAgent = client
     .GetChatClient(model)
-    .CreateAIAgent(instructions: "You are a movie Expert");
+    .AsAIAgent(instructions: "You are a movie Expert");
 
 
 var builder = WebApplication.CreateBuilder(args);

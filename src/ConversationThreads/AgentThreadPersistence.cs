@@ -18,14 +18,14 @@ public static class AgentThreadPersistence
             if (key.Key == ConsoleKey.Y)
             {
                 JsonElement jsonElement = JsonSerializer.Deserialize<JsonElement>(await File.ReadAllTextAsync(ConversationPath));
-                AgentThread resumedThread = agent.DeserializeThread(jsonElement);
+                AgentThread resumedThread = await agent.DeserializeThreadAsync(jsonElement);
 
                 await RestoreConsole(resumedThread);
                 return resumedThread;
             }
         }
 
-        return agent.GetNewThread();
+        return await agent.GetNewThreadAsync();
     }
 
     private static async Task RestoreConsole(AgentThread resumedThread)

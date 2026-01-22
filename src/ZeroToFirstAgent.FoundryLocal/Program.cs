@@ -67,14 +67,14 @@ OpenAIClient client = new(new ApiKeyCredential("NO_API_KEY"), new OpenAIClientOp
 {
     Endpoint = manager.Endpoint
 });
-ChatClientAgent agent = client.GetChatClient(modelInfo!.ModelId).CreateAIAgent();
+ChatClientAgent agent = client.GetChatClient(modelInfo!.ModelId).AsAIAgent();
 
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Sweden?");
+AgentResponse response = await agent.RunAsync("What is the Capital of Sweden?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

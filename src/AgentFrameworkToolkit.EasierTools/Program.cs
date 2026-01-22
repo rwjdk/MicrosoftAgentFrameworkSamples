@@ -71,5 +71,5 @@ AzureOpenAIAgent agent = agentFactory.CreateAgent(new AgentOptions
     RawToolCallDetails = details => { Utils.WriteLineDarkGray(details.ToString()); }
 });
 
-AgentRunResponse response = await agent.RunAsync("Create 10 files with random Fruit-names");
+AgentResponse response = await agent.RunAsync("Create 10 files with random Fruit-names");
 Console.WriteLine(response);

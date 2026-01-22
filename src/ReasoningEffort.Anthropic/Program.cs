@@ -43,7 +43,7 @@ async Task Baseline()
                 MaxOutputTokens = 10000
             }
         });
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 }
@@ -73,7 +73,7 @@ async Task Raw()
             }
         });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     foreach (ChatMessage message in response.Messages)
     {
@@ -100,7 +100,7 @@ async Task AgentFrameworkToolkit()
         BudgetTokens = 2000 //Budget need to a minimum of 1024
     });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     TextReasoningContent? reasoningContent = response.GetTextReasoningContent();
     if (reasoningContent != null)

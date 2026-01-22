@@ -15,10 +15,10 @@ Secrets secrets = SecretManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
-ChatClientAgent intentAgent = client.GetChatClient("gpt-4.1-mini").CreateAIAgent(name: "IntentAgent", instructions: "Determine what type of question was asked. Never answer yourself");
+ChatClientAgent intentAgent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(name: "IntentAgent", instructions: "Determine what type of question was asked. Never answer yourself");
 
-ChatClientAgent movieNerd = client.GetChatClient("gpt-4.1").CreateAIAgent(name: "MovieNerd", instructions: "You are a Movie Nerd");
-ChatClientAgent musicNerd = client.GetChatClient("gpt-4.1").CreateAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd");
+ChatClientAgent movieNerd = client.GetChatClient("gpt-4.1").AsAIAgent(name: "MovieNerd", instructions: "You are a Movie Nerd");
+ChatClientAgent musicNerd = client.GetChatClient("gpt-4.1").AsAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd");
 
 
 while (true)
@@ -43,7 +43,7 @@ static async Task<List<ChatMessage>> RunWorkflowAsync(Workflow workflow, List<Ch
     {
         switch (@event)
         {
-            case AgentRunUpdateEvent e:
+            case AgentResponseUpdateEvent e:
             {
                 if (e.ExecutorId != lastExecutorId)
                 {

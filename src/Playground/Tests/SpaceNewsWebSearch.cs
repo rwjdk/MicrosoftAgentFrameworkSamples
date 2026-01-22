@@ -19,19 +19,19 @@ public class SpaceNewsWebSearch
         //NB: Azure OpenAI is NOT SUPPORTED
         AIAgent agent = client
             .GetResponsesClient("gpt-4.1")
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: "You are a Space News AI Reporter",
                 tools: [new HostedWebSearchTool()]
             );
 
-        List<AgentRunResponseUpdate> updates = [];
-        await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)"))
+        List<AgentResponseUpdate> updates = [];
+        await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)"))
         {
             updates.Add(update);
             Console.Write(update);
         }
 
-        AgentRunResponse fullResponse = updates.ToAgentRunResponse();
+        AgentResponse fullResponse = updates.ToAgentResponse();
         fullResponse.Usage.OutputAsInformation();
     }
 }

@@ -16,12 +16,12 @@ const string model = "gemini-3-pro-preview";
 IChatClient client = new Google.GenAI.Client(apiKey: apiKey).AsIChatClient(model);
 ChatClientAgent agent = new(client);
 
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Australia?");
+AgentResponse response = await agent.RunAsync("What is the Capital of Australia?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

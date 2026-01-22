@@ -19,7 +19,7 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 ChatClientAgent agent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: "You are a Time Expert",
         tools:
         [
@@ -28,14 +28,14 @@ ChatClientAgent agent = client
         ]
     );
 
-AgentThread thread = agent.GetNewThread();
+AgentThread thread = await agent.GetNewThreadAsync();
 
 while (true)
 {
     Console.Write("> ");
     string? input = Console.ReadLine();
     ChatMessage message = new(ChatRole.User, input);
-    AgentRunResponse response = await agent.RunAsync(message, thread);
+    AgentResponse response = await agent.RunAsync(message, thread);
     Console.WriteLine(response);
 
     Utils.Separator();

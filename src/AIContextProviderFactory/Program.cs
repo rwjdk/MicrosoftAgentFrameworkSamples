@@ -16,23 +16,23 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 ChatClientAgent memoryExtractorAgent = client
     .GetChatClient("gpt-4.1-nano")
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: "Look at the user's message and extract any memory that we do not already know (or non if there aren't any memories to store)"
     );
 
 ChatClientAgent agentWithCustomMemory = client.GetChatClient(secrets.ChatDeploymentName).AsIChatClient()
-    .CreateAIAgent(new ChatClientAgentOptions
+    .AsAIAgent(new ChatClientAgentOptions
     {
         ChatOptions = new()
         {
             Instructions = "You are a nice AI"
         },
-        AIContextProviderFactory = _ => new CustomContextProvider(memoryExtractorAgent, userId)
+        AIContextProviderFactory = (context, token) => ValueTask.FromResult<AIContextProvider>(new CustomContextProvider(memoryExtractorAgent, userId))
     });
 
 AIAgent agentToUse = agentWithCustomMemory;
 
-AgentThread thread = agentToUse.GetNewThread();
+AgentThread thread = await agentToUse.GetNewThreadAsync();
 
 while (true)
 {
@@ -41,7 +41,7 @@ while (true)
     if (!string.IsNullOrWhiteSpace(input))
     {
         ChatMessage message = new(ChatRole.User, input);
-        AgentRunResponse response = await agentToUse.RunAsync(message, thread);
+        AgentResponse response = await agentToUse.RunAsync(message, thread);
         {
             Console.WriteLine(response);
         }
@@ -83,7 +83,7 @@ class CustomContextProvider : AIContextProvider
             lastMessageFromUser
         ];
 
-        ChatClientAgentRunResponse<MemoryUpdate> response = await _memoryExtractorAgent.RunAsync<MemoryUpdate>(inputToMemoryExtractor, cancellationToken: cancellationToken);
+        ChatClientAgentResponse<MemoryUpdate> response = await _memoryExtractorAgent.RunAsync<MemoryUpdate>(inputToMemoryExtractor, cancellationToken: cancellationToken);
         foreach (string memoryToRemove in response.Result.MemoryToRemove)
         {
             _userFacts.Remove(memoryToRemove);

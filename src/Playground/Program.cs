@@ -26,8 +26,8 @@ const string model = "gpt-5-nano";
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 var chatClient = client.GetChatClient(model);
 
-var summaryAgent = chatClient.CreateAIAgent(name: "SummaryAgent", instructions: "Summarize the text you are given to max 20 words");
-var translationAgent = chatClient.CreateAIAgent(name: "TranslationAgent", instructions: "Given a text Translate it to French (you need to translate the summary and not the original text)");
+var summaryAgent = chatClient.AsAIAgent(name: "SummaryAgent", instructions: "Summarize the text you are given to max 20 words");
+var translationAgent = chatClient.AsAIAgent(name: "TranslationAgent", instructions: "Given a text Translate it to French (you need to translate the summary and not the original text)");
 
 var workflow = AgentWorkflowBuilder.BuildSequential(summaryAgent, translationAgent);
 

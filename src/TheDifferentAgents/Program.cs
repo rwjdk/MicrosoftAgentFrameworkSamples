@@ -34,16 +34,16 @@ IChatClient iChatClient = rawOpenAiClient.GetChatClient(model).AsIChatClient();
 //--------------------------------------------------------------------------
 
 //All Agents are AI Agents (which is an abstract class)
-AIAgent aiAgentFromChatClient = rawOpenAiClient.GetChatClient(model).CreateAIAgent();
-AIAgent aiAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient(model).CreateAIAgent();
+AIAgent aiAgentFromChatClient = rawOpenAiClient.GetChatClient(model).AsAIAgent();
+AIAgent aiAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient(model).AsAIAgent();
 AIAgent aiAgentFromPersistentClient = await persistentAgentsClient.GetAIAgentAsync(persistentAgentsClient.Administration.CreateAgent(model).Value.Id);
 AIAgent aiAgentFromIChatClient = new ChatClientAgent(iChatClient);
 
 //--------------------------------------------------------------------------
 
 //Most is however a ChatClientAgent behind the scenes
-ChatClientAgent chatClientAgentFromChatClient = rawOpenAiClient.GetChatClient(model).CreateAIAgent();
-ChatClientAgent chatClientAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient(model).CreateAIAgent();
+ChatClientAgent chatClientAgentFromChatClient = rawOpenAiClient.GetChatClient(model).AsAIAgent();
+ChatClientAgent chatClientAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient(model).AsAIAgent();
 ChatClientAgent chatClientAgentFromPersistentClient = await persistentAgentsClient.GetAIAgentAsync(persistentAgentsClient.Administration.CreateAgent(model).Value.Id);
 ChatClientAgent chatClientAgentFromIChatClient = new ChatClientAgent(iChatClient);
 
@@ -54,21 +54,21 @@ ChatClientAgent chatClientAgentFromIChatClient = new ChatClientAgent(iChatClient
 //Middleware Builder can only produce an AI Agent :-(
 AIAgent aiAgentWithOpenTelemetryMiddleware = rawOpenAiClient
     .GetChatClient(model)
-    .CreateAIAgent()
+    .AsAIAgent()
     .AsBuilder()
     .UseOpenTelemetry("test")
     .Build(); //<< Always AIAgent
 
 AIAgent aiAgentWithFunctionCallingMiddleware = rawOpenAiClient
     .GetChatClient(model)
-    .CreateAIAgent()
+    .AsAIAgent()
     .AsBuilder()
     .Use(FunctionCallMiddleware)
     .Build(); //<< Always AIAgent
 
 AIAgent aiAgentWithOpenTelemetryAndFunctionCallingMiddleware = rawOpenAiClient
     .GetChatClient(model)
-    .CreateAIAgent()
+    .AsAIAgent()
     .AsBuilder()
     .Use(FunctionCallMiddleware)
     .UseOpenTelemetry("test")

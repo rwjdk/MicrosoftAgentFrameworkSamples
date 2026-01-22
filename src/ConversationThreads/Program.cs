@@ -18,7 +18,7 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 var agent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
+    .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
 AgentThread thread;
 
@@ -30,7 +30,7 @@ if (optionToResume)
 }
 else
 {
-    thread = agent.GetNewThread();
+    thread = await agent.GetNewThreadAsync();
 }
 
 while (true)
@@ -40,7 +40,7 @@ while (true)
     if (!string.IsNullOrWhiteSpace(input))
     {
         ChatMessage message = new(ChatRole.User, input);
-        await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(message, thread))
+        await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(message, thread))
         {
             Console.Write(update);
         }

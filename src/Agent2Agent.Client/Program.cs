@@ -23,12 +23,12 @@ Utils.WriteLineDarkGray("Ready for questions");
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 ChatClientAgent agent = azureOpenAIClient
     .GetChatClient("gpt-4.1")
-    .CreateAIAgent(
+    .AsAIAgent(
         name: "ClientAgent",
         instructions: "You specialize in handling queries for users and using your tools to provide answers.",
         tools: [remoteAgent.AsAIFunction()]);
 
-AgentThread thread = agent.GetNewThread();
+AgentThread thread = await agent.GetNewThreadAsync();
 while (true)
 {
     Console.Write("> ");
@@ -38,6 +38,6 @@ while (true)
         continue;
     }
 
-    AgentRunResponse response = await agent.RunAsync(message, thread);
+    AgentResponse response = await agent.RunAsync(message, thread);
     Console.WriteLine(response);
 }

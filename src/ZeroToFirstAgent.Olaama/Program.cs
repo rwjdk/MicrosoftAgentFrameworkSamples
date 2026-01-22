@@ -13,12 +13,12 @@ using OllamaSharp;
 
 IChatClient client = new OllamaApiClient("http://localhost:11434", "llama3.2:1b");
 ChatClientAgent agent = new(client);
-AgentRunResponse response = await agent.RunAsync("What is the Capital of Sweden?");
+AgentResponse response = await agent.RunAsync("What is the Capital of Sweden?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

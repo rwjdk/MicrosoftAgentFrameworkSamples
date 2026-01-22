@@ -25,7 +25,7 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 ChatClientAgent agent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(instructions: "You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)");
+    .AsAIAgent(instructions: "You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)");
 
 #region Let's give the model all data upfront
 
@@ -41,7 +41,7 @@ foreach (Movie movie in movieDataForRag)
 
 preloadEverythingChatMessages.Add(question);
 
-AgentRunResponse response1 = await agent.RunAsync(preloadEverythingChatMessages);
+AgentResponse response1 = await agent.RunAsync(preloadEverythingChatMessages);
 Console.WriteLine(response1);
 response1.Usage.OutputAsInformation();
 
@@ -115,7 +115,7 @@ await foreach (VectorSearchResult<MovieVectorStoreRecord> searchResult in collec
 
 ragPreloadChatMessages.Add(question);
 
-AgentRunResponse response2 = await agent.RunAsync(ragPreloadChatMessages);
+AgentResponse response2 = await agent.RunAsync(ragPreloadChatMessages);
 Console.WriteLine(response2);
 response2.Usage.OutputAsInformation();
 
@@ -131,14 +131,14 @@ SearchTool searchTool = new(collection);
 
 AIAgent agentWithTools = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: "You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)",
         tools: [AIFunctionFactory.Create(searchTool.SearchVectorStore)]
     ).AsBuilder()
     .Use(FunctionCallMiddleware)
     .Build();
 
-AgentRunResponse response3 = await agentWithTools.RunAsync(question);
+AgentResponse response3 = await agentWithTools.RunAsync(question);
 Console.WriteLine(response3);
 response3.Usage.OutputAsInformation();
 

@@ -8,22 +8,22 @@ namespace AgentUserInteraction.Advanced.Server.AgUiSpecializedAgents;
 
 public class AgUiStructuredToolsOutputAgent(ChatClientAgent innerAgent, string toolCallToReportBackAsContent) : AIAgent
 {
-    public override AgentThread GetNewThread()
+    public override ValueTask<AgentThread> GetNewThreadAsync(CancellationToken cancellationToken = default)
     {
-        return innerAgent.GetNewThread();
+        return innerAgent.GetNewThreadAsync(cancellationToken);
     }
 
-    public override AgentThread DeserializeThread(JsonElement serializedThread, JsonSerializerOptions? jsonSerializerOptions = null)
+    public override ValueTask<AgentThread> DeserializeThreadAsync(JsonElement serializedThread, JsonSerializerOptions? jsonSerializerOptions = null, CancellationToken cancellationToken = default)
     {
-        return innerAgent.DeserializeThread(serializedThread, jsonSerializerOptions);
+        return innerAgent.DeserializeThreadAsync(serializedThread, jsonSerializerOptions, cancellationToken);
     }
 
-    protected override Task<AgentRunResponse> RunCoreAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, CancellationToken cancellationToken = default)
+    protected override Task<AgentResponse> RunCoreAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException("AG-UI Agents Always use streaming");
     }
 
-    protected override async IAsyncEnumerable<AgentRunResponseUpdate> RunCoreStreamingAsync(
+    protected override async IAsyncEnumerable<AgentResponseUpdate> RunCoreStreamingAsync(
         IEnumerable<ChatMessage> messages,
         AgentThread? thread = null,
         AgentRunOptions? options = null,
@@ -33,7 +33,7 @@ public class AgUiStructuredToolsOutputAgent(ChatClientAgent innerAgent, string t
         // Track function calls that should trigger state events
         Dictionary<string, FunctionCallContent> trackedFunctionCalls = [];
 
-        await foreach (AgentRunResponseUpdate update in innerAgent.RunStreamingAsync(messages, thread, options, cancellationToken).ConfigureAwait(false))
+        await foreach (AgentResponseUpdate update in innerAgent.RunStreamingAsync(messages, thread, options, cancellationToken).ConfigureAwait(false))
         {
             // Process contents: track function calls and emit state events for results
             List<AIContent> stateEventsToEmit = [];
@@ -68,7 +68,7 @@ public class AgUiStructuredToolsOutputAgent(ChatClientAgent innerAgent, string t
 
             if (stateEventsToEmit.Count > 0)
             {
-                yield return new AgentRunResponseUpdate(
+                yield return new AgentResponseUpdate(
                     new ChatResponseUpdate(role: ChatRole.System, stateEventsToEmit)
                     {
                         MessageId = "delta_" + Guid.NewGuid().ToString("N"),

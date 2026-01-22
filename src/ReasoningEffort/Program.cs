@@ -53,8 +53,8 @@ async Task Baseline()
     AzureOpenAIClient azureOpenAiClient = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
     ChatClientAgent agent = azureOpenAiClient
         .GetChatClient("gpt-5-mini")
-        .CreateAIAgent();
-    AgentRunResponse response = await agent.RunAsync(question);
+        .AsAIAgent();
+    AgentResponse response = await agent.RunAsync(question);
     response.Usage.OutputAsInformation();
     Console.WriteLine(response);
 }
@@ -64,7 +64,7 @@ async Task RawChatClient()
     AzureOpenAIClient azureOpenAiClient = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
     ChatClientAgent agent = azureOpenAiClient
         .GetChatClient("gpt-5-mini")
-        .CreateAIAgent(
+        .AsAIAgent(
             options: new ChatClientAgentOptions
             {
                 ChatOptions = new ChatOptions
@@ -76,7 +76,7 @@ async Task RawChatClient()
                 }
             });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     //Note that the reasoning summary is not possible to get with ChatClient
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
@@ -87,7 +87,7 @@ async Task RawResponsesApi()
     AzureOpenAIClient azureOpenAiClient = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
     ChatClientAgent agent = azureOpenAiClient
         .GetResponsesClient("gpt-5-mini")
-        .CreateAIAgent(
+        .AsAIAgent(
             options: new ChatClientAgentOptions
             {
                 ChatOptions = new ChatOptions
@@ -103,7 +103,7 @@ async Task RawResponsesApi()
                 }
             });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     foreach (ChatMessage message in response.Messages)
     {
         foreach (AIContent content in message.Contents)
@@ -130,7 +130,7 @@ async Task AgentFrameworkToolkitChatClient()
         ReasoningEffort = OpenAIReasoningEffort.Minimal
     });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 }
@@ -147,7 +147,7 @@ async Task AgentFrameworkToolkitResponseApi()
         ReasoningSummaryVerbosity = OpenAIReasoningSummaryVerbosity.Detailed
     });
 
-    AgentRunResponse response = await agent.RunAsync(question);
+    AgentResponse response = await agent.RunAsync(question);
     Console.WriteLine(response);
     TextReasoningContent? reasoningContent = response.GetTextReasoningContent();
     if (reasoningContent != null)

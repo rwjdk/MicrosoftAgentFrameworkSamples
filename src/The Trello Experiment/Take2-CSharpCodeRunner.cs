@@ -16,7 +16,7 @@ public static class Take2CSharpCodeRunner
     {
         ChatClientAgent agent = azureOpenAIClient
             .GetResponsesClient("gpt-4.1-mini")
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: $"""
                                You are a Trello Expert with access to the Trello and the API
 
@@ -37,7 +37,7 @@ public static class Take2CSharpCodeRunner
                 tools: [AIFunctionFactory.Create(CSharpCodeRunnerTool.ExecuteAndReturnAsync, "compile_and_execute_csharp_code")]
             );
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();
 
         while (true)
         {
@@ -46,7 +46,7 @@ public static class Take2CSharpCodeRunner
             if (!string.IsNullOrWhiteSpace(input))
             {
                 ChatMessage message = new(ChatRole.User, input);
-                await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(message, thread))
+                await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(message, thread))
                 {
                     Console.Write(update);
                 }

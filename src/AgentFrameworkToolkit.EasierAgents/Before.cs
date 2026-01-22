@@ -26,7 +26,7 @@ public class Before
 
         AIAgent agent = azureOpenAiClient
             .GetChatClient("gpt-5-mini")
-            .CreateAIAgent(
+            .AsAIAgent(
                 options: new ChatClientAgentOptions
                 {
                     ChatOptions = new ChatOptions
@@ -51,7 +51,7 @@ public class Before
             Converters = { new JsonStringEnumConverter() }
         };
 
-        AgentRunResponse response = await agent.RunAsync("What is the Weather like in Paris",
+        AgentResponse response = await agent.RunAsync("What is the Weather like in Paris",
             options: new ChatClientAgentRunOptions()
             {
                 ChatOptions = new ChatOptions

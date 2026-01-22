@@ -28,7 +28,7 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 AIAgent agent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         name: "MyObservedAgent",
         instructions: "You are a Friendly AI Bot, answering questions")
     .AsBuilder()
@@ -38,16 +38,16 @@ AIAgent agent = client
     })
     .Build();
 
-AgentThread thread = agent.GetNewThread();
+AgentThread thread = await agent.GetNewThreadAsync();
 
-AgentRunResponse response1 = await agent.RunAsync("Hello, My name is Rasmus", thread);
+AgentResponse response1 = await agent.RunAsync("Hello, My name is Rasmus", thread);
 Utils.WriteLineRed(response1.Text);
 Utils.Separator();
 
-AgentRunResponse response2 = await agent.RunAsync("What is the capital of France?", thread);
+AgentResponse response2 = await agent.RunAsync("What is the capital of France?", thread);
 Utils.WriteLineRed(response2.Text);
 Utils.Separator();
 
-AgentRunResponse response3 = await agent.RunAsync("What was my name?", thread);
+AgentResponse response3 = await agent.RunAsync("What was my name?", thread);
 Utils.WriteLineRed(response3.Text);
 Utils.Separator();

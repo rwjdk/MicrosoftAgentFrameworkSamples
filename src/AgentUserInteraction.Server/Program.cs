@@ -17,7 +17,7 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 ChatClientAgent agent = client
     .GetChatClient("gpt-4.1")
-    .CreateAIAgent(tools: [AIFunctionFactory.Create(GetWeather, name: "get_weather")]);
+    .AsAIAgent(tools: [AIFunctionFactory.Create(GetWeather, name: "get_weather")]);
 
 //AG-UI Part begin
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

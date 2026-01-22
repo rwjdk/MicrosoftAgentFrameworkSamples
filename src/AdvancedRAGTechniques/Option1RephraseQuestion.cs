@@ -24,7 +24,7 @@ public static class Option1RephraseQuestion
 
         OriginalSearchTool searchTool = new(collection);
         AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: """
                               You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)
                               When using tools use keywords only based on the users question so it is better for similarity search
@@ -35,7 +35,7 @@ public static class Option1RephraseQuestion
             .Use(Middleware.FunctionCallMiddleware)
             .Build();
 
-        AgentRunResponse response = await agent.RunAsync(question);
+        AgentResponse response = await agent.RunAsync(question);
         Console.WriteLine(response);
         response.Usage.OutputAsInformation();
     }

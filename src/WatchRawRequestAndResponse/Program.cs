@@ -28,11 +28,11 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 });
 
 
-ChatClientAgent agent = client.GetChatClient(secrets.ChatDeploymentName).CreateAIAgent(
+ChatClientAgent agent = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent(
     instructions: "You are a Raw Agent"
 );
 
-AgentRunResponse response = await agent.RunAsync("Hello");
+AgentResponse response = await agent.RunAsync("Hello");
 Utils.WriteLineGreen("The Answer");
 Console.WriteLine(response);
 

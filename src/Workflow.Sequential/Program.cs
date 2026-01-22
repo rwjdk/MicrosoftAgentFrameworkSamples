@@ -16,8 +16,8 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 ChatClient chatClient = client.GetChatClient("gpt-4.1");
 
-ChatClientAgent summaryAgent = chatClient.CreateAIAgent(name: "SummaryAgent", instructions: "Summarize the text you are given to max 20 words");
-ChatClientAgent translationAgent = chatClient.CreateAIAgent(name: "TranslationAgent", instructions: "Given a text Translate it to French (you need to translate the summary and not the original text)");
+ChatClientAgent summaryAgent = chatClient.AsAIAgent(name: "SummaryAgent", instructions: "Summarize the text you are given to max 20 words");
+ChatClientAgent translationAgent = chatClient.AsAIAgent(name: "TranslationAgent", instructions: "Given a text Translate it to French (you need to translate the summary and not the original text)");
 
 Workflow workflow = AgentWorkflowBuilder.BuildSequential(summaryAgent, translationAgent);
 

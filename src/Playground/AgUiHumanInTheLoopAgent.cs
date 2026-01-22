@@ -8,31 +8,31 @@ using System.Text.Json;
 
 public class AgUiHumanInTheLoopAgent(AIAgent innerAgent) : AIAgent
 {
-    public override AgentThread GetNewThread()
+    public override ValueTask<AgentThread> GetNewThreadAsync(CancellationToken cancellationToken = default)
     {
-        return innerAgent.GetNewThread();
+        return innerAgent.GetNewThreadAsync(cancellationToken);
     }
 
-    public override AgentThread DeserializeThread(JsonElement serializedThread, JsonSerializerOptions? jsonSerializerOptions = null)
+    public override ValueTask<AgentThread> DeserializeThreadAsync(JsonElement serializedThread, JsonSerializerOptions? jsonSerializerOptions = null, CancellationToken cancellationToken = default)
     {
-        return innerAgent.DeserializeThread(serializedThread, jsonSerializerOptions);
+        return innerAgent.DeserializeThreadAsync(serializedThread, jsonSerializerOptions, cancellationToken);
     }
 
-    protected override Task<AgentRunResponse> RunCoreAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, CancellationToken cancellationToken = default)
+    protected override Task<AgentResponse> RunCoreAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, CancellationToken cancellationToken = default)
     {
-        return RunStreamingAsync(messages, thread, options, cancellationToken).ToAgentRunResponseAsync(cancellationToken);
+        return RunStreamingAsync(messages, thread, options, cancellationToken).ToAgentResponseAsync(cancellationToken);
     }
 
-    protected override async IAsyncEnumerable<AgentRunResponseUpdate> RunCoreStreamingAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    protected override async IAsyncEnumerable<AgentResponseUpdate> RunCoreStreamingAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        await foreach (AgentRunResponseUpdate update in innerAgent.RunStreamingAsync(messages, thread, options, cancellationToken))
+        await foreach (AgentResponseUpdate update in innerAgent.RunStreamingAsync(messages, thread, options, cancellationToken))
         {
             foreach (UserInputRequestContent inputRequest in update.UserInputRequests)
             {
                 if (inputRequest is FunctionApprovalRequestContent functionApprovalRequestContent)
                 {
                     byte[] bytes = JsonSerializer.SerializeToUtf8Bytes(functionApprovalRequestContent, JsonSerializerOptions.Web);
-                    yield return new AgentRunResponseUpdate(ChatRole.Assistant, [new DataContent(bytes, "application/json")]);
+                    yield return new AgentResponseUpdate(ChatRole.Assistant, [new DataContent(bytes, "application/json")]);
                 }
             }
 

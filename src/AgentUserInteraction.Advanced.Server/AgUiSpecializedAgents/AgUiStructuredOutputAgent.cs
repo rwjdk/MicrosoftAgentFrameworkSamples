@@ -7,30 +7,30 @@ namespace AgentUserInteraction.Advanced.Server.AgUiSpecializedAgents;
 
 public class AgUiStructuredOutputAgent<T>(ChatClientAgent innerAgent) : AIAgent
 {
-    public override AgentThread GetNewThread()
+    public override ValueTask<AgentThread> GetNewThreadAsync(CancellationToken cancellationToken = default)
     {
-        return innerAgent.GetNewThread();
+        return innerAgent.GetNewThreadAsync(cancellationToken);
     }
 
-    public override AgentThread DeserializeThread(JsonElement serializedThread, JsonSerializerOptions? jsonSerializerOptions = null)
+    public override ValueTask<AgentThread> DeserializeThreadAsync(JsonElement serializedThread, JsonSerializerOptions? jsonSerializerOptions = null, CancellationToken cancellationToken = default)
     {
-        return innerAgent.DeserializeThread(serializedThread, jsonSerializerOptions);
+        return innerAgent.DeserializeThreadAsync(serializedThread, jsonSerializerOptions, cancellationToken);
     }
 
-    protected override Task<AgentRunResponse> RunCoreAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, CancellationToken cancellationToken = default)
+    protected override Task<AgentResponse> RunCoreAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException("AG-UI Agents Always use streaming");
     }
 
-    protected override async IAsyncEnumerable<AgentRunResponseUpdate> RunCoreStreamingAsync(
+    protected override async IAsyncEnumerable<AgentResponseUpdate> RunCoreStreamingAsync(
         IEnumerable<ChatMessage> messages,
         AgentThread? thread = null,
         AgentRunOptions? options = null,
         [EnumeratorCancellation]
         CancellationToken cancellationToken = default)
     {
-        ChatClientAgentRunResponse<T> jsonResponse = await innerAgent.RunAsync<T>(messages, thread, null, options, null, cancellationToken);
-        yield return new AgentRunResponseUpdate(ChatRole.Assistant,
+        ChatClientAgentResponse<T> jsonResponse = await innerAgent.RunAsync<T>(messages, thread, null, options, null, cancellationToken);
+        yield return new AgentResponseUpdate(ChatRole.Assistant,
         [
             new TextContent(jsonResponse.Text)
         ]);

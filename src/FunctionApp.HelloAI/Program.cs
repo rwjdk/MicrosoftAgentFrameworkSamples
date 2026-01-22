@@ -22,7 +22,7 @@ AzureOpenAIClient azureOpenAIClient = new(
 
 ChatClientAgent myAgent = azureOpenAIClient
     .GetChatClient("gpt-4.1-mini")
-    .CreateAIAgent(name: "MyAgent");
+    .AsAIAgent(name: "MyAgent");
 
 //From nuget: Microsoft.Agents.AI.Hosting.AzureFunctions
 builder.ConfigureDurableAgents(options => options.AddAIAgent(myAgent));

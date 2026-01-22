@@ -25,7 +25,7 @@ public class After
             RawToolCallDetails = details => { Utils.WriteLineDarkGray(details.ToString()); }
         });
 
-        ChatClientAgentRunResponse<WeatherReport> response = await agent.RunAsync<WeatherReport>("What is the Weather like in Paris");
+        ChatClientAgentResponse<WeatherReport> response = await agent.RunAsync<WeatherReport>("What is the Weather like in Paris");
         WeatherReport weatherReport = response.Result;
         Console.WriteLine("City: " + weatherReport.City);
         Console.WriteLine("Condition: " + weatherReport.Condition);

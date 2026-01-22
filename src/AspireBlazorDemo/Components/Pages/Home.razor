@@ -27,7 +27,7 @@
             return;
         }
         
-        AgentRunResponse response = await Agent.RunAsync(_question);
+        AgentResponse response = await Agent.RunAsync(_question);
         _answer = response.Text;
         StateHasChanged();
     }

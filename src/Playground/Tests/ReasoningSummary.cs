@@ -22,7 +22,7 @@ public class ReasoningSummary
 
         ChatClientAgent agent = client
             .GetResponsesClient("gpt-5-mini")
-            .CreateAIAgent(new ChatClientAgentOptions
+            .AsAIAgent(new ChatClientAgentOptions
             {
                 ChatOptions = new ChatOptions
                 {
@@ -37,7 +37,7 @@ public class ReasoningSummary
                 }
             });
 
-        AgentRunResponse response = await agent.RunAsync("What is the capital of france and how many live there?");
+        AgentResponse response = await agent.RunAsync("What is the capital of france and how many live there?");
 
         foreach (ChatMessage message in response.Messages)
         {

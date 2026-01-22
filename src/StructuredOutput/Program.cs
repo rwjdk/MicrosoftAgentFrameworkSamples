@@ -21,9 +21,9 @@ string question = "What are the top 10 Movies according to IMDB?";
 //Without Structured Output
 AIAgent agent1 = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(instructions: "You are an expert in IMDB Lists");
+    .AsAIAgent(instructions: "You are an expert in IMDB Lists");
 
-AgentRunResponse response1 = await agent1.RunAsync(question);
+AgentResponse response1 = await agent1.RunAsync(question);
 Console.WriteLine(response1); //This response is not guaranteed to have a structure format; hence the need for this Structured Output feature
 
 Utils.Separator();
@@ -31,9 +31,9 @@ Utils.Separator();
 //With Structured Output
 ChatClientAgent agent2 = client //<--- Notice that this is not an AIAgent but have it as baseclass!
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(instructions: "You are an expert in IMDB Lists");
+    .AsAIAgent(instructions: "You are an expert in IMDB Lists");
 
-AgentRunResponse<MovieResult> response2 = await agent2.RunAsync<MovieResult>(question);
+AgentResponse<MovieResult> response2 = await agent2.RunAsync<MovieResult>(question);
 
 MovieResult movieResult2 = response2.Result;
 
@@ -51,10 +51,10 @@ JsonSerializerOptions jsonSerializerOptions = new()
 
 AIAgent agent3 = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(instructions: "You are an expert in IMDB Lists");
+    .AsAIAgent(instructions: "You are an expert in IMDB Lists");
 
 ChatResponseFormatJson chatResponseFormatJson = ChatResponseFormat.ForJsonSchema<MovieResult>(jsonSerializerOptions);
-AgentRunResponse response3 = await agent3.RunAsync(question, options: new ChatClientAgentRunOptions()
+AgentResponse response3 = await agent3.RunAsync(question, options: new ChatClientAgentRunOptions()
 {
     ChatOptions = new ChatOptions
     {

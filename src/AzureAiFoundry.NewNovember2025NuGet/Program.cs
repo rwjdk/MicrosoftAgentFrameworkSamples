@@ -32,9 +32,9 @@ try
     );
     foundryAgentName = foundryAgent.Value.Name;
 
-    ChatClientAgent agentFrameworkAgent = client.GetAIAgent(foundryAgent);
+    ChatClientAgent agentFrameworkAgent = client.AsAIAgent(foundryAgent);
 
-    AgentRunResponse response = await agentFrameworkAgent.RunAsync("What is the Capital of France");
+    AgentResponse response = await agentFrameworkAgent.RunAsync("What is the Capital of France");
     Console.WriteLine(response);
 }
 catch (Exception ex)

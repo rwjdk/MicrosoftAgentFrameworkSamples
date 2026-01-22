@@ -21,26 +21,26 @@ string question = "Tell me about Hula Johnson";
 
 ChatClientAgent agentWithJsonTool = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: instructions,
         tools: [AIFunctionFactory.Create(GetFamousPeopleAsJson, name: "get_famous_people")]);
 
 ChatClientAgent agentWithToonTool = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .CreateAIAgent(
+    .AsAIAgent(
         instructions: instructions,
         tools: [AIFunctionFactory.Create(GetFamousPeopleAsToon, name: "get_famous_people")]);
 
 Utils.WriteLineGreen("Ask using JSON Tool");
 
-AgentRunResponse response1 = await agentWithJsonTool.RunAsync(question);
+AgentResponse response1 = await agentWithJsonTool.RunAsync(question);
 Console.WriteLine(response1);
 response1.Usage.OutputAsInformation();
 
 Utils.Separator();
 
 Utils.WriteLineGreen("Ask using Toon Tool");
-AgentRunResponse response2 = await agentWithToonTool.RunAsync(question);
+AgentResponse response2 = await agentWithToonTool.RunAsync(question);
 Console.WriteLine(response2);
 response2.Usage.OutputAsInformation();
 

@@ -16,8 +16,8 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 ChatClient chatClient = client.GetChatClient("gpt-4.1");
 
-ChatClientAgent legalAgent = chatClient.CreateAIAgent(name: "LegalAgent", instructions: "You are a legal agent that need to evaluate if a text is legal (use max 200 chars)");
-ChatClientAgent spellingErrorAgent = chatClient.CreateAIAgent(name: "SpellingErrorAgent", instructions: "You are a spelling expert (use max 200 chars)");
+ChatClientAgent legalAgent = chatClient.AsAIAgent(name: "LegalAgent", instructions: "You are a legal agent that need to evaluate if a text is legal (use max 200 chars)");
+ChatClientAgent spellingErrorAgent = chatClient.AsAIAgent(name: "SpellingErrorAgent", instructions: "You are a spelling expert (use max 200 chars)");
 
 Workflow workflow = AgentWorkflowBuilder.BuildConcurrent([legalAgent, spellingErrorAgent]);
 
