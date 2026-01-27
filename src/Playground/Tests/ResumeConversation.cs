@@ -23,12 +23,12 @@ public class ResumeConversation
                 instructions: "You are a Nice AI"
             );
 
-        AgentThread thread = await agent.GetNewThreadAsync();
+        AgentSession session = await agent.GetNewSessionAsync();
 
-        AgentResponse response1 = await agent.RunAsync("Who is Barak Obama? (Max 5 words)", thread);
+        AgentResponse response1 = await agent.RunAsync("Who is Barak Obama? (Max 5 words)", session);
         Console.WriteLine(response1);
 
-        AgentResponse response2 = await agent.RunAsync("How Tall is he?", thread);
+        AgentResponse response2 = await agent.RunAsync("How Tall is he?", session);
         Console.WriteLine(response2);
 
         //Imagine some time go by and user come back and the in-process thread is gone and not stored... Only the conversation ID

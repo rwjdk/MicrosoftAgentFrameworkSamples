@@ -17,7 +17,7 @@ BingGroundingSearchConfiguration bingToolConfiguration = new(secrets.BingApiKey)
 BingGroundingSearchToolParameters bingToolParameters = new([bingToolConfiguration]);
 
 Response<PersistentAgent>? aiFoundryAgent = null;
-ChatClientAgentThread? chatClientAgentThread = null;
+ChatClientAgentSession? chatClientAgentSession = null;
 try
 {
     aiFoundryAgent = await client.Administration.CreateAgentAsync(
@@ -32,10 +32,10 @@ try
 
     AIAgent agent = (await client.GetAIAgentAsync(aiFoundryAgent.Value.Id));
 
-    AgentThread thread = await agent.GetNewThreadAsync();
+    AgentSession session = await agent.GetNewSessionAsync();
 
     List<AgentResponseUpdate> updates = [];
-    await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)", thread))
+    await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)", session))
     {
         updates.Add(update);
         Console.Write(update);
@@ -48,9 +48,9 @@ try
 }
 finally
 {
-    if (chatClientAgentThread != null)
+    if (chatClientAgentSession != null)
     {
-        await client.Threads.DeleteThreadAsync(chatClientAgentThread.ConversationId);
+        await client.Threads.DeleteThreadAsync(chatClientAgentSession.ConversationId);
     }
 
     if (aiFoundryAgent != null)

@@ -8,24 +8,24 @@ namespace AgentUserInteraction.Advanced.Server.AgUiSpecializedAgents;
 
 public class AgUiStructuredToolsOutputAgent(ChatClientAgent innerAgent, string toolCallToReportBackAsContent) : AIAgent
 {
-    public override ValueTask<AgentThread> GetNewThreadAsync(CancellationToken cancellationToken = default)
+    public override ValueTask<AgentSession> GetNewSessionAsync(CancellationToken cancellationToken = default)
     {
-        return innerAgent.GetNewThreadAsync(cancellationToken);
+        return innerAgent.GetNewSessionAsync(cancellationToken);
     }
 
-    public override ValueTask<AgentThread> DeserializeThreadAsync(JsonElement serializedThread, JsonSerializerOptions? jsonSerializerOptions = null, CancellationToken cancellationToken = default)
+    public override ValueTask<AgentSession> DeserializeSessionAsync(JsonElement serializedSession, JsonSerializerOptions? jsonSerializerOptions = null, CancellationToken cancellationToken = default)
     {
-        return innerAgent.DeserializeThreadAsync(serializedThread, jsonSerializerOptions, cancellationToken);
+        return innerAgent.DeserializeSessionAsync(serializedSession, jsonSerializerOptions, cancellationToken);
     }
 
-    protected override Task<AgentResponse> RunCoreAsync(IEnumerable<ChatMessage> messages, AgentThread? thread = null, AgentRunOptions? options = null, CancellationToken cancellationToken = default)
+    protected override Task<AgentResponse> RunCoreAsync(IEnumerable<ChatMessage> messages, AgentSession? session = null, AgentRunOptions? options = null, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException("AG-UI Agents Always use streaming");
+        return RunStreamingAsync(messages, session, options, cancellationToken).ToAgentResponseAsync(cancellationToken);
     }
 
     protected override async IAsyncEnumerable<AgentResponseUpdate> RunCoreStreamingAsync(
         IEnumerable<ChatMessage> messages,
-        AgentThread? thread = null,
+        AgentSession? session = null,
         AgentRunOptions? options = null,
         [EnumeratorCancellation]
         CancellationToken cancellationToken = default)
@@ -33,7 +33,7 @@ public class AgUiStructuredToolsOutputAgent(ChatClientAgent innerAgent, string t
         // Track function calls that should trigger state events
         Dictionary<string, FunctionCallContent> trackedFunctionCalls = [];
 
-        await foreach (AgentResponseUpdate update in innerAgent.RunStreamingAsync(messages, thread, options, cancellationToken).ConfigureAwait(false))
+        await foreach (AgentResponseUpdate update in innerAgent.RunStreamingAsync(messages, session, options, cancellationToken).ConfigureAwait(false))
         {
             // Process contents: track function calls and emit state events for results
             List<AIContent> stateEventsToEmit = [];

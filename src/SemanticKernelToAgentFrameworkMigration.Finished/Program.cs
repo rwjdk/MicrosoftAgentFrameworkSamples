@@ -56,13 +56,13 @@ app.MapPost("/chatHistory", async Task<IResult> ([FromBody] ChatRequest chatRequ
     ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(
         instructions: "You answer questions about People");
 
-    AgentThread thread = await agent.GetNewThreadAsync();
+    AgentSession session = await agent.GetNewSessionAsync();
 
-    AgentResponse response1 = await agent.RunAsync(chatRequest.Question, thread);
+    AgentResponse response1 = await agent.RunAsync(chatRequest.Question, session);
 
-    AgentResponse response2 = await agent.RunAsync("how tall is he?", thread);
+    AgentResponse response2 = await agent.RunAsync("how tall is he?", session);
 
-    IList<ChatMessage>? messagesInThread = thread.GetService<IList<ChatMessage>>();
+    IList<ChatMessage>? messagesInThread = session.GetService<IList<ChatMessage>>();
     return Results.Ok(messagesInThread);
 });
 

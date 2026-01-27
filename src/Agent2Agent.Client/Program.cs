@@ -28,7 +28,7 @@ ChatClientAgent agent = azureOpenAIClient
         instructions: "You specialize in handling queries for users and using your tools to provide answers.",
         tools: [remoteAgent.AsAIFunction()]);
 
-AgentThread thread = await agent.GetNewThreadAsync();
+AgentSession session = await agent.GetNewSessionAsync();
 while (true)
 {
     Console.Write("> ");
@@ -38,6 +38,6 @@ while (true)
         continue;
     }
 
-    AgentResponse response = await agent.RunAsync(message, thread);
+    AgentResponse response = await agent.RunAsync(message, session);
     Console.WriteLine(response);
 }

@@ -34,12 +34,12 @@ Utils.WriteLineGreen("BigQuestion-END");
 Console.Clear();
 
 Utils.WriteLineGreen("BigQuestion-BACKGROUND-BEGIN");
-AgentThread agentThread = await agent.GetNewThreadAsync();
+AgentSession agentSession = await agent.GetNewSessionAsync();
 ChatClientAgentRunOptions options = new ChatClientAgentRunOptions
 {
     AllowBackgroundResponses = true
 };
-AgentResponse response3 = await agent.RunAsync("Write a 2000 word essay on Pigs in Space", agentThread, options: options);
+AgentResponse response3 = await agent.RunAsync("Write a 2000 word essay on Pigs in Space", agentSession, options: options);
 Utils.WriteLineGreen("BigQuestion-BACKGROUND-END");
 
 int counter = 0;
@@ -50,7 +50,7 @@ while (response3.ContinuationToken is not null)
     Utils.WriteLineDarkGray($"- Waited: {(counter * 2)} seconds...");
 
     options.ContinuationToken = response3.ContinuationToken;
-    response3 = await agent.RunAsync(agentThread, options);
+    response3 = await agent.RunAsync(agentSession, options);
 }
 
 Console.WriteLine(response3.Text);

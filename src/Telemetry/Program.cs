@@ -38,16 +38,16 @@ AIAgent agent = client
     })
     .Build();
 
-AgentThread thread = await agent.GetNewThreadAsync();
+AgentSession session = await agent.GetNewSessionAsync();
 
-AgentResponse response1 = await agent.RunAsync("Hello, My name is Rasmus", thread);
+AgentResponse response1 = await agent.RunAsync("Hello, My name is Rasmus", session);
 Utils.WriteLineRed(response1.Text);
 Utils.Separator();
 
-AgentResponse response2 = await agent.RunAsync("What is the capital of France?", thread);
+AgentResponse response2 = await agent.RunAsync("What is the capital of France?", session);
 Utils.WriteLineRed(response2.Text);
 Utils.Separator();
 
-AgentResponse response3 = await agent.RunAsync("What was my name?", thread);
+AgentResponse response3 = await agent.RunAsync("What was my name?", session);
 Utils.WriteLineRed(response3.Text);
 Utils.Separator();

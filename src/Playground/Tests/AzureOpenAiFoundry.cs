@@ -33,7 +33,7 @@ public class AzureOpenAiFoundry
         BingGroundingSearchToolParameters bingToolParameters = new([bingToolConfiguration]);
 
         Response<PersistentAgent>? aiFoundryAgent = null;
-        ChatClientAgentThread? chatClientAgentThread = null;
+        ChatClientAgentSession? chatClientAgentThread = null;
         try
         {
             aiFoundryAgent = await client.Administration.CreateAgentAsync(
@@ -51,10 +51,10 @@ public class AzureOpenAiFoundry
                 .UseOpenTelemetry(sourceName: sourceName, telemetryAgent => { telemetryAgent.EnableSensitiveData = true; })
                 .Build();
 
-            AgentThread thread = await agent.GetNewThreadAsync();
+            AgentSession session = await agent.GetNewSessionAsync();
 
             List<AgentResponseUpdate> updates = [];
-            await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)", thread))
+            await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)", session))
             {
                 updates.Add(update);
                 Console.Write(update);

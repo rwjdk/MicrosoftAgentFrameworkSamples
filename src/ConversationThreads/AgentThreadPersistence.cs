@@ -8,7 +8,7 @@ public static class AgentThreadPersistence
 {
     private static string ConversationPath => Path.Combine(Path.GetTempPath(), "conversation.json");
 
-    public static async Task<AgentThread> ResumeChatIfRequestedAsync(ChatClientAgent agent)
+    public static async Task<AgentSession> ResumeChatIfRequestedAsync(ChatClientAgent agent)
     {
         if (File.Exists(ConversationPath))
         {
@@ -18,22 +18,22 @@ public static class AgentThreadPersistence
             if (key.Key == ConsoleKey.Y)
             {
                 JsonElement jsonElement = JsonSerializer.Deserialize<JsonElement>(await File.ReadAllTextAsync(ConversationPath));
-                AgentThread resumedThread = await agent.DeserializeThreadAsync(jsonElement);
+                AgentSession resumedThread = await agent.DeserializeSessionAsync(jsonElement);
 
                 await RestoreConsole(resumedThread);
                 return resumedThread;
             }
         }
 
-        return await agent.GetNewThreadAsync();
+        return await agent.GetNewSessionAsync();
     }
 
-    private static async Task RestoreConsole(AgentThread resumedThread)
+    private static async Task RestoreConsole(AgentSession resumedSession)
     {
-        ChatClientAgentThread chatClientAgentThread = (ChatClientAgentThread)resumedThread;
-        if (chatClientAgentThread.MessageStore != null)
+        ChatClientAgentSession chatClientAgentThread = (ChatClientAgentSession)resumedSession;
+        if (chatClientAgentThread.ChatHistoryProvider != null)
         {
-            IList<ChatMessage>? messages = resumedThread.GetService<IList<ChatMessage>>();
+            IList<ChatMessage>? messages = resumedSession.GetService<IList<ChatMessage>>();
             foreach (ChatMessage message in messages!)
             {
                 if (message.Role == ChatRole.User)
@@ -51,9 +51,9 @@ public static class AgentThreadPersistence
         }
     }
 
-    public static async Task StoreThreadAsync(AgentThread thread)
+    public static async Task StoreThreadAsync(AgentSession session)
     {
-        JsonElement serializedThread = thread.Serialize();
+        JsonElement serializedThread = session.Serialize();
         await File.WriteAllTextAsync(ConversationPath, JsonSerializer.Serialize(serializedThread));
     }
 }

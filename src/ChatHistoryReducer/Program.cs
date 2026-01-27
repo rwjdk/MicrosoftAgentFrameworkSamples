@@ -27,22 +27,22 @@ ChatClientAgent agent = client
         {
             Instructions = "You are a Friendly AI Bot, answering questions",
         },
-        ChatMessageStoreFactory = (context, token) => ValueTask.FromResult<ChatMessageStore>(new InMemoryChatMessageStore(chatReducer2, context.SerializedState, context.JsonSerializerOptions))
+        ChatHistoryProviderFactory = (context, token) => ValueTask.FromResult<ChatHistoryProvider>(new InMemoryChatHistoryProvider(chatReducer2, context.SerializedState, context.JsonSerializerOptions))
     });
 
-AgentThread thread = await agent.GetNewThreadAsync();
+AgentSession session = await agent.GetNewSessionAsync();
 
 while (true)
 {
     Console.Write("> ");
     string input = Console.ReadLine() ?? string.Empty;
-    AgentResponse response = await agent.RunAsync(input, thread);
+    AgentResponse response = await agent.RunAsync(input, session);
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 
-    IList<ChatMessage> messagesInThread = thread.GetService<IList<ChatMessage>>()!;
-    Utils.WriteLineDarkGray("- Number of messages in thread: " + messagesInThread.Count());
-    foreach (ChatMessage message in messagesInThread)
+    IList<ChatMessage> messagesInSession = session.GetService<IList<ChatMessage>>()!;
+    Utils.WriteLineDarkGray("- Number of messages in session: " + messagesInSession.Count());
+    foreach (ChatMessage message in messagesInSession)
     {
         Utils.WriteLineDarkGray($"-- {message.Role}: {message.Text}");
     }

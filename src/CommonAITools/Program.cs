@@ -69,7 +69,7 @@ AIAgent agent = factory.CreateAgent(new AgentOptions
     RawToolCallDetails = Console.WriteLine
 });
 
-AgentThread thread = await agent.GetNewThreadAsync();
+AgentSession session = await agent.GetNewSessionAsync();
 while (true)
 {
     Console.Write("> ");
@@ -77,10 +77,10 @@ while (true)
     if (input == "/new")
     {
         Console.Clear();
-        thread = await agent.GetNewThreadAsync();
+        session = await agent.GetNewSessionAsync();
         continue;
     }
-    AgentResponse response = await agent.RunAsync(input, thread);
+    AgentResponse response = await agent.RunAsync(input, session);
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
     Utils.Separator();

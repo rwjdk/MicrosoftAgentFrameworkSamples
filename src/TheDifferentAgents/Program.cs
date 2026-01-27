@@ -105,9 +105,6 @@ string fullNameOfAiAgentWithFunctionCallingMiddleware = aiAgentWithFunctionCalli
 //A Copilot Studio Agent
 //CopilotStudioAgent copilotStudioAgent = new CopilotStudioAgent(new CopilotClient(<settings>));
 
-//And a HostAgent (not fully understood this one, but is used for A2A)
-AIHostAgent aiHostAgent = new AIHostAgent(chatClientAgentFromChatClient, new InMemoryAgentThreadStore());
-
 Console.WriteLine();
 //--------------------------------------------------------------------------
 

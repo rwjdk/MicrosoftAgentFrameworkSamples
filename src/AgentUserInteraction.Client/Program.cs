@@ -13,7 +13,7 @@ ConsoleColor textColor = ConsoleColor.White;
 AGUIChatClient chatClient = new AGUIChatClient(httpClient, serverUrl);
 AIAgent agent = chatClient.AsAIAgent(tools: [AIFunctionFactory.Create(ChangeColor, name: "change_color")]);
 
-//Note that certain Agent Feature do not work in AG-UI (Instructions and Threads) so need to initialized/maintained manually
+//Note that certain Agent Feature do not work in AG-UI (Instructions and Sessions) so need to initialized/maintained manually
 List<ChatMessage> messages = [new ChatMessage(ChatRole.System, "You are a nice AI Agent")];
 
 while (true)

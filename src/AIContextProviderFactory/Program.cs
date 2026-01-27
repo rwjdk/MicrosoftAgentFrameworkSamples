@@ -32,7 +32,7 @@ ChatClientAgent agentWithCustomMemory = client.GetChatClient(secrets.ChatDeploym
 
 AIAgent agentToUse = agentWithCustomMemory;
 
-AgentThread thread = await agentToUse.GetNewThreadAsync();
+AgentSession session = await agentToUse.GetNewSessionAsync();
 
 while (true)
 {
@@ -41,7 +41,7 @@ while (true)
     if (!string.IsNullOrWhiteSpace(input))
     {
         ChatMessage message = new(ChatRole.User, input);
-        AgentResponse response = await agentToUse.RunAsync(message, thread);
+        AgentResponse response = await agentToUse.RunAsync(message, session);
         {
             Console.WriteLine(response);
         }

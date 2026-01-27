@@ -38,14 +38,14 @@ AIAgent agent = client
     .Use(FunctionCallMiddleware) //Middleware
     .Build();
 
-AgentThread thread = await agent.GetNewThreadAsync();
+AgentSession session = await agent.GetNewSessionAsync();
 
 while (true)
 {
     Console.Write("> ");
     string? input = Console.ReadLine();
     ChatMessage message = new(ChatRole.User, input);
-    AgentResponse response = await agent.RunAsync(message, thread);
+    AgentResponse response = await agent.RunAsync(message, session);
     List<UserInputRequestContent> userInputRequests = response.UserInputRequests.ToList();
     while (userInputRequests.Count > 0)
     {
@@ -58,7 +58,7 @@ while (true)
             })
             .ToList();
 
-        response = await agent.RunAsync(userInputResponses, thread);
+        response = await agent.RunAsync(userInputResponses, session);
         userInputRequests = response.UserInputRequests.ToList();
     }
 

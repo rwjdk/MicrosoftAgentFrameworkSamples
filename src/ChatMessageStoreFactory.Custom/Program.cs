@@ -17,47 +17,47 @@ ChatClientAgent agent = azureOpenAIClient
     .AsAIAgent(
         new ChatClientAgentOptions
         {
-            ChatMessageStoreFactory = (context, token) => ValueTask.FromResult<ChatMessageStore>(new MyMessageStore(context))
+            ChatHistoryProviderFactory = (context, token) => ValueTask.FromResult<ChatHistoryProvider>(new MyMessageStore(context))
         }
     );
 
-AgentThread thread = await agent.GetNewThreadAsync();
+AgentSession session = await agent.GetNewSessionAsync();
 
-AgentResponse response = await agent.RunAsync("Who is Barack Obama", thread);
+AgentResponse response = await agent.RunAsync("Who is Barack Obama", session);
 Console.WriteLine(response);
 
-JsonElement threadElement = thread.Serialize();
-string toStoreForTheUser = JsonSerializer.Serialize(threadElement);
+JsonElement sessionElement = session.Serialize();
+string toStoreForTheUser = JsonSerializer.Serialize(sessionElement);
 
 Utils.Separator();
 
 //Some time passes.... 
-Utils.WriteLineGreen("Some time passes, and we restore the thread...");
+Utils.WriteLineGreen("Some time passes, and we restore the session...");
 
 
-JsonElement restoredThreadElement = JsonSerializer.Deserialize<JsonElement>(toStoreForTheUser);
+JsonElement restoredSessionElement = JsonSerializer.Deserialize<JsonElement>(toStoreForTheUser);
 
-AgentThread restoredThread = await agent.DeserializeThreadAsync(restoredThreadElement);
+AgentSession restoredThread = await agent.DeserializeSessionAsync(restoredSessionElement);
 
 AgentResponse someTimeLaterResponse = await agent.RunAsync("How Tall is he?", restoredThread);
 Console.WriteLine(someTimeLaterResponse);
 
-class MyMessageStore(ChatClientAgentOptions.ChatMessageStoreFactoryContext factoryContext) : ChatMessageStore
+class MyMessageStore(ChatClientAgentOptions.ChatHistoryProviderFactoryContext factoryContext) : ChatHistoryProvider
 {
-    public string ThreadId { get; set; } = factoryContext.SerializedState.ValueKind is JsonValueKind.String ? factoryContext.SerializedState.Deserialize<string>()! : Guid.NewGuid().ToString();
+    public string SessionId { get; set; } = factoryContext.SerializedState.ValueKind is JsonValueKind.String ? factoryContext.SerializedState.Deserialize<string>()! : Guid.NewGuid().ToString();
 
-    public string ThreadPath => Path.Combine(Path.GetTempPath(), $"{ThreadId}.json");
+    public string SessionPath => Path.Combine(Path.GetTempPath(), $"{SessionId}.json");
 
     private readonly List<ChatMessage> _messages = [];
 
     public override async ValueTask<IEnumerable<ChatMessage>> InvokingAsync(InvokingContext context, CancellationToken cancellationToken = new CancellationToken())
     {
-        if (!File.Exists(ThreadPath))
+        if (!File.Exists(SessionPath))
         {
             return [];
         }
 
-        string json = await File.ReadAllTextAsync(ThreadPath, cancellationToken);
+        string json = await File.ReadAllTextAsync(SessionPath, cancellationToken);
         return JsonSerializer.Deserialize<List<ChatMessage>>(json)!;
     }
 
@@ -67,11 +67,11 @@ class MyMessageStore(ChatClientAgentOptions.ChatMessageStoreFactoryContext facto
         // Optionally messages produced by the AIContextProvider can also be persisted (not shown).
         _messages.AddRange(context.RequestMessages.Concat(context.AIContextProviderMessages ?? []).Concat(context.ResponseMessages ?? []));
 
-        await File.WriteAllTextAsync(ThreadPath, JsonSerializer.Serialize(_messages, factoryContext.JsonSerializerOptions), cancellationToken);
+        await File.WriteAllTextAsync(SessionPath, JsonSerializer.Serialize(_messages, factoryContext.JsonSerializerOptions), cancellationToken);
     }
 
     public override JsonElement Serialize(JsonSerializerOptions? jsonSerializerOptions = null)
     {
-        return JsonSerializer.SerializeToElement(ThreadId, factoryContext.JsonSerializerOptions);
+        return JsonSerializer.SerializeToElement(SessionId, factoryContext.JsonSerializerOptions);
     }
 }

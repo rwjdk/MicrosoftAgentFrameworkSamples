@@ -37,7 +37,7 @@ public static class Take3TheSensibleChoice
                 ]
             ).AsBuilder().Use(FunctionCallMiddleware).Build();
 
-        AgentThread thread = await agent.GetNewThreadAsync();
+        AgentSession session = await agent.GetNewSessionAsync();
 
         while (true)
         {
@@ -46,7 +46,7 @@ public static class Take3TheSensibleChoice
             if (!string.IsNullOrWhiteSpace(input))
             {
                 ChatMessage message = new(ChatRole.User, input);
-                await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(message, thread))
+                await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(message, session))
                 {
                     Console.Write(update);
                 }

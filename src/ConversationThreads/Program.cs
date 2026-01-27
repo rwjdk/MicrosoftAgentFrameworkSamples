@@ -20,17 +20,17 @@ var agent = client
     .GetChatClient(secrets.ChatDeploymentName)
     .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
-AgentThread thread;
+AgentSession session;
 
 const bool optionToResume = true; //Set this to true to test resume of previous conversations
 
 if (optionToResume)
 {
-    thread = await AgentThreadPersistence.ResumeChatIfRequestedAsync(agent);
+    session = await AgentThreadPersistence.ResumeChatIfRequestedAsync(agent);
 }
 else
 {
-    thread = await agent.GetNewThreadAsync();
+    session = await agent.GetNewSessionAsync();
 }
 
 while (true)
@@ -40,7 +40,7 @@ while (true)
     if (!string.IsNullOrWhiteSpace(input))
     {
         ChatMessage message = new(ChatRole.User, input);
-        await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(message, thread))
+        await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(message, session))
         {
             Console.Write(update);
         }
@@ -50,6 +50,6 @@ while (true)
 
     if (optionToResume)
     {
-        await AgentThreadPersistence.StoreThreadAsync(thread);
+        await AgentThreadPersistence.StoreThreadAsync(session);
     }
 }

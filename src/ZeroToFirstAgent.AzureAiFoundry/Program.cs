@@ -6,7 +6,7 @@
  * 3: Create an PersistentAgentsClient (Azure Identity)
  * 4: Use the client's Administration to create a new agent
  * 5: Use client to get an ChatClientAgent from the persistentAgent's Id
- * 6: Create a new Thread
+ * 6: Create a new Session
  * 7: Call like normal
  * 8: (Optional) Clean up
  */
@@ -28,14 +28,14 @@ try
 
     ChatClientAgent agent = await client.GetAIAgentAsync(aiFoundryAgent.Value.Id);
 
-    AgentThread thread = await agent.GetNewThreadAsync();
+    AgentSession session = await agent.GetNewSessionAsync();
 
-    AgentResponse response = await agent.RunAsync("What is the capital of France?", thread);
+    AgentResponse response = await agent.RunAsync("What is the capital of France?", session);
     Console.WriteLine(response);
 
     Console.WriteLine("---");
 
-    await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?", thread))
+    await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?", session))
     {
         Console.Write(update);
     }

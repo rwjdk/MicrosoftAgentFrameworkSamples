@@ -40,14 +40,14 @@ AIAgent agent = client
     .Use(FunctionCallMiddleware) //Middleware
     .Build();
 
-AgentThread thread = await agent.GetNewThreadAsync();
+AgentSession session = await agent.GetNewSessionAsync();
 
 while (true)
 {
     Console.Write("> ");
     string? input = Console.ReadLine();
     ChatMessage message = new(ChatRole.User, input);
-    AgentResponse response = await agent.RunAsync(message, thread);
+    AgentResponse response = await agent.RunAsync(message, session);
 
     Console.WriteLine(response);
 

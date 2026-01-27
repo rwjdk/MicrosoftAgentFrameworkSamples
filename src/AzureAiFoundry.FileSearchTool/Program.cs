@@ -13,7 +13,7 @@ Secrets secrets = SecretManager.GetSecrets();
 PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 Response<PersistentAgent>? aiFoundryAgent = null;
-ChatClientAgentThread? chatClientAgentThread = null;
+ChatClientAgentSession? chatClientAgentSession = null;
 string? vectorStoreId = null;
 try
 {
@@ -49,9 +49,9 @@ try
 
     AIAgent agent = (await client.GetAIAgentAsync(aiFoundryAgent.Value.Id));
 
-    AgentThread thread = await agent.GetNewThreadAsync();
+    AgentSession session = await agent.GetNewSessionAsync();
 
-    AgentResponse response = await agent.RunAsync("What is word of the day?", thread);
+    AgentResponse response = await agent.RunAsync("What is word of the day?", session);
     Console.WriteLine(response);
     foreach (ChatMessage message in response.Messages)
     {
@@ -76,9 +76,9 @@ finally
         await client.VectorStores.DeleteVectorStoreAsync(vectorStoreId);
     }
 
-    if (chatClientAgentThread != null)
+    if (chatClientAgentSession != null)
     {
-        await client.Threads.DeleteThreadAsync(chatClientAgentThread.ConversationId);
+        await client.Threads.DeleteThreadAsync(chatClientAgentSession.ConversationId);
     }
 
     if (aiFoundryAgent != null)

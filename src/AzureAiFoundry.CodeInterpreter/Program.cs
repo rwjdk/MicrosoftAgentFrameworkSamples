@@ -13,7 +13,7 @@ Secrets secrets = SecretManager.GetSecrets();
 PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 Response<PersistentAgent>? aiFoundryAgent = null;
-ChatClientAgentThread? chatClientAgentThread = null;
+ChatClientAgentSession? chatClientAgentSession = null;
 try
 {
     aiFoundryAgent = await client.Administration.CreateAgentAsync(
@@ -28,9 +28,9 @@ try
 
     AIAgent agent = await client.GetAIAgentAsync(aiFoundryAgent.Value.Id);
 
-    AgentThread thread = await agent.GetNewThreadAsync();
+    AgentSession session = await agent.GetNewSessionAsync();
 
-    AgentResponse response = await agent.RunAsync("Make a jpg image with graph listing population of the top 10 US States in year 2000", thread);
+    AgentResponse response = await agent.RunAsync("Make a jpg image with graph listing population of the top 10 US States in year 2000", session);
 
     string? fileId = null;
     string? filename = null;
@@ -71,9 +71,9 @@ try
 }
 finally
 {
-    if (chatClientAgentThread != null)
+    if (chatClientAgentSession != null)
     {
-        await client.Threads.DeleteThreadAsync(chatClientAgentThread.ConversationId);
+        await client.Threads.DeleteThreadAsync(chatClientAgentSession.ConversationId);
     }
 
     if (aiFoundryAgent != null)

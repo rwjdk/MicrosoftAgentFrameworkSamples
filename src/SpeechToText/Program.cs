@@ -18,7 +18,7 @@ var agent = azureOpenAIClient
     .GetChatClient(secrets.ChatDeploymentName)
     .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
-AgentThread agentThread = await agent.GetNewThreadAsync();
+AgentSession agentSession = await agent.GetNewSessionAsync();
 
 while (true)
 {
@@ -34,7 +34,7 @@ while (true)
     string questionFromAudio = result.Value.Text;
     Console.WriteLine($"> {questionFromAudio}");
 
-    AgentResponse response = await agent.RunAsync(questionFromAudio, agentThread);
+    AgentResponse response = await agent.RunAsync(questionFromAudio, agentSession);
     Console.WriteLine(response);
 
     Utils.Separator();
