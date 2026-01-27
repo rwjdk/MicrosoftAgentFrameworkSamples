@@ -9,10 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AgentFrameworkToolkit.Tools.ModelContextProtocol" Version="1.0.0-preview.260121.1" />
-    <PackageReference Include="Google.GenAI" Version="0.11.0" />
+    <PackageReference Include="AgentFrameworkToolkit.Tools.ModelContextProtocol" Version="1.0.0-preview.260126.1" />
+    <PackageReference Include="Google.GenAI" Version="0.13.1" />
     <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260121.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
   </ItemGroup>
 
   <ItemGroup>

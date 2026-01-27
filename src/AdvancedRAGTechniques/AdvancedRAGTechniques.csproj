@@ -15,10 +15,10 @@
 	<ItemGroup>
 		<PackageReference Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureAISearch" Version="1.68.0-preview" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.CosmosNoSql" Version="1.68.0-preview" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" Version="1.68.0-preview" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.SqlServer" Version="1.68.0-preview" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureAISearch" Version="1.70.0-preview" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.CosmosNoSql" Version="1.70.0-preview" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" Version="1.70.0-preview" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.SqlServer" Version="1.70.0-preview" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />

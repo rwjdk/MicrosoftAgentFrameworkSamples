@@ -19,4 +19,5 @@ public record Secrets(
     string TrelloToken,
     string AnthropicApiKey,
     string MistralApiKey,
-    string AmazonBedrockApiKey);
+    string AmazonBedrockApiKey,
+    string OpenWeatherApiKey);

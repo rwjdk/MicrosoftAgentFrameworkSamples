@@ -7,13 +7,13 @@ public class SecretManager
     /* This SecretManager relies on .NET User Secrets in the following format
     ************************************************************************************************************************************************
     {
-      "OpenAiApiKey": "todo", //URL of your OpenAI API Key
-      "AzureOpenAiEndpoint": "todo", //URL of your Azure OpenAI Service
-      "AzureOpenAiKey": "todo", //Key of your Azure OpenAI Service
-      "ChatDeploymentName": "todo", //DeploymentName of your Azure OpenAI Chat-model (example: "gpt-4o-mini")
-      "EmbeddingModelName": "todo", //[Optional] Embedding Model for RAG (example: "text-embedding-ada-002")
-      "AzureAiFoundryAgentEndpoint" : "todo", //[Optional] Endpoint for the Azure AI Foundry Agents (if you wish to test those demos)
-      "AzureAiFoundryAgentId" : "todo", //[Optional] ID of your agent for the Azure AI Foundry Agents (if you wish to test those demos)
+      "OpenAiApiKey": "todo",
+      "AzureOpenAiEndpoint": "todo",
+      "AzureOpenAiKey": "todo",
+      "ChatDeploymentName": "todo",
+      "EmbeddingModelName": "todo",
+      "AzureAiFoundryAgentEndpoint" : "todo",
+      "AzureAiFoundryAgentId" : "todo",
       "BingApiKey" : "todo",
       "HuggingFaceApiKey": "todo",
       "OpenRouterApiKet" : "todo",
@@ -25,7 +25,8 @@ public class SecretManager
       "TrelloToken" : "todo",
       "AnthropicApiKey" : "todo",
       "MistralApiKey" : "todo",
-      "AmazonBedrockApiKey" : "todo"
+      "AmazonBedrockApiKey" : "todo",
+      "OpenWeatherApiKey" : "todo",
     }
     ************************************************************************************************************************************************
     - See the how-to guides on how to create your Azure Resources in the ReadMe
@@ -36,45 +37,27 @@ public class SecretManager
     public static Secrets GetSecrets()
     {
         IConfigurationRoot configurationRoot = new ConfigurationBuilder().AddUserSecrets<SecretManager>().Build();
-        string openAiApiKey = configurationRoot["OpenAiApiKey"] ?? string.Empty;
-        string azureOpenAiEndpoint = configurationRoot["AzureOpenAiEndpoint"] ?? string.Empty;
-        string azureOpenAiKey = configurationRoot["AzureOpenAiKey"] ?? string.Empty;
-        string chatDeploymentName = configurationRoot["ChatDeploymentName"] ?? string.Empty;
-        string embeddingModelName = configurationRoot["EmbeddingModelName"] ?? string.Empty;
-        string azureAiFoundryAgentEndpoint = configurationRoot["AzureAiFoundryAgentEndpoint"] ?? string.Empty;
-        string azureAiFoundryAgentId = configurationRoot["AzureAiFoundryAgentId"] ?? string.Empty;
-        string bingApiKey = configurationRoot["BingApiKey"] ?? string.Empty;
-        string githubPatToken = configurationRoot["GitHubPatToken"] ?? string.Empty;
-        string huggingFaceApiKey = configurationRoot["HuggingFaceApiKey"] ?? string.Empty;
-        string openRouterApiKey = configurationRoot["OpenRouterApiKey"] ?? string.Empty;
-        string applicationInsightsConnectionString = configurationRoot["ApplicationInsightsConnectionString"] ?? string.Empty;
-        string googleGeminiApiKey = configurationRoot["GoogleGeminiApiKey"] ?? string.Empty;
-        string xAiGrokApiKey = configurationRoot["XAiGrokApiKey"] ?? string.Empty;
-        string trelloApiKey = configurationRoot["TrelloApiKey"] ?? string.Empty;
-        string trelloToken = configurationRoot["TrelloToken"] ?? string.Empty;
-        string anthropicApiKey = configurationRoot["AnthropicApiKey"] ?? string.Empty;
-        string mistralApiKey = configurationRoot["MistralApiKey"] ?? string.Empty;
-        string amazonBedrockApiKey = configurationRoot["AmazonBedrockApiKey"] ?? string.Empty;
 
         return new Secrets(
-            openAiApiKey,
-            azureOpenAiEndpoint,
-            azureOpenAiKey,
-            chatDeploymentName,
-            embeddingModelName,
-            azureAiFoundryAgentEndpoint,
-            azureAiFoundryAgentId,
-            bingApiKey,
-            githubPatToken,
-            huggingFaceApiKey,
-            openRouterApiKey,
-            applicationInsightsConnectionString,
-            googleGeminiApiKey,
-            xAiGrokApiKey,
-            trelloApiKey,
-            trelloToken,
-            anthropicApiKey,
-            mistralApiKey,
-            amazonBedrockApiKey);
+            configurationRoot["OpenAiApiKey"] ?? string.Empty,
+            configurationRoot["AzureOpenAiEndpoint"] ?? string.Empty,
+            configurationRoot["AzureOpenAiKey"] ?? string.Empty,
+            configurationRoot["ChatDeploymentName"] ?? string.Empty,
+            configurationRoot["EmbeddingModelName"] ?? string.Empty,
+            configurationRoot["AzureAiFoundryAgentEndpoint"] ?? string.Empty,
+            configurationRoot["AzureAiFoundryAgentId"] ?? string.Empty,
+            configurationRoot["BingApiKey"] ?? string.Empty,
+            configurationRoot["GitHubPatToken"] ?? string.Empty,
+            configurationRoot["HuggingFaceApiKey"] ?? string.Empty,
+            configurationRoot["OpenRouterApiKey"] ?? string.Empty,
+            configurationRoot["ApplicationInsightsConnectionString"] ?? string.Empty,
+            configurationRoot["GoogleGeminiApiKey"] ?? string.Empty,
+            configurationRoot["XAiGrokApiKey"] ?? string.Empty,
+            configurationRoot["TrelloApiKey"] ?? string.Empty,
+            configurationRoot["TrelloToken"] ?? string.Empty,
+            configurationRoot["AnthropicApiKey"] ?? string.Empty,
+            configurationRoot["MistralApiKey"] ?? string.Empty,
+            configurationRoot["AmazonBedrockApiKey"] ?? string.Empty,
+            configurationRoot["OpenWeatherApiKey"] ?? string.Empty);
     }
 }

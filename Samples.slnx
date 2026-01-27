@@ -21,6 +21,7 @@
     <Project Path="src/AgentFrameworkToolkit.EasierAgents/AgentFrameworkToolkit.EasierAgents.csproj" Id="d0bdcd59-b811-4223-9b83-9b5e266f2dc2" />
     <Project Path="src/AgentFrameworkToolkit.EasierTools/AgentFrameworkToolkit.EasierTools.csproj" Id="79fbfdda-a4a6-4c73-b8ed-f0ad8d13e3bb" />
     <Project Path="src/AgentSkills/AgentSkills.csproj" Id="50e51e01-436d-4f24-9650-843054fb60d5" />
+    <Project Path="src/CommonAITools/CommonAITools.csproj" Id="71d5b760-4ca3-4a8f-9535-9baef66d29c7" />
   </Folder>
   <Folder Name="/AIContextProviderFactory/">
     <Project Path="src/AIContextProviderFactory/AIContextProviderFactory.Custom.csproj" Id="5100b6b0-ce98-4a6a-bdc9-3541771b28f1" />

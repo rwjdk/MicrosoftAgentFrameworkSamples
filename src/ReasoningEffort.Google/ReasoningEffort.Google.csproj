@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="AgentFrameworkToolkit.Google" Version="1.0.0-preview.260121.1" />
+		<PackageReference Include="AgentFrameworkToolkit.Google" Version="1.0.0-preview.260126.1" />
 		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260121.1" />
 	</ItemGroup>
 	<ItemGroup>

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.Extensions.Bedrock.MEAI" Version="4.0.5.1" />
+    <PackageReference Include="AWSSDK.Extensions.Bedrock.MEAI" Version="4.0.5.5" />
     <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260121.1" />
   </ItemGroup>
 

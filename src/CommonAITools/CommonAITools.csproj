@@ -7,9 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="AgentFrameworkToolkit.Anthropic" Version="1.0.0-preview.260126.1" />
-		<PackageReference Include="Microsoft.Agents.AI.Anthropic" Version="1.0.0-preview.260121.1" />
+		<PackageReference Include="AgentFrameworkToolkit.AzureOpenAI" Version="1.0.0-preview.260126.1" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
