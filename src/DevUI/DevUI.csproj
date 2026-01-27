@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
@@ -6,14 +6,15 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="AgentFrameworkToolkit.Anthropic" Version="1.0.0-preview.260126.1" />
-		<PackageReference Include="AgentFrameworkToolkit.Google" Version="1.0.0-preview.260126.1" />
-		<PackageReference Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
-		<PackageReference Include="Microsoft.Agents.AI.DevUI" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260121.1" />
+		<PackageReference Include="AgentFrameworkToolkit.Anthropic" />
+		<PackageReference Include="AgentFrameworkToolkit.Google" />
+		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI.DevUI" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 
 </Project>
+

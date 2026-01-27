@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,8 +8,9 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.8.2.1" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260121.1" />
+		<PackageReference Include="Microsoft.AI.Foundry.Local" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
 	</ItemGroup>
 
 </Project>
+

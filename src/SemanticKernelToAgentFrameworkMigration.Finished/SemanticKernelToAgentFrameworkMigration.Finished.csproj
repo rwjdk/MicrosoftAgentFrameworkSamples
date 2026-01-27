@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
-    <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260121.1" />
-    <PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" Version="1.70.0-preview" />
+    <PackageReference Include="Azure.AI.OpenAI" />
+    <PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,3 +17,4 @@
   </ItemGroup>
 
 </Project>
+

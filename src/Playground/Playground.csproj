@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,24 +8,24 @@
     <UserSecretsId>a126d1a5-5e83-4ff0-97ad-c9e9d631662b</UserSecretsId>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Azure.Identity" Version="1.18.0-beta.2" />
-		<PackageReference Include="Google_GenerativeAI.Microsoft" Version="3.6.3" />
-		<PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.6.0-beta.2" />
-		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.A2A" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.AGUI" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.AzureAI.Persistent" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.CopilotStudio" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.Hosting" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.Hosting.A2A" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.Hosting.A2A.AspNetCore" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.Hosting.AGUI.AspNetCore" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.Workflows" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="OpenAI" Version="2.8.0" />
-		<PackageReference Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="OpenTelemetry" Version="1.15.0" />
-		<PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.15.0" />
+		<PackageReference Include="Azure.Identity" />
+		<PackageReference Include="Google_GenerativeAI.Microsoft" />
+		<PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" />
+		<PackageReference Include="Microsoft.Agents.AI" />
+		<PackageReference Include="Microsoft.Agents.AI.A2A" />
+		<PackageReference Include="Microsoft.Agents.AI.AGUI" />
+		<PackageReference Include="Microsoft.Agents.AI.AzureAI.Persistent" />
+		<PackageReference Include="Microsoft.Agents.AI.CopilotStudio" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting.A2A" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting.A2A.AspNetCore" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting.AGUI.AspNetCore" />
+		<PackageReference Include="Microsoft.Agents.AI.Workflows" />
+		<PackageReference Include="OpenAI" />
+		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+		<PackageReference Include="OpenTelemetry" />
+		<PackageReference Include="OpenTelemetry.Exporter.Console" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
@@ -41,3 +41,4 @@
 	  </None>
 	</ItemGroup>
 </Project>
+

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
@@ -13,12 +13,12 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureAISearch" Version="1.70.0-preview" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.CosmosNoSql" Version="1.70.0-preview" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" Version="1.70.0-preview" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.SqlServer" Version="1.70.0-preview" />
+		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureAISearch" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.CosmosNoSql" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.SqlServer" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
@@ -29,3 +29,4 @@
 		</None>
 	</ItemGroup>
 </Project>
+

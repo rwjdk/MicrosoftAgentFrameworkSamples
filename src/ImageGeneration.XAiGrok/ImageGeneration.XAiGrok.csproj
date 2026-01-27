@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,12 +8,13 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.2" />
-		<PackageReference Include="OpenAI" Version="2.8.0" />
+		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+		<PackageReference Include="OpenAI" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 </Project>
+

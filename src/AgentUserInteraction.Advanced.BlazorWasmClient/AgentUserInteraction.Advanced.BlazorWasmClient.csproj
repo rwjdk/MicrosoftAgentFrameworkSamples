@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.2" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Agents.AI.AGUI" Version="1.0.0-preview.260121.1" />
-    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260121.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Agents.AI.AGUI" />
+    <PackageReference Include="Microsoft.Agents.AI" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,3 +19,4 @@
   </ItemGroup>
 
 </Project>
+

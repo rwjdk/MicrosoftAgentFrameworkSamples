@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net10.0</TargetFramework>
@@ -6,9 +6,9 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="ToonNet" Version="1.0.4" />
+		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+		<PackageReference Include="ToonNet" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
@@ -19,3 +19,4 @@
 	  </None>
 	</ItemGroup>
 </Project>
+

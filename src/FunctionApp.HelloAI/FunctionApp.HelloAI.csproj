@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
@@ -11,17 +11,17 @@
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 		
-		<PackageReference Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
-		<PackageReference Include="Microsoft.Agents.AI.Hosting.AzureFunctions" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260121.1" />
-		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.DurableTask" Version="1.13.1" />
-		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.DurableTask.AzureManaged" Version="1.2.0" />
+		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting.AzureFunctions" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.DurableTask" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.DurableTask.AzureManaged" />
 
-		<PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.23.0" />
-		<PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.51.0" />
-		<PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" Version="2.50.0" />
-		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore" Version="2.1.0" />
-		<PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.7" />
+		<PackageReference Include="Microsoft.ApplicationInsights.WorkerService" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -29,3 +29,4 @@
 	</ItemGroup>
 
 </Project>
+

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,10 +7,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="AgentFrameworkToolkit.Google" Version="1.0.0-preview.260126.1" />
-		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260121.1" />
+		<PackageReference Include="AgentFrameworkToolkit.Google" />
+		<PackageReference Include="Microsoft.Agents.AI" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 </Project>
+

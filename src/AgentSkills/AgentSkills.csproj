@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
@@ -8,8 +8,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AgentFrameworkToolkit.AzureOpenAI" Version="1.0.0-preview.260126.1" />
-		<PackageReference Include="AgentSkillsDotNet" Version="1.0.0-preview.260126.1" />
+		<PackageReference Include="AgentFrameworkToolkit.AzureOpenAI" />
+		<PackageReference Include="AgentSkillsDotNet" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -44,3 +44,4 @@
 	</ItemGroup>
 
 </Project>
+

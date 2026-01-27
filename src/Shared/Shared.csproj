@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -8,15 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AgentFrameworkToolkit.Anthropic" Version="1.0.0-preview.260126.1" />
-    <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260121.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.2" />
-    <PackageReference Include="OpenTelemetry" Version="1.15.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.15.0" />
-    <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.6.0-beta.2" />
+    <PackageReference Include="AgentFrameworkToolkit.Anthropic" />
+    <PackageReference Include="JetBrains.Annotations" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+    <PackageReference Include="Microsoft.Agents.AI" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" />
+    <PackageReference Include="OpenTelemetry" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" />
+    <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" />
   </ItemGroup>
 
 </Project>
+

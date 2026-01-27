@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,10 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AgentFrameworkToolkit.Tools.ModelContextProtocol" Version="1.0.0-preview.260126.1" />
-    <PackageReference Include="Google.GenAI" Version="0.13.1" />
-    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260121.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
+    <PackageReference Include="AgentFrameworkToolkit.Tools.ModelContextProtocol" />
+    <PackageReference Include="Google.GenAI" />
+    <PackageReference Include="Microsoft.Agents.AI" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,3 +20,4 @@
   </ItemGroup>
 
 </Project>
+

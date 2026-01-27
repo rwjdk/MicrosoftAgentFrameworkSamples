@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,8 +8,9 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Anthropic.SDK" Version="5.9.0" />
-		<PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260121.1" />
+		<PackageReference Include="Anthropic.SDK" />
+		<PackageReference Include="Microsoft.Agents.AI" />
 	</ItemGroup>
 
 </Project>
+
