@@ -124,6 +124,7 @@
     <Project Path="src/ToolCalling.Advanced/ToolCalling.Advanced.csproj" Id="c8428d24-c838-4a61-ab71-ecffcde4b8d9" />
     <Project Path="src/ToolCalling.Basics/ToolCalling.Basics.csproj" Id="0157ef69-5a6c-4470-9a9d-43bca4ea9649" />
     <Project Path="src/Toolcalling.FromAnMcpServer/Toolcalling.FromAnMcpServer.csproj" Id="427477f9-a17e-4284-a66f-fea0f9411701" />
+    <Project Path="src/ToolCalling.OnTheFlyToolCallInjection/ToolCalling.OnTheFlyToolCallInjection.csproj" Id="6143c203-a20e-4034-a76a-9d3cc82a5075" />
     <Project Path="src/ToolCalling.ServiceInjection/ToolCalling.ServiceInjection.csproj" Id="57fb73e9-36e2-4164-991a-594c0aa48918" />
   </Folder>
   <Folder Name="/Workflows/">

@@ -6,6 +6,7 @@
     <PackageVersion Include="AgentFrameworkToolkit.Anthropic" Version="1.0.0-preview.260127.1" />
     <PackageVersion Include="AgentFrameworkToolkit.AzureOpenAI" Version="1.0.0-preview.260127.1" />
     <PackageVersion Include="AgentFrameworkToolkit.Google" Version="1.0.0-preview.260127.1" />
+    <PackageVersion Include="AgentFrameworkToolkit.Tools" Version="1.0.0-preview.260127.1" />
     <PackageVersion Include="AgentFrameworkToolkit.Tools.ModelContextProtocol" Version="1.0.0-preview.260127.1" />
     <PackageVersion Include="AgentSkillsDotNet" Version="1.0.0-preview.260127.1" />
     <PackageVersion Include="Anthropic.SDK" Version="5.9.0" />

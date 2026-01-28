@@ -1,10 +1,4 @@
-﻿//WARNING: This is a playground area for the creator of the Repo to test and tinker. Nothing in this project is as such educational and might not even execute properly
-
-//Notes
-//- Microsoft.Agents.AI.Hosting.AgentCatalog TODO: Guess this is something to be used in AI Foundry
-
-#pragma warning disable OPENAI001
-using AgentFrameworkToolkit.Tools.Common;
+﻿using AgentFrameworkToolkit.Tools.Common;
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
@@ -13,6 +7,7 @@ using Shared;
 using Shared.Extensions;
 using System.ClientModel;
 using System.Text;
+using JetBrains.Annotations;
 
 Console.Clear();
 
@@ -50,10 +45,14 @@ async Task NormalAgentWithTools()
 
     AzureOpenAIClient client = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
     AIAgent mainAgent = client.GetChatClient("gpt-4.1").AsAIAgent(tools: tools).AsBuilder().Use(FunctionCallMiddleware).Build();
-    
+
+    Utils.WriteLineDarkGray($"This agent have: {tools.Count} tools");
+    foreach (var tool in tools)
+    {
+        Utils.WriteLineDarkGray($"- {tool.Name}");
+    }
     while (true)
     {
-        Utils.WriteLineDarkGray($"This agent have: {tools.Count} tools");
         Console.Write("> ");
         string input = Console.ReadLine() ?? "";
         AgentResponse response = await mainAgent.RunAsync(input);
@@ -61,24 +60,26 @@ async Task NormalAgentWithTools()
         response.Usage.OutputAsInformation();
         Utils.Separator();
     }
+    // ReSharper disable once FunctionNeverReturns
 }
 
 async Task ToolInjection()
 {
     AzureOpenAIClient client = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+    
     ChatClientAgent toolInjectionAgent = client.GetChatClient("gpt-4.1-nano").AsAIAgent(
         instructions: "You job is to tell if any given message is a request to use specific tools"
     );
 
     AIAgent mainAgent = client.GetChatClient("gpt-4.1").AsAIAgent(new ChatClientAgentOptions
     {
-        AIContextProviderFactory = (context, token) =>
+        AIContextProviderFactory = (_, _) =>
             ValueTask.FromResult<AIContextProvider>(new OnTheFlyToolInjectionContext(toolInjectionAgent, secrets))
     }).AsBuilder().Use(FunctionCallMiddleware).Build();
 
+    Utils.WriteLineDarkGray("This agent have: 0 tools");
     while (true)
     {
-        Utils.WriteLineDarkGray("This agent have: 0 tools");
         Console.Write("> ");
         string input = Console.ReadLine() ?? "";
         AgentResponse response = await mainAgent.RunAsync(input);
@@ -86,6 +87,7 @@ async Task ToolInjection()
         response.Usage.OutputAsInformation();
         Utils.Separator();
     }
+    // ReSharper disable once FunctionNeverReturns
 }
 
 static async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, FunctionInvocationContext context, Func<FunctionInvocationContext, CancellationToken, ValueTask<object?>> next, CancellationToken cancellationToken)
@@ -102,15 +104,15 @@ static async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, Fun
     return await next(context, cancellationToken);
 }
 
-class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets secrets) : AIContextProvider()
+class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets secrets) : AIContextProvider
 {
-    public override async ValueTask<AIContext> InvokingAsync(InvokingContext context, CancellationToken cancellationToken = new CancellationToken())
+    public override async ValueTask<AIContext> InvokingAsync(InvokingContext context, CancellationToken cancellationToken = default)
     {
         ChatClientAgentResponse<ToolResult> response = await toolInjectionAgent.RunAsync<ToolResult>(context.RequestMessages, cancellationToken: cancellationToken);
         List<AITool> injectedTools = [];
         string? injectedInstructions = null;
         ToolResult toolResult = response.Result;
-        
+
         if (toolResult.NeedTimeTools)
         {
             Utils.WriteLineGreen("Time tools injected");
@@ -145,6 +147,7 @@ class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets s
         };
     }
 
+    [PublicAPI]
     private class ToolResult
     {
         public bool NeedFileSystemTools { get; set; }
