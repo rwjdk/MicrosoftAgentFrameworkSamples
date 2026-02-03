@@ -9,7 +9,8 @@ Console.Clear();
 Secrets secrets = SecretManager.GetSecrets();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 ChatClient chatClient = client.GetChatClient("gpt-4.1");
-var agent = chatClient.AsAIAgent(instructions: "You are the judge in a guessing game where it is about guessing animals. Each hint should only give one fact");
+var agent = chatClient.AsAIAgent(instructions: "You are the judge in a guessing game where it is about guessing animals. " +
+                                               "Each hint should only give one fact");
 
 List<string> animals = ["Wolf", "Eagle", "Tiger", "Dolphin", "Elephant", "Grizzly Bear", "Mouse", "Dog", "Shark", "Panda"];
 
