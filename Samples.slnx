@@ -129,6 +129,7 @@
   </Folder>
   <Folder Name="/Workflows/">
     <Project Path="src/Workflow.AiAssisted.PizzaSample/Workflow.AiAssisted.PizzaSample.csproj" Id="ebb01b83-7e68-44be-a89a-4574848c00fa" />
+    <Project Path="src/Workflow.HumanInTheLoop/Workflow.HumanInTheLoop.csproj" Id="2e1ded61-ded9-4803-8cd2-0196030bd3a0" />
   </Folder>
   <Folder Name="/Workflows/Agentic Workflows/">
     <Project Path="src/Workflow.Concurrent/Workflow.Concurrent.csproj" Id="b22a0c06-ddd2-4615-9335-84dfbecfd961" />
