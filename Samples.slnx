@@ -83,6 +83,7 @@
     <Project Path="src/NewOfficialGoogleNuget/NewOfficialGoogleNuget.csproj" />
     <Project Path="src/SettingsOnAiAgent/SettingsOnAiAgent.csproj" Id="86d8fd4d-bf34-488d-8f30-94e9b808419a" />
     <Project Path="src/TheDifferentAgents/TheDifferentAgents.csproj" Id="443e0db8-204b-403d-8145-7133496bf9c8" />
+    <Project Path="src/WhyIDontUseWorkflows/WhyIDontUseWorkflows.csproj" Id="caac6d90-94bb-43e0-bd61-9b09f7a8bfbf" />
   </Folder>
   <Folder Name="/RAG/">
     <Project Path="src/AdvancedRAGTechniques/AdvancedRAGTechniques.csproj" Id="222d4527-f7ca-4e02-a3ef-2f65d7f5014a" />

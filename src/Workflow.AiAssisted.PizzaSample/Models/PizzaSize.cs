@@ -3,7 +3,7 @@
 namespace Workflow.AiAssisted.PizzaSample.Models;
 
 [PublicAPI]
-enum PizzaSize
+public enum PizzaSize
 {
     Small,
     Medium,

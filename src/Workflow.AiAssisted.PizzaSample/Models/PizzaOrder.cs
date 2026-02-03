@@ -3,7 +3,7 @@
 namespace Workflow.AiAssisted.PizzaSample.Models;
 
 [PublicAPI]
-class PizzaOrder
+public class PizzaOrder
 {
     public PizzaSize Size { get; set; }
     public List<string> Toppings { get; set; } = [];
