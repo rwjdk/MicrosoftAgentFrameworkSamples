@@ -1,0 +1,702 @@
+[
+    {
+        "Title": "Don Quixote",
+        "YearOfRelease": 1605,
+        "Author": "Miguel de Cervantes",
+        "Genre": "Classic",
+        "Synopsis": "The adventures of a noble who loses his mind and decides to become a knight-errant."
+    },
+    {
+        "Title": "Alice's Adventures in Wonderland",
+        "YearOfRelease": 1865,
+        "Author": "Lewis Carroll",
+        "Genre": "Fantasy",
+        "Synopsis": "A girl named Alice falls through a rabbit hole into a fantasy world."
+    },
+    {
+        "Title": "The Adventures of Huckleberry Finn",
+        "YearOfRelease": 1884,
+        "Author": "Mark Twain",
+        "Genre": "Adventure",
+        "Synopsis": "A young boy and a runaway slave travel down the Mississippi River."
+    },
+    {
+        "Title": "The Adventures of Tom Sawyer",
+        "YearOfRelease": 1876,
+        "Author": "Mark Twain",
+        "Genre": "Adventure",
+        "Synopsis": "The childhood adventures of a boy growing up along the Mississippi River."
+    },
+    {
+        "Title": "Treasure Island",
+        "YearOfRelease": 1883,
+        "Author": "Robert Louis Stevenson",
+        "Genre": "Adventure",
+        "Synopsis": "A coming-of-age story involving pirates and buried gold."
+    },
+    {
+        "Title": "Pride and Prejudice",
+        "YearOfRelease": 1813,
+        "Author": "Jane Austen",
+        "Genre": "Romance",
+        "Synopsis": "A romantic clash between Elizabeth Bennet and the wealthy Mr. Darcy."
+    },
+    {
+        "Title": "Wuthering Heights",
+        "YearOfRelease": 1847,
+        "Author": "Emily Brontë",
+        "Genre": "Gothic",
+        "Synopsis": "A dark tale of intense love and revenge on the Yorkshire moors."
+    },
+    {
+        "Title": "Jane Eyre",
+        "YearOfRelease": 1847,
+        "Author": "Charlotte Brontë",
+        "Genre": "Romance",
+        "Synopsis": "The experiences of an orphaned girl who becomes a governess and falls for her employer."
+    },
+    {
+        "Title": "Moby Dick",
+        "YearOfRelease": 1851,
+        "Author": "Herman Melville",
+        "Genre": "Adventure",
+        "Synopsis": "Captain Ahab's obsessive quest to kill the white whale that maimed him."
+    },
+    {
+        "Title": "The Scarlet Letter",
+        "YearOfRelease": 1850,
+        "Author": "Nathaniel Hawthorne",
+        "Genre": "Historical",
+        "Synopsis": "A woman is forced to wear a scarlet letter as punishment for adultery."
+    },
+    {
+        "Title": "Gulliver's Travels",
+        "YearOfRelease": 1726,
+        "Author": "Jonathan Swift",
+        "Genre": "Adventure",
+        "Synopsis": "A satire involving Lemuel Gulliver's voyages to remote regions of the world."
+    },
+    {
+        "Title": "A Christmas Carol",
+        "YearOfRelease": 1843,
+        "Author": "Charles Dickens",
+        "Genre": "Classic",
+        "Synopsis": "The transformation of Ebenezer Scrooge after being visited by four ghosts."
+    },
+    {
+        "Title": "David Copperfield",
+        "YearOfRelease": 1850,
+        "Author": "Charles Dickens",
+        "Genre": "Classic",
+        "Synopsis": "The life story of a man from his impoverished childhood to his success as an author."
+    },
+    {
+        "Title": "A Tale of Two Cities",
+        "YearOfRelease": 1859,
+        "Author": "Charles Dickens",
+        "Genre": "Historical",
+        "Synopsis": "A story set in London and Paris before and during the French Revolution."
+    },
+    {
+        "Title": "Little Women",
+        "YearOfRelease": 1868,
+        "Author": "Louisa May Alcott",
+        "Genre": "Classic",
+        "Synopsis": "The lives of four sisters growing up during the American Civil War."
+    },
+    {
+        "Title": "Great Expectations",
+        "YearOfRelease": 1861,
+        "Author": "Charles Dickens",
+        "Genre": "Classic",
+        "Synopsis": "The growth and personal development of an orphan named Pip."
+    },
+    {
+        "Title": "The Hobbit",
+        "YearOfRelease": 1937,
+        "Author": "J.R.R. Tolkien",
+        "Genre": "Fantasy",
+        "Synopsis": "The journey of Bilbo Baggins to win a share of treasure guarded by a dragon."
+    },
+    {
+        "Title": "Frankenstein",
+        "YearOfRelease": 1818,
+        "Author": "Mary Shelley",
+        "Genre": "Gothic",
+        "Synopsis": "A scientist creates a sentient creature in an unorthodox scientific experiment."
+    },
+    {
+        "Title": "Oliver Twist",
+        "YearOfRelease": 1838,
+        "Author": "Charles Dickens",
+        "Genre": "Classic",
+        "Synopsis": "An orphan's struggles in the criminal underworld of London."
+    },
+    {
+        "Title": "Crime and Punishment",
+        "YearOfRelease": 1866,
+        "Author": "Fyodor Dostoyevsky",
+        "Genre": "Philosophical",
+        "Synopsis": "The mental anguish and moral dilemmas of an impoverished ex-student who kills a pawnbroker."
+    },
+    {
+        "Title": "Madame Bovary",
+        "YearOfRelease": 1856,
+        "Author": "Gustave Flaubert",
+        "Genre": "Classic",
+        "Synopsis": "A doctor's wife lives beyond her means in order to escape the banalities of provincial life."
+    },
+    {
+        "Title": "Dracula",
+        "YearOfRelease": 1897,
+        "Author": "Bram Stoker",
+        "Genre": "Horror",
+        "Synopsis": "The attempt by Count Dracula to move from Transylvania to England to find new blood."
+    },
+    {
+        "Title": "The Three Musketeers",
+        "YearOfRelease": 1844,
+        "Author": "Alexandre Dumas",
+        "Genre": "Adventure",
+        "Synopsis": "The adventures of d'Artagnan after he joins the Musketeers of the Guard."
+    },
+    {
+        "Title": "Brave New World",
+        "YearOfRelease": 1932,
+        "Author": "Aldous Huxley",
+        "Genre": "Dystopian",
+        "Synopsis": "A futuristic society where people are genetically engineered and socially conditioned."
+    },
+    {
+        "Title": "War and Peace",
+        "YearOfRelease": 1869,
+        "Author": "Leo Tolstoy",
+        "Genre": "Historical",
+        "Synopsis": "A chronicle of five Russian aristocratic families during the Napoleonic Wars."
+    },
+    {
+        "Title": "To Kill a Mockingbird",
+        "YearOfRelease": 1960,
+        "Author": "Harper Lee",
+        "Genre": "Classic",
+        "Synopsis": "A child's view of racial injustice and the destruction of innocence in the South."
+    },
+    {
+        "Title": "The Wizard of Oz",
+        "YearOfRelease": 1900,
+        "Author": "L. Frank Baum",
+        "Genre": "Fantasy",
+        "Synopsis": "A girl's journey through a magical land to find her way home."
+    },
+    {
+        "Title": "Les Misérables",
+        "YearOfRelease": 1862,
+        "Author": "Victor Hugo",
+        "Genre": "Historical",
+        "Synopsis": "The struggles of ex-convict Jean Valjean and his quest for redemption."
+    },
+    {
+        "Title": "Animal Farm",
+        "YearOfRelease": 1945,
+        "Author": "George Orwell",
+        "Genre": "Dystopian",
+        "Synopsis": "A satirical allegorical novella about a group of farm animals who rebel against their human farmer."
+    },
+    {
+        "Title": "The Great Gatsby",
+        "YearOfRelease": 1925,
+        "Author": "F. Scott Fitzgerald",
+        "Genre": "Classic",
+        "Synopsis": "Jay Gatsby's pursuit of Daisy Buchanan in the Roaring Twenties."
+    },
+    {
+        "Title": "The Little Prince",
+        "YearOfRelease": 1943,
+        "Author": "Antoine de Saint-Exupéry",
+        "Genre": "Philosophical",
+        "Synopsis": "A pilot stranded in the desert meets a young prince from another planet."
+    },
+    {
+        "Title": "The Call of the Wild",
+        "YearOfRelease": 1903,
+        "Author": "Jack London",
+        "Genre": "Adventure",
+        "Synopsis": "A domesticated dog's transformation into a wild beast in the Yukon."
+    },
+    {
+        "Title": "20,000 Leagues Under the Sea",
+        "YearOfRelease": 1870,
+        "Author": "Jules Verne",
+        "Genre": "Adventure",
+        "Synopsis": "An underwater expedition led by the mysterious Captain Nemo."
+    },
+    {
+        "Title": "Anna Karenina",
+        "YearOfRelease": 1877,
+        "Author": "Leo Tolstoy",
+        "Genre": "Romance",
+        "Synopsis": "A tragic story of a married aristocrat and her ill-fated affair with Count Vronsky."
+    },
+    {
+        "Title": "The Picture of Dorian Gray",
+        "YearOfRelease": 1890,
+        "Author": "Oscar Wilde",
+        "Genre": "Philosophical",
+        "Synopsis": "A man remains youthful while his portrait ages and reflects his moral decay."
+    },
+    {
+        "Title": "The Grapes of Wrath",
+        "YearOfRelease": 1939,
+        "Author": "John Steinbeck",
+        "Genre": "Historical",
+        "Synopsis": "The struggles of a family of sharecroppers during the Great Depression."
+    },
+    {
+        "Title": "Harry Potter and the Sorcerer's Stone",
+        "YearOfRelease": 1997,
+        "Author": "J.K. Rowling",
+        "Genre": "Fantasy",
+        "Synopsis": "A young boy discovers he is a wizard and begins his education at Hogwarts."
+    },
+    {
+        "Title": "Ulysses",
+        "YearOfRelease": 1922,
+        "Author": "James Joyce",
+        "Genre": "Classic",
+        "Synopsis": "The encounters of Leopold Bloom in Dublin in the course of an ordinary day."
+    },
+    {
+        "Title": "The Count of Monte Cristo",
+        "YearOfRelease": 1844,
+        "Author": "Alexandre Dumas",
+        "Genre": "Adventure",
+        "Synopsis": "A man is wrongfully imprisoned, escapes, and seeks revenge on those who betrayed him."
+    },
+    {
+        "Title": "The Old Man and the Sea",
+        "YearOfRelease": 1952,
+        "Author": "Ernest Hemingway",
+        "Genre": "Classic",
+        "Synopsis": "An aging fisherman's epic battle with a giant marlin."
+    },
+    {
+        "Title": "The Lion, the Witch and the Wardrobe",
+        "YearOfRelease": 1950,
+        "Author": "C.S. Lewis",
+        "Genre": "Fantasy",
+        "Synopsis": "Four siblings enter a magical world through a wardrobe."
+    },
+    {
+        "Title": "One Hundred Years of Solitude",
+        "YearOfRelease": 1967,
+        "Author": "Gabriel García Márquez",
+        "Genre": "Classic",
+        "Synopsis": "The multi-generational story of the Buendía family in the town of Macondo."
+    },
+    {
+        "Title": "Anne of Green Gables",
+        "YearOfRelease": 1908,
+        "Author": "L.M. Montgomery",
+        "Genre": "Childrens",
+        "Synopsis": "A young orphan girl is mistakenly sent to live with siblings on a farm."
+    },
+    {
+        "Title": "Black Beauty",
+        "YearOfRelease": 1877,
+        "Author": "Anna Sewell",
+        "Genre": "Childrens",
+        "Synopsis": "The life story of a horse as told by the horse itself."
+    },
+    {
+        "Title": "Lord of the Flies",
+        "YearOfRelease": 1954,
+        "Author": "William Golding",
+        "Genre": "Dystopian",
+        "Synopsis": "A group of British boys stranded on an uninhabited island try to govern themselves."
+    },
+    {
+        "Title": "The Stranger",
+        "YearOfRelease": 1942,
+        "Author": "Albert Camus",
+        "Genre": "Philosophical",
+        "Synopsis": "A man's detachment from the world and his lack of remorse after a murder."
+    },
+    {
+        "Title": "The Trial",
+        "YearOfRelease": 1925,
+        "Author": "Franz Kafka",
+        "Genre": "Philosophical",
+        "Synopsis": "A man arrested and prosecuted by a remote, inaccessible authority."
+    },
+    {
+        "Title": "The Catcher in the Rye",
+        "YearOfRelease": 1951,
+        "Author": "J.D. Salinger",
+        "Genre": "Classic",
+        "Synopsis": "A teenager's experiences in New York City after being expelled from prep school."
+    },
+    {
+        "Title": "Fahrenheit 451",
+        "YearOfRelease": 1953,
+        "Author": "Ray Bradbury",
+        "Genre": "Dystopian",
+        "Synopsis": "A future where books are outlawed and 'firemen' burn any that are found."
+    },
+    {
+        "Title": "Gone with the Wind",
+        "YearOfRelease": 1936,
+        "Author": "Margaret Mitchell",
+        "Genre": "Historical",
+        "Synopsis": "The life of a southern belle during the American Civil War and Reconstruction era."
+    },
+    {
+        "Title": "Of Mice and Men",
+        "YearOfRelease": 1937,
+        "Author": "John Steinbeck",
+        "Genre": "Classic",
+        "Synopsis": "The story of two displaced migrant ranch workers during the Great Depression."
+    },
+    {
+        "Title": "Nineteen Eighty-Four",
+        "YearOfRelease": 1949,
+        "Author": "George Orwell",
+        "Genre": "Dystopian",
+        "Synopsis": "A man living under a totalitarian regime tries to rebel against the truth."
+    },
+    {
+        "Title": "The Da Vinci Code",
+        "YearOfRelease": 2003,
+        "Author": "Dan Brown",
+        "Genre": "Thriller",
+        "Synopsis": "A symbologist follows clues to solve a murder in the Louvre Museum."
+    },
+    {
+        "Title": "The Fellowship of the Ring",
+        "YearOfRelease": 1954,
+        "Author": "J.R.R. Tolkien",
+        "Genre": "Fantasy",
+        "Synopsis": "The first part of the quest to destroy the One Ring."
+    },
+    {
+        "Title": "Charlotte's Web",
+        "YearOfRelease": 1952,
+        "Author": "E.B. White",
+        "Genre": "Childrens",
+        "Synopsis": "A spider saves a pig from being slaughtered by writing messages in her web."
+    },
+    {
+        "Title": "Utopia",
+        "YearOfRelease": 1516,
+        "Author": "Thomas More",
+        "Genre": "Philosophical",
+        "Synopsis": "A work of fiction and political philosophy depicting a fictional island society."
+    },
+    {
+        "Title": "Robinson Crusoe",
+        "YearOfRelease": 1719,
+        "Author": "Daniel Defoe",
+        "Genre": "Adventure",
+        "Synopsis": "The survival of a castaway on a remote tropical island."
+    },
+    {
+        "Title": "The Alchemist",
+        "YearOfRelease": 1988,
+        "Author": "Paulo Coelho",
+        "Genre": "Adventure",
+        "Synopsis": "A shepherd boy travels to Egypt to find a hidden treasure."
+    },
+    {
+        "Title": "The Handmaid's Tale",
+        "YearOfRelease": 1985,
+        "Author": "Margaret Atwood",
+        "Genre": "Dystopian",
+        "Synopsis": "A woman's life in a totalitarian state that has overthrown the US government."
+    },
+    {
+        "Title": "Life of Pi",
+        "YearOfRelease": 2001,
+        "Author": "Yann Martel",
+        "Genre": "Adventure",
+        "Synopsis": "A boy survives a shipwreck and shares a lifeboat with a Bengal tiger."
+    },
+    {
+        "Title": "The Road",
+        "YearOfRelease": 2006,
+        "Author": "Cormac McCarthy",
+        "Genre": "Dystopian",
+        "Synopsis": "A father and son travel through a post-apocalyptic landscape."
+    },
+    {
+        "Title": "Beloved",
+        "YearOfRelease": 1987,
+        "Author": "Toni Morrison",
+        "Genre": "Historical",
+        "Synopsis": "A woman escapes slavery but is haunted by the ghost of her daughter."
+    },
+    {
+        "Title": "Catch-22",
+        "YearOfRelease": 1961,
+        "Author": "Joseph Heller",
+        "Genre": "Classic",
+        "Synopsis": "The absurdities of war as experienced by a US bomber crew in WWII."
+    },
+    {
+        "Title": "Slaughterhouse-Five",
+        "YearOfRelease": 1969,
+        "Author": "Kurt Vonnegut",
+        "Genre": "ScienceFiction",
+        "Synopsis": "A man becomes unstuck in time and experiences his life out of sequence."
+    },
+    {
+        "Title": "Invisible Man",
+        "YearOfRelease": 1952,
+        "Author": "Ralph Ellison",
+        "Genre": "Classic",
+        "Synopsis": "The journey of an unnamed African American man through 20th-century America."
+    },
+    {
+        "Title": "Lolita",
+        "YearOfRelease": 1955,
+        "Author": "Vladimir Nabokov",
+        "Genre": "Classic",
+        "Synopsis": "The obsession of a middle-aged literature professor with a young girl."
+    },
+    {
+        "Title": "The Sun Also Rises",
+        "YearOfRelease": 1926,
+        "Author": "Ernest Hemingway",
+        "Genre": "Classic",
+        "Synopsis": "A group of American and British expatriates travel to Pamplona to see the bullfights."
+    },
+    {
+        "Title": "Heart of Darkness",
+        "YearOfRelease": 1899,
+        "Author": "Joseph Conrad",
+        "Genre": "Adventure",
+        "Synopsis": "A voyage up the Congo River into the Congo Free State."
+    },
+    {
+        "Title": "Tess of the d'Urbervilles",
+        "YearOfRelease": 1891,
+        "Author": "Thomas Hardy",
+        "Genre": "Classic",
+        "Synopsis": "The struggles of a young woman in rural England."
+    },
+    {
+        "Title": "The Age of Innocence",
+        "YearOfRelease": 1920,
+        "Author": "Edith Wharton",
+        "Genre": "Romance",
+        "Synopsis": "The social struggles of New York's high society in the 1870s."
+    },
+    {
+        "Title": "Midnight's Children",
+        "YearOfRelease": 1981,
+        "Author": "Salman Rushdie",
+        "Genre": "Classic",
+        "Synopsis": "Children born at the exact moment of India's independence gain magical powers."
+    },
+    {
+        "Title": "Don Juan",
+        "YearOfRelease": 1819,
+        "Author": "Lord Byron",
+        "Genre": "Classic",
+        "Synopsis": "A satirical poem about the legendary libertine."
+    },
+    {
+        "Title": "A Clockwork Orange",
+        "YearOfRelease": 1962,
+        "Author": "Anthony Burgess",
+        "Genre": "Dystopian",
+        "Synopsis": "A dystopian tale of a youth who leads a gang in acts of ultra-violence."
+    },
+    {
+        "Title": "The Sound and the Fury",
+        "YearOfRelease": 1929,
+        "Author": "William Faulkner",
+        "Genre": "Classic",
+        "Synopsis": "The downfall of an aristocratic Southern family."
+    },
+    {
+        "Title": "The Name of the Rose",
+        "YearOfRelease": 1980,
+        "Author": "Umberto Eco",
+        "Genre": "Mystery",
+        "Synopsis": "A murder mystery set in an Italian monastery in the 14th century."
+    },
+    {
+        "Title": "Memoirs of a Geisha",
+        "YearOfRelease": 1997,
+        "Author": "Arthur Golden",
+        "Genre": "Historical",
+        "Synopsis": "The life of a geisha working in Kyoto before and after WWII."
+    },
+    {
+        "Title": "The Kite Runner",
+        "YearOfRelease": 2003,
+        "Author": "Khaled Hosseini",
+        "Genre": "Classic",
+        "Synopsis": "A young boy's betrayal of his friend and his journey to find redemption."
+    },
+    {
+        "Title": "Life and Fate",
+        "YearOfRelease": 1980,
+        "Author": "Vasily Grossman",
+        "Genre": "Historical",
+        "Synopsis": "An epic novel set during the Battle of Stalingrad."
+    },
+    {
+        "Title": "The Chronicles of Narnia",
+        "YearOfRelease": 1950,
+        "Author": "C.S. Lewis",
+        "Genre": "Fantasy",
+        "Synopsis": "The complete series detailing the adventures in the magical world of Narnia."
+    },
+    {
+        "Title": "A Game of Thrones",
+        "YearOfRelease": 1996,
+        "Author": "George R.R. Martin",
+        "Genre": "Fantasy",
+        "Synopsis": "The struggle for power among noble houses in a fantasy world."
+    },
+    {
+        "Title": "Dune",
+        "YearOfRelease": 1965,
+        "Author": "Frank Herbert",
+        "Genre": "ScienceFiction",
+        "Synopsis": "A young man leads a desert planet in a rebellion against an empire."
+    },
+    {
+        "Title": "The Martian",
+        "YearOfRelease": 2011,
+        "Author": "Andy Weir",
+        "Genre": "ScienceFiction",
+        "Synopsis": "An astronaut is stranded on Mars and must use his ingenuity to survive."
+    },
+    {
+        "Title": "The Book Thief",
+        "YearOfRelease": 2005,
+        "Author": "Markus Zusak",
+        "Genre": "Historical",
+        "Synopsis": "A young girl living in Nazi Germany finds solace in stealing books."
+    },
+    {
+        "Title": "Neuromancer",
+        "YearOfRelease": 1984,
+        "Author": "William Gibson",
+        "Genre": "ScienceFiction",
+        "Synopsis": "A washed-up computer hacker is hired for one last job in cyberspace."
+    },
+    {
+        "Title": "Sense and Sensibility",
+        "YearOfRelease": 1811,
+        "Author": "Jane Austen",
+        "Genre": "Romance",
+        "Synopsis": "The romantic adventures of the Dashwood sisters."
+    },
+    {
+        "Title": "Persuasion",
+        "YearOfRelease": 1817,
+        "Author": "Jane Austen",
+        "Genre": "Romance",
+        "Synopsis": "A second chance at love for a woman who was once persuaded to break off an engagement."
+    },
+    {
+        "Title": "Northanger Abbey",
+        "YearOfRelease": 1817,
+        "Author": "Jane Austen",
+        "Genre": "Romance",
+        "Synopsis": "A young woman's experiences at a Gothic-style estate."
+    },
+    {
+        "Title": "Rebecca",
+        "YearOfRelease": 1938,
+        "Author": "Daphne du Maurier",
+        "Genre": "Thriller",
+        "Synopsis": "A young woman marries a widower and is haunted by the memory of his first wife."
+    },
+    {
+        "Title": "The Secret History",
+        "YearOfRelease": 1992,
+        "Author": "Donna Tartt",
+        "Genre": "Mystery",
+        "Synopsis": "A group of classics students at a Vermont college commit a murder."
+    },
+    {
+        "Title": "The Shadow of the Wind",
+        "YearOfRelease": 2001,
+        "Author": "Carlos Ruiz Zafón",
+        "Genre": "Mystery",
+        "Synopsis": "A boy in post-war Barcelona discovers a mysterious book."
+    },
+    {
+        "Title": "Cloud Atlas",
+        "YearOfRelease": 2004,
+        "Author": "David Mitchell",
+        "Genre": "ScienceFiction",
+        "Synopsis": "Six nested stories that bridge different eras and locations."
+    },
+    {
+        "Title": "Shantaram",
+        "YearOfRelease": 2003,
+        "Author": "Gregory David Roberts",
+        "Genre": "Adventure",
+        "Synopsis": "The experiences of an Australian fugitive in the underworld of Bombay."
+    },
+    {
+        "Title": "The Poisonwood Bible",
+        "YearOfRelease": 1998,
+        "Author": "Barbara Kingsolver",
+        "Genre": "Historical",
+        "Synopsis": "A missionary family moves to the Belgian Congo in 1959."
+    },
+    {
+        "Title": "Water for Elephants",
+        "YearOfRelease": 2006,
+        "Author": "Sara Gruen",
+        "Genre": "Historical",
+        "Synopsis": "The life of a veterinary student who joins a traveling circus."
+    },
+    {
+        "Title": "The Night Circus",
+        "YearOfRelease": 2011,
+        "Author": "Erin Morgenstern",
+        "Genre": "Fantasy",
+        "Synopsis": "A magical competition between two young illusionists in a mysterious circus."
+    },
+    {
+        "Title": "Where the Crawdads Sing",
+        "YearOfRelease": 2018,
+        "Author": "Delia Owens",
+        "Genre": "Mystery",
+        "Synopsis": "A young girl raised in a marsh becomes a suspect in a local murder."
+    },
+    {
+        "Title": "Project Hail Mary",
+        "YearOfRelease": 2021,
+        "Author": "Andy Weir",
+        "Genre": "ScienceFiction",
+        "Synopsis": "A lone survivor on a spacecraft must save humanity from extinction."
+    },
+    {
+        "Title": "The Midnight Library",
+        "YearOfRelease": 2020,
+        "Author": "Matt Haig",
+        "Genre": "Fantasy",
+        "Synopsis": "A woman discovers a library that allows her to live the lives she could have had."
+    },
+    {
+        "Title": "Circe",
+        "YearOfRelease": 2018,
+        "Author": "Madeline Miller",
+        "Genre": "Fantasy",
+        "Synopsis": "The life of the goddess Circe from Greek mythology."
+    },
+    {
+        "Title": "Lessons in Chemistry",
+        "YearOfRelease": 2022,
+        "Author": "Bonnie Garmus",
+        "Genre": "Historical",
+        "Synopsis": "A chemist in the 1960s becomes an unlikely star of a TV cooking show."
+    }
+]

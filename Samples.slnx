@@ -78,6 +78,7 @@
     <Project Path="src/OpenAIResponsesApi.WebSearch/OpenAIResponsesApi.WebSearch.csproj" Id="9dc49e05-421b-4e1d-9384-579ddefd2763" />
   </Folder>
   <Folder Name="/Other Topics/">
+    <Project Path="src/AIAsDataFilter/AIAsDataFilter.csproj" Id="28c6ce71-c6d3-4575-9580-0c2a952e965c" />
     <Project Path="src/DependencyInjection/DependencyInjection.csproj" />
     <Project Path="src/LifeOfAnLLMCall/LifeOfAnLLMCall.csproj" Id="9f72e70c-6171-4a9c-87f3-f888518c4a43" />
     <Project Path="src/NewOfficialGoogleNuget/NewOfficialGoogleNuget.csproj" />
