@@ -43,7 +43,7 @@ AzureOpenAIAgent agent = agentFactory.CreateAgent(new AgentOptions
     }
 });
 
-AgentSession session = await agent.GetNewSessionAsync();
+AgentSession session = await agent.CreateSessionAsync();
 
 Console.OutputEncoding = Encoding.UTF8;
 while (true)

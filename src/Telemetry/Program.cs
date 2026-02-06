@@ -38,7 +38,7 @@ AIAgent agent = client
     })
     .Build();
 
-AgentSession session = await agent.GetNewSessionAsync();
+AgentSession session = await agent.CreateSessionAsync();
 
 AgentResponse response1 = await agent.RunAsync("Hello, My name is Rasmus", session);
 Utils.WriteLineRed(response1.Text);

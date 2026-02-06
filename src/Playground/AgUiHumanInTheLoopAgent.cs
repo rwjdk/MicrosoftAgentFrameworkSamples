@@ -8,9 +8,14 @@ using System.Text.Json;
 
 public class AgUiHumanInTheLoopAgent(AIAgent innerAgent) : AIAgent
 {
-    public override ValueTask<AgentSession> GetNewSessionAsync(CancellationToken cancellationToken = default)
+    public override ValueTask<AgentSession> CreateSessionAsync(CancellationToken cancellationToken = default)
     {
-        return innerAgent.GetNewSessionAsync(cancellationToken);
+        return innerAgent.CreateSessionAsync(cancellationToken);
+    }
+
+    public override JsonElement SerializeSession(AgentSession session, JsonSerializerOptions? jsonSerializerOptions = null)
+    {
+        return innerAgent.SerializeSession(session, jsonSerializerOptions);
     }
 
     public override ValueTask<AgentSession> DeserializeSessionAsync(JsonElement serializedSession, JsonSerializerOptions? jsonSerializerOptions = null, CancellationToken cancellationToken = default)
@@ -27,13 +32,10 @@ public class AgUiHumanInTheLoopAgent(AIAgent innerAgent) : AIAgent
     {
         await foreach (AgentResponseUpdate update in innerAgent.RunStreamingAsync(messages, session, options, cancellationToken))
         {
-            foreach (UserInputRequestContent inputRequest in update.UserInputRequests)
+            foreach (FunctionApprovalRequestContent functionApprovalRequestContent in update.Contents.OfType<FunctionApprovalRequestContent>())
             {
-                if (inputRequest is FunctionApprovalRequestContent functionApprovalRequestContent)
-                {
                     byte[] bytes = JsonSerializer.SerializeToUtf8Bytes(functionApprovalRequestContent, JsonSerializerOptions.Web);
                     yield return new AgentResponseUpdate(ChatRole.Assistant, [new DataContent(bytes, "application/json")]);
-                }
             }
 
             yield return update;

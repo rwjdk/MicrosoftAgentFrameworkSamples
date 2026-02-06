@@ -30,7 +30,7 @@ if (optionToResume)
 }
 else
 {
-    session = await agent.GetNewSessionAsync();
+    session = await agent.CreateSessionAsync();
 }
 
 while (true)
@@ -50,6 +50,6 @@ while (true)
 
     if (optionToResume)
     {
-        await AgentThreadPersistence.StoreThreadAsync(session);
+        await AgentThreadPersistence.StoreThreadAsync(agent, session);
     }
 }

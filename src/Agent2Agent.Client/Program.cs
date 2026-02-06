@@ -28,7 +28,7 @@ ChatClientAgent agent = azureOpenAIClient
         instructions: "You specialize in handling queries for users and using your tools to provide answers.",
         tools: [remoteAgent.AsAIFunction()]);
 
-AgentSession session = await agent.GetNewSessionAsync();
+AgentSession session = await agent.CreateSessionAsync();
 while (true)
 {
     Console.Write("> ");

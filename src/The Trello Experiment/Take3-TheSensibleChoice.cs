@@ -37,7 +37,7 @@ public static class Take3TheSensibleChoice
                 ]
             ).AsBuilder().Use(FunctionCallMiddleware).Build();
 
-        AgentSession session = await agent.GetNewSessionAsync();
+        AgentSession session = await agent.CreateSessionAsync();
 
         while (true)
         {

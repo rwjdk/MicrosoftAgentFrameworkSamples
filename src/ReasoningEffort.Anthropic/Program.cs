@@ -33,7 +33,7 @@ async Task Baseline()
 {
     AnthropicClient client = new(new ClientOptions
     {
-        APIKey = apiKey
+        ApiKey = apiKey
     });
     ChatClientAgent agent = new ChatClientAgent(client.AsIChatClient("claude-haiku-4-5-20251001"),
         new ChatClientAgentOptions
@@ -52,7 +52,7 @@ async Task Raw()
 {
     AnthropicClient client = new(new ClientOptions
     {
-        APIKey = apiKey
+        ApiKey = apiKey
     });
     var modelId = "claude-haiku-4-5-20251001";
     ChatClientAgent agent = new ChatClientAgent(client.AsIChatClient(modelId),

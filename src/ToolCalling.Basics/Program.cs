@@ -28,7 +28,7 @@ ChatClientAgent agent = client
         ]
     );
 
-AgentSession session = await agent.GetNewSessionAsync();
+AgentSession session = await agent.CreateSessionAsync();
 
 while (true)
 {

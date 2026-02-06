@@ -51,7 +51,7 @@ public class AzureOpenAiFoundry
                 .UseOpenTelemetry(sourceName: sourceName, telemetryAgent => { telemetryAgent.EnableSensitiveData = true; })
                 .Build();
 
-            AgentSession session = await agent.GetNewSessionAsync();
+            AgentSession session = await agent.CreateSessionAsync();
 
             List<AgentResponseUpdate> updates = [];
             await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("What is today's news in Space Exploration (List today's date and List only top item)", session))

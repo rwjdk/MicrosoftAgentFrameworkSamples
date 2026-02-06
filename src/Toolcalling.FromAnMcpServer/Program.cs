@@ -40,7 +40,7 @@ AIAgent agent = client
     .Use(FunctionCallMiddleware) //Middleware
     .Build();
 
-AgentSession session = await agent.GetNewSessionAsync();
+AgentSession session = await agent.CreateSessionAsync();
 
 while (true)
 {

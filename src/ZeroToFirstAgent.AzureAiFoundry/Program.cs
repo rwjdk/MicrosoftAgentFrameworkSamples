@@ -28,7 +28,7 @@ try
 
     ChatClientAgent agent = await client.GetAIAgentAsync(aiFoundryAgent.Value.Id);
 
-    AgentSession session = await agent.GetNewSessionAsync();
+    AgentSession session = await agent.CreateSessionAsync();
 
     AgentResponse response = await agent.RunAsync("What is the capital of France?", session);
     Console.WriteLine(response);

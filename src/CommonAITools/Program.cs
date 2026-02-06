@@ -69,7 +69,7 @@ AIAgent agent = factory.CreateAgent(new AgentOptions
     RawToolCallDetails = Console.WriteLine
 });
 
-AgentSession session = await agent.GetNewSessionAsync();
+AgentSession session = await agent.CreateSessionAsync();
 while (true)
 {
     Console.Write("> ");
@@ -77,7 +77,7 @@ while (true)
     if (input == "/new")
     {
         Console.Clear();
-        session = await agent.GetNewSessionAsync();
+        session = await agent.CreateSessionAsync();
         continue;
     }
     AgentResponse response = await agent.RunAsync(input, session);

@@ -7,9 +7,14 @@ namespace AgentUserInteraction.Advanced.Server.AgUiSpecializedAgents;
 
 public class AgUiStructuredOutputAgent<T>(ChatClientAgent innerAgent) : AIAgent
 {
-    public override ValueTask<AgentSession> GetNewSessionAsync(CancellationToken cancellationToken = default)
+    public override ValueTask<AgentSession> CreateSessionAsync(CancellationToken cancellationToken = default)
     {
-        return innerAgent.GetNewSessionAsync(cancellationToken);
+        return innerAgent.CreateSessionAsync(cancellationToken);
+    }
+
+    public override JsonElement SerializeSession(AgentSession session, JsonSerializerOptions? jsonSerializerOptions = null)
+    {
+        return innerAgent.SerializeSession(session, jsonSerializerOptions);
     }
 
     public override ValueTask<AgentSession> DeserializeSessionAsync(JsonElement serializedSession, JsonSerializerOptions? jsonSerializerOptions = null, CancellationToken cancellationToken = default)

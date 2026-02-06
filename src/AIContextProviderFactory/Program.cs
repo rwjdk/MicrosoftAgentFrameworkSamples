@@ -32,7 +32,7 @@ ChatClientAgent agentWithCustomMemory = client.GetChatClient(secrets.ChatDeploym
 
 AIAgent agentToUse = agentWithCustomMemory;
 
-AgentSession session = await agentToUse.GetNewSessionAsync();
+AgentSession session = await agentToUse.CreateSessionAsync();
 
 while (true)
 {

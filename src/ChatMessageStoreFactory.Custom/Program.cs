@@ -21,12 +21,12 @@ ChatClientAgent agent = azureOpenAIClient
         }
     );
 
-AgentSession session = await agent.GetNewSessionAsync();
+AgentSession session = await agent.CreateSessionAsync();
 
 AgentResponse response = await agent.RunAsync("Who is Barack Obama", session);
 Console.WriteLine(response);
 
-JsonElement sessionElement = session.Serialize();
+JsonElement sessionElement = agent.SerializeSession(session);
 string toStoreForTheUser = JsonSerializer.Serialize(sessionElement);
 
 Utils.Separator();

@@ -37,7 +37,7 @@ public static class Take2CSharpCodeRunner
                 tools: [AIFunctionFactory.Create(CSharpCodeRunnerTool.ExecuteAndReturnAsync, "compile_and_execute_csharp_code")]
             );
 
-        AgentSession session = await agent.GetNewSessionAsync();
+        AgentSession session = await agent.CreateSessionAsync();
 
         while (true)
         {

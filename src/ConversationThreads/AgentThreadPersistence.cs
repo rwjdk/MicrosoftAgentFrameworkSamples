@@ -25,7 +25,7 @@ public static class AgentThreadPersistence
             }
         }
 
-        return await agent.GetNewSessionAsync();
+        return await agent.CreateSessionAsync();
     }
 
     private static async Task RestoreConsole(AgentSession resumedSession)
@@ -51,9 +51,9 @@ public static class AgentThreadPersistence
         }
     }
 
-    public static async Task StoreThreadAsync(AgentSession session)
+    public static async Task StoreThreadAsync(AIAgent agent, AgentSession session)
     {
-        JsonElement serializedThread = session.Serialize();
+        JsonElement serializedThread = agent.SerializeSession(session);
         await File.WriteAllTextAsync(ConversationPath, JsonSerializer.Serialize(serializedThread));
     }
 }

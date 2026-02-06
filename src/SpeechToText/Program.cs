@@ -18,7 +18,7 @@ var agent = azureOpenAIClient
     .GetChatClient(secrets.ChatDeploymentName)
     .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
-AgentSession agentSession = await agent.GetNewSessionAsync();
+AgentSession agentSession = await agent.CreateSessionAsync();
 
 while (true)
 {

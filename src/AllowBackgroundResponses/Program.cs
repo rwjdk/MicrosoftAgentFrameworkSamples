@@ -34,7 +34,7 @@ Utils.WriteLineGreen("BigQuestion-END");
 Console.Clear();
 
 Utils.WriteLineGreen("BigQuestion-BACKGROUND-BEGIN");
-AgentSession agentSession = await agent.GetNewSessionAsync();
+AgentSession agentSession = await agent.CreateSessionAsync();
 ChatClientAgentRunOptions options = new ChatClientAgentRunOptions
 {
     AllowBackgroundResponses = true

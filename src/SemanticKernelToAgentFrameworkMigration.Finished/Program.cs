@@ -56,7 +56,7 @@ app.MapPost("/chatHistory", async Task<IResult> ([FromBody] ChatRequest chatRequ
     ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(
         instructions: "You answer questions about People");
 
-    AgentSession session = await agent.GetNewSessionAsync();
+    AgentSession session = await agent.CreateSessionAsync();
 
     AgentResponse response1 = await agent.RunAsync(chatRequest.Question, session);
 

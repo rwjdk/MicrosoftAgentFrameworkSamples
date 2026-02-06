@@ -30,7 +30,7 @@ ChatClientAgent agent = client
         ChatHistoryProviderFactory = (context, token) => ValueTask.FromResult<ChatHistoryProvider>(new InMemoryChatHistoryProvider(chatReducer2, context.SerializedState, context.JsonSerializerOptions))
     });
 
-AgentSession session = await agent.GetNewSessionAsync();
+AgentSession session = await agent.CreateSessionAsync();
 
 while (true)
 {

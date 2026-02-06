@@ -22,7 +22,7 @@ AIAgent agent = responseClient
         instructions: "You are a Nice AI"
     );
 
-AgentSession session = await agent.GetNewSessionAsync();
+AgentSession session = await agent.CreateSessionAsync();
 
 AgentResponse response1 = await agent.RunAsync("Who is Barak Obama? (Max 5 words)", session);
 Console.WriteLine(response1);

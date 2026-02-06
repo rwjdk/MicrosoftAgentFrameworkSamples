@@ -44,14 +44,14 @@
     {
         "Title": "Wuthering Heights",
         "YearOfRelease": 1847,
-        "Author": "Emily Brontë",
+        "Author": "Emily Brontï¿½",
         "Genre": "Gothic",
         "Synopsis": "A dark tale of intense love and revenge on the Yorkshire moors."
     },
     {
         "Title": "Jane Eyre",
         "YearOfRelease": 1847,
-        "Author": "Charlotte Brontë",
+        "Author": "Charlotte Brontï¿½",
         "Genre": "Romance",
         "Synopsis": "The experiences of an orphaned girl who becomes a governess and falls for her employer."
     },
@@ -189,7 +189,7 @@
         "Synopsis": "A girl's journey through a magical land to find her way home."
     },
     {
-        "Title": "Les Misérables",
+        "Title": "Les Misï¿½rables",
         "YearOfRelease": 1862,
         "Author": "Victor Hugo",
         "Genre": "Historical",
@@ -212,7 +212,7 @@
     {
         "Title": "The Little Prince",
         "YearOfRelease": 1943,
-        "Author": "Antoine de Saint-Exupéry",
+        "Author": "Antoine de Saint-Exupï¿½ry",
         "Genre": "Philosophical",
         "Synopsis": "A pilot stranded in the desert meets a young prince from another planet."
     },
@@ -289,9 +289,9 @@
     {
         "Title": "One Hundred Years of Solitude",
         "YearOfRelease": 1967,
-        "Author": "Gabriel García Márquez",
+        "Author": "Gabriel Garcï¿½a Mï¿½rquez",
         "Genre": "Classic",
-        "Synopsis": "The multi-generational story of the Buendía family in the town of Macondo."
+        "Synopsis": "The multi-generational story of the Buendï¿½a family in the town of Macondo."
     },
     {
         "Title": "Anne of Green Gables",
@@ -625,7 +625,7 @@
     {
         "Title": "The Shadow of the Wind",
         "YearOfRelease": 2001,
-        "Author": "Carlos Ruiz Zafón",
+        "Author": "Carlos Ruiz Zafï¿½n",
         "Genre": "Mystery",
         "Synopsis": "A boy in post-war Barcelona discovers a mysterious book."
     },
