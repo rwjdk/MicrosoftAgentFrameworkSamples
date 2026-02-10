@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="OpenAI" />
+		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Shared\Shared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="requestData-azure.jsonl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="requestData.jsonl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+</Project>
