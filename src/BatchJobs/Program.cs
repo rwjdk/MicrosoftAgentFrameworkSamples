@@ -35,7 +35,7 @@ CreateBatchOperation batchOperation = await batchClient.CreateBatchAsync(createB
 Utils.WriteLineYellow($"Batch ID: {batchOperation.BatchId}");
 
 string status = string.Empty;
-string[] terminationsStatuses = ["completed", "expired", "cancelled"];
+string[] terminationsStatuses = ["completed", "expired", "cancelled", "failed"];
 
 string? outputFileId = null;
 Stopwatch stopwatch = Stopwatch.StartNew();
