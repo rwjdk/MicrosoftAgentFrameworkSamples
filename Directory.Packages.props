@@ -3,12 +3,12 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="AgentFrameworkToolkit.Anthropic" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="AgentFrameworkToolkit.AzureOpenAI" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="AgentFrameworkToolkit.Google" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="AgentFrameworkToolkit.Tools" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="AgentFrameworkToolkit.Tools.ModelContextProtocol" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="AgentSkillsDotNet" Version="1.0.0-preview.260205.1" />
+    <PackageVersion Include="AgentFrameworkToolkit.Anthropic" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="AgentFrameworkToolkit.AzureOpenAI" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="AgentFrameworkToolkit.Google" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="AgentFrameworkToolkit.Tools" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="AgentFrameworkToolkit.Tools.ModelContextProtocol" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="AgentSkillsDotNet" Version="1.0.0-preview.260209.1" />
     <PackageVersion Include="Anthropic.SDK" Version="5.9.0" />
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.1.0" />
     <PackageVersion Include="AWSSDK.Extensions.Bedrock.MEAI" Version="4.0.5.7" />
@@ -21,21 +21,21 @@
     <PackageVersion Include="Google_GenerativeAI.Microsoft" Version="3.6.3" />
     <PackageVersion Include="Google.GenAI" Version="0.15.0" />
     <PackageVersion Include="JetBrains.Annotations" Version="2025.2.4" />
-    <PackageVersion Include="Microsoft.Agents.AI" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.A2A" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.AGUI" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.Anthropic" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.AzureAI" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.AzureAI.Persistent" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.CopilotStudio" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.DevUI" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.Hosting" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.Hosting.A2A" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.Hosting.A2A.AspNetCore" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.Hosting.AGUI.AspNetCore" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.Hosting.AzureFunctions" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260205.1" />
-    <PackageVersion Include="Microsoft.Agents.AI.Workflows" Version="1.0.0-preview.260205.1" />
+    <PackageVersion Include="Microsoft.Agents.AI" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.A2A" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.AGUI" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.Anthropic" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.AzureAI" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.AzureAI.Persistent" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.CopilotStudio" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.DevUI" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.Hosting" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.Hosting.A2A" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.Hosting.A2A.AspNetCore" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.Hosting.AGUI.AspNetCore" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.Hosting.AzureFunctions" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260209.1" />
+    <PackageVersion Include="Microsoft.Agents.AI.Workflows" Version="1.0.0-preview.260209.1" />
     <PackageVersion Include="Microsoft.AI.Foundry.Local" Version="0.3.0" />
     <PackageVersion Include="Microsoft.ApplicationInsights.WorkerService" Version="3.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.2" />

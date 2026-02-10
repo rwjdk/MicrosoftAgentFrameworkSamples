@@ -66,7 +66,7 @@ class CustomContextProvider : AIContextProvider
         }
     }
 
-    public override ValueTask<AIContext> InvokingAsync(InvokingContext context, CancellationToken cancellationToken = default)
+    protected override ValueTask<AIContext> InvokingCoreAsync(InvokingContext context, CancellationToken cancellationToken = default)
     {
         return new ValueTask<AIContext>(new AIContext
         {
@@ -74,7 +74,7 @@ class CustomContextProvider : AIContextProvider
         });
     }
 
-    public override async ValueTask InvokedAsync(InvokedContext context, CancellationToken cancellationToken = new CancellationToken())
+    protected override async ValueTask InvokedCoreAsync(InvokedContext context, CancellationToken cancellationToken = new CancellationToken())
     {
         ChatMessage lastMessageFromUser = context.RequestMessages.Last();
         List<ChatMessage> inputToMemoryExtractor =

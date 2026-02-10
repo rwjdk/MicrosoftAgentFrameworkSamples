@@ -106,7 +106,7 @@ static async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, Fun
 
 class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets secrets) : AIContextProvider
 {
-    public override async ValueTask<AIContext> InvokingAsync(InvokingContext context, CancellationToken cancellationToken = default)
+    protected override async ValueTask<AIContext> InvokingCoreAsync(InvokingContext context, CancellationToken cancellationToken = default)
     {
         ChatClientAgentResponse<ToolResult> response = await toolInjectionAgent.RunAsync<ToolResult>(context.RequestMessages, cancellationToken: cancellationToken);
         List<AITool> injectedTools = [];

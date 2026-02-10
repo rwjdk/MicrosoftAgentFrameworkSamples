@@ -50,7 +50,7 @@ class MyMessageStore(ChatClientAgentOptions.ChatHistoryProviderFactoryContext fa
 
     private readonly List<ChatMessage> _messages = [];
 
-    public override async ValueTask<IEnumerable<ChatMessage>> InvokingAsync(InvokingContext context, CancellationToken cancellationToken = new CancellationToken())
+    protected override async ValueTask<IEnumerable<ChatMessage>> InvokingCoreAsync(InvokingContext context, CancellationToken cancellationToken = new CancellationToken())
     {
         if (!File.Exists(SessionPath))
         {
@@ -61,11 +61,11 @@ class MyMessageStore(ChatClientAgentOptions.ChatHistoryProviderFactoryContext fa
         return JsonSerializer.Deserialize<List<ChatMessage>>(json)!;
     }
 
-    public override async ValueTask InvokedAsync(InvokedContext context, CancellationToken cancellationToken = new CancellationToken())
+    protected override async ValueTask InvokedCoreAsync(InvokedContext context, CancellationToken cancellationToken = new CancellationToken())
     {
         // Add both request and response messages to the store
         // Optionally messages produced by the AIContextProvider can also be persisted (not shown).
-        _messages.AddRange(context.RequestMessages.Concat(context.AIContextProviderMessages ?? []).Concat(context.ResponseMessages ?? []));
+        _messages.AddRange(context.RequestMessages.Concat(context.ResponseMessages ?? []));
 
         await File.WriteAllTextAsync(SessionPath, JsonSerializer.Serialize(_messages, factoryContext.JsonSerializerOptions), cancellationToken);
     }
