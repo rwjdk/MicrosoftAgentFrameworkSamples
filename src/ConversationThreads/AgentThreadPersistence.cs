@@ -53,7 +53,7 @@ public static class AgentThreadPersistence
 
     public static async Task StoreThreadAsync(AIAgent agent, AgentSession session)
     {
-        JsonElement serializedThread = agent.SerializeSession(session);
+        JsonElement serializedThread = await agent.SerializeSessionAsync(session);
         await File.WriteAllTextAsync(ConversationPath, JsonSerializer.Serialize(serializedThread));
     }
 }

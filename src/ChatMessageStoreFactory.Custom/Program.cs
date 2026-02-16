@@ -26,7 +26,7 @@ AgentSession session = await agent.CreateSessionAsync();
 AgentResponse response = await agent.RunAsync("Who is Barack Obama", session);
 Console.WriteLine(response);
 
-JsonElement sessionElement = agent.SerializeSession(session);
+JsonElement sessionElement = await agent.SerializeSessionAsync(session);
 string toStoreForTheUser = JsonSerializer.Serialize(sessionElement);
 
 Utils.Separator();

@@ -13,9 +13,9 @@ public class AgUiHumanInTheLoopAgent(AIAgent innerAgent) : AIAgent
         return innerAgent.CreateSessionAsync(cancellationToken);
     }
 
-    protected override JsonElement SerializeSessionCore(AgentSession session, JsonSerializerOptions? jsonSerializerOptions = null)
+    protected override ValueTask<JsonElement> SerializeSessionCoreAsync(AgentSession session, JsonSerializerOptions? jsonSerializerOptions = null, CancellationToken cancellationToken = new CancellationToken())
     {
-        return innerAgent.SerializeSession(session, jsonSerializerOptions);
+        return innerAgent.SerializeSessionAsync(session, jsonSerializerOptions, cancellationToken);
     }
 
     protected override ValueTask<AgentSession> DeserializeSessionCoreAsync(JsonElement serializedSession, JsonSerializerOptions? jsonSerializerOptions = null, CancellationToken cancellationToken = default)

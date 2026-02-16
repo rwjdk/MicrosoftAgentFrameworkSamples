@@ -99,7 +99,7 @@ async Task Raw3()
                 ThinkingConfig = new ThinkingConfig
                 {
                     //ThinkingBudget can be set for backward compatibility but not recommended (Setting Both >> Exception)
-                    ThinkingLevel = ThinkingLevel.HIGH, //Pro can set HIGH/LOW - Flash can set HIGH/MEDIUM/LOW/MINIMAL
+                    ThinkingLevel = ThinkingLevel.High, //Pro can set High/Low - Flash can set High/Medium/Low/Minimal
                     IncludeThoughts = true
                 }
             }
@@ -152,7 +152,7 @@ async Task AgentFrameworkToolkit3()
     {
         Model = "gemini-3-flash-preview",
         //ThinkingBudget can be set for backward compatibility but not recommended (Setting Both >> Exception)
-        ThinkingLevel = ThinkingLevel.HIGH //Pro can set HIGH/LOW - Flash can set HIGH/MEDIUM/LOW/MINIMAL
+        ThinkingLevel = ThinkingLevel.High //Pro can set High/Low - Flash can set High/Medium/Low/Minimal
     });
 
     AgentResponse response = await agent.RunAsync(question);

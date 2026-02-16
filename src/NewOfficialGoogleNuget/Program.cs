@@ -89,7 +89,7 @@ ChatClientAgent agent = new ChatClientAgent(iChatClient, new ChatClientAgentOpti
                  *   - Pro support HIGH and LOW
                  *   - Flash support HIGH, MEDIUM, LOW and MINIMAL
                  */
-                ThinkingLevel = ThinkingLevel.HIGH,
+                ThinkingLevel = ThinkingLevel.High,
 
                 //Including the reasoning
                 IncludeThoughts = true // 👍👍👍 was not possible in the unofficial NuGet
