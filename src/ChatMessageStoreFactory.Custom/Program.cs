@@ -17,7 +17,7 @@ ChatClientAgent agent = azureOpenAIClient
     .AsAIAgent(
         new ChatClientAgentOptions
         {
-            ChatHistoryProviderFactory = (context, token) => ValueTask.FromResult<ChatHistoryProvider>(new MyMessageStore(context))
+            ChatHistoryProvider = new MyMessageStore()
         }
     );
 
@@ -42,16 +42,25 @@ AgentSession restoredThread = await agent.DeserializeSessionAsync(restoredSessio
 AgentResponse someTimeLaterResponse = await agent.RunAsync("How Tall is he?", restoredThread);
 Console.WriteLine(someTimeLaterResponse);
 
-class MyMessageStore(ChatClientAgentOptions.ChatHistoryProviderFactoryContext factoryContext) : ChatHistoryProvider
+class MyMessageStore() : ChatHistoryProvider
 {
-    public string SessionId { get; set; } = factoryContext.SerializedState.ValueKind is JsonValueKind.String ? factoryContext.SerializedState.Deserialize<string>()! : Guid.NewGuid().ToString();
+    public string? SessionId { get; set; }
 
     public string SessionPath => Path.Combine(Path.GetTempPath(), $"{SessionId}.json");
 
     private readonly List<ChatMessage> _messages = [];
 
-    protected override async ValueTask<IEnumerable<ChatMessage>> InvokingCoreAsync(InvokingContext context, CancellationToken cancellationToken = new CancellationToken())
+    protected override async ValueTask<IEnumerable<ChatMessage>> ProvideChatHistoryAsync(InvokingContext context, CancellationToken cancellationToken = new CancellationToken())
     {
+        if(context.Session!.StateBag.TryGetValue("SessionId", out string? sessionId))
+        {
+            SessionId = sessionId!;
+        }
+        else
+        {
+            SessionId = Guid.NewGuid().ToString();
+            context.Session.StateBag.SetValue("SessionId", SessionId);
+        }
         if (!File.Exists(SessionPath))
         {
             return [];
@@ -61,17 +70,12 @@ class MyMessageStore(ChatClientAgentOptions.ChatHistoryProviderFactoryContext fa
         return JsonSerializer.Deserialize<List<ChatMessage>>(json)!;
     }
 
-    protected override async ValueTask InvokedCoreAsync(InvokedContext context, CancellationToken cancellationToken = new CancellationToken())
+    protected override async ValueTask StoreChatHistoryAsync(InvokedContext context, CancellationToken cancellationToken = new CancellationToken())
     {
         // Add both request and response messages to the store
         // Optionally messages produced by the AIContextProvider can also be persisted (not shown).
         _messages.AddRange(context.RequestMessages.Concat(context.ResponseMessages ?? []));
 
-        await File.WriteAllTextAsync(SessionPath, JsonSerializer.Serialize(_messages, factoryContext.JsonSerializerOptions), cancellationToken);
-    }
-
-    public override JsonElement Serialize(JsonSerializerOptions? jsonSerializerOptions = null)
-    {
-        return JsonSerializer.SerializeToElement(SessionId, factoryContext.JsonSerializerOptions);
+        await File.WriteAllTextAsync(SessionPath, JsonSerializer.Serialize(_messages), cancellationToken);
     }
 }
