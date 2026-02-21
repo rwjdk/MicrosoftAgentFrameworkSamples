@@ -103,8 +103,8 @@ ChatClientAgent advancedAgent = client.GetChatClient(secrets.ChatDeploymentName)
         {
             Instructions = "Speak like a Pirate"
         },
-        AIContextProviderFactory = null, //Option to intercept before and after LLM call
-        ChatHistoryProviderFactory = null, //Option to inject a store for session conversations,
+        AIContextProviders = [], //Option to intercept before and after LLM call
+        ChatHistoryProvider = null, //Option to inject a store for session conversations,
         Name = "My Agent",
         Description = "Description that is not used by the AI, but some of the online Agent Framework have a description",
         Id = "1234",

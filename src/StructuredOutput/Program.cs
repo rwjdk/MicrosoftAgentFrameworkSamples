@@ -61,7 +61,7 @@ AgentResponse response3 = await agent3.RunAsync(question, options: new ChatClien
         ResponseFormat = chatResponseFormatJson
     }
 });
-MovieResult movieResult3 = response3.Deserialize<MovieResult>(jsonSerializerOptions);
+MovieResult movieResult3 = JsonSerializer.Deserialize<MovieResult>(response3.Text, jsonSerializerOptions)!;
 
 DisplayMovies(movieResult3);
 

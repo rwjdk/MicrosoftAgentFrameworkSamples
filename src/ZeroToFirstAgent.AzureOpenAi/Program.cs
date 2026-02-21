@@ -14,10 +14,9 @@ using Microsoft.Agents.AI;
 using OpenAI;
 using OpenAI.Chat;
 
-const string endpoint = "https://<yourEndpoint>.openai.azure.com/";
-const string apiKey = "<yourApiKey>";
-const string model = "<yourModelDeploymentName>";
-
+const string endpoint = "todo";
+const string apiKey = "todo";
+const string model = "todo";
 AzureOpenAIClient client = new(new Uri(endpoint), new ApiKeyCredential(apiKey));
 ChatClientAgent agent = client.GetChatClient(model).AsAIAgent();
 

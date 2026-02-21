@@ -26,7 +26,7 @@ public static class Option3CommonSense
             .GetChatClient(secrets.ChatDeploymentName)
             .AsAIAgent(instructions: "You are good at inferring the intent of the user");
 
-        ChatClientAgentResponse<IntentResponse> intentResponse = await intentAgent.RunAsync<IntentResponse>(question);
+        AgentResponse<IntentResponse> intentResponse = await intentAgent.RunAsync<IntentResponse>(question);
         IntentResponse intent = intentResponse.Result;
         switch (intent.TypeOfQuestion)
         {

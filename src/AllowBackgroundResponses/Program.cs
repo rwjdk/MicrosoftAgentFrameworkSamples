@@ -6,6 +6,7 @@ using Shared;
 using System.ClientModel;
 using OpenAI;
 using OpenAI.Responses;
+#pragma warning disable MEAI001
 
 #pragma warning disable OPENAI001
 
@@ -35,7 +36,7 @@ Console.Clear();
 
 Utils.WriteLineGreen("BigQuestion-BACKGROUND-BEGIN");
 AgentSession agentSession = await agent.CreateSessionAsync();
-ChatClientAgentRunOptions options = new ChatClientAgentRunOptions
+ChatClientAgentRunOptions options = new()
 {
     AllowBackgroundResponses = true
 };

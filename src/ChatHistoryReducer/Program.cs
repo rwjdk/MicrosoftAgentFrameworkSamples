@@ -2,6 +2,7 @@
 using Microsoft.Agents.AI;
 using Shared;
 using System.ClientModel;
+using System.Text.Json;
 using Microsoft.Extensions.AI;
 using OpenAI;
 using OpenAI.Chat;
@@ -27,7 +28,10 @@ ChatClientAgent agent = client
         {
             Instructions = "You are a Friendly AI Bot, answering questions",
         },
-        ChatHistoryProviderFactory = (context, token) => ValueTask.FromResult<ChatHistoryProvider>(new InMemoryChatHistoryProvider(chatReducer2, context.SerializedState, context.JsonSerializerOptions))
+        ChatHistoryProvider = new InMemoryChatHistoryProvider(new InMemoryChatHistoryProviderOptions
+        {
+            ChatReducer = chatReducer2,
+        })
     });
 
 AgentSession session = await agent.CreateSessionAsync();
@@ -40,12 +44,14 @@ while (true)
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 
+    Utils.WriteLineDarkGray((await agent.SerializeSessionAsync(session)).GetRawText()); //todo - temp workaround
+    /* this does not work in RC1 - as Team for reason here: https://github.com/microsoft/agent-framework/issues/4140
     IList<ChatMessage> messagesInSession = session.GetService<IList<ChatMessage>>()!;
     Utils.WriteLineDarkGray("- Number of messages in session: " + messagesInSession.Count());
     foreach (ChatMessage message in messagesInSession)
     {
         Utils.WriteLineDarkGray($"-- {message.Role}: {message.Text}");
     }
-
+    */
     Utils.Separator();
 }

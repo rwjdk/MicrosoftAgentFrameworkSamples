@@ -31,7 +31,7 @@ ChatClientAgent agent = client
         tools: [AIFunctionFactory.Create(Tools.GetWeather)]
     );
 
-ChatClientAgentResponse<WeatherResponse> response = await agent.RunAsync<WeatherResponse>("What is the Weather like in Paris?");
+AgentResponse<WeatherResponse> response = await agent.RunAsync<WeatherResponse>("What is the Weather like in Paris?");
 WeatherResponse result = response.Result;
 Console.WriteLine(response);
 

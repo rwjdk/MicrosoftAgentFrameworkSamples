@@ -8,8 +8,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Anthropic.SDK" />
-		<PackageReference Include="Microsoft.Agents.AI" />
+		<PackageReference Include="Microsoft.Agents.AI.Anthropic" />
 	</ItemGroup>
 
 </Project>

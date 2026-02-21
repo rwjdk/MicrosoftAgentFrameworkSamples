@@ -33,7 +33,7 @@ public static class HumanInTheLoopWithoutWorkflow
             Console.Write("Your Guess: ");
             var guess = Console.ReadLine();
             var input = $"Is this the right answer for guessing the animal is '{animalToGuess}'? (allow for spelling errors of the animal): {guess}";
-            ChatClientAgentResponse<bool> isRightAnswerResponse = await agent.RunAsync<bool>(input);
+            AgentResponse<bool> isRightAnswerResponse = await agent.RunAsync<bool>(input);
             if (isRightAnswerResponse.Result)
             {
                 Utils.WriteLineGreen($"You guessed it. " +
@@ -46,7 +46,7 @@ public static class HumanInTheLoopWithoutWorkflow
             var newHintPrompt = $"Generate a hint for a child to guess the animal '{animalToGuess}'. " +
                                 $"Hints already given: {string.Join(" | ", hintsGiven)} " +
                                 $"so make the new hint unique and do not repeat the same hint parts";
-            ChatClientAgentResponse<string> hintResponse = await agent.RunAsync<string>(newHintPrompt);
+            AgentResponse<string> hintResponse = await agent.RunAsync<string>(newHintPrompt);
             var newHint = hintResponse.Result;
             hintsGiven.Add(newHint);
             hint = newHint;

@@ -37,7 +37,7 @@ static async Task<List<ChatMessage>> RunWorkflowAsync(Workflow workflow, List<Ch
 {
     string? lastExecutorId = null;
 
-    StreamingRun run = await InProcessExecution.StreamAsync(workflow, messages);
+    StreamingRun run = await InProcessExecution.RunStreamingAsync(workflow, messages);
     await run.TrySendMessageAsync(new TurnToken(emitEvents: true));
     await foreach (WorkflowEvent @event in run.WatchStreamAsync())
     {

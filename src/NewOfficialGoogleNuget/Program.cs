@@ -64,7 +64,7 @@ Console.WriteLine(mcpToolResponse); // 👍👍👍 was not possible in the unof
 
 //Structured Output
 ChatClientAgent structuredOutputAgent = new ChatClientAgent(iChatClient); //This did not work with the unofficial NuGet
-ChatClientAgentResponse<MovieResult> structuredOutputResponse = await structuredOutputAgent.RunAsync<MovieResult>("List top 3 movies according to IMDB");
+AgentResponse<MovieResult> structuredOutputResponse = await structuredOutputAgent.RunAsync<MovieResult>("List top 3 movies according to IMDB");
 Console.WriteLine(structuredOutputResponse);
 
 //----------------------------------------------------------------------------------------------------------------

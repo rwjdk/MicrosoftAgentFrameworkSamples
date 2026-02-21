@@ -87,7 +87,7 @@ app.MapPost("/structuredOutput", async Task<IResult> ([FromBody] ChatRequest cha
     ChatClientAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(
         instructions: "You answer Movie Questions"
     );
-    ChatClientAgentResponse<MovieResult> response = await agent.RunAsync<MovieResult>();
+    AgentResponse<MovieResult> response = await agent.RunAsync<MovieResult>();
     return Results.Ok(response.Result);
 });
 

@@ -7,33 +7,29 @@
  * 4: Call RunAsync or RunStreamingAsync (options needed for model select)
  */
 
-using Anthropic.SDK;
-using Anthropic.SDK.Constants;
+using Anthropic;
+using Anthropic.Core;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 
-const string apiKey = "<yourApiKey>";
-const string model = AnthropicModels.Claude35Haiku;
-
-AnthropicClient anthropicClient = new AnthropicClient(new APIAuthentication(apiKey));
-
-
-
-IChatClient client = anthropicClient.Messages.AsBuilder().Build();
-
-ChatClientAgentRunOptions chatClientAgentRunOptions = new(new()
+const string apiKey = "todo";
+const string model = "todo";
+AnthropicClient client = new AnthropicClient(new ClientOptions
 {
-    ModelId = model,
-    MaxOutputTokens = 1000
+    ApiKey = apiKey
+});
+ChatClientAgent agent = client.AsAIAgent(new ChatClientAgentOptions
+{
+    ChatOptions = new ChatOptions { ModelId = model, MaxOutputTokens = 1000 }
 });
 
-ChatClientAgent agent = new(client);
-AgentResponse response = await agent.RunAsync("What is the Capital of Australia?", options: chatClientAgentRunOptions);
+
+AgentResponse response = await agent.RunAsync("What is the Capital of Australia?");
 Console.WriteLine(response);
 
 Console.WriteLine("---");
 
-await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?", options: chatClientAgentRunOptions))
+await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
 {
     Console.Write(update);
 }

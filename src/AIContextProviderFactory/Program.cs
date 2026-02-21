@@ -27,7 +27,7 @@ ChatClientAgent agentWithCustomMemory = client.GetChatClient(secrets.ChatDeploym
         {
             Instructions = "You are a nice AI"
         },
-        AIContextProviderFactory = (context, token) => ValueTask.FromResult<AIContextProvider>(new CustomContextProvider(memoryExtractorAgent, userId))
+        AIContextProviders = [new CustomContextProvider(memoryExtractorAgent, userId)]
     });
 
 AIAgent agentToUse = agentWithCustomMemory;
@@ -65,16 +65,14 @@ class CustomContextProvider : AIContextProvider
             _userFacts.AddRange(File.ReadAllLines(_userMemoryFilePath));
         }
     }
-
-    protected override ValueTask<AIContext> InvokingCoreAsync(InvokingContext context, CancellationToken cancellationToken = default)
+    
+    protected override ValueTask<AIContext> ProvideAIContextAsync(InvokingContext context, CancellationToken cancellationToken = new CancellationToken())
     {
-        return new ValueTask<AIContext>(new AIContext
-        {
-            Instructions = string.Join(" | ", _userFacts)
-        });
+        context.AIContext.Instructions += $" - User facts: {string.Join(" | ", _userFacts)}";
+        return ValueTask.FromResult(context.AIContext);
     }
 
-    protected override async ValueTask InvokedCoreAsync(InvokedContext context, CancellationToken cancellationToken = new CancellationToken())
+    protected override async ValueTask StoreAIContextAsync(InvokedContext context, CancellationToken cancellationToken = new CancellationToken())
     {
         ChatMessage lastMessageFromUser = context.RequestMessages.Last();
         List<ChatMessage> inputToMemoryExtractor =
@@ -83,7 +81,7 @@ class CustomContextProvider : AIContextProvider
             lastMessageFromUser
         ];
 
-        ChatClientAgentResponse<MemoryUpdate> response = await _memoryExtractorAgent.RunAsync<MemoryUpdate>(inputToMemoryExtractor, cancellationToken: cancellationToken);
+        AgentResponse<MemoryUpdate> response = await _memoryExtractorAgent.RunAsync<MemoryUpdate>(inputToMemoryExtractor, cancellationToken: cancellationToken);
         foreach (string memoryToRemove in response.Result.MemoryToRemove)
         {
             _userFacts.Remove(memoryToRemove);

@@ -34,7 +34,7 @@ public class AgUiStructuredOutputAgent<T>(ChatClientAgent innerAgent) : AIAgent
         [EnumeratorCancellation]
         CancellationToken cancellationToken = default)
     {
-        ChatClientAgentResponse<T> jsonResponse = await innerAgent.RunAsync<T>(messages, session, null, options, null, cancellationToken);
+        AgentResponse<T> jsonResponse = await innerAgent.RunAsync<T>(messages, session, null, options, cancellationToken);
         yield return new AgentResponseUpdate(ChatRole.Assistant,
         [
             new TextContent(jsonResponse.Text)

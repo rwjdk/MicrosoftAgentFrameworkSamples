@@ -43,16 +43,15 @@ string legalText = """
 
 var messages = new List<ChatMessage> { new(ChatRole.User, legalText) };
 
-StreamingRun run = await InProcessExecution.StreamAsync(workflow, messages);
+await using StreamingRun run = await InProcessExecution.RunStreamingAsync(workflow, messages);
 await run.TrySendMessageAsync(new TurnToken(emitEvents: true));
 
 List<ChatMessage> result = [];
-await foreach (WorkflowEvent evt in run.WatchStreamAsync().ConfigureAwait(false))
+await foreach (WorkflowEvent evt in run.WatchStreamAsync())
 {
-    if (evt is WorkflowOutputEvent completed)
+    if (evt is WorkflowOutputEvent output)
     {
-        result = (List<ChatMessage>)completed.Data!;
-        break;
+        result = output.As<List<ChatMessage>>()!;
     }
 }
 

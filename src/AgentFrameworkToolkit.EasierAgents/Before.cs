@@ -1,7 +1,6 @@
 ﻿using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
-using OpenAI;
 using OpenAI.Chat;
 using Shared;
 using Shared.Extensions;
@@ -60,7 +59,7 @@ public class Before
                 }
             }
         );
-        WeatherReport weatherReport = response.Deserialize<WeatherReport>(jsonSerializerOptions);
+        WeatherReport weatherReport = JsonSerializer.Deserialize<WeatherReport>(response.Text, jsonSerializerOptions)!;
         Console.WriteLine("City: " + weatherReport.City);
         Console.WriteLine("Condition: " + weatherReport.Condition);
         Console.WriteLine("Degrees: " + weatherReport.Degrees);

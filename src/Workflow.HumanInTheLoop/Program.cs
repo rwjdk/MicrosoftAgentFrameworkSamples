@@ -26,7 +26,7 @@ var workflow = new WorkflowBuilder(requestPort)
     .Build();
 
 var initialFeedback = new FeedbackToUser(initialHintResponse.Result, true);
-await using StreamingRun handle = await InProcessExecution.StreamAsync(workflow, initialFeedback);
+await using StreamingRun handle = await InProcessExecution.RunStreamingAsync(workflow, initialFeedback);
 
 await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
 {
@@ -34,9 +34,9 @@ await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
     {
         case RequestInfoEvent requestInputEvt:
             var externalRequest = requestInputEvt.Request;
-            if (externalRequest.DataIs<FeedbackToUser>())
+            if (externalRequest.IsDataOfType<FeedbackToUser>())
             {
-                FeedbackToUser feedbackToUser = externalRequest.DataAs<FeedbackToUser>()!;
+                FeedbackToUser feedbackToUser = externalRequest.Data.As<FeedbackToUser>()!;
                 Utils.WriteLineDarkGray(feedbackToUser.Init ? 
                     "Guess what animal I'm thinking of" : 
                     "That is not the animal I'm thinking of");
@@ -67,7 +67,7 @@ class EvaluateAndHintExecutor(ChatClientAgent agent, string animalToGuess) : Exe
     {
         _numberOfTries++;
         var input = $"Is this the right answer for guessing the animal is '{animalToGuess}'? (allow for spelling errors of the animal): {message}";
-        ChatClientAgentResponse<bool> isRightAnswerResponse = await agent.RunAsync<bool>(input, cancellationToken: cancellationToken);
+        AgentResponse<bool> isRightAnswerResponse = await agent.RunAsync<bool>(input, cancellationToken: cancellationToken);
         if (isRightAnswerResponse.Result)
         {
             //End the Game
@@ -81,10 +81,10 @@ class EvaluateAndHintExecutor(ChatClientAgent agent, string animalToGuess) : Exe
             var newHintPrompt = $"Generate a hint for a child to guess the animal '{animalToGuess}'. " +
                                 $"Hints already given: {string.Join(" | ", _hintsGiven)} " +
                                 $"so make the new hint unique and do not repeat the same hint parts";
-            ChatClientAgentResponse<string> hintResponse = await agent.RunAsync<string>(newHintPrompt, cancellationToken: cancellationToken);
+            AgentResponse<string> hintResponse = await agent.RunAsync<string>(newHintPrompt, cancellationToken: cancellationToken);
             var newHint = hintResponse.Result;
             _hintsGiven.Add(newHint);
-            await context.SendMessageAsync(new FeedbackToUser(newHint), cancellationToken);
+            await context.SendMessageAsync(new FeedbackToUser(newHint), cancellationToken); //Todo - This does not work in RC1 :-(
         }
     }
 }

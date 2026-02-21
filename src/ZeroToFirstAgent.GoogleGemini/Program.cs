@@ -10,11 +10,12 @@
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 
-const string apiKey = "<yourApiKey>";
-const string model = "gemini-3-pro-preview";
-
+const string apiKey = "todo";
+const string model = "todo";
 IChatClient client = new Google.GenAI.Client(apiKey: apiKey).AsIChatClient(model);
-ChatClientAgent agent = new(client);
+ChatClientAgent agent = new ChatClientAgent(client);
+
+
 
 AgentResponse response = await agent.RunAsync("What is the Capital of Australia?");
 Console.WriteLine(response);

@@ -11,7 +11,7 @@ class PizzaOrderParserExecutor(ChatClientAgent agent) : ReflectingExecutor<Pizza
     public async ValueTask<PizzaOrder> HandleAsync(string message, IWorkflowContext context, CancellationToken cancellationToken)
     {
         Utils.WriteLineYellow("- Parse order");
-        ChatClientAgentResponse<PizzaOrder> orderResponse = await agent.RunAsync<PizzaOrder>(message, cancellationToken: cancellationToken);
+        AgentResponse<PizzaOrder> orderResponse = await agent.RunAsync<PizzaOrder>(message, cancellationToken: cancellationToken);
         return orderResponse.Result;
     }
 }

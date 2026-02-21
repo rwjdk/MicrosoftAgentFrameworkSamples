@@ -62,17 +62,17 @@ Utils.WriteLineYellow($"Real Answer: {q3RealAnswer}");
 Utils.Separator();
 
 //Let's do the work differently
-ChatClientAgentResponse<BookFilter[]> response1Filter = await agent
+AgentResponse<BookFilter[]> response1Filter = await agent
     .RunAsync<BookFilter[]>($"Make a filter for the following query: {question1}");
 BookFilter[] filter1 = response1Filter.Result;
 List<Book> filter1Books = GetBooksForFilter(filter1);
 
-ChatClientAgentResponse<BookFilter[]> response2Filter = await agent
+AgentResponse<BookFilter[]> response2Filter = await agent
     .RunAsync<BookFilter[]>($"Make a filter for the following query: {question2}");
 BookFilter[] filter2 = response2Filter.Result;
 List<Book> filter2Books = GetBooksForFilter(filter2);
 
-ChatClientAgentResponse<BookFilter[]> response3Filter = await agent
+AgentResponse<BookFilter[]> response3Filter = await agent
     .RunAsync<BookFilter[]>($"Make a filter for the following query: {question3}");
 BookFilter[] filter3 = response3Filter.Result;
 List<Book> filter3Books = GetBooksForFilter(filter3);

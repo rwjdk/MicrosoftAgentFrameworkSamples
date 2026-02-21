@@ -19,7 +19,7 @@ public static class PizzaSampleWithoutWorkflow
 
         const string input = "Make a big Pepperoni Pizza with mushrooms and onions";
         Utils.WriteLineYellow("- Parse order");
-        ChatClientAgentResponse<PizzaOrder> orderResponse = await agentFactory.CreateOrderTakerAgent().RunAsync<PizzaOrder>(input);
+        AgentResponse<PizzaOrder> orderResponse = await agentFactory.CreateOrderTakerAgent().RunAsync<PizzaOrder>(input);
         var order = orderResponse.Result;
 
         foreach (string topping in order.Toppings)

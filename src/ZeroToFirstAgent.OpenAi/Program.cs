@@ -12,10 +12,9 @@ using Microsoft.Agents.AI;
 using OpenAI;
 using OpenAI.Chat;
 
-const string apiKey = "<YourAPIKey>";
-const string model = "<yourModelName>"; //Example: gpt-4.1
-
-OpenAIClient client = new(apiKey);
+const string apiKey = "todo";
+const string model = "todo";
+OpenAIClient client = new OpenAIClient(apiKey);
 ChatClientAgent agent = client.GetChatClient(model).AsAIAgent();
 
 AgentResponse response = await agent.RunAsync("What is the Capital of Germany?");

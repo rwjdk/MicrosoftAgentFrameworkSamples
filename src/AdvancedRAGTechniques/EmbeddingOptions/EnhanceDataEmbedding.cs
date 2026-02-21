@@ -31,7 +31,7 @@ public static class EnhanceDataEmbedding
         int counter = 0;
         foreach (Movie movie in movieDataForRag)
         {
-            ChatClientAgentResponse<string> genreResponse = await genreAgent.RunAsync<string>($"What is the genre of this movie: {movie.GetTitleAndDetails()}?");
+            AgentResponse<string> genreResponse = await genreAgent.RunAsync<string>($"What is the genre of this movie: {movie.GetTitleAndDetails()}?");
             string genre = genreResponse.Result;
 
             counter++;

@@ -20,7 +20,7 @@ public static class AgentThreadPersistence
                 JsonElement jsonElement = JsonSerializer.Deserialize<JsonElement>(await File.ReadAllTextAsync(ConversationPath));
                 AgentSession resumedThread = await agent.DeserializeSessionAsync(jsonElement);
 
-                await RestoreConsole(resumedThread);
+                RestoreConsole(resumedThread);
                 return resumedThread;
             }
         }
@@ -28,25 +28,22 @@ public static class AgentThreadPersistence
         return await agent.CreateSessionAsync();
     }
 
-    private static async Task RestoreConsole(AgentSession resumedSession)
+    private static void RestoreConsole(AgentSession resumedSession)
     {
-        ChatClientAgentSession chatClientAgentThread = (ChatClientAgentSession)resumedSession;
-        if (chatClientAgentThread.ChatHistoryProvider != null)
+        //todo: this sample does not work in RC1 - Need answer from Team (https://github.com/microsoft/agent-framework/issues/4140)
+        IList<ChatMessage>? messages = resumedSession.GetService<IList<ChatMessage>>();
+        foreach (ChatMessage message in messages!)
         {
-            IList<ChatMessage>? messages = resumedSession.GetService<IList<ChatMessage>>();
-            foreach (ChatMessage message in messages!)
+            if (message.Role == ChatRole.User)
             {
-                if (message.Role == ChatRole.User)
-                {
-                    Console.WriteLine($"> {message.Text}");
-                }
-                else if (message.Role == ChatRole.Assistant)
-                {
-                    Console.WriteLine($"{message.Text}");
-                    Console.WriteLine();
-                    Console.WriteLine(string.Empty.PadLeft(50, '*'));
-                    Console.WriteLine();
-                }
+                Console.WriteLine($"> {message.Text}");
+            }
+            else if (message.Role == ChatRole.Assistant)
+            {
+                Console.WriteLine($"{message.Text}");
+                Console.WriteLine();
+                Console.WriteLine(string.Empty.PadLeft(50, '*'));
+                Console.WriteLine();
             }
         }
     }

@@ -8,6 +8,7 @@ using Shared.Extensions;
 using System.ClientModel;
 using System.Text;
 using JetBrains.Annotations;
+using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Console.Clear();
 
@@ -73,8 +74,7 @@ async Task ToolInjection()
 
     AIAgent mainAgent = client.GetChatClient("gpt-4.1").AsAIAgent(new ChatClientAgentOptions
     {
-        AIContextProviderFactory = (_, _) =>
-            ValueTask.FromResult<AIContextProvider>(new OnTheFlyToolInjectionContext(toolInjectionAgent, secrets))
+        AIContextProviders = [new OnTheFlyToolInjectionContext(toolInjectionAgent, secrets)]
     }).AsBuilder().Use(FunctionCallMiddleware).Build();
 
     Utils.WriteLineDarkGray("This agent have: 0 tools");
@@ -108,7 +108,8 @@ class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets s
 {
     protected override async ValueTask<AIContext> InvokingCoreAsync(InvokingContext context, CancellationToken cancellationToken = default)
     {
-        ChatClientAgentResponse<ToolResult> response = await toolInjectionAgent.RunAsync<ToolResult>(context.RequestMessages, cancellationToken: cancellationToken);
+        IEnumerable<ChatMessage> messages = context.AIContext.Messages ?? [];
+        AgentResponse<ToolResult> response = await toolInjectionAgent.RunAsync<ToolResult>(messages, cancellationToken: cancellationToken);
         List<AITool> injectedTools = [];
         string? injectedInstructions = null;
         ToolResult toolResult = response.Result;
@@ -140,11 +141,10 @@ class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets s
         }
 
         Utils.WriteLineGreen($"Number of tool's injected: {injectedTools.Count}");
-        return new AIContext
-        {
-            Tools = injectedTools,
-            Instructions = injectedInstructions
-        };
+
+        context.AIContext.Tools = injectedTools;
+        context.AIContext.Instructions = injectedInstructions;
+        return context.AIContext;
     }
 
     [PublicAPI]
