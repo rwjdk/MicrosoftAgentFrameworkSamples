@@ -9,6 +9,7 @@
 		<PackageReference Include="AgentFrameworkToolkit.Anthropic" />
 		<PackageReference Include="AgentFrameworkToolkit.Google" />
 		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI" />
 		<PackageReference Include="Microsoft.Agents.AI.DevUI" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
 	</ItemGroup>
