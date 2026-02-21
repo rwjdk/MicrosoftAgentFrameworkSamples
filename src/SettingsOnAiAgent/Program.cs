@@ -25,7 +25,7 @@ ChatClientAgent noSettingAgent = client.GetChatClient(secrets.ChatDeploymentName
 
 ChatClientAgent agent = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent(
     instructions: "You are a cool surfer dude",
-    tools: [ /*Todo: In a separate video*/]);
+    tools: [ /*In a separate video*/ ]);
 
 #region Lets set all the options-parameters!
 

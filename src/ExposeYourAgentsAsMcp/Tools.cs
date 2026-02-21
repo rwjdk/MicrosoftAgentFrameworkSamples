@@ -33,7 +33,7 @@ public class Tools(AzureOpenAIClient azureOpenAIClient)
     [Description("Add a Sales order to the ERP System")]
     public async Task<int> AddOrder(string customer, string itemToBuy, int quantity)
     {
-        //todo - Add the order to the system
+        //Add the order to the system
         await Task.CompletedTask;
         return 42;
     }

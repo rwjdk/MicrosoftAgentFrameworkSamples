@@ -18,7 +18,14 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 
 var agent = client
     .GetChatClient(secrets.ChatDeploymentName)
-    .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
+    .AsAIAgent(new ChatClientAgentOptions
+    {
+        ChatOptions = new ChatOptions
+        {
+            Instructions = "You are a Friendly AI Bot, answering questions"
+        },
+        ChatHistoryProvider = new InMemoryChatHistoryProvider() //Not this is needed now in order to get the restored messages
+    });
 
 AgentSession session;
 

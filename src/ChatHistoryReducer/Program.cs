@@ -44,14 +44,15 @@ while (true)
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 
-    Utils.WriteLineDarkGray((await agent.SerializeSessionAsync(session)).GetRawText()); //todo - temp workaround
-    /* this does not work in RC1 - as Team for reason here: https://github.com/microsoft/agent-framework/issues/4140
-    IList<ChatMessage> messagesInSession = session.GetService<IList<ChatMessage>>()!;
+    InMemoryChatHistoryProvider? inMemoryChatHistoryProvider = session.StateBag.GetValue<InMemoryChatHistoryProvider>("InMemoryChatHistoryProvider");
+
+
+    InMemoryChatHistoryProvider? provider = agent.GetService<InMemoryChatHistoryProvider>();
+    List<ChatMessage> messagesInSession = provider?.GetMessages(session) ?? [];
     Utils.WriteLineDarkGray("- Number of messages in session: " + messagesInSession.Count());
     foreach (ChatMessage message in messagesInSession)
     {
         Utils.WriteLineDarkGray($"-- {message.Role}: {message.Text}");
     }
-    */
     Utils.Separator();
 }

@@ -18,20 +18,20 @@ public static class AgentThreadPersistence
             if (key.Key == ConsoleKey.Y)
             {
                 JsonElement jsonElement = JsonSerializer.Deserialize<JsonElement>(await File.ReadAllTextAsync(ConversationPath));
-                AgentSession resumedThread = await agent.DeserializeSessionAsync(jsonElement);
+                AgentSession resumedSession = await agent.DeserializeSessionAsync(jsonElement);
 
-                RestoreConsole(resumedThread);
-                return resumedThread;
+                RestoreConsole(agent, resumedSession);
+                return resumedSession;
             }
         }
 
         return await agent.CreateSessionAsync();
     }
 
-    private static void RestoreConsole(AgentSession resumedSession)
+    private static void RestoreConsole(AIAgent agent, AgentSession resumedSession)
     {
-        //todo: this sample does not work in RC1 - Need answer from Team (https://github.com/microsoft/agent-framework/issues/4140)
-        IList<ChatMessage>? messages = resumedSession.GetService<IList<ChatMessage>>();
+        InMemoryChatHistoryProvider? provider = agent.GetService<InMemoryChatHistoryProvider>();
+        List<ChatMessage> messages = provider?.GetMessages(resumedSession) ?? [];
         foreach (ChatMessage message in messages!)
         {
             if (message.Role == ChatRole.User)

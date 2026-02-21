@@ -265,7 +265,7 @@ public class MyTools
     [KernelFunction("get_weather_for_city")]
     public WeatherResult GetWeatherForCity(string city)
     {
-        //Todo - Real implementation
+        //Real implementation of your tool
         return new WeatherResult(city, "Sunny", 19);
     }
 
