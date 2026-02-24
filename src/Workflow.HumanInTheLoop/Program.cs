@@ -55,6 +55,8 @@ await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
     }
 }
 
+[YieldsOutput(typeof(string))]
+[SendsMessage(typeof(FeedbackToUser))]
 class EvaluateAndHintExecutor(ChatClientAgent agent, string animalToGuess) : Executor<string>("Evaluator and Hint-giver")
 {
     private int _numberOfTries;
@@ -84,7 +86,7 @@ class EvaluateAndHintExecutor(ChatClientAgent agent, string animalToGuess) : Exe
             AgentResponse<string> hintResponse = await agent.RunAsync<string>(newHintPrompt, cancellationToken: cancellationToken);
             var newHint = hintResponse.Result;
             _hintsGiven.Add(newHint);
-            await context.SendMessageAsync(new FeedbackToUser(newHint), cancellationToken); //Todo - This does not work in RC1 :-(
+            await context.SendMessageAsync(new FeedbackToUser(newHint), cancellationToken);
         }
     }
 }
