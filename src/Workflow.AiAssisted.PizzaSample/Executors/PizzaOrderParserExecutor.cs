@@ -1,14 +1,13 @@
 ﻿using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.Workflows;
-using Microsoft.Agents.AI.Workflows.Reflection;
 using Shared;
 using Workflow.AiAssisted.PizzaSample.Models;
 
 namespace Workflow.AiAssisted.PizzaSample.Executors;
 
-class PizzaOrderParserExecutor(ChatClientAgent agent) : ReflectingExecutor<PizzaOrderParserExecutor>("OrderParser"), IMessageHandler<string, PizzaOrder>
+class PizzaOrderParserExecutor(ChatClientAgent agent) : Executor<string, PizzaOrder>("OrderParser")
 {
-    public async ValueTask<PizzaOrder> HandleAsync(string message, IWorkflowContext context, CancellationToken cancellationToken)
+    public override async ValueTask<PizzaOrder> HandleAsync(string message, IWorkflowContext context, CancellationToken cancellationToken)
     {
         Utils.WriteLineYellow("- Parse order");
         AgentResponse<PizzaOrder> orderResponse = await agent.RunAsync<PizzaOrder>(message, cancellationToken: cancellationToken);

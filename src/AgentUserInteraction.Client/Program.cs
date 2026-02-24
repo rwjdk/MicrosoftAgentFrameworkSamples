@@ -44,7 +44,7 @@ while (true)
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     StringBuilder toolCallDetails = new();
                     toolCallDetails.Append($"[Tool Call: {functionCallContent.Name}");
-                    if (functionCallContent.Arguments.Any())
+                    if (functionCallContent.Arguments != null && functionCallContent.Arguments.Any())
                     {
                         toolCallDetails.Append($" (Args: {string.Join(",", functionCallContent.Arguments.Select(x => $"[{x.Key} = {x.Value}]"))}");
                     }

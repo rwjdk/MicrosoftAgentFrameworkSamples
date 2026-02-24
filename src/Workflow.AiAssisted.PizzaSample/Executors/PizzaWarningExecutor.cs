@@ -1,15 +1,14 @@
 ﻿using System.Text;
 using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.Workflows;
-using Microsoft.Agents.AI.Workflows.Reflection;
 using Shared;
 using Workflow.AiAssisted.PizzaSample.Models;
 
 namespace Workflow.AiAssisted.PizzaSample.Executors;
 
-class PizzaWarningExecutor(ChatClientAgent warningToCustomerAgent) : ReflectingExecutor<PizzaWarningExecutor>("PizzaWarning"), IMessageHandler<PizzaOrder>
+class PizzaWarningExecutor(ChatClientAgent warningToCustomerAgent) : Executor<PizzaOrder>("PizzaWarning")
 {
-    public async ValueTask HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
+    public override async ValueTask HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
     {
         Utils.WriteLineRed("Can't create the pizza in full");
 

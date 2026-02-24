@@ -50,7 +50,7 @@ await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
             }
             throw new NotSupportedException($"Request {externalRequest.PortInfo.RequestType} is not supported");
         case WorkflowOutputEvent outputEvt:
-            Utils.WriteLineGreen(outputEvt.Data.ToString()!);
+            Utils.WriteLineGreen(outputEvt.Data!.ToString()!);
             return;
     }
 }

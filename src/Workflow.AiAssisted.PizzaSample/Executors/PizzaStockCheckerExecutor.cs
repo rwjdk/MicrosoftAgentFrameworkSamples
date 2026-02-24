@@ -1,13 +1,12 @@
 ﻿using Microsoft.Agents.AI.Workflows;
-using Microsoft.Agents.AI.Workflows.Reflection;
 using Shared;
 using Workflow.AiAssisted.PizzaSample.Models;
 
 namespace Workflow.AiAssisted.PizzaSample.Executors;
 
-class PizzaStockCheckerExecutor() : ReflectingExecutor<PizzaStockCheckerExecutor>("StockChecker"), IMessageHandler<PizzaOrder, PizzaOrder>
+class PizzaStockCheckerExecutor() : Executor<PizzaOrder, PizzaOrder>("StockChecker")
 {
-    public ValueTask<PizzaOrder> HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
+    public override ValueTask<PizzaOrder> HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
     {
         foreach (string topping in message.Toppings)
         {
