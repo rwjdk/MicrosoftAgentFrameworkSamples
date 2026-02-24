@@ -24,7 +24,7 @@ var agent = client
         {
             Instructions = "You are a Friendly AI Bot, answering questions"
         },
-        ChatHistoryProvider = new InMemoryChatHistoryProvider() //Not this is needed now in order to get the restored messages
+        ChatHistoryProvider = new InMemoryChatHistoryProvider() //Note this is needed now in order to get the restored messages
     });
 
 AgentSession session;
