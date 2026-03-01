@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.ClientModel;
+using Microsoft.Extensions.Configuration;
 
 namespace Shared;
 
@@ -59,5 +60,11 @@ public class SecretManager
             configurationRoot["MistralApiKey"] ?? string.Empty,
             configurationRoot["AmazonBedrockApiKey"] ?? string.Empty,
             configurationRoot["OpenWeatherApiKey"] ?? string.Empty);
+    }
+
+    public static (Uri endpoint, ApiKeyCredential apiKey) GetAzureOpenAICredentials()
+    {
+        Secrets secrets = GetSecrets();
+        return (new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
     }
 }

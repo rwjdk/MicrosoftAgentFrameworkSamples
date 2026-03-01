@@ -72,7 +72,7 @@ public class AzureOpenAiFoundry
                     {
                         if (annotation is CitationAnnotation citationAnnotation)
                         {
-                            Utils.WriteLineYellow("Source: " + citationAnnotation.Title + " (" + citationAnnotation.Url + ")");
+                            Utils.Yellow("Source: " + citationAnnotation.Title + " (" + citationAnnotation.Url + ")");
                         }
                     }
                 }

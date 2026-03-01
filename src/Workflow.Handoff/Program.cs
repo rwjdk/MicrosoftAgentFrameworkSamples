@@ -49,14 +49,14 @@ static async Task<List<ChatMessage>> RunWorkflowAsync(Workflow workflow, List<Ch
                 {
                     lastExecutorId = e.ExecutorId;
                     Console.WriteLine();
-                    Utils.WriteLineGreen(e.Update.AuthorName ?? e.ExecutorId);
+                    Utils.Green(e.Update.AuthorName ?? e.ExecutorId);
                 }
 
                 Console.Write(e.Update.Text);
                 if (e.Update.Contents.OfType<FunctionCallContent>().FirstOrDefault() is FunctionCallContent call)
                 {
                     Console.WriteLine();
-                    Utils.WriteLineDarkGray($"Call '{call.Name}' with arguments: {JsonSerializer.Serialize(call.Arguments)}]");
+                    Utils.Gray($"Call '{call.Name}' with arguments: {JsonSerializer.Serialize(call.Arguments)}]");
                 }
 
                 break;
@@ -67,7 +67,7 @@ static async Task<List<ChatMessage>> RunWorkflowAsync(Workflow workflow, List<Ch
             case ExecutorFailedEvent failedEvent:
                 if (failedEvent.Data is Exception ex)
                 {
-                    Utils.WriteLineRed($"Error in agent {failedEvent.ExecutorId}: " + ex);
+                    Utils.Red($"Error in agent {failedEvent.ExecutorId}: " + ex);
                 }
 
                 break;

@@ -31,25 +31,25 @@ string question2 = "Give Count + List the books whose author have an 's' as the 
 string question3 = "Give Count + List the books whose author have an 's' as the last letter of their name, " +
                    "is a Genre other than 'Fantasy' and was released between 1800 and 1900";
 
-Utils.WriteLineGreen($"Q1: {question1}");
+Utils.Green($"Q1: {question1}");
 AgentResponse response1 = await agent.RunAsync(bookPromptData + question1);
 Console.WriteLine("A1: " + response1);
 response1.Usage.OutputAsInformation();
 int q1RealAnswer = books.Count(x => x.YearOfRelease == 1980);
-Utils.WriteLineYellow($"Real Answer: {q1RealAnswer}");
+Utils.Yellow($"Real Answer: {q1RealAnswer}");
 
 Utils.Separator();
 
-Utils.WriteLineGreen($"Q2: {question2}");
+Utils.Green($"Q2: {question2}");
 AgentResponse response2 = await agent.RunAsync(bookPromptData + question2);
 Console.WriteLine("A2: " + response2);
 response2.Usage.OutputAsInformation();
 int q2RealAnswer = books.Count(x => x.Author.EndsWith("s"));
-Utils.WriteLineYellow($"Real Answer: {q2RealAnswer}");
+Utils.Yellow($"Real Answer: {q2RealAnswer}");
 
 Utils.Separator();
 
-Utils.WriteLineGreen($"Q3: {question3}");
+Utils.Green($"Q3: {question3}");
 AgentResponse response3 = await agent.RunAsync(bookPromptData + question3);
 Console.WriteLine("A3: " + response3);
 response3.Usage.OutputAsInformation();
@@ -57,7 +57,7 @@ int q3RealAnswer = books.Count(x => x.Author.EndsWith("s") &&
                                     x.YearOfRelease >= 1800 && 
                                     x.YearOfRelease <= 1900 && 
                                     x.Genre != Genre.Fantasy);
-Utils.WriteLineYellow($"Real Answer: {q3RealAnswer}");
+Utils.Yellow($"Real Answer: {q3RealAnswer}");
 
 Utils.Separator();
 

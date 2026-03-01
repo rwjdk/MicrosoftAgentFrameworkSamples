@@ -75,7 +75,7 @@ async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, FunctionIn
         functionCallDetails.Append($" (Args: {string.Join(",", context.Arguments.Select(x => $"[{x.Key} = {x.Value}]"))}");
     }
 
-    Utils.WriteLineDarkGray(functionCallDetails.ToString());
+    Utils.Gray(functionCallDetails.ToString());
 
     return await next(context, cancellationToken);
 }

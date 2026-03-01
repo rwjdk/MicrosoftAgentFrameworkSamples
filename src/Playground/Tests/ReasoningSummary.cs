@@ -45,13 +45,13 @@ public class ReasoningSummary
             {
                 if (content is TextReasoningContent textReasoningContent)
                 {
-                    Utils.WriteLineGreen("The Reasoning");
-                    Utils.WriteLineDarkGray(textReasoningContent.Text);
+                    Utils.Green("The Reasoning");
+                    Utils.Gray(textReasoningContent.Text);
                 }
             }
         }
 
-        Utils.WriteLineGreen("The Answer");
+        Utils.Green("The Answer");
         Console.WriteLine(response);
     }
 }

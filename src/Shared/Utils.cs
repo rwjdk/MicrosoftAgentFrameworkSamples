@@ -1,31 +1,32 @@
 ﻿using JetBrains.Annotations;
+using System.Text;
 
 namespace Shared;
 
 [PublicAPI]
 public static class Utils
 {
-    public static void WriteLineRed(Exception e)
+    public static void Red(Exception e)
     {
-        WriteLineRed(e.ToString());
+        Red(e.ToString());
     }
 
-    public static void WriteLineRed(string text)
+    public static void Red(string text)
     {
         WriteLine(text, ConsoleColor.Red);
     }
 
-    public static void WriteLineYellow(string text)
+    public static void Yellow(string text)
     {
         WriteLine(text, ConsoleColor.Yellow);
     }
 
-    public static void WriteLineDarkGray(string text)
+    public static void Gray(string text)
     {
         WriteLine(text, ConsoleColor.DarkGray);
     }
 
-    public static void WriteLineGreen(string text)
+    public static void Green(string text)
     {
         WriteLine(text, ConsoleColor.Green);
     }
@@ -49,5 +50,15 @@ public static class Utils
         Console.WriteLine();
         WriteLine("".PadLeft(Console.WindowWidth, '-'), ConsoleColor.Gray);
         Console.WriteLine();
+    }
+
+    public static void Init(string? title = null)
+    {
+        Console.Clear();
+        Console.OutputEncoding = Encoding.UTF8;
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            Gray($"--- {title} ---");
+        }
     }
 }

@@ -37,7 +37,7 @@ await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
             if (externalRequest.IsDataOfType<FeedbackToUser>())
             {
                 FeedbackToUser feedbackToUser = externalRequest.Data.As<FeedbackToUser>()!;
-                Utils.WriteLineDarkGray(feedbackToUser.Init ? 
+                Utils.Gray(feedbackToUser.Init ? 
                     "Guess what animal I'm thinking of" : 
                     "That is not the animal I'm thinking of");
                 Console.WriteLine($"Hint: {feedbackToUser.Hint}");
@@ -50,7 +50,7 @@ await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
             }
             throw new NotSupportedException($"Request {externalRequest.PortInfo.RequestType} is not supported");
         case WorkflowOutputEvent outputEvt:
-            Utils.WriteLineGreen(outputEvt.Data!.ToString()!);
+            Utils.Green(outputEvt.Data!.ToString()!);
             return;
     }
 }

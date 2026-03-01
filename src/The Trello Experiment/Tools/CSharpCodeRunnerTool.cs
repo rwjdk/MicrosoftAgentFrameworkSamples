@@ -9,12 +9,12 @@ public static class CSharpCodeRunnerTool
 {
     public static async Task<string> ExecuteAndReturnAsync(string cSharpCode)
     {
-        Utils.WriteLineDarkGray("About to execute Code\n" + cSharpCode + "... \n\nApprove (Y/N)\n");
+        Utils.Gray("About to execute Code\n" + cSharpCode + "... \n\nApprove (Y/N)\n");
         ConsoleKeyInfo key = Console.ReadKey();
         if (key.Key == ConsoleKey.Y)
         {
             Console.WriteLine();
-            Utils.WriteLineGreen("Executing Code");
+            Utils.Green("Executing Code");
             try
             {
                 ScriptOptions options = ScriptOptions.Default
@@ -35,25 +35,25 @@ public static class CSharpCodeRunnerTool
 
                 // EvaluateAsync<string> expects the script to result in a string value
                 string returnValue = await CSharpScript.EvaluateAsync<string>(cSharpCode, options);
-                Utils.WriteLineDarkGray("Data Back from Code\n" + returnValue);
+                Utils.Gray("Data Back from Code\n" + returnValue);
                 return returnValue;
             }
             catch (CompilationErrorException e)
             {
                 string error = $"Compile Error: {string.Join(", ", e.Diagnostics)}";
-                Utils.WriteLineRed(error);
+                Utils.Red(error);
                 return error;
             }
             catch (Exception e)
             {
                 string error = $"Runtime Error: {e.Message}";
-                Utils.WriteLineRed(error);
+                Utils.Red(error);
                 return error;
             }
         }
         else
         {
-            Utils.WriteLineYellow("Abort code execution");
+            Utils.Yellow("Abort code execution");
             return "No code was run";
         }
     }

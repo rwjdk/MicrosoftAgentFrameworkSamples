@@ -47,7 +47,7 @@ public static class ConcurrentWithoutWorkflow
         {
             foreach (var message in agentResponse.Messages.Where(x => x.Role != ChatRole.User))
             {
-                Utils.WriteLineGreen(message.AuthorName ?? "Unknown");
+                Utils.Green(message.AuthorName ?? "Unknown");
                 Console.WriteLine($"{message.Text}");
                 Utils.Separator();
             }

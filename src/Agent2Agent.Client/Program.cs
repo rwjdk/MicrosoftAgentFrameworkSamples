@@ -8,18 +8,18 @@ using System.ClientModel;
 using OpenAI;
 using OpenAI.Chat;
 
-Utils.WriteLineDarkGray("Initializing");
-Utils.WriteLineDarkGray("- Waiting 1 sec for the server to be ready");
+Utils.Gray("Initializing");
+Utils.Gray("- Waiting 1 sec for the server to be ready");
 await Task.Delay(1000);
 Secrets secrets = SecretManager.GetSecrets();
 
-Utils.WriteLineDarkGray("- Connecting to Remote Agent");
+Utils.Gray("- Connecting to Remote Agent");
 A2ACardResolver agentCardResolver = new A2ACardResolver(new Uri("http://localhost:5000/"));
 AIAgent remoteAgent = await agentCardResolver.GetAIAgentAsync();
 
 Utils.Separator();
 
-Utils.WriteLineDarkGray("Ready for questions");
+Utils.Gray("Ready for questions");
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 ChatClientAgent agent = azureOpenAIClient
     .GetChatClient("gpt-4.1")

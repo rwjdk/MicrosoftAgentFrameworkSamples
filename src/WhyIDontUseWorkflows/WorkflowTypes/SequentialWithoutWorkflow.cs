@@ -47,7 +47,7 @@ public static class SequentialWithoutWorkflow
         
         foreach (ChatMessage message in messages.Where(x => x.Role != ChatRole.User))
         {
-            Utils.WriteLineGreen(message.AuthorName ?? "Unknown");
+            Utils.Green(message.AuthorName ?? "Unknown");
             Console.WriteLine($"{message.Text}");
             Utils.Separator();
         }

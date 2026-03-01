@@ -26,19 +26,19 @@ string question = "What is the Capital of France and how many people live there?
  */
 
 Console.Clear();
-Utils.WriteLineGreen("Baseline (Reason = Default (Medium))");
+Utils.Green("Baseline (Reason = Default (Medium))");
 await Baseline();
 Utils.Separator();
-Utils.WriteLineGreen("Raw: ChatClient (Reason = Minimal)");
+Utils.Green("Raw: ChatClient (Reason = Minimal)");
 await RawChatClient();
 Utils.Separator();
-Utils.WriteLineGreen("Raw: ResponseAPI (Reason = High)");
+Utils.Green("Raw: ResponseAPI (Reason = High)");
 await RawResponsesApi();
 Utils.Separator();
-Utils.WriteLineGreen("Agent Framework Toolkit: ChatClient (Reason = Minimal)");
+Utils.Green("Agent Framework Toolkit: ChatClient (Reason = Minimal)");
 await AgentFrameworkToolkitChatClient();
 Utils.Separator();
-Utils.WriteLineGreen("Agent Framework Toolkit: ResponsesAPI (Reason = High)");
+Utils.Green("Agent Framework Toolkit: ResponsesAPI (Reason = High)");
 await AgentFrameworkToolkitResponseApi();
 
 /* Notes on various OpenAI-Based Models:
@@ -110,8 +110,8 @@ async Task RawResponsesApi()
         {
             if (content is TextReasoningContent textReasoningContent)
             {
-                Utils.WriteLineYellow("Reasoning Text");
-                Utils.WriteLineDarkGray(textReasoningContent.Text);
+                Utils.Yellow("Reasoning Text");
+                Utils.Gray(textReasoningContent.Text);
             }
         }
     }
@@ -152,8 +152,8 @@ async Task AgentFrameworkToolkitResponseApi()
     TextReasoningContent? reasoningContent = response.GetTextReasoningContent();
     if (reasoningContent != null)
     {
-        Utils.WriteLineYellow("Reasoning Text");
-        Utils.WriteLineDarkGray(reasoningContent.Text);
+        Utils.Yellow("Reasoning Text");
+        Utils.Gray(reasoningContent.Text);
     }
 
     response.Usage.OutputAsInformation();

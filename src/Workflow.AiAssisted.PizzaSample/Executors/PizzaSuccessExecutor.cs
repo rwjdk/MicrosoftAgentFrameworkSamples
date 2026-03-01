@@ -8,7 +8,7 @@ class PizzaSuccessExecutor() : Executor<PizzaOrder>("PizzaSuccess")
 {
     public override ValueTask HandleAsync(PizzaOrder message, IWorkflowContext context, CancellationToken cancellationToken)
     {
-        Utils.WriteLineYellow("- Pizza OK 😋");
+        Utils.Yellow("- Pizza OK 😋");
         return ValueTask.CompletedTask;
     }
 }

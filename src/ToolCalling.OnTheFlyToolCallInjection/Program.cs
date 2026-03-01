@@ -47,10 +47,10 @@ async Task NormalAgentWithTools()
     AzureOpenAIClient client = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
     AIAgent mainAgent = client.GetChatClient("gpt-4.1").AsAIAgent(tools: tools).AsBuilder().Use(FunctionCallMiddleware).Build();
 
-    Utils.WriteLineDarkGray($"This agent have: {tools.Count} tools");
+    Utils.Gray($"This agent have: {tools.Count} tools");
     foreach (var tool in tools)
     {
-        Utils.WriteLineDarkGray($"- {tool.Name}");
+        Utils.Gray($"- {tool.Name}");
     }
     while (true)
     {
@@ -77,7 +77,7 @@ async Task ToolInjection()
         AIContextProviders = [new OnTheFlyToolInjectionContext(toolInjectionAgent, secrets)]
     }).AsBuilder().Use(FunctionCallMiddleware).Build();
 
-    Utils.WriteLineDarkGray("This agent have: 0 tools");
+    Utils.Gray("This agent have: 0 tools");
     while (true)
     {
         Console.Write("> ");
@@ -99,14 +99,14 @@ static async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, Fun
         functionCallDetails.Append($" (Args: {string.Join(",", context.Arguments.Select(x => $"[{x.Key} = {x.Value}]"))}");
     }
 
-    Utils.WriteLineDarkGray(functionCallDetails.ToString());
+    Utils.Gray(functionCallDetails.ToString());
 
     return await next(context, cancellationToken);
 }
 
 class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets secrets) : AIContextProvider
 {
-    protected override async ValueTask<AIContext> InvokingCoreAsync(InvokingContext context, CancellationToken cancellationToken = default)
+    protected override async ValueTask<AIContext> ProvideAIContextAsync(InvokingContext context, CancellationToken cancellationToken = new CancellationToken())
     {
         IEnumerable<ChatMessage> messages = context.AIContext.Messages ?? [];
         AgentResponse<ToolResult> response = await toolInjectionAgent.RunAsync<ToolResult>(messages, cancellationToken: cancellationToken);
@@ -116,13 +116,13 @@ class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets s
 
         if (toolResult.NeedTimeTools)
         {
-            Utils.WriteLineGreen("Time tools injected");
+            Utils.Green("Time tools injected");
             injectedTools.AddRange(TimeTools.All());
         }
 
         if (toolResult.NeedFileSystemTools)
         {
-            Utils.WriteLineGreen("File System Tools injected");
+            Utils.Green("File System Tools injected");
             injectedTools.AddRange(FileSystemTools.All(new FileSystemToolsOptions
             {
                 ConfinedToTheseFolderPaths = ["C:\\TestAI"]
@@ -132,7 +132,7 @@ class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets s
 
         if (toolResult.NeedWeatherTools)
         {
-            Utils.WriteLineGreen("Weather Tools injected");
+            Utils.Green("Weather Tools injected");
             injectedTools.AddRange(WeatherTools.All(new OpenWeatherMapOptions
             {
                 ApiKey = secrets.OpenWeatherApiKey,
@@ -140,11 +140,13 @@ class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent, Secrets s
             }));
         }
 
-        Utils.WriteLineGreen($"Number of tool's injected: {injectedTools.Count}");
+        Utils.Green($"Number of tool's injected: {injectedTools.Count}");
 
-        context.AIContext.Tools = injectedTools;
-        context.AIContext.Instructions = injectedInstructions;
-        return context.AIContext;
+        return new AIContext
+        {
+            Instructions = injectedInstructions,
+            Tools = injectedTools
+        };
     }
 
     [PublicAPI]

@@ -41,13 +41,13 @@ AIAgent agent = client
 AgentSession session = await agent.CreateSessionAsync();
 
 AgentResponse response1 = await agent.RunAsync("Hello, My name is Rasmus", session);
-Utils.WriteLineRed(response1.Text);
+Utils.Red(response1.Text);
 Utils.Separator();
 
 AgentResponse response2 = await agent.RunAsync("What is the capital of France?", session);
-Utils.WriteLineRed(response2.Text);
+Utils.Red(response2.Text);
 Utils.Separator();
 
 AgentResponse response3 = await agent.RunAsync("What was my name?", session);
-Utils.WriteLineRed(response3.Text);
+Utils.Red(response3.Text);
 Utils.Separator();

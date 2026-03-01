@@ -73,7 +73,7 @@ async Task DeleteAllThreads(PersistentAgentsClient persistentAgentsClient)
 {
     await foreach (PersistentAgentThread agentThread in persistentAgentsClient.Threads.GetThreadsAsync(100))
     {
-        Utils.WriteLineDarkGray("Deleting thread: " + agentThread.Id);
+        Utils.Gray("Deleting thread: " + agentThread.Id);
         await persistentAgentsClient.Threads.DeleteThreadAsync(agentThread.Id);
     }
 }

@@ -57,7 +57,7 @@ await foreach (WorkflowEvent evt in run.WatchStreamAsync())
 
 foreach (var message in result.Where(x => x.Role != ChatRole.User))
 {
-    Utils.WriteLineGreen(message.AuthorName ?? "Unknown");
+    Utils.Green(message.AuthorName ?? "Unknown");
     Console.WriteLine($"{message.Text}");
     Utils.Separator();
 }

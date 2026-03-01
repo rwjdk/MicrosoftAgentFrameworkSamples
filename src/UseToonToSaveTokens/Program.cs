@@ -31,7 +31,7 @@ ChatClientAgent agentWithToonTool = client
         instructions: instructions,
         tools: [AIFunctionFactory.Create(GetFamousPeopleAsToon, name: "get_famous_people")]);
 
-Utils.WriteLineGreen("Ask using JSON Tool");
+Utils.Green("Ask using JSON Tool");
 
 AgentResponse response1 = await agentWithJsonTool.RunAsync(question);
 Console.WriteLine(response1);
@@ -39,7 +39,7 @@ response1.Usage.OutputAsInformation();
 
 Utils.Separator();
 
-Utils.WriteLineGreen("Ask using Toon Tool");
+Utils.Green("Ask using Toon Tool");
 AgentResponse response2 = await agentWithToonTool.RunAsync(question);
 Console.WriteLine(response2);
 response2.Usage.OutputAsInformation();

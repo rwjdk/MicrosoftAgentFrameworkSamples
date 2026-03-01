@@ -29,7 +29,7 @@ async Task CreateAndCallNormalClientAgent(string model, string question)
         .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
     AgentResponse response = await agent.RunAsync(question);
-    Utils.WriteLineYellow($"Answer from ChatClient using Model: '{model}'");
+    Utils.Yellow($"Answer from ChatClient using Model: '{model}'");
     Console.WriteLine($"Answer ='{response}'");
     Utils.Separator();
 }
@@ -47,13 +47,13 @@ async Task CreateAndCallFoundryAgent(string model, string question)
 
         ChatClientAgent agent = await client.GetAIAgentAsync(foundryAgent.Value.Id);
         AgentResponse response = await agent.RunAsync(question);
-        Utils.WriteLineYellow($"Answer from FoundryAgent using Model: '{model}'");
+        Utils.Yellow($"Answer from FoundryAgent using Model: '{model}'");
         Console.WriteLine($"Answer ='{response}'");
         Utils.Separator();
     }
     catch (Exception ex)
     {
-        Utils.WriteLineRed("Error: " + ex);
+        Utils.Red("Error: " + ex);
     }
     finally
     {

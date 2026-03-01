@@ -50,14 +50,14 @@ class CustomClientHttpHandler() : HttpClientHandler
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         string requestString = await request.Content?.ReadAsStringAsync(cancellationToken)!;
-        Utils.WriteLineGreen($"Raw Request ({request.RequestUri})");
-        Utils.WriteLineDarkGray(MakePretty(requestString));
+        Utils.Green($"Raw Request ({request.RequestUri})");
+        Utils.Gray(MakePretty(requestString));
         Utils.Separator();
         var response = await base.SendAsync(request, cancellationToken);
 
         string responseString = await response.Content.ReadAsStringAsync(cancellationToken);
-        Utils.WriteLineGreen("Raw Response");
-        Utils.WriteLineDarkGray(MakePretty(responseString));
+        Utils.Green("Raw Response");
+        Utils.Gray(MakePretty(responseString));
         Utils.Separator();
         return response;
     }

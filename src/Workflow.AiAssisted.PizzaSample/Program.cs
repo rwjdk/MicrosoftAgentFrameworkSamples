@@ -41,6 +41,6 @@ await foreach (WorkflowEvent evt in run.WatchStreamAsync())
 {
     if (evt is ExecutorCompletedEvent executorComplete)
     {
-        Utils.WriteLineDarkGray($"{executorComplete.ExecutorId} Completed");
+        Utils.Gray($"{executorComplete.ExecutorId} Completed");
     }
 }

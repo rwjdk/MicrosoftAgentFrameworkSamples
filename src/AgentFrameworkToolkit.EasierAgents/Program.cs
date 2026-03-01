@@ -3,10 +3,10 @@ using Shared;
 
 Console.Clear();
 
-Utils.WriteLineGreen("Before");
+Utils.Green("Before");
 await Before.RunAsync();
 
 Utils.Separator();
 
-Utils.WriteLineGreen("After");
+Utils.Green("After");
 await After.RunAsync();

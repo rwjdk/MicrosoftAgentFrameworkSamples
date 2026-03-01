@@ -39,7 +39,7 @@ try
 }
 catch (Exception ex)
 {
-    Utils.WriteLineRed("Error: " + ex);
+    Utils.Red("Error: " + ex);
 }
 finally
 {

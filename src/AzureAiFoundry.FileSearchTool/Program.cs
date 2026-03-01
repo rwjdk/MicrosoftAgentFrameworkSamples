@@ -63,7 +63,7 @@ try
                 {
                     string? fileId = citationAnnotation.FileId;
                     Response<PersistentAgentFileInfo> fileReferenced = await client.Files.GetFileAsync(fileId);
-                    Utils.WriteLineYellow("File referenced: " + fileReferenced.Value.Filename);
+                    Utils.Yellow("File referenced: " + fileReferenced.Value.Filename);
                 }
             }
         }

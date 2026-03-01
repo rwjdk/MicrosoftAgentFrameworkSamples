@@ -68,8 +68,10 @@ class CustomContextProvider : AIContextProvider
     
     protected override ValueTask<AIContext> ProvideAIContextAsync(InvokingContext context, CancellationToken cancellationToken = new CancellationToken())
     {
-        context.AIContext.Instructions += $" - User facts: {string.Join(" | ", _userFacts)}";
-        return ValueTask.FromResult(context.AIContext);
+        return ValueTask.FromResult(new AIContext
+        {
+            Instructions = $" - User facts: {string.Join(" | ", _userFacts)}"
+        });
     }
 
     protected override async ValueTask StoreAIContextAsync(InvokedContext context, CancellationToken cancellationToken = new CancellationToken())

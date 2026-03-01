@@ -20,13 +20,13 @@ string question = "What is the Capital of country where the eiffel tower sits " 
 // All modern Anthropic models can do thinking
 
 Console.Clear();
-Utils.WriteLineGreen("Baseline (No thinking)");
+Utils.Green("Baseline (No thinking)");
 await Baseline();
 Utils.Separator();
-Utils.WriteLineGreen("Raw (BudgetTokens = 2000)");
+Utils.Green("Raw (BudgetTokens = 2000)");
 await Raw();
 Utils.Separator();
-Utils.WriteLineGreen("Agent Framework Toolkit (BudgetTokens = 2000)");
+Utils.Green("Agent Framework Toolkit (BudgetTokens = 2000)");
 await AgentFrameworkToolkit();
 
 async Task Baseline()
@@ -81,8 +81,8 @@ async Task Raw()
         {
             if (content is TextReasoningContent textReasoningContent)
             {
-                Utils.WriteLineYellow("Reasoning Text");
-                Utils.WriteLineDarkGray(textReasoningContent.Text);
+                Utils.Yellow("Reasoning Text");
+                Utils.Gray(textReasoningContent.Text);
             }
         }
     }
@@ -105,8 +105,8 @@ async Task AgentFrameworkToolkit()
     TextReasoningContent? reasoningContent = response.GetTextReasoningContent();
     if (reasoningContent != null)
     {
-        Utils.WriteLineYellow("Reasoning Text");
-        Utils.WriteLineDarkGray(reasoningContent.Text);
+        Utils.Yellow("Reasoning Text");
+        Utils.Gray(reasoningContent.Text);
     }
 
     response.Usage.OutputAsInformation(); //Anthropic do not report reasoning tokens back separately

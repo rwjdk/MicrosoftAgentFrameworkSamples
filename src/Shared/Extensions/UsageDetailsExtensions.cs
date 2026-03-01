@@ -13,9 +13,9 @@ public static class UsageDetailsExtensions
                 return;
             }
 
-            Utils.WriteLineDarkGray($"- Input Tokens: {usageDetails.InputTokenCount}");
+            Utils.Gray($"- Input Tokens: {usageDetails.InputTokenCount}");
             var output = $"- Output Tokens: {usageDetails.OutputTokenCount} " + $"({usageDetails.ReasoningTokenCount ?? 0} was used for reasoning)";
-            Utils.WriteLineDarkGray(output);
+            Utils.Gray(output);
         }
     }
 }

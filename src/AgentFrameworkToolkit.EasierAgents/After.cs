@@ -22,7 +22,7 @@ public class After
             Model = OpenAIChatModels.Gpt5Mini,
             ReasoningEffort = OpenAIReasoningEffort.Low,
             Tools = [AIFunctionFactory.Create(WeatherTool.GetWeather)],
-            RawToolCallDetails = details => { Utils.WriteLineDarkGray(details.ToString()); }
+            RawToolCallDetails = details => { Utils.Gray(details.ToString()); }
         });
 
         AgentResponse<WeatherReport> response = await agent.RunAsync<WeatherReport>("What is the Weather like in Paris");

@@ -9,7 +9,7 @@ class PizzaOrderParserExecutor(ChatClientAgent agent) : Executor<string, PizzaOr
 {
     public override async ValueTask<PizzaOrder> HandleAsync(string message, IWorkflowContext context, CancellationToken cancellationToken)
     {
-        Utils.WriteLineYellow("- Parse order");
+        Utils.Yellow("- Parse order");
         AgentResponse<PizzaOrder> orderResponse = await agent.RunAsync<PizzaOrder>(message, cancellationToken: cancellationToken);
         return orderResponse.Result;
     }

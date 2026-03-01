@@ -32,7 +32,7 @@ string toStoreForTheUser = JsonSerializer.Serialize(sessionElement);
 Utils.Separator();
 
 //Some time passes.... 
-Utils.WriteLineGreen("Some time passes, and we restore the session...");
+Utils.Green("Some time passes, and we restore the session...");
 
 
 JsonElement restoredSessionElement = JsonSerializer.Deserialize<JsonElement>(toStoreForTheUser);

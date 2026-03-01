@@ -27,10 +27,10 @@ public class CodeTool
             {
                 if (content.RawRepresentation is OpenAI.Responses.CodeInterpreterCallResponseItem codeInterpreterCallResponse)
                 {
-                    Utils.WriteLineGreen("The Code");
-                    Utils.WriteLineDarkGray(codeInterpreterCallResponse.Code);
+                    Utils.Green("The Code");
+                    Utils.Gray(codeInterpreterCallResponse.Code);
 
-                    Utils.WriteLineGreen("The File");
+                    Utils.Green("The File");
                     ContainerClient containerClient = client.GetContainerClient();
                     string containerId = codeInterpreterCallResponse.ContainerId;
                     CollectionResult<ContainerFileResource> containerFileResources = containerClient.GetContainerFiles(containerId);

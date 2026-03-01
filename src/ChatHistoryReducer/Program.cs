@@ -49,10 +49,10 @@ while (true)
 
     InMemoryChatHistoryProvider? provider = agent.GetService<InMemoryChatHistoryProvider>();
     List<ChatMessage> messagesInSession = provider?.GetMessages(session) ?? [];
-    Utils.WriteLineDarkGray("- Number of messages in session: " + messagesInSession.Count());
+    Utils.Gray("- Number of messages in session: " + messagesInSession.Count());
     foreach (ChatMessage message in messagesInSession)
     {
-        Utils.WriteLineDarkGray($"-- {message.Role}: {message.Text}");
+        Utils.Gray($"-- {message.Role}: {message.Text}");
     }
     Utils.Separator();
 }

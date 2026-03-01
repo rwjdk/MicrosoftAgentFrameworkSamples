@@ -15,22 +15,22 @@ string question = "What is the Capital of France and how many people live there?
 // All modern models (2.5 and higher) can do thinking
 
 Console.Clear();
-Utils.WriteLineGreen("Baseline: Gemini 2.5 (Auto Thinking)");
+Utils.Green("Baseline: Gemini 2.5 (Auto Thinking)");
 await Baseline25();
 Utils.Separator();
-Utils.WriteLineGreen("Baseline: Gemini 3 (Auto Thinking)");
+Utils.Green("Baseline: Gemini 3 (Auto Thinking)");
 await Baseline3();
 Utils.Separator();
-Utils.WriteLineGreen("Raw: Gemini 2.5 (Thinking Budget = 2000)");
+Utils.Green("Raw: Gemini 2.5 (Thinking Budget = 2000)");
 await Raw25();
 Utils.Separator();
-Utils.WriteLineGreen("Raw: Gemini 3 (Thinking Level = High)");
+Utils.Green("Raw: Gemini 3 (Thinking Level = High)");
 await Raw3();
 Utils.Separator();
-Utils.WriteLineGreen("Agent Framework Toolkit: Gemini 2.5 (Thinking Budget = 2000)");
+Utils.Green("Agent Framework Toolkit: Gemini 2.5 (Thinking Budget = 2000)");
 await AgentFrameworkToolkit25();
 Utils.Separator();
-Utils.WriteLineGreen("Agent Framework Toolkit: Gemini 3 (Thinking Level = High)");
+Utils.Green("Agent Framework Toolkit: Gemini 3 (Thinking Level = High)");
 await AgentFrameworkToolkit3();
 
 async Task Baseline25()
@@ -78,8 +78,8 @@ async Task Raw25()
         {
             if (content is TextReasoningContent textReasoningContent)
             {
-                Utils.WriteLineYellow("Reasoning Text");
-                Utils.WriteLineDarkGray(textReasoningContent.Text);
+                Utils.Yellow("Reasoning Text");
+                Utils.Gray(textReasoningContent.Text);
             }
         }
     }
@@ -114,8 +114,8 @@ async Task Raw3()
         {
             if (content is TextReasoningContent textReasoningContent)
             {
-                Utils.WriteLineYellow("Reasoning Text");
-                Utils.WriteLineDarkGray(textReasoningContent.Text);
+                Utils.Yellow("Reasoning Text");
+                Utils.Gray(textReasoningContent.Text);
             }
         }
     }
@@ -138,8 +138,8 @@ async Task AgentFrameworkToolkit25()
     TextReasoningContent? reasoningContent = response.GetTextReasoningContent();
     if (reasoningContent != null)
     {
-        Utils.WriteLineYellow("Reasoning Text");
-        Utils.WriteLineDarkGray(reasoningContent.Text);
+        Utils.Yellow("Reasoning Text");
+        Utils.Gray(reasoningContent.Text);
     }
     response.Usage.OutputAsInformation();
 }
@@ -160,8 +160,8 @@ async Task AgentFrameworkToolkit3()
     TextReasoningContent? reasoningContent = response.GetTextReasoningContent();
     if (reasoningContent != null)
     {
-        Utils.WriteLineYellow("Reasoning Text");
-        Utils.WriteLineDarkGray(reasoningContent.Text);
+        Utils.Yellow("Reasoning Text");
+        Utils.Gray(reasoningContent.Text);
     }
 
     response.Usage.OutputAsInformation();

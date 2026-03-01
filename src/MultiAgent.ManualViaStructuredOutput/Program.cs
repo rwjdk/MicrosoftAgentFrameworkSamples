@@ -28,19 +28,19 @@ IntentResult intentResult = initialResponse.Result;
 switch (intentResult.Intent)
 {
     case Intent.MusicQuestion:
-        Utils.WriteLineGreen("Music Question");
+        Utils.Green("Music Question");
         ChatClientAgent musicNerdAgent = chatClient.AsAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd answering questions (Give a question on max 200 chars)");
         AgentResponse responseFromMusicNerd = await musicNerdAgent.RunAsync(question);
         Console.WriteLine(responseFromMusicNerd);
         break;
     case Intent.MovieQuestion:
-        Utils.WriteLineGreen("Movie Question");
+        Utils.Green("Movie Question");
         ChatClientAgent movieNerdAgent = chatClient.AsAIAgent(name: "MovieNerd", instructions: "You are a Movie Nerd answering questions (Give a question on max 200 chars)");
         AgentResponse responseFromMovieNerd = await movieNerdAgent.RunAsync(question);
         Console.WriteLine(responseFromMovieNerd);
         break;
     case Intent.Other:
-        Utils.WriteLineGreen("Other Question");
+        Utils.Green("Other Question");
         //Let Intent agent answer itself
         AgentResponse otherResponse = await intentAgent.RunAsync(question);
         Console.WriteLine(otherResponse);

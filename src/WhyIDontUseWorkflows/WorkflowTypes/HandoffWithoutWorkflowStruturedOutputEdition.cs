@@ -27,14 +27,14 @@ public static class HandoffWithoutWorkflowStructuredOutputEdition
         {
             case TypeOfQuestion.Movie:
                 {
-                    Utils.WriteLineGreen(movieNerd.Name!);
+                    Utils.Green(movieNerd.Name!);
                     var response = await movieNerd.RunAsync(input);
                     Console.WriteLine(response);
                     break;
                 }
             case TypeOfQuestion.Music:
                 {
-                    Utils.WriteLineGreen(musicNerd.Name!);
+                    Utils.Green(musicNerd.Name!);
                     var response = await musicNerd.RunAsync(input);
                     Console.WriteLine(response);
                     break;

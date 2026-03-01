@@ -68,7 +68,7 @@ AzureOpenAIAgent agent = agentFactory.CreateAgent(new AgentOptions
     Instructions = "You are a File Expert. When working with files you need to provide the full path; not just the filename",
     ReasoningEffort = OpenAIReasoningEffort.Low,
     Tools = tools,
-    RawToolCallDetails = details => { Utils.WriteLineDarkGray(details.ToString()); }
+    RawToolCallDetails = details => { Utils.Gray(details.ToString()); }
 });
 
 AgentResponse response = await agent.RunAsync("Create 10 files with random Fruit-names");

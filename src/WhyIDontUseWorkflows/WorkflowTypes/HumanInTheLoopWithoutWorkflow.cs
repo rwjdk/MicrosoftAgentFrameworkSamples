@@ -36,7 +36,7 @@ public static class HumanInTheLoopWithoutWorkflow
             AgentResponse<bool> isRightAnswerResponse = await agent.RunAsync<bool>(input);
             if (isRightAnswerResponse.Result)
             {
-                Utils.WriteLineGreen($"You guessed it. " +
+                Utils.Green($"You guessed it. " +
                                   $"The answer is indeed a {animalToGuess}. " +
                                   $"Tries used: {numberOfTries}");
                 break;

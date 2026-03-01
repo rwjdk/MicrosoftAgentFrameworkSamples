@@ -18,7 +18,7 @@ public static class PizzaSampleWithoutWorkflow
         Console.OutputEncoding = Encoding.UTF8;
 
         const string input = "Make a big Pepperoni Pizza with mushrooms and onions";
-        Utils.WriteLineYellow("- Parse order");
+        Utils.Yellow("- Parse order");
         AgentResponse<PizzaOrder> orderResponse = await agentFactory.CreateOrderTakerAgent().RunAsync<PizzaOrder>(input);
         var order = orderResponse.Result;
 
@@ -26,22 +26,22 @@ public static class PizzaSampleWithoutWorkflow
         {
             if (topping == "Mushrooms") //Sample out of stock
             {
-                Utils.WriteLineDarkGray($"--- Add out of stock warning: {topping}");
+                Utils.Gray($"--- Add out of stock warning: {topping}");
                 order.Warnings.Add(WarningType.OutOfIngredient, topping);
             }
             else
             {
-                Utils.WriteLineYellow($"- Add {topping} onto Pizza (Reduced stock)");
+                Utils.Yellow($"- Add {topping} onto Pizza (Reduced stock)");
             }
         }
 
         if (order.Warnings.Count == 0)
         {
-            Utils.WriteLineYellow("- Pizza OK 😋");
+            Utils.Yellow("- Pizza OK 😋");
         }
         else
         {
-            Utils.WriteLineRed("Can't create the pizza in full");
+            Utils.Red("Can't create the pizza in full");
 
             StringBuilder sb = new();
             foreach (KeyValuePair<WarningType, string> warning in order.Warnings)

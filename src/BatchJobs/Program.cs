@@ -32,7 +32,7 @@ BinaryContent createBatchPayload = BinaryContent.CreateJson(new CreateBatchReque
 
 CreateBatchOperation batchOperation = await batchClient.CreateBatchAsync(createBatchPayload, waitUntilCompleted: false);
 
-Utils.WriteLineYellow($"Batch ID: {batchOperation.BatchId}");
+Utils.Yellow($"Batch ID: {batchOperation.BatchId}");
 
 string status = string.Empty;
 string[] terminationsStatuses = ["completed", "expired", "cancelled", "failed"];
@@ -46,7 +46,7 @@ while (!terminationsStatuses.Contains(status))
     string batchJson = batchResult.GetRawResponse().Content.ToString();
     BatchResponse response = JsonSerializer.Deserialize<BatchResponse>(batchJson)!;
     status = response.Status;
-    Utils.WriteLineDarkGray($"Elapsed time: {Convert.ToInt32(stopwatch.Elapsed.TotalSeconds)} sec: " +
+    Utils.Gray($"Elapsed time: {Convert.ToInt32(stopwatch.Elapsed.TotalSeconds)} sec: " +
                             $"Status: {response.Status} (Counts: Total={response.Counts.Total} | Completed: {response.Counts.Completed} | Failed: {response.Counts.Failed}) ");
     outputFileId = response.OutputFileId;
 }
