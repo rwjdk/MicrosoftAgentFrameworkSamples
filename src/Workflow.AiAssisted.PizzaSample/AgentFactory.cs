@@ -12,14 +12,14 @@ public class AgentFactory(Secrets secrets)
     public ChatClientAgent CreateOrderTakerAgent()
     {
         return CreateAzureOpenAiClient()
-            .GetChatClient(secrets.ChatDeploymentName)
+            .GetChatClient("gpt-4.1")
             .AsAIAgent(instructions: "You are a Pizza Order Taker, parsing the customers order");
     }
 
     public ChatClientAgent CreateWarningToCustomerAgent()
     {
         return CreateAzureOpenAiClient()
-            .GetChatClient(secrets.ChatDeploymentName)
+            .GetChatClient("gpt-4.1")
             .AsAIAgent(instructions: "You are a Pizza Confirmer. that need to explain to a user if a pizza order can't be met");
     }
 

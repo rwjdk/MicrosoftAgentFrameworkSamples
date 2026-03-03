@@ -12,12 +12,12 @@ using Microsoft.Extensions.AI;
 using OpenAI.Chat;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 var agent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(new ChatClientAgentOptions
     {
         ChatOptions = new ChatOptions

@@ -1,18 +1,19 @@
-﻿using System.ClientModel;
+﻿using Azure.AI.OpenAI;
 using Microsoft.Extensions.Configuration;
+using System.ClientModel;
+using System.ClientModel.Primitives;
+using System.Text.Json;
 
 namespace Shared;
 
-public class SecretManager
+public class SecretsManager
 {
-    /* This SecretManager relies on .NET User Secrets in the following format
+    /* This SecretsManager relies on .NET User Secrets in the following format
     ************************************************************************************************************************************************
     {
       "OpenAiApiKey": "<value>",
       "AzureOpenAiEndpoint": "<value>",
       "AzureOpenAiKey": "<value>",
-      "ChatDeploymentName": "<value>",
-      "EmbeddingModelName": "<value>",
       "AzureAiFoundryAgentEndpoint" : "<value>",
       "AzureAiFoundryAgentId" : "<value>",
       "BingApiKey" : "<value>",
@@ -37,14 +38,12 @@ public class SecretManager
 
     public static Secrets GetSecrets()
     {
-        IConfigurationRoot configurationRoot = new ConfigurationBuilder().AddUserSecrets<SecretManager>().Build();
+        IConfigurationRoot configurationRoot = new ConfigurationBuilder().AddUserSecrets<SecretsManager>().Build();
 
         return new Secrets(
             configurationRoot["OpenAiApiKey"] ?? string.Empty,
             configurationRoot["AzureOpenAiEndpoint"] ?? string.Empty,
             configurationRoot["AzureOpenAiKey"] ?? string.Empty,
-            configurationRoot["ChatDeploymentName"] ?? string.Empty,
-            configurationRoot["EmbeddingModelName"] ?? string.Empty,
             configurationRoot["AzureAiFoundryAgentEndpoint"] ?? string.Empty,
             configurationRoot["AzureAiFoundryAgentId"] ?? string.Empty,
             configurationRoot["BingApiKey"] ?? string.Empty,

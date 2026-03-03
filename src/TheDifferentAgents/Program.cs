@@ -14,7 +14,7 @@ using OpenAI.Chat;
 using OpenAI.Responses;
 
 #pragma warning disable OPENAI001
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 string model = "gpt-4.1";
 
 //The Raw client (OpenAIClient and AzureOpenAIClient works that same)

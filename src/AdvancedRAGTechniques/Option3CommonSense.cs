@@ -4,9 +4,7 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel.Connectors.SqlServer;
-using OpenAI;
 using OpenAI.Chat;
-using Shared;
 using Shared.Extensions;
 using UsingRAGInAgentFramework.Models;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
@@ -15,15 +13,15 @@ namespace AdvancedRAGTechniques;
 
 public static class Option3CommonSense
 {
-    public static async Task Run(bool importData, Movie[] movieDataForRag, ChatMessage question, AzureOpenAIClient client, SqlServerCollection<Guid, MovieVectorStoreRecord> collection, Secrets secrets)
+    public static async Task Run(bool importData, Movie[] movieDataForRag, ChatMessage question, AzureOpenAIClient client, SqlServerCollection<Guid, MovieVectorStoreRecord> collection)
     {
         if (importData)
         {
-            await EnhanceDataEmbedding.Embed(client, secrets, collection, movieDataForRag);
+            await EnhanceDataEmbedding.Embed(client, collection, movieDataForRag);
         }
 
         ChatClientAgent intentAgent = client
-            .GetChatClient(secrets.ChatDeploymentName)
+            .GetChatClient("gpt-4.1")
             .AsAIAgent(instructions: "You are good at inferring the intent of the user");
 
         AgentResponse<IntentResponse> intentResponse = await intentAgent.RunAsync<IntentResponse>(question);
@@ -40,7 +38,7 @@ public static class Option3CommonSense
 
                 MovieVectorStoreRecord[] topMovies = matchingMovies.OrderByDescending(x => x.Rating).Take(intent.NumberOfResults).ToArray();
 
-                AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
+                AIAgent agent = client.GetChatClient("gpt-4.1")
                     .AsAIAgent(
                         instructions: $"""
                                        You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)
@@ -55,7 +53,7 @@ public static class Option3CommonSense
             case TypeOfQuestion.MovieGenreSearch:
             {
                 EnhancedSearchTool searchTool = new(collection);
-                AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
+                AIAgent agent = client.GetChatClient("gpt-4.1")
                     .AsAIAgent(
                         instructions: """
                                       You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)
@@ -75,7 +73,7 @@ public static class Option3CommonSense
             case TypeOfQuestion.GenericMovieQuestion:
             {
                 OriginalSearchTool searchTool = new(collection);
-                AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
+                AIAgent agent = client.GetChatClient("gpt-4.1")
                     .AsAIAgent(
                         instructions: """
                                       You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)

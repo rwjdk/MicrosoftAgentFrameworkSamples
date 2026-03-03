@@ -10,7 +10,7 @@ using Shared;
 using System.ClientModel;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 

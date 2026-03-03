@@ -9,7 +9,7 @@ using Microsoft.Extensions.AI;
 using Shared;
 
 Console.Clear();
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 IList<AITool> tools = [];
 

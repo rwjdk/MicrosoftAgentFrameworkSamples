@@ -1,7 +1,4 @@
-﻿#pragma warning disable CA1819
-// Copyright (c) Microsoft. All rights reserved.
-
-namespace StructuredOutput.Models;
+﻿namespace StructuredOutput.Models;
 
 public class MovieResult
 {

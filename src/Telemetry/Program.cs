@@ -10,7 +10,7 @@ using Azure.Monitor.OpenTelemetry.Exporter;
 using OpenAI.Chat;
 using OpenTelemetry.Trace;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 //Setup Telemetry
 string sourceName = "AiSource";
@@ -27,7 +27,7 @@ using TracerProvider tracerProvider = tracerProviderBuilder.Build();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 AIAgent agent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         name: "MyObservedAgent",
         instructions: "You are a Friendly AI Bot, answering questions")

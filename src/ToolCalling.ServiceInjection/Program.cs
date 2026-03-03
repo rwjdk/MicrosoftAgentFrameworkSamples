@@ -8,7 +8,7 @@ using OpenAI.Chat;
 using Shared;
 
 Console.Clear();
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(
     new Uri(secrets.AzureOpenAiEndpoint),

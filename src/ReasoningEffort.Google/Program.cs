@@ -8,7 +8,7 @@ using Google.GenAI.Types;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 #pragma warning disable OPENAI001
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 string apiKey = secrets.GoogleGeminiApiKey;
 string question = "What is the Capital of France and how many people live there? (Answer back in max 3 words)";
 

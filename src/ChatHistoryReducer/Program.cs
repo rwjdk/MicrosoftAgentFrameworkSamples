@@ -12,16 +12,16 @@ using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 #pragma warning disable MEAI001
 
 Console.Clear();
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
-ChatClient chatClient = client.GetChatClient(secrets.ChatDeploymentName);
+ChatClient chatClient = client.GetChatClient("gpt-4.1");
 
 IChatReducer chatReducer = new MessageCountingChatReducer(targetCount: 4);
 IChatReducer chatReducer2 = new SummarizingChatReducer(chatClient.AsIChatClient(), targetCount: 1, threshold: 4);
 
 ChatClientAgent agent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(new ChatClientAgentOptions
     {
         ChatOptions = new()

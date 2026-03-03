@@ -9,13 +9,13 @@ using OpenAI;
 using OpenAI.Chat;
 
 Console.Clear();
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 AudioClient audioClient = azureOpenAIClient.GetAudioClient("whisper");
 
 var agent = azureOpenAIClient
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(instructions: "You are a Friendly AI Bot, answering questions");
 
 AgentSession agentSession = await agent.CreateSessionAsync();

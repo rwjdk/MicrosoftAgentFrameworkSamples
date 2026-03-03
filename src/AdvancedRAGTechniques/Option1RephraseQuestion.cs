@@ -15,7 +15,7 @@ namespace AdvancedRAGTechniques;
 
 public static class Option1RephraseQuestion
 {
-    public static async Task Run(bool importData, Movie[] movieDataForRag, ChatMessage question, AzureOpenAIClient client, SqlServerCollection<Guid, MovieVectorStoreRecord> collection, Secrets secrets)
+    public static async Task Run(bool importData, Movie[] movieDataForRag, ChatMessage question, AzureOpenAIClient client, SqlServerCollection<Guid, MovieVectorStoreRecord> collection)
     {
         if (importData)
         {
@@ -23,7 +23,7 @@ public static class Option1RephraseQuestion
         }
 
         OriginalSearchTool searchTool = new(collection);
-        AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
+        AIAgent agent = client.GetChatClient("gpt-4.1")
             .AsAIAgent(
                 instructions: """
                               You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)

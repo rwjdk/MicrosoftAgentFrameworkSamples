@@ -9,7 +9,7 @@ using Shared;
 
 Console.Clear();
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 Response<PersistentAgent>? aiFoundryAgent = null;
@@ -25,7 +25,7 @@ try
     await client.VectorStores.CreateVectorStoreFileAsync(vectorStore.Value.Id, file.Value.Id);
 
     aiFoundryAgent = await client.Administration.CreateAgentAsync(
-        secrets.ChatDeploymentName,
+        "gpt-4.1",
         "FileAgent",
         "",
         "You are a File-expert. ALWAYS use tools to answer all questions (do not use you world-knowledge)",

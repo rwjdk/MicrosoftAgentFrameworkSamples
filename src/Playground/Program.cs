@@ -14,7 +14,7 @@ using OpenAI.Chat;
 
 Console.Clear();
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 OpenAIClient client = new(secrets.OpenAiApiKey);
 ChatClientAgent agent = client

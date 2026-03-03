@@ -13,7 +13,7 @@ Console.Clear();
 using var handler = new CustomClientHttpHandler();
 using var httpClient = new HttpClient(handler);
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 /*
 OpenAIClient client = new(new ApiKeyCredential(secrets.OpenAiApiKey), new OpenAIClientOptions
@@ -28,7 +28,7 @@ AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyC
 });
 
 
-ChatClientAgent agent = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent(
+ChatClientAgent agent = client.GetChatClient("gpt-4.1").AsAIAgent(
     instructions: "You are a Raw Agent"
 );
 

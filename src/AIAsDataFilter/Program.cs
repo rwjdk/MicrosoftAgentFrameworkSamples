@@ -12,7 +12,7 @@ Console.Clear();
 string json = File.ReadAllText("books.json");
 List<Book> books = JsonSerializer.Deserialize<List<Book>>(json)!;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(
     new Uri(secrets.AzureOpenAiEndpoint), 

@@ -1,19 +1,17 @@
 ﻿using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.SemanticKernel.Connectors.SqlServer;
-using OpenAI;
 using OpenAI.Chat;
-using Shared;
 using UsingRAGInAgentFramework.Models;
 
 namespace AdvancedRAGTechniques.EmbeddingOptions;
 
 public static class EnhanceDataEmbedding
 {
-    public static async Task Embed(AzureOpenAIClient client, Secrets secrets, SqlServerCollection<Guid, MovieVectorStoreRecord> collection, Movie[] movieDataForRag)
+    public static async Task Embed(AzureOpenAIClient client, SqlServerCollection<Guid, MovieVectorStoreRecord> collection, Movie[] movieDataForRag)
     {
         ChatClientAgent genreAgent = client
-            .GetChatClient(secrets.ChatDeploymentName) //You might get away with a cheaper model here as task is easy for AI
+            .GetChatClient("gpt-4.1") //You might get away with a cheaper model here as task is easy for AI
             .AsAIAgent("""
                            You are an expert in finding the Genre of a movie based on it's title and plot
                            Pick a single genre based on the following:

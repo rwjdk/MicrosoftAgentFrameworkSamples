@@ -11,12 +11,12 @@ using System.ClientModel;
 using System.Text;
 using OpenAI.Chat;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 AIAgent stringAgent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         name: "StringAgent",
         instructions: "You are string manipulator",
@@ -31,7 +31,7 @@ AIAgent stringAgent = client
     .Build();
 
 AIAgent numberAgent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         name: "NumberAgent",
         instructions: "You are a number expert",
@@ -47,7 +47,7 @@ AIAgent numberAgent = client
 Utils.Green("DELEGATE AGENT");
 
 AIAgent delegationAgent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         name: "DelegateAgent",
         instructions: "Are a Delegator of String and Number Tasks. Never does such work yourself",
@@ -76,7 +76,7 @@ Utils.Separator();
 Utils.Green("JACK OF ALL TRADE AGENT");
 
 AIAgent jackOfAllTradesAgent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         name: "JackOfAllTradesAgent",
         instructions: "Are a Agent that can answer questions on strings and numbers",

@@ -7,7 +7,6 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.AI;
-using OpenAI;
 using Shared;
 using System.ClientModel;
 using System.Reflection;
@@ -15,9 +14,9 @@ using System.Text;
 using OpenAI.Chat;
 
 //Start with Business as Usual
-Console.Clear();
-Secrets secrets = SecretManager.GetSecrets();
-AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+Utils.Init("A2A Server");
+(Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials();
+AzureOpenAIClient client = new(endpoint, apiKey);
 
 FileSystemTools target = new();
 MethodInfo[] methods = typeof(FileSystemTools).GetMethods(BindingFlags.Public | BindingFlags.Instance);
@@ -38,7 +37,7 @@ AIAgent agent = client
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 WebApplication app = builder.Build();
 
-AgentCard agentCard = new AgentCard() //Aka the Agents Business Card
+AgentCard agentCard = new() //Aka the Agents Business Card
 {
     Name = "FilesAgent",
     Description = "Handles requests relating to files",

@@ -8,7 +8,7 @@ using OpenAI.Chat;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Console.Clear();
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 string userId = "rwj1234";
 
@@ -20,7 +20,7 @@ ChatClientAgent memoryExtractorAgent = client
         instructions: "Look at the user's message and extract any memory that we do not already know (or non if there aren't any memories to store)"
     );
 
-ChatClientAgent agentWithCustomMemory = client.GetChatClient(secrets.ChatDeploymentName).AsIChatClient()
+ChatClientAgent agentWithCustomMemory = client.GetChatClient("gpt-4.1").AsIChatClient()
     .AsAIAgent(new ChatClientAgentOptions
     {
         ChatOptions = new()

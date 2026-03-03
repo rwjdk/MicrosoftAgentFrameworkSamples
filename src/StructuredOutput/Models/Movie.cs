@@ -1,6 +1,4 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
-
-namespace StructuredOutput.Models;
+﻿namespace StructuredOutput.Models;
 
 public class Movie
 {
@@ -10,3 +8,4 @@ public class Movie
     public MovieGenre Genre { get; set; }
     public decimal ImdbScore { get; set; }
 }
+

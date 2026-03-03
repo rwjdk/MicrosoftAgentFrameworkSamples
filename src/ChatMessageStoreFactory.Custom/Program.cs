@@ -8,7 +8,7 @@ using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Console.Clear();
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient azureOpenAIClient = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 

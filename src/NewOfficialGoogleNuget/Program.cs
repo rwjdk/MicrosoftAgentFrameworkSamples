@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 Client client = new Google.GenAI.Client(apiKey: secrets.GoogleGeminiApiKey, httpOptions: new HttpOptions
 {
     Timeout = Convert.ToInt32(TimeSpan.FromMinutes(5).TotalMilliseconds) // 👍👍👍 was not possible in the unofficial NuGet

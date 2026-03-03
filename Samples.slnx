@@ -24,6 +24,7 @@
     <Project Path="src/CommonAITools/CommonAITools.csproj" Id="71d5b760-4ca3-4a8f-9535-9baef66d29c7" />
   </Folder>
   <Folder Name="/AIContextProvider/">
+    <Project Path="src/AIContextProvider.AgentSkills/AIContextProvider.AgentSkills.csproj" Id="5c882c83-ff67-47a1-aa37-5d393fe05324" />
     <Project Path="src/AIContextProviderFactory/AIContextProvider.Memory.csproj" Id="5100b6b0-ce98-4a6a-bdc9-3541771b28f1" />
     <Project Path="src/AIContextProviders/AIContextProviders.DeepDive.csproj" Id="11ef1ae1-2a32-4e60-830c-ba6bba9db460" />
     <Project Path="src/ToolCalling.OnTheFlyToolCallInjection/ToolCalling.OnTheFlyToolCallInjection.csproj" Id="6143c203-a20e-4034-a76a-9d3cc82a5075" />
@@ -35,7 +36,7 @@
   <Folder Name="/ChatMessageStoreFactory/">
     <Project Path="src/ChatMessageStoreFactory.Custom/ChatMessageStoreFactory.Custom.csproj" Id="82c31fc6-4203-4d3f-97d6-c49e3e9a6d53" />
   </Folder>
-  <Folder Name="/Conversations (AgentThread)/">
+  <Folder Name="/Conversations (AgentSession)/">
     <Project Path="src/ChatHistoryReducer/ChatHistoryReducer.csproj" Id="96cb4db1-2675-4f7d-a5d8-960f07b7e0fd" />
     <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />
   </Folder>
@@ -101,7 +102,10 @@
     <File Path="Directory.Packages.props" />
   </Folder>
   <Folder Name="/Structured Output/">
-    <Project Path="src/StructuredOutput/StructuredOutput.csproj" Id="3f844d4f-0435-468f-a6ef-ff35ac8f7983" />
+    <Project Path="src/StructuredOutput/StructuredOutput.csproj" />
+  </Folder>
+  <Folder Name="/Structured Output/Pre-RC/">
+    <Project Path="src/StructuredOutput.Pre-RC/StructuredOutput.Pre-RC.csproj" />
   </Folder>
   <Folder Name="/Telemetry &amp; Observability/">
     <Project Path="src/Telemetry/Telemetry.csproj" Id="5fd6ed24-957b-4541-9be2-e2e23c6f606a" />

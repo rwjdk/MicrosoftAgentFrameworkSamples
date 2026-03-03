@@ -10,7 +10,7 @@ using OpenAI;
 #pragma warning disable OPENAI001
 
 Console.Clear();
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 //OpenAIClient client = new(secrets.OpenAiApiKey);
 

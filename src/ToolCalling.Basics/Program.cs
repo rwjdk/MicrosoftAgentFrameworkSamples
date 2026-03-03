@@ -13,12 +13,12 @@ using OpenAI.Chat;
 using ToolCalling.Basics;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 ChatClientAgent agent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         instructions: "You are a Time Expert",
         tools:

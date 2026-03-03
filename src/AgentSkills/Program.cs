@@ -4,24 +4,17 @@ using AgentSkills;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Shared;
-using System.Text;
 using AgentSkillsDotNet;
+using Shared.Extensions;
 
-Console.Clear();
+Utils.Init("AgentSkills");
 
-Secrets secrets = SecretManager.GetSecrets();
-
+Secrets secrets = SecretsManager.GetSecrets();
 AzureOpenAIAgentFactory agentFactory = new(secrets.AzureOpenAiEndpoint, secrets.AzureOpenAiKey);
 
-AgentSkillsFactory agentSkillsFactory = new AgentSkillsFactory();
-AgentSkillsDotNet.AgentSkills agentSkills = agentSkillsFactory.GetAgentSkills("TestData\\AgentSkills");
+AgentSkillsDotNet.AgentSkills agentSkills = new AgentSkillsFactory().GetAgentSkills("TestData\\AgentSkills");
 
 string skillsInstructions = agentSkills.GetInstructions();
-
-IList<AITool> tools = agentSkills.GetAsTools();
-
-
-tools.Add(AIFunctionFactory.Create(PythonRunner.RunPhytonScript, name: "execute_python"));
 
 AzureOpenAIAgent agent = agentFactory.CreateAgent(new AgentOptions
 {
@@ -34,18 +27,12 @@ AzureOpenAIAgent agent = agentFactory.CreateAgent(new AgentOptions
                     Only call '{AgentSkillsAsToolsOptions.DefaultReadSkillFileContentToolName}' tool 
                     once you have used '{AgentSkillsAsToolsOptions.DefaultGetSpecificSkillToolName}' tool
                     """,
-    Tools = tools,
-    RawToolCallDetails = details =>
-    {
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(details.ToString());
-        Console.ResetColor();
-    }
+    Tools = [..agentSkills.GetAsTools(), AIFunctionFactory.Create(PythonRunner.RunPhytonScript, name: "execute_python")],
+    RawToolCallDetails = Utils.Yellow
 });
 
 AgentSession session = await agent.CreateSessionAsync();
 
-Console.OutputEncoding = Encoding.UTF8;
 while (true)
 {
     Console.Write("> ");
@@ -53,9 +40,6 @@ while (true)
     AgentResponse response = await agent.RunAsync(message, session);
     Console.WriteLine(response);
     Console.WriteLine();
-    Console.ForegroundColor = ConsoleColor.Gray;
-    Console.WriteLine($"Input Tokens: {response.Usage!.InputTokenCount} - " +
-                      $"Output Tokens: {response.Usage.OutputTokenCount} ");
-    Console.ResetColor();
+    response.Usage.OutputAsInformation();
     Utils.Separator();
 }

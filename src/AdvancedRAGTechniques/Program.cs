@@ -9,13 +9,14 @@ using System.ClientModel;
 using System.Text.Json;
 using UsingRAGInAgentFramework.Models;
 
-Console.Clear();
+Utils.Init("Advanced RAG Techniques");
+(Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials();
+AzureOpenAIClient client = new(endpoint, apiKey);
+
 //Prep + Embedding
 string jsonWithMovies = await File.ReadAllTextAsync("made_up_movies.json");
 Movie[] movieDataForRag = JsonSerializer.Deserialize<Movie[]>(jsonWithMovies)!;
 
-Secrets secrets = SecretManager.GetSecrets();
-AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 Microsoft.Extensions.AI.IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
     .GetEmbeddingClient("text-embedding-3-small")
@@ -52,6 +53,6 @@ else
 
 ChatMessage question = new(ChatRole.User, "What is the 3 highest rated adventure movies?");
 
-await Option1RephraseQuestion.Run(importData, movieDataForRag, question, client, collection, secrets);
-await Option2EnhanceEmbeddings.Run(importData, movieDataForRag, question, client, collection, secrets);
-await Option3CommonSense.Run(importData, movieDataForRag, question, client, collection, secrets);
+await Option1RephraseQuestion.Run(importData, movieDataForRag, question, client, collection);
+await Option2EnhanceEmbeddings.Run(importData, movieDataForRag, question, client, collection);
+await Option3CommonSense.Run(importData, movieDataForRag, question, client, collection);

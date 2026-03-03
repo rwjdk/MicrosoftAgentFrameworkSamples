@@ -13,7 +13,7 @@ public class After
     {
         //Weather-Task: With GPT-5-Mini in low Reasoning, Call Tool with middleware and return as structured Output
 
-        Secrets secrets = SecretManager.GetSecrets();
+        Secrets secrets = SecretsManager.GetSecrets();
 
         AzureOpenAIAgentFactory agentFactory = new(secrets.AzureOpenAiEndpoint, secrets.AzureOpenAiKey);
 

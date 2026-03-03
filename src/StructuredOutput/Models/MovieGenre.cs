@@ -1,6 +1,4 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
-
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace StructuredOutput.Models;
 
@@ -14,3 +12,5 @@ public enum MovieGenre
     LoveStory,
     Other
 }
+
+

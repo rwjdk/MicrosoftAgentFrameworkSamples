@@ -20,11 +20,11 @@ Movie[] movieDataForRag = JsonSerializer.Deserialize<Movie[]>(jsonWithMovies)!;
 
 ChatMessage question = new(ChatRole.User, "What is the 3 highest rated adventure movies (list their titles, plots and ratings)");
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 ChatClientAgent agent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(instructions: "You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)");
 
 #region Let's give the model all data upfront
@@ -130,7 +130,7 @@ Utils.Green("Sample 3 RAG via Tool Call");
 SearchTool searchTool = new(collection);
 
 AIAgent agentWithTools = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         instructions: "You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)",
         tools: [AIFunctionFactory.Create(searchTool.SearchVectorStore)]

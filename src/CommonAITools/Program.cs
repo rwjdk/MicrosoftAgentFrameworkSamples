@@ -6,7 +6,7 @@ using Microsoft.Extensions.AI;
 using Shared;
 using Shared.Extensions;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 Console.Clear();
 

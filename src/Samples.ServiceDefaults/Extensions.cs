@@ -31,11 +31,11 @@ public static class Extensions
     public static TBuilder AddServiceDefaults<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
         /* ADDED FOR SAMPLE - BEGIN */
-        global::Shared.Secrets secrets = SecretManager.GetSecrets();
+        global::Shared.Secrets secrets = SecretsManager.GetSecrets();
         AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
         AIAgent agent = client
-            .GetChatClient(secrets.ChatDeploymentName)
+            .GetChatClient("gpt-4.1")
             .AsAIAgent(
                 name: "MyBlazorAgent",
                 instructions: "You are a Friendly AI Bot, answering questions")

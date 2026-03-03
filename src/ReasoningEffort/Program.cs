@@ -12,7 +12,7 @@ using OpenAI.Responses;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 #pragma warning disable OPENAI001
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 string endpoint = secrets.AzureOpenAiEndpoint;
 string apiKey = secrets.AzureOpenAiKey;
 string question = "What is the Capital of France and how many people live there? (Answer back in max 3 words)";

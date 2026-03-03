@@ -17,13 +17,13 @@ using Microsoft.Extensions.Logging;
 using OpenTelemetry.Trace;
 
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
-ChatClientAgent noSettingAgent = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent();
+ChatClientAgent noSettingAgent = client.GetChatClient("gpt-4.1").AsAIAgent();
 
-ChatClientAgent agent = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent(
+ChatClientAgent agent = client.GetChatClient("gpt-4.1").AsAIAgent(
     instructions: "You are a cool surfer dude",
     tools: [ /*In a separate video*/ ]);
 
@@ -41,7 +41,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddConsoleExporter()
     .Build();
 
-AIAgent agentWithAllSettings = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent
+AIAgent agentWithAllSettings = client.GetChatClient("gpt-4.1").AsAIAgent
     (
         //Optional system instructions that define the agent's behavior and personality.
         instructions: "Speak like a Pirate",
@@ -96,7 +96,7 @@ Console.WriteLine(response);
 
 #region Even more options via ChatClientAgentOptions
 
-ChatClientAgent advancedAgent = client.GetChatClient(secrets.ChatDeploymentName).AsAIAgent(
+ChatClientAgent advancedAgent = client.GetChatClient("gpt-4.1").AsAIAgent(
     new ChatClientAgentOptions
     {
         ChatOptions = new ChatOptions

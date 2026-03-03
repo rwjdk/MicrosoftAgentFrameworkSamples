@@ -12,7 +12,7 @@ public static class HandoffWithoutWorkflowToolEdition
 {
     public static async Task Run()
     {
-        Secrets secrets = SecretManager.GetSecrets();
+        Secrets secrets = SecretsManager.GetSecrets();
 
         AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 

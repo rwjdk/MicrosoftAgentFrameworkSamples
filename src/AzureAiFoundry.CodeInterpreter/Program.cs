@@ -9,7 +9,7 @@ using Shared;
 
 Console.Clear();
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 Response<PersistentAgent>? aiFoundryAgent = null;
@@ -17,7 +17,7 @@ ChatClientAgentSession? chatClientAgentSession = null;
 try
 {
     aiFoundryAgent = await client.Administration.CreateAgentAsync(
-        secrets.ChatDeploymentName,
+        "gpt-4.1",
         "CodeGraphAgent",
         "",
         "You are a Graph-expert on US States",

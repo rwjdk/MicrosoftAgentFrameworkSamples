@@ -8,7 +8,7 @@ using Shared;
 
 Console.Clear();
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 GoogleAi googleAi = new(secrets.GoogleGeminiApiKey);
 

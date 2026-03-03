@@ -14,7 +14,7 @@ using ModelContextProtocol.Client;
 using OpenAI.Chat;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
@@ -31,7 +31,7 @@ await using McpClient gitHubMcpClient = await McpClient.CreateAsync(new HttpClie
 IList<McpClientTool> toolsInGitHubMcp = await gitHubMcpClient.ListToolsAsync();
 
 AIAgent agent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         instructions: "You are a GitHub Expert",
         tools: toolsInGitHubMcp.Cast<AITool>().ToList()

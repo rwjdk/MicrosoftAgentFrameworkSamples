@@ -16,7 +16,7 @@ using OpenAI.Chat;
 using ToolCalling.Advanced.Tools;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
@@ -29,13 +29,13 @@ List<AITool> listOfTools = methods.Select(x => AIFunctionFactory.Create(x, targe
 listOfTools.Add(new ApprovalRequiredAIFunction(AIFunctionFactory.Create(DangerousTools.SomethingDangerous)));
 
 AIAgent agent = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         instructions: "You are a File Expert. When working with files you need to provide the full path; not just the filename",
         tools: listOfTools
     )
     .AsBuilder()
-    .Use(FunctionCallMiddleware) //Middleware
+    .Use(ToolCallingMiddleware) //Middleware
     .Build();
 
 AgentSession session = await agent.CreateSessionAsync();
@@ -66,7 +66,7 @@ while (true)
     Utils.Separator();
 }
 
-async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, FunctionInvocationContext context, Func<FunctionInvocationContext, CancellationToken, ValueTask<object?>> next, CancellationToken cancellationToken)
+async ValueTask<object?> ToolCallingMiddleware(AIAgent callingAgent, FunctionInvocationContext context, Func<FunctionInvocationContext, CancellationToken, ValueTask<object?>> next, CancellationToken cancellationToken)
 {
     StringBuilder functionCallDetails = new();
     functionCallDetails.Append($"- Tool Call: '{context.Function.Name}'");

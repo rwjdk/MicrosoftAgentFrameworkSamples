@@ -14,7 +14,7 @@ using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 #pragma warning disable OPENAI001
 #pragma warning disable SKEXP0010
 
-Secrets secrets = Shared.SecretManager.GetSecrets();
+Secrets secrets = Shared.SecretsManager.GetSecrets();
 string endpoint = secrets.AzureOpenAiEndpoint;
 string apiKey = secrets.AzureOpenAiKey;
 

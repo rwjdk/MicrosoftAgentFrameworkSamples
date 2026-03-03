@@ -9,7 +9,7 @@ using Shared;
 #pragma warning disable OPENAI001
 Console.Clear();
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AIProjectClient client = new Azure.AI.Projects.AIProjectClient(new Uri(secrets.AzureAiFoundryAgentEndpoint), new AzureCliCredential());
 

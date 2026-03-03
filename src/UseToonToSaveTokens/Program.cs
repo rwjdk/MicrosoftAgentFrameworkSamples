@@ -9,7 +9,7 @@ using Shared;
 using Shared.Extensions;
 using UseToonToSaveTokens;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
@@ -20,13 +20,13 @@ string instructions = "You answer questions about famous people. Always use tool
 string question = "Tell me about Hula Johnson";
 
 ChatClientAgent agentWithJsonTool = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         instructions: instructions,
         tools: [AIFunctionFactory.Create(GetFamousPeopleAsJson, name: "get_famous_people")]);
 
 ChatClientAgent agentWithToonTool = client
-    .GetChatClient(secrets.ChatDeploymentName)
+    .GetChatClient("gpt-4.1")
     .AsAIAgent(
         instructions: instructions,
         tools: [AIFunctionFactory.Create(GetFamousPeopleAsToon, name: "get_famous_people")]);

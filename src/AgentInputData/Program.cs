@@ -11,13 +11,13 @@ using Shared.Extensions;
 using System.ClientModel;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient azureOpenAiClient = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 OpenAIClient openAiClient = new(new ApiKeyCredential(secrets.OpenAiApiKey));
 
-ChatClientAgent azureOpenAiAgent = azureOpenAiClient.GetChatClient(secrets.ChatDeploymentName).AsAIAgent();
-ChatClientAgent openAiAgent = openAiClient.GetChatClient(secrets.ChatDeploymentName).AsAIAgent();
+ChatClientAgent azureOpenAiAgent = azureOpenAiClient.GetChatClient("gpt-4.1").AsAIAgent();
+ChatClientAgent openAiAgent = openAiClient.GetChatClient("gpt-4.1").AsAIAgent();
 
 Scenario scenario = Scenario.Image;
 

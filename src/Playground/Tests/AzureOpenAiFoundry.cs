@@ -37,7 +37,7 @@ public class AzureOpenAiFoundry
         try
         {
             aiFoundryAgent = await client.Administration.CreateAgentAsync(
-                secrets.ChatDeploymentName,
+                "gpt-4.1",
                 "PlaygroundAgent",
                 "Some description",
                 "You are a nice AI",

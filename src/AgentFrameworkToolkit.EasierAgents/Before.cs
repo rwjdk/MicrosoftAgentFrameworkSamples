@@ -19,11 +19,10 @@ public class Before
     {
         //Weather-Task: With GPT-5-Mini in low Reasoning, Call Tool with middleware and return as structured Output
 
-        Secrets secrets = SecretManager.GetSecrets();
+        (Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials();
+        AzureOpenAIClient client = new(endpoint, apiKey);
 
-        AzureOpenAIClient azureOpenAiClient = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
-
-        AIAgent agent = azureOpenAiClient
+        AIAgent agent = client
             .GetChatClient("gpt-5-mini")
             .AsAIAgent(
                 options: new ChatClientAgentOptions

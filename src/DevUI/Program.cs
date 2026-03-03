@@ -12,7 +12,7 @@ using AgentFrameworkToolkit.Anthropic;
 using AgentFrameworkToolkit.Google;
 using OpenAI.Chat;
 
-Secrets secrets = Shared.SecretManager.GetSecrets();
+Secrets secrets = Shared.SecretsManager.GetSecrets();
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 AzureOpenAIClient azureOpenAIClient = new AzureOpenAIClient(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));

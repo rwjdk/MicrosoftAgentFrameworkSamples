@@ -5,7 +5,6 @@ using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel.Connectors.SqlServer;
 using OpenAI.Chat;
-using Shared;
 using Shared.Extensions;
 using UsingRAGInAgentFramework.Models;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
@@ -14,15 +13,15 @@ namespace AdvancedRAGTechniques;
 
 public static class Option2EnhanceEmbeddings
 {
-    public static async Task Run(bool importData, Movie[] movieDataForRag, ChatMessage question, AzureOpenAIClient client, SqlServerCollection<Guid, MovieVectorStoreRecord> collection, Secrets secrets)
+    public static async Task Run(bool importData, Movie[] movieDataForRag, ChatMessage question, AzureOpenAIClient client, SqlServerCollection<Guid, MovieVectorStoreRecord> collection)
     {
         if (importData)
         {
-            await EnhanceDataEmbedding.Embed(client, secrets, collection, movieDataForRag);
+            await EnhanceDataEmbedding.Embed(client, collection, movieDataForRag);
         }
 
         EnhancedSearchTool searchTool = new(collection);
-        AIAgent agent = client.GetChatClient(secrets.ChatDeploymentName)
+        AIAgent agent = client.GetChatClient("gpt-4.1")
             .AsAIAgent(
                 instructions: """
                               You are an expert a set of made up movies given to you (aka don't consider movies from your world-knowledge)

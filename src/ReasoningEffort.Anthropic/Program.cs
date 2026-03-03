@@ -11,7 +11,7 @@ using Shared.Extensions;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 #pragma warning disable OPENAI001
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 string apiKey = secrets.AnthropicApiKey;
 string question = "What is the Capital of country where the eiffel tower sits " +
                   "and how is it to live there and how many people live there? " +

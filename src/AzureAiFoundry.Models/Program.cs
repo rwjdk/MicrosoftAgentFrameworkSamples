@@ -10,7 +10,7 @@ using Shared;
 using System.ClientModel;
 using OpenAI.Chat;
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 string questionToAsk = "What is the capital of the USA?";
 

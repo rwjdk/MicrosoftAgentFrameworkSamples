@@ -10,7 +10,7 @@ using Shared.Extensions;
 
 Console.Clear();
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 PersistentAgentsClient client = new(secrets.AzureAiFoundryAgentEndpoint, new AzureCliCredential());
 
 BingGroundingSearchConfiguration bingToolConfiguration = new(secrets.BingApiKey);
@@ -21,7 +21,7 @@ ChatClientAgentSession? chatClientAgentSession = null;
 try
 {
     aiFoundryAgent = await client.Administration.CreateAgentAsync(
-        secrets.ChatDeploymentName,
+        "gpt-4.1",
         "CurrentNewsAgent",
         "",
         "You report about Space News",

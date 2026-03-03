@@ -12,7 +12,7 @@ public static class PizzaSampleWithoutWorkflow
 {
     public static async Task Run()
     {
-        Secrets secrets = SecretManager.GetSecrets();
+        Secrets secrets = SecretsManager.GetSecrets();
         AgentFactory agentFactory = new(secrets);
 
         Console.OutputEncoding = Encoding.UTF8;

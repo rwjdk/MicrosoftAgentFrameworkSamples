@@ -12,7 +12,7 @@ using System.ClientModel;
 
 Console.Clear();
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 AIProjectClient client = new AIProjectClient(new Uri(secrets.AzureAiFoundryAgentEndpoint), new AzureCliCredential());
 

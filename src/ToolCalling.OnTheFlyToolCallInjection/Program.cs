@@ -12,7 +12,7 @@ using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Console.Clear();
 
-Secrets secrets = SecretManager.GetSecrets();
+Secrets secrets = SecretsManager.GetSecrets();
 
 Console.Write("Normal (N) or Inject Mode (I)?: ");
 var key = Console.ReadKey();
