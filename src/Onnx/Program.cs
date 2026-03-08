@@ -12,7 +12,7 @@ string? folderPath = Console.ReadLine();
 
 if (folderPath != null && Directory.Exists(folderPath))
 {
-    OnnxRuntimeGenAIChatClient chatClient = new(folderPath);
+    using OnnxRuntimeGenAIChatClient chatClient = new(folderPath);
     ChatClientAgent agent = chatClient.AsAIAgent();
 
     AgentResponse response = await agent.RunAsync("What is the Capital of Bulgaria?");
