@@ -25,9 +25,9 @@ public static class HandoffWithoutWorkflowToolEdition
                 tools: [movieNerd.AsAIFunction(), musicNerd.AsAIFunction()]).AsBuilder().Use(FunctionCallMiddleware).Build();
         
         Console.Write("> ");
-        var input = Console.ReadLine()!;
+        string input = Console.ReadLine()!;
 
-        var response = await intentAgent.RunAsync(input);
+        AgentResponse response = await intentAgent.RunAsync(input);
         Console.WriteLine(response);
     }
 
