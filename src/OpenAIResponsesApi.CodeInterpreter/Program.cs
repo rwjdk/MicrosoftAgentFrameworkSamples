@@ -20,7 +20,7 @@ AIAgent agent = client
 
 string question = "Find Top 10 Countries in the world and make a Bar chart should each countries population in millions";
 AgentResponse response = await agent.RunAsync(question);
-foreach (var message in response.Messages)
+foreach (ChatMessage message in response.Messages)
 {
     foreach (AIContent content in message.Contents)
     {

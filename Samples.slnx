@@ -46,6 +46,11 @@
   <Folder Name="/DurableAgentFramework (Azure Functions)/">
     <Project Path="src/FunctionApp.HelloAI/FunctionApp.HelloAI.csproj" Id="967397ed-0e3d-4a50-ac57-076a6b077b7f" />
   </Folder>
+  <Folder Name="/Google Gemini Specific Features/">
+    <Project Path="src/GoogleGemini.CodeExecution/GoogleGemini.CodeExecution.csproj" Id="8694b050-3b5a-4601-9fe6-7dad15f3935c" />
+    <Project Path="src/GoogleGemini.GoogleMaps/GoogleGemini.GoogleMaps.csproj" Id="f393a7d3-b6b6-43cb-8e76-d8129076091f" />
+    <Project Path="src/GoogleGemini.WebSearch/GoogleGemini.WebSearch.csproj" Id="4559538d-18a2-444d-8e11-2233d855011c" />
+  </Folder>
   <Folder Name="/Image Generation (Not using Agent Framework)/">
     <File Path="Anthropic-Claude.txt" />
     <Project Path="src/ImageGeneration.GoogleGemini/ImageGeneration.GoogleGemini.csproj" Id="f83c1270-a47d-462b-92c2-af748589af38" />
