@@ -17,8 +17,8 @@ Secrets secrets = SecretsManager.GetSecrets();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
 AIAgent agent = client
-    .GetResponsesClient("gpt-5")
-    .AsAIAgent();
+    .GetResponsesClient()
+    .AsAIAgent(model: "gpt-5");
 
 Utils.Green("SimpleQuestion-BEGIN");
 AgentResponse response1 = await agent.RunAsync("What is the capital of France?");

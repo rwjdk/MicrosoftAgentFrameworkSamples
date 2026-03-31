@@ -15,8 +15,9 @@ public static class Take2CSharpCodeRunner
     public static async Task Run(AzureOpenAIClient azureOpenAIClient, string trelloApiKey, string trelloToken)
     {
         ChatClientAgent agent = azureOpenAIClient
-            .GetResponsesClient("gpt-4.1-mini")
+            .GetResponsesClient()
             .AsAIAgent(
+                model: "gpt-4.1-mini",
                 instructions: $"""
                                You are a Trello Expert with access to the Trello and the API
 

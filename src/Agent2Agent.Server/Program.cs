@@ -12,6 +12,7 @@ using System.ClientModel;
 using System.Reflection;
 using System.Text;
 using OpenAI.Chat;
+using AgentSkill = A2A.AgentSkill;
 
 //Start with Business as Usual
 Utils.Init("A2A Server");

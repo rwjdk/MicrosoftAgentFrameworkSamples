@@ -1,7 +1,6 @@
 ﻿//YouTube video that cover this sample: https://youtu.be/sfXaW4fZrh0
 
 using System.ClientModel;
-using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI;
@@ -15,10 +14,11 @@ Secrets secrets = SecretsManager.GetSecrets();
 OpenAIClient client = new(secrets.OpenAiApiKey);
 /*AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));*/
 ResponsesClient responseClient = client
-    .GetResponsesClient("gpt-4.1");
+    .GetResponsesClient();
 
 AIAgent agent = responseClient
     .AsAIAgent(
+        model: "gpt-4.1",
         instructions: "You are a Nice AI"
     );
 

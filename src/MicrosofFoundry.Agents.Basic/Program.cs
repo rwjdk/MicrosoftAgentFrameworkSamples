@@ -1,12 +1,13 @@
 ﻿using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 using Microsoft.Agents.AI;
+using Microsoft.Agents.AI.AzureAI;
 using Microsoft.Extensions.AI;
 using OpenAI.Containers;
 using OpenAI.Responses;
 using Shared;
 using System.ClientModel;
+using Azure.AI.Projects.Agents;
 
 #pragma warning disable OPENAI001
 
@@ -59,7 +60,7 @@ catch (ClientResultException e)
     }
 }
 
-ChatClientAgent agentByName = client.AsAIAgent(myAgentName);
+FoundryAgent agentByName = client.AsAIAgent(myAgentName);
 
 AgentResponse response = await agentByName.RunAsync("Hi there");
 Console.WriteLine(response);
@@ -79,12 +80,12 @@ Console.WriteLine(response);
 //Let's make a V2 with new instructions
 await CreateAgent("Speak like a pirate");
 
-ChatClientAgent agentV2 = client.AsAIAgent(myAgentName);
+FoundryAgent agentV2 = client.AsAIAgent(myAgentName);
 response = await agentV2.RunAsync("Hi there");
 Console.WriteLine(response);
 
 AgentVersion agentV1 = (await client.Agents.GetAgentVersionAsync(myAgentName, "1")).Value;
-ChatClientAgent agentByVersion = client.AsAIAgent(agentV1);
+FoundryAgent agentByVersion = client.AsAIAgent(agentV1);
 
 response = await agentByVersion.RunAsync("Hi Agent 1");
 Console.WriteLine(response);

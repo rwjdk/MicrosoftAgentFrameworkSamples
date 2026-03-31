@@ -35,7 +35,7 @@ IChatClient iChatClient = rawOpenAiClient.GetChatClient(model).AsIChatClient();
 
 //All Agents are AI Agents (which is an abstract class)
 AIAgent aiAgentFromChatClient = rawOpenAiClient.GetChatClient(model).AsAIAgent();
-AIAgent aiAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient(model).AsAIAgent();
+AIAgent aiAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient().AsAIAgent(model: model);
 AIAgent aiAgentFromPersistentClient = await persistentAgentsClient.GetAIAgentAsync(persistentAgentsClient.Administration.CreateAgent(model).Value.Id);
 AIAgent aiAgentFromIChatClient = new ChatClientAgent(iChatClient);
 
@@ -43,7 +43,7 @@ AIAgent aiAgentFromIChatClient = new ChatClientAgent(iChatClient);
 
 //Most is however a ChatClientAgent behind the scenes
 ChatClientAgent chatClientAgentFromChatClient = rawOpenAiClient.GetChatClient(model).AsAIAgent();
-ChatClientAgent chatClientAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient(model).AsAIAgent();
+ChatClientAgent chatClientAgentFromResponsesClient = rawOpenAiClient.GetResponsesClient().AsAIAgent(model);
 ChatClientAgent chatClientAgentFromPersistentClient = await persistentAgentsClient.GetAIAgentAsync(persistentAgentsClient.Administration.CreateAgent(model).Value.Id);
 ChatClientAgent chatClientAgentFromIChatClient = new ChatClientAgent(iChatClient);
 

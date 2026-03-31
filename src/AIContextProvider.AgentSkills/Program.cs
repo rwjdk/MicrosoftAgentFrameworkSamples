@@ -13,7 +13,7 @@ string skillPath = "TestData\\AgentSkills";
 
 AIAgent agent = client.GetChatClient("gpt-4.1-mini").AsAIAgent(new ChatClientAgentOptions
 {
-    AIContextProviders = [new FileAgentSkillsProvider(skillPath)],
+    AIContextProviders = [new AgentSkillsProvider(skillPath)],
     ChatOptions = new ChatOptions
     {
         Tools = [AIFunctionFactory.Create(PythonRunner.RunPhytonScript, name: "execute_python")]

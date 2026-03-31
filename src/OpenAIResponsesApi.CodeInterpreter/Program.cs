@@ -15,8 +15,8 @@ Secrets secrets = SecretsManager.GetSecrets();
 OpenAIClient client = new(secrets.OpenAiApiKey);
 //NB: I was unable to get this to work with Azure OpenAI in regard to downloading files from Code Interpreter
 AIAgent agent = client
-    .GetResponsesClient("gpt-4.1")
-    .AsAIAgent(tools: [new HostedCodeInterpreterTool()]);
+    .GetResponsesClient()
+    .AsAIAgent(model: "gpt-4.1", tools: [new HostedCodeInterpreterTool()]);
 
 string question = "Find Top 10 Countries in the world and make a Bar chart should each countries population in millions";
 AgentResponse response = await agent.RunAsync(question);

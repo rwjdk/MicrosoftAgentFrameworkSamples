@@ -17,8 +17,9 @@ public class CodexSpecialModels
     {
         //OpenAIClient client = new(secrets.OpenAiApiKey);
         AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
-        AIAgent agent = client.GetResponsesClient("gpt-5-codex")
+        AIAgent agent = client.GetResponsesClient()
             .AsAIAgent(
+                model: "gpt-5-codex",
                 instructions: "You are a C# Developer"
             );
 

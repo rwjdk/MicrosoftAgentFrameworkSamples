@@ -12,9 +12,10 @@ OpenAIClient client = new(secrets.OpenAiApiKey);
 #pragma warning disable OPENAI001
 AIAgent agent = client
     //.GetChatClient("gpt-4.1")
-    .GetResponsesClient("gpt-4.1")
+    .GetResponsesClient()
 #pragma warning restore OPENAI001
     .AsAIAgent(
+        model: "gpt-4.1",
         instructions: "You are a Space News AI Reporter",
         tools: [new HostedWebSearchTool()]
     );

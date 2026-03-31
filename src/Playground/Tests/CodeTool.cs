@@ -17,11 +17,11 @@ public class CodeTool
         OpenAIClient client = new(secrets.OpenAiApiKey);
         //NB: I was unable to get this to work with Azure OpenAI in regard to downloading files from Code Interpreter
         AIAgent agent = client
-            .GetResponsesClient("gpt-4.1")
-            .AsAIAgent(tools: [new HostedCodeInterpreterTool()]);
+            .GetResponsesClient()
+            .AsAIAgent(model: "gpt-4.1", tools: [new HostedCodeInterpreterTool()]);
 
         AgentResponse response = await agent.RunAsync("Find Top 10 Countries in the world and make a Bar chart should each countries population in millions");
-        foreach (var message in response.Messages)
+        foreach (ChatMessage message in response.Messages)
         {
             foreach (AIContent content in message.Contents)
             {

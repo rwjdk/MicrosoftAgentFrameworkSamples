@@ -1,9 +1,9 @@
 ﻿using System.ClientModel;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Projects.Agents;
 using Azure.Identity;
 using Microsoft.Agents.AI;
-using OpenAI.Responses;
+using Microsoft.Agents.AI.AzureAI;
 using Shared;
 
 #pragma warning disable OPENAI001
@@ -32,7 +32,7 @@ try
     );
     foundryAgentName = foundryAgent.Value.Name;
 
-    ChatClientAgent agentFrameworkAgent = client.AsAIAgent(foundryAgent);
+    FoundryAgent agentFrameworkAgent = client.AsAIAgent(foundryAgent);
 
     AgentResponse response = await agentFrameworkAgent.RunAsync("What is the Capital of France");
     Console.WriteLine(response);

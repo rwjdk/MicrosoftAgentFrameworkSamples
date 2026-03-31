@@ -18,8 +18,9 @@ public class SpaceNewsWebSearch
         OpenAIClient client = new(secrets.OpenAiApiKey);
         //NB: Azure OpenAI is NOT SUPPORTED
         AIAgent agent = client
-            .GetResponsesClient("gpt-4.1")
+            .GetResponsesClient()
             .AsAIAgent(
+                model: "gpt-4.1",
                 instructions: "You are a Space News AI Reporter",
                 tools: [new HostedWebSearchTool()]
             );

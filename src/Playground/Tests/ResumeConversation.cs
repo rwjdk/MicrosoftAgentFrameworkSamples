@@ -17,9 +17,10 @@ public class ResumeConversation
     {
         //OpenAIClient client = new(secrets.OpenAiApiKey);
         AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
-        ResponsesClient responseClient = client.GetResponsesClient("gpt-4.1");
+        ResponsesClient responseClient = client.GetResponsesClient();
         AIAgent agent = responseClient
             .AsAIAgent(
+                model: "gpt-4.1",
                 instructions: "You are a Nice AI"
             );
 

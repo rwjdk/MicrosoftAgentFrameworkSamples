@@ -19,8 +19,9 @@ public static class Take3TheSensibleChoice
         TrelloTools trelloTools = new(new TrelloClient(trelloApiKey, trelloToken));
 
         AIAgent agent = azureOpenAIClient
-            .GetResponsesClient("gpt-4.1-mini")
+            .GetResponsesClient()
             .AsAIAgent(
+                model: "gpt-4.1-mini",
                 instructions: """
                               You are a Trello Expert 
 

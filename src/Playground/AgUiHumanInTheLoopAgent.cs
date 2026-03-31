@@ -32,7 +32,7 @@ public class AgUiHumanInTheLoopAgent(AIAgent innerAgent) : AIAgent
     {
         await foreach (AgentResponseUpdate update in innerAgent.RunStreamingAsync(messages, session, options, cancellationToken))
         {
-            foreach (FunctionApprovalRequestContent functionApprovalRequestContent in update.Contents.OfType<FunctionApprovalRequestContent>())
+            foreach (ToolApprovalRequestContent functionApprovalRequestContent in update.Contents.OfType<ToolApprovalRequestContent>())
             {
                     byte[] bytes = JsonSerializer.SerializeToUtf8Bytes(functionApprovalRequestContent, JsonSerializerOptions.Web);
                     yield return new AgentResponseUpdate(ChatRole.Assistant, [new DataContent(bytes, "application/json")]);
