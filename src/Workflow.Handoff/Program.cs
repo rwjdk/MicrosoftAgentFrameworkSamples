@@ -10,6 +10,7 @@ using Shared;
 using System.ClientModel;
 using System.Text.Json;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
+#pragma warning disable MAAIW001
 
 Secrets secrets = SecretsManager.GetSecrets();
 
