@@ -2,12 +2,28 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-	<ItemGroup>
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <TargetFramework>net10.0-windows10.0.26100</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="!$([MSBuild]::IsOSPlatform('Windows'))">
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
+    <RuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+  </PropertyGroup>
+
+	<ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+		<PackageReference Include="Microsoft.AI.Foundry.Local.WinML" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+	</ItemGroup>
+
+	<ItemGroup Condition="!$([MSBuild]::IsOSPlatform('Windows'))">
 		<PackageReference Include="Microsoft.AI.Foundry.Local" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
 	</ItemGroup>
