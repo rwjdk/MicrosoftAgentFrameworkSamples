@@ -13,7 +13,6 @@ Console.WriteLine($"Starting AI Model '{modelAlias}'. If not already started / c
 string foundryDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".foundry");
 
 Console.WriteLine($"Using Foundry data directory: {foundryDataDir}");
-CleanupStaleExecutionProviderDownloads(foundryDataDir);
 Console.WriteLine("Initializing Foundry Local SDK...");
 await FoundryLocalManager.CreateAsync(
     new Configuration
@@ -32,22 +31,16 @@ FoundryLocalManager manager = FoundryLocalManager.Instance;
 ICatalog catalog = await manager.GetCatalogAsync();
 IModel modelFamily = await catalog.GetModelAsync(modelAlias) ?? throw new InvalidOperationException($"Model '{modelAlias}' not found.");
 
-IModel model = SelectPreferredVariant(modelFamily);
+
+IModel? model = modelFamily.Variants.First(v => v.Info.Runtime?.DeviceType == DeviceType.CPU); 
 Console.WriteLine($"Selected model variant: {model.Id}");
 
 bool isModelCached = await model.IsCachedAsync();
-Console.WriteLine(isModelCached
-    ? "Model already exists in the local cache."
-    : "Model not cached yet. Downloading now...");
-
-await model.DownloadAsync(progress =>
+if (!isModelCached)
 {
-    Console.Write($"\rDownloading model: {progress:F2}%");
-    if (progress >= 100f)
-    {
-        Console.WriteLine();
-    }
-});
+    Console.WriteLine("Model not yet cached yet. Downloading...");
+    await model.DownloadAsync();
+}
 
 Console.WriteLine("Loading model into memory...");
 await model.LoadAsync();
@@ -78,46 +71,3 @@ await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to mak
 
 await manager.StopWebServiceAsync();
 await model.UnloadAsync();
-
-static void CleanupStaleExecutionProviderDownloads(string foundryDataDir)
-{
-    string epDirectory = Path.Combine(foundryDataDir, "ep");
-    if (!Directory.Exists(epDirectory))
-    {
-        return;
-    }
-
-    foreach (string zipPath in Directory.EnumerateFiles(epDirectory, "*.zip", SearchOption.AllDirectories))
-    {
-        FileInfo zipFile = new(zipPath);
-        if (zipFile.Length != 0)
-        {
-            continue;
-        }
-
-        string? epFolder = zipFile.DirectoryName;
-        if (string.IsNullOrEmpty(epFolder))
-        {
-            continue;
-        }
-
-        string lockFilePath = $"{epFolder}.lock";
-        if (File.Exists(lockFilePath))
-        {
-            Console.WriteLine($"Removing stale execution provider lock: {lockFilePath}");
-            File.Delete(lockFilePath);
-        }
-
-        Console.WriteLine($"Removing stale zero-byte execution provider download: {zipPath}");
-        File.Delete(zipPath);
-    }
-}
-
-static IModel SelectPreferredVariant(IModel modelFamily)
-{
-    IModel? cpuVariant = modelFamily.Variants.FirstOrDefault(variant =>
-        variant.Id.Contains("generic-cpu", StringComparison.OrdinalIgnoreCase) ||
-        variant.Id.Contains("cpu", StringComparison.OrdinalIgnoreCase));
-
-    return cpuVariant ?? modelFamily;
-}
