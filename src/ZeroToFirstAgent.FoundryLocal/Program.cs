@@ -5,14 +5,17 @@ using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Logging.Abstractions;
 using OpenAI;
 using OpenAI.Chat;
+using Shared;
 
 #region Start Foundry and download model if needed
+
+Utils.Init("Foundry.Local Sample");
 
 string modelAlias = "qwen2.5-coder-0.5b";
 Console.WriteLine($"Starting AI Model '{modelAlias}'. If not already started / cached this might take a while...");
 string foundryDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".foundry");
 
-Console.WriteLine($"Using Foundry data directory: {foundryDataDir}");
+Console.WriteLine($"Using Foundry data directory: {foundryDataDir} (Try removing this folder if code hangs, or cause Exceptions");
 Console.WriteLine("Initializing Foundry Local SDK...");
 await FoundryLocalManager.CreateAsync(
     new Configuration
@@ -32,7 +35,7 @@ ICatalog catalog = await manager.GetCatalogAsync();
 IModel modelFamily = await catalog.GetModelAsync(modelAlias) ?? throw new InvalidOperationException($"Model '{modelAlias}' not found.");
 
 
-IModel? model = modelFamily.Variants.First(v => v.Info.Runtime?.DeviceType == DeviceType.CPU); 
+IModel model = modelFamily.Variants.First(v => v.Info.Runtime?.DeviceType == DeviceType.GPU); 
 Console.WriteLine($"Selected model variant: {model.Id}");
 
 bool isModelCached = await model.IsCachedAsync();

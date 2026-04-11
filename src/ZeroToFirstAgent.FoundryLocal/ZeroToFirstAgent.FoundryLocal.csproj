@@ -26,5 +26,9 @@
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Shared\Shared.csproj" />
+	</ItemGroup>
+
 </Project>
 
