@@ -37,9 +37,6 @@
 	  </Reference>
 	</ItemGroup>
 	<ItemGroup>
-	  <None Update="Data\secretData.pdf">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	  <None Update="requestData.jsonl">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
