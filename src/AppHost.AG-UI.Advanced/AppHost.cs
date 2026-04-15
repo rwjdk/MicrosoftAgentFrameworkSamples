@@ -1,4 +1,4 @@
-var builder = DistributedApplication.CreateBuilder(args);
+IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
 IResourceBuilder<ProjectResource> server = builder.AddProject<Projects.AgentUserInteraction_Advanced_Server>("server");
 

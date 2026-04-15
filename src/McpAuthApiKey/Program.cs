@@ -1,10 +1,10 @@
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMcpServer()
     .WithHttpTransport()
     .WithToolsFromAssembly();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 const string expectedApiKey = "MySecretKey"; // TODO: move to config/secret storage.
 

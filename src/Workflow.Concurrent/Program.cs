@@ -41,7 +41,7 @@ string legalText = """
                    amendmants or revisions adopted by the governing authority.
                    """;
 
-var messages = new List<ChatMessage> { new(ChatRole.User, legalText) };
+List<ChatMessage> messages = [new(ChatRole.User, legalText)];
 
 await using StreamingRun run = await InProcessExecution.RunStreamingAsync(workflow, messages);
 await run.TrySendMessageAsync(new TurnToken(emitEvents: true));
@@ -55,7 +55,7 @@ await foreach (WorkflowEvent evt in run.WatchStreamAsync())
     }
 }
 
-foreach (var message in result.Where(x => x.Role != ChatRole.User))
+foreach (ChatMessage message in result.Where(x => x.Role != ChatRole.User))
 {
     Utils.Green(message.AuthorName ?? "Unknown");
     Console.WriteLine($"{message.Text}");

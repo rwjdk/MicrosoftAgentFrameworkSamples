@@ -53,7 +53,7 @@ class CustomClientHttpHandler() : HttpClientHandler
         Utils.Green($"Raw Request ({request.RequestUri})");
         Utils.Gray(MakePretty(requestString));
         Utils.Separator();
-        var response = await base.SendAsync(request, cancellationToken);
+        HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
 
         string responseString = await response.Content.ReadAsStringAsync(cancellationToken);
         Utils.Green("Raw Response");
@@ -64,7 +64,7 @@ class CustomClientHttpHandler() : HttpClientHandler
 
     private string MakePretty(string input)
     {
-        var jsonElement = JsonSerializer.Deserialize<JsonElement>(input);
+        JsonElement jsonElement = JsonSerializer.Deserialize<JsonElement>(input);
         return JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
     }
 }

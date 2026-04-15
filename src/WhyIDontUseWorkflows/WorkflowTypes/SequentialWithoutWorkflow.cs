@@ -41,7 +41,7 @@ public static class SequentialWithoutWorkflow
 
         List<ChatMessage> messages = [];
 
-        var summaryResponse = await summaryAgent.RunAsync(legalText);
+        AgentResponse summaryResponse = await summaryAgent.RunAsync(legalText);
         messages.AddRange(summaryResponse.Messages);
         messages.AddRange((await translationAgent.RunAsync(summaryResponse.Text)).Messages);
         

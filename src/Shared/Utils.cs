@@ -149,7 +149,7 @@ public static class Utils
                 Utils.Separator();
             }
 
-            var response = await base.SendAsync(request, cancellationToken);
+            HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
 
             if (rawCallOptions.ShowResponse)
             {
@@ -166,7 +166,7 @@ public static class Utils
         {
             try
             {
-                var jsonElement = JsonSerializer.Deserialize<JsonElement>(input);
+                JsonElement jsonElement = JsonSerializer.Deserialize<JsonElement>(input);
                 return JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
             }
             catch

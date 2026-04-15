@@ -12,8 +12,8 @@ public sealed class McpAuthorizationMiddlewareResultHandler : IAuthorizationMidd
     {
         if (authorizeResult.Forbidden && context.Request.Path.StartsWithSegments(McpProtectedResourceMetadataFactory.McpEndpointPath))
         {
-            var metadataFactory = context.RequestServices.GetRequiredService<McpProtectedResourceMetadataFactory>();
-            var options = context.RequestServices.GetRequiredService<IOptions<McpEntraOptions>>().Value;
+            McpProtectedResourceMetadataFactory metadataFactory = context.RequestServices.GetRequiredService<McpProtectedResourceMetadataFactory>();
+            McpEntraOptions options = context.RequestServices.GetRequiredService<IOptions<McpEntraOptions>>().Value;
 
             context.Response.StatusCode = StatusCodes.Status403Forbidden;
             context.Response.Headers.WWWAuthenticate = metadataFactory.BuildInsufficientScopeChallenge(context.Request, options);

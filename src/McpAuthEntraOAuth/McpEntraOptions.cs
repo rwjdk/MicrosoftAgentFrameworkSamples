@@ -42,9 +42,9 @@ public sealed class McpEntraOptions
 
     public static bool HasRequiredScope(ClaimsPrincipal user, string requiredScope)
     {
-        foreach (var claim in user.FindAll("scp"))
+        foreach (Claim claim in user.FindAll("scp"))
         {
-            var scopes = claim.Value.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            string[] scopes = claim.Value.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             if (scopes.Contains(requiredScope, StringComparer.Ordinal))
             {
                 return true;

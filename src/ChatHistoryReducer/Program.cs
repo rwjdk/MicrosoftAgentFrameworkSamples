@@ -44,9 +44,6 @@ while (true)
     Console.WriteLine(response);
     response.Usage.OutputAsInformation();
 
-    InMemoryChatHistoryProvider? inMemoryChatHistoryProvider = session.StateBag.GetValue<InMemoryChatHistoryProvider>("InMemoryChatHistoryProvider");
-
-
     InMemoryChatHistoryProvider? provider = agent.GetService<InMemoryChatHistoryProvider>();
     List<ChatMessage> messagesInSession = provider?.GetMessages(session) ?? [];
     Utils.Gray("- Number of messages in session: " + messagesInSession.Count());

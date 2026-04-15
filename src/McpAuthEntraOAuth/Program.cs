@@ -8,10 +8,10 @@ using Microsoft.Extensions.Options;
 
 //WARNING: THIS SAMPLE IS NOT YET WORKING!!!
 
-var builder = WebApplication.CreateBuilder(args);
-var entraOptionsSection = builder.Configuration.GetSection(McpEntraOptions.SectionName);
-var configuredEntraOptions = entraOptionsSection.Get<McpEntraOptions>() ?? new McpEntraOptions();
-var configuredRequiredScope = entraOptionsSection[nameof(McpEntraOptions.RequiredScope)] ?? McpEntraOptions.DefaultRequiredScope;
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+IConfigurationSection entraOptionsSection = builder.Configuration.GetSection(McpEntraOptions.SectionName);
+McpEntraOptions configuredEntraOptions = entraOptionsSection.Get<McpEntraOptions>() ?? new McpEntraOptions();
+string configuredRequiredScope = entraOptionsSection[nameof(McpEntraOptions.RequiredScope)] ?? McpEntraOptions.DefaultRequiredScope;
 
 builder.Services
     .AddOptions<McpEntraOptions>()
@@ -49,9 +49,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
                 context.HandleResponse();
 
-                var metadataFactory = context.HttpContext.RequestServices.GetRequiredService<McpProtectedResourceMetadataFactory>();
-                var settings = context.HttpContext.RequestServices.GetRequiredService<IOptions<McpEntraOptions>>().Value;
-                var challenge = metadataFactory.BuildUnauthorizedChallenge(context.Request, settings, context.AuthenticateFailure is not null);
+                McpProtectedResourceMetadataFactory metadataFactory = context.HttpContext.RequestServices.GetRequiredService<McpProtectedResourceMetadataFactory>();
+                McpEntraOptions settings = context.HttpContext.RequestServices.GetRequiredService<IOptions<McpEntraOptions>>().Value;
+                string challenge = metadataFactory.BuildUnauthorizedChallenge(context.Request, settings, context.AuthenticateFailure is not null);
 
                 context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                 context.Response.Headers.WWWAuthenticate = challenge;
@@ -83,7 +83,7 @@ builder.Services.AddMcpServer()
     .WithHttpTransport()
     .WithToolsFromAssembly();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.UseForwardedHeaders();
 app.UseHttpsRedirection();

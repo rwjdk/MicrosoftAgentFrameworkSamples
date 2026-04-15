@@ -33,7 +33,7 @@ ChatClientAgent movieStructuredOutputAgent = client
     .AsAIAgent(instructions: "You are a movie Expert");
 
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAGUI();

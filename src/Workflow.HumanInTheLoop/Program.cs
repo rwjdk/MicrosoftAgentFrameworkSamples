@@ -9,23 +9,23 @@ Console.Clear();
 Secrets secrets = SecretsManager.GetSecrets();
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 ChatClient chatClient = client.GetChatClient("gpt-4.1");
-var agent = chatClient.AsAIAgent(instructions: "You are the judge in a guessing game where it is about guessing animals. " +
-                                               "Each hint should only give one fact");
+ChatClientAgent agent = chatClient.AsAIAgent(instructions: "You are the judge in a guessing game where it is about guessing animals. " +
+                                                           "Each hint should only give one fact");
 
 List<string> animals = ["Wolf", "Eagle", "Tiger", "Dolphin", "Elephant", "Grizzly Bear", "Mouse", "Dog", "Shark", "Panda"];
 
-var animalToGuess = animals[Random.Shared.Next(animals.Count)] ;
-var initialHintResponse = await agent.RunAsync<string>($"Make a vague hint for the animal: '{animalToGuess}'");
+string animalToGuess = animals[Random.Shared.Next(animals.Count)] ;
+AgentResponse<string> initialHintResponse = await agent.RunAsync<string>($"Make a vague hint for the animal: '{animalToGuess}'");
 
 RequestPort requestPort = RequestPort.Create<FeedbackToUser, string>("GuessAnimal");
-var evaluateAndHintExecutor = new EvaluateAndHintExecutor(agent, animalToGuess);
-var workflow = new WorkflowBuilder(requestPort)
+EvaluateAndHintExecutor evaluateAndHintExecutor = new EvaluateAndHintExecutor(agent, animalToGuess);
+Workflow workflow = new WorkflowBuilder(requestPort)
     .AddEdge(requestPort, evaluateAndHintExecutor)
     .AddEdge(evaluateAndHintExecutor, requestPort)
     .WithOutputFrom(evaluateAndHintExecutor)
     .Build();
 
-var initialFeedback = new FeedbackToUser(initialHintResponse.Result, true);
+FeedbackToUser initialFeedback = new FeedbackToUser(initialHintResponse.Result, true);
 await using StreamingRun handle = await InProcessExecution.RunStreamingAsync(workflow, initialFeedback);
 
 await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
@@ -33,7 +33,7 @@ await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
     switch (evt)
     {
         case RequestInfoEvent requestInputEvt:
-            var externalRequest = requestInputEvt.Request;
+            ExternalRequest externalRequest = requestInputEvt.Request;
             if (externalRequest.IsDataOfType<FeedbackToUser>())
             {
                 FeedbackToUser feedbackToUser = externalRequest.Data.As<FeedbackToUser>()!;
@@ -43,8 +43,8 @@ await foreach (WorkflowEvent evt in handle.WatchStreamAsync())
                 Console.WriteLine($"Hint: {feedbackToUser.Hint}");
                 Utils.Separator();
                 Console.Write("Your Guess: ");
-                var input = Console.ReadLine();
-                var externalResponse = externalRequest.CreateResponse(input);
+                string? input = Console.ReadLine();
+                ExternalResponse externalResponse = externalRequest.CreateResponse(input);
                 await handle.SendResponseAsync(externalResponse);
                 break;
             }
@@ -68,7 +68,7 @@ class EvaluateAndHintExecutor(ChatClientAgent agent, string animalToGuess) : Exe
         CancellationToken cancellationToken = default)
     {
         _numberOfTries++;
-        var input = $"Is this the right answer for guessing the animal is '{animalToGuess}'? (allow for spelling errors of the animal): {message}";
+        string input = $"Is this the right answer for guessing the animal is '{animalToGuess}'? (allow for spelling errors of the animal): {message}";
         AgentResponse<bool> isRightAnswerResponse = await agent.RunAsync<bool>(input, cancellationToken: cancellationToken);
         if (isRightAnswerResponse.Result)
         {
@@ -80,11 +80,11 @@ class EvaluateAndHintExecutor(ChatClientAgent agent, string animalToGuess) : Exe
         else
         {
             //Not correct answer: Let's generate a new Hint
-            var newHintPrompt = $"Generate a hint for a child to guess the animal '{animalToGuess}'. " +
-                                $"Hints already given: {string.Join(" | ", _hintsGiven)} " +
-                                $"so make the new hint unique and do not repeat the same hint parts";
+            string newHintPrompt = $"Generate a hint for a child to guess the animal '{animalToGuess}'. " +
+                                   $"Hints already given: {string.Join(" | ", _hintsGiven)} " +
+                                   $"so make the new hint unique and do not repeat the same hint parts";
             AgentResponse<string> hintResponse = await agent.RunAsync<string>(newHintPrompt, cancellationToken: cancellationToken);
-            var newHint = hintResponse.Result;
+            string newHint = hintResponse.Result;
             _hintsGiven.Add(newHint);
             await context.SendMessageAsync(new FeedbackToUser(newHint), cancellationToken);
         }

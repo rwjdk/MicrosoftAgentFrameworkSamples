@@ -39,7 +39,7 @@ string legalText = """
                    amendments or revisions adopted by the governing authority.
                    """;
 
-var messages = new List<ChatMessage> { new(ChatRole.User, legalText) };
+List<ChatMessage> messages = [new(ChatRole.User, legalText)];
 
 StreamingRun run = await InProcessExecution.RunStreamingAsync(workflow, messages);
 await run.TrySendMessageAsync(new TurnToken(emitEvents: true));

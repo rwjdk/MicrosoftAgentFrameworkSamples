@@ -14,7 +14,7 @@ Secrets secrets = SecretsManager.GetSecrets();
 
 //Setup Telemetry
 string sourceName = "AiSource";
-var tracerProviderBuilder = Sdk.CreateTracerProviderBuilder()
+TracerProviderBuilder tracerProviderBuilder = Sdk.CreateTracerProviderBuilder()
     .AddSource(sourceName)
     .AddConsoleExporter();
 if (!string.IsNullOrWhiteSpace(secrets.ApplicationInsightsConnectionString))

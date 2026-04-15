@@ -17,7 +17,7 @@ public sealed class McpProtectedResourceMetadataFactory
 
     public string BuildUnauthorizedChallenge(HttpRequest request, McpEntraOptions options, bool includeInvalidTokenError)
     {
-        var parts = new List<string>
+        List<string> parts = new List<string>
         {
             $"resource_metadata=\"{GetPathMetadataUrl(request)}\"",
             $"scope=\"{options.RequiredScopeForChallenges}\""

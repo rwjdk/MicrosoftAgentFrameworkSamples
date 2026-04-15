@@ -54,7 +54,7 @@ async Task Raw()
     {
         ApiKey = apiKey
     });
-    var modelId = "claude-haiku-4-5-20251001";
+    string modelId = "claude-haiku-4-5-20251001";
     ChatClientAgent agent = new ChatClientAgent(client.AsIChatClient(modelId),
         new ChatClientAgentOptions
         {

@@ -1,4 +1,5 @@
-﻿using AgentFrameworkToolkit.AzureOpenAI;
+﻿using AgentFrameworkToolkit;
+using AgentFrameworkToolkit.AzureOpenAI;
 using AgentFrameworkToolkit.OpenAI;using AgentFrameworkToolkit.Tools;
 using AgentFrameworkToolkit.Tools.Common;
 using Microsoft.Agents.AI;
@@ -35,7 +36,8 @@ tools.AddRange(WebsiteTools.All());
 tools.AddRange(HttpClientTools.All());
 
 #region Alternative way for even more control
-var toolsFactory = new AIToolsFactory();
+
+AIToolsFactory toolsFactory = new AIToolsFactory();
 tools.AddRange(toolsFactory.GetTimeTools(new GetTimeToolsOptions
 {
     GetUtcNow = true,

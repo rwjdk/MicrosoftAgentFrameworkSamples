@@ -16,7 +16,7 @@ Secrets secrets = SecretsManager.GetSecrets();
 
 AzureOpenAIClient client = new(new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
 
-var agent = client
+ChatClientAgent agent = client
     .GetChatClient("gpt-4.1")
     .AsAIAgent(new ChatClientAgentOptions
     {

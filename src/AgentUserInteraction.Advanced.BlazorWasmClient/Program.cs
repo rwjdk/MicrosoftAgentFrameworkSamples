@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.AI;
 using AgentUserInteraction.Advanced.BlazorWasmClient.Pages;
 
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
+WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 

@@ -36,7 +36,7 @@ ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
 
 // OpenTelemetry
 string sourceName = Guid.NewGuid().ToString("N");
-using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+using TracerProvider tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddSource(sourceName)
     .AddConsoleExporter()
     .Build();

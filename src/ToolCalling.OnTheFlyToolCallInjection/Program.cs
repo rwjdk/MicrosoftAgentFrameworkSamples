@@ -15,7 +15,7 @@ Console.Clear();
 Secrets secrets = SecretsManager.GetSecrets();
 
 Console.Write("Normal (N) or Inject Mode (I)?: ");
-var key = Console.ReadKey();
+ConsoleKeyInfo key = Console.ReadKey();
 Console.Clear();
 switch (key.Key)
 {
@@ -48,7 +48,7 @@ async Task NormalAgentWithTools()
     AIAgent mainAgent = client.GetChatClient("gpt-4.1").AsAIAgent(tools: tools).AsBuilder().Use(FunctionCallMiddleware).Build();
 
     Utils.Gray($"This agent have: {tools.Count} tools");
-    foreach (var tool in tools)
+    foreach (AITool tool in tools)
     {
         Utils.Gray($"- {tool.Name}");
     }

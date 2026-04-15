@@ -4,6 +4,7 @@ using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI.Chat;
 using Shared;
+using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 namespace WhyIDontUseWorkflows.WorkflowTypes;
 
@@ -43,9 +44,9 @@ public static class ConcurrentWithoutWorkflow
             legalAgent.RunAsync(legalText), 
             spellingErrorAgent.RunAsync(legalText)
         );
-        foreach (var agentResponse in responses)
+        foreach (AgentResponse agentResponse in responses)
         {
-            foreach (var message in agentResponse.Messages.Where(x => x.Role != ChatRole.User))
+            foreach (ChatMessage message in agentResponse.Messages.Where(x => x.Role != ChatRole.User))
             {
                 Utils.Green(message.AuthorName ?? "Unknown");
                 Console.WriteLine($"{message.Text}");

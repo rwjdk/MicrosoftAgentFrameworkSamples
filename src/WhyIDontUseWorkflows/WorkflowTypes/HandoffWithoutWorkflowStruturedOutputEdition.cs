@@ -20,22 +20,22 @@ public static class HandoffWithoutWorkflowStructuredOutputEdition
         ChatClientAgent musicNerd = client.GetChatClient("gpt-4.1").AsAIAgent(name: "MusicNerd", instructions: "You are a Music Nerd");
 
         Console.Write("> ");
-        var input = Console.ReadLine()!;
+        string input = Console.ReadLine()!;
 
-        var intentResponse = await intentAgent.RunAsync<TypeOfQuestion>(input);
+        AgentResponse<TypeOfQuestion> intentResponse = await intentAgent.RunAsync<TypeOfQuestion>(input);
         switch (intentResponse.Result)
         {
             case TypeOfQuestion.Movie:
                 {
                     Utils.Green(movieNerd.Name!);
-                    var response = await movieNerd.RunAsync(input);
+                    AgentResponse response = await movieNerd.RunAsync(input);
                     Console.WriteLine(response);
                     break;
                 }
             case TypeOfQuestion.Music:
                 {
                     Utils.Green(musicNerd.Name!);
-                    var response = await musicNerd.RunAsync(input);
+                    AgentResponse response = await musicNerd.RunAsync(input);
                     Console.WriteLine(response);
                     break;
                 }
