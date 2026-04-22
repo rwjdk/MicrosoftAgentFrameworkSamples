@@ -10,8 +10,9 @@ sealed class MicrophoneStreamer : IAsyncDisposable
     private readonly CancellationTokenRegistration _cancellationRegistration;
     private bool _isDisposed;
 
-    public MicrophoneStreamer(WaveFormat waveFormat, CancellationToken cancellationToken)
+    public MicrophoneStreamer(CancellationToken cancellationToken)
     {
+        WaveFormat waveFormat = new(24_000, 16, 1);
         _audioChannel = Channel.CreateUnbounded<byte[]>(new UnboundedChannelOptions
         {
             SingleReader = true,

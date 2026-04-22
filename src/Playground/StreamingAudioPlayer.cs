@@ -1,19 +1,22 @@
 using NAudio.Wave;
 
-sealed class StreamingAudioPlayer : IDisposable
+namespace Playground;
+
+internal class StreamingAudioPlayer : IDisposable
 {
     private static readonly TimeSpan MinimumPreroll = TimeSpan.FromMilliseconds(500);
     private static readonly TimeSpan StreamStartPadding = TimeSpan.FromMilliseconds(450);
     private readonly BufferedWaveProvider _bufferedWaveProvider;
     private readonly WaveOutEvent _player;
-    private readonly object _syncRoot = new();
+    private readonly Lock _syncRoot = new();
     private readonly int _minimumPrerollBytes;
     private readonly byte[] _streamStartPaddingBytes;
     private string? _activeItemId;
     private bool _isPlaybackStarted;
 
-    public StreamingAudioPlayer(WaveFormat waveFormat)
+    public StreamingAudioPlayer()
     {
+        WaveFormat waveFormat = new(24_000, 16, 1);
         _bufferedWaveProvider = new BufferedWaveProvider(waveFormat)
         {
             BufferDuration = TimeSpan.FromSeconds(20),

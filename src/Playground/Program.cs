@@ -1,6 +1,5 @@
 //WARNING: This is a playground area for the creator of the Repo to test and tinker. Nothing in this project is as such educational and might not even execute properly
 #pragma warning disable OPENAI002
-using NAudio.Wave;
 using OpenAI;
 using OpenAI.Realtime;
 using Playground;
@@ -13,34 +12,24 @@ OpenAIClient openAIClient = new(secrets.OpenAiApiKey);
 
 RealtimeClient realtimeClient = openAIClient.GetRealtimeClient();
 
-const string realtimeModel = "gpt-realtime-mini";
-const string inputTranscriptionModel = "gpt-4o-mini-transcribe";
-const int sampleRate = 24_000;
+const string realtimeModel = "gpt-realtime-mini"; //Bit expensive: 10$ per 1M audio input | 20$ per 1M audio output (32$/64$ for non-mini https://developers.openai.com/api/docs/pricing)
+const string inputTranscriptionModel = "gpt-4o-mini-transcribe"; //optional
 
 CancellationTokenSource cancellationToken = new();
-//Include option to press CTRL + C to end program
-Console.CancelKeyPress += (_, args) =>
+Console.CancelKeyPress += (_, args) => //Include option to press CTRL + C to end program
 {
     args.Cancel = true;
     cancellationToken.Cancel();
 };
 
 using RealtimeSessionClient session = await realtimeClient.StartConversationSessionAsync(realtimeModel);
+await session.ConfigureConversationSessionAsync(CreateSessionOptions());
 
-WaveFormat pcmFormat = new(sampleRate, 16, 1);
-using StreamingAudioPlayer audioPlayer = new(pcmFormat);
-await using MicrophoneStreamer microphone = new(pcmFormat, cancellationToken.Token);
+using StreamingAudioPlayer audioPlayer = new();
+await using MicrophoneStreamer microphone = new(cancellationToken.Token);
 
 Task receiveTask = ReceiveUpdatesAsync(session, audioPlayer, cancellationToken.Token);
 Task microphoneUploadTask = UploadMicrophoneAudioAsync(session, microphone, cancellationToken.Token);
-
-await session.ConfigureConversationSessionAsync(BuildSessionOptions(), cancellationToken.Token);
-
-Console.WriteLine("Realtime conversation is live.");
-Console.WriteLine("Speak naturally and wait for the AI to answer back.");
-Console.WriteLine("Use headphones if you can to avoid speaker feedback.");
-Console.WriteLine("Press Ctrl+C to stop.");
-Console.WriteLine();
 
 try
 {
@@ -50,50 +39,43 @@ try
     }
     catch (Exception ex)
     {
-        throw new InvalidOperationException(
-            $"Unable to start microphone capture at {sampleRate / 1000.0:0} kHz mono PCM. Check that a recording device is available and not in exclusive use.",
-            ex);
+        throw new InvalidOperationException("Unable to start microphone capture.Check that a recording device is available and not in exclusive use.", ex);
     }
-
     await receiveTask;
 }
 catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
 {
+    //Ignore Cancel-exception
 }
 finally
 {
     cancellationToken.Cancel();
     microphone.Stop();
-    await microphone.DisposeAsync();
     audioPlayer.Clear();
-
     try
     {
         await microphoneUploadTask;
     }
     catch (OperationCanceledException)
     {
+        //Ignore Cancel-exception
     }
 }
 
-static RealtimeConversationSessionOptions BuildSessionOptions()
+static RealtimeConversationSessionOptions CreateSessionOptions()
 {
     return new RealtimeConversationSessionOptions
     {
-        Instructions =
-            """
-            You are a low-latency voice assistant in a console playground.
-            Keep responses brief, clear, and conversational.
-            Ask a short follow-up question when it helps keep the conversation moving.
-            If the user interrupts, stop your current thought and respond to the newest thing they said.
-            """,
-        MaxOutputTokenCount = new RealtimeMaxOutputTokenCount(350),
+        Instructions = """
+                       You are a voice assistant.
+                       Keep responses brief, clear, and conversational.
+                       If the user interrupts, stop your current thought and respond to the newest thing they said.
+                       """,
         AudioOptions = new RealtimeConversationSessionAudioOptions
         {
             InputAudioOptions = new RealtimeConversationSessionInputAudioOptions
             {
-                AudioFormat = CreatePcmFormat(),
-                AudioTranscriptionOptions = new RealtimeAudioTranscriptionOptions
+                AudioTranscriptionOptions = new RealtimeAudioTranscriptionOptions //Leave out if you do not want transcripts
                 {
                     Model = inputTranscriptionModel,
                 },
@@ -101,28 +83,24 @@ static RealtimeConversationSessionOptions BuildSessionOptions()
                 TurnDetection = new RealtimeServerVadTurnDetection
                 {
                     DetectionThreshold = 0.5f,
-                    PrefixPadding = TimeSpan.FromMilliseconds(300),
-                    SilenceDuration = TimeSpan.FromMilliseconds(550),
-                    IdleTimeout = TimeSpan.FromSeconds(6),
-                    CreateResponseEnabled = true,
-                    InterruptResponseEnabled = true,
+                    PrefixPadding = TimeSpan.FromMilliseconds(300), //How much prefix sound to add prior to voice detection
+                    SilenceDuration = TimeSpan.FromMilliseconds(550), //How long there need to be silence before AI begin to answer
+                    IdleTimeout = TimeSpan.FromSeconds(10), //How long AI wait before wanting to follow up (5-30 sec. is allowed)
+                    InterruptResponseEnabled = true, //If you can interrupt the AI while it is answering (does not happen instantly though)
                 },
             },
             OutputAudioOptions = new RealtimeConversationSessionOutputAudioOptions
             {
-                AudioFormat = CreatePcmFormat(),
                 Voice = RealtimeVoice.Marin,
                 Speed = 1.0f,
             },
         },
         OutputModalities =
         {
-            RealtimeOutputModality.Audio,
+            RealtimeOutputModality.Audio
         },
     };
 }
-
-static RealtimePcmAudioFormat CreatePcmFormat() => new();
 
 static async Task UploadMicrophoneAudioAsync(
     RealtimeSessionClient session,
@@ -145,7 +123,7 @@ static async Task ReceiveUpdatesAsync(
         switch (update)
         {
             case RealtimeServerUpdateSessionCreated:
-                Utils.Gray("Session Created");
+                Utils.Gray("Session Created. [Speak naturally and wait for the AI to answer back. Press Ctrl+C to stop.]");
                 break;
             case RealtimeServerUpdateSessionUpdated:
                 Utils.Gray("Session configured for speech-to-speech.");
