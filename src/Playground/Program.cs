@@ -52,14 +52,6 @@ finally
     cancellationToken.Cancel();
     microphone.Stop();
     audioPlayer.Clear();
-    try
-    {
-        await microphoneUploadTask;
-    }
-    catch (OperationCanceledException)
-    {
-        //Ignore Cancel-exception
-    }
 }
 
 static RealtimeConversationSessionOptions CreateSessionOptions()
