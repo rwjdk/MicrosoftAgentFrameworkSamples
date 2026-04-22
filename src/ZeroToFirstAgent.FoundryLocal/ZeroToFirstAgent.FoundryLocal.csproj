@@ -30,5 +30,11 @@
 	  <ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.ML.OnnxRuntime.Gpu.Linux">
+	    <IncludeAssets>none</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+
 </Project>
 
