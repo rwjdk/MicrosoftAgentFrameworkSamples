@@ -62,6 +62,11 @@ await session.ConfigureConversationSessionAsync(new RealtimeConversationSessionO
     {
         RealtimeOutputModality.Audio
     },
+    ToolChoice = RealtimeDefaultToolChoice.Auto,
+    Tools =
+    {
+        GetSecretWordTool()
+    },
 });
 
 using StreamingAudioPlayer audioPlayer = new();
@@ -96,7 +101,7 @@ finally
     {
         await microphoneUploadTask; //Complete the microphone task for good measure
     }
-    catch (OperationCanceledException e)
+    catch (OperationCanceledException)
     {
         //Ignore Cancel-exception
     }
@@ -136,6 +141,9 @@ static async Task ReceiveUpdatesAsync(RealtimeSessionClient session, StreamingAu
             case RealtimeServerUpdateResponseOutputAudioDelta delta:
                 audioPlayer.Enqueue(delta.ItemId, delta.Delta.ToArray());
                 break;
+            case RealtimeServerUpdateResponseFunctionCallArgumentsDone functionCall:
+                await HandleFunctionCallAsync(session, functionCall, cancellationToken);
+                break;
             case RealtimeServerUpdateOutputAudioBufferCleared:
                 audioPlayer.Clear();
                 Console.WriteLine();
@@ -154,4 +162,39 @@ static async Task ReceiveUpdatesAsync(RealtimeSessionClient session, StreamingAu
                 break;
         }
     }
+}
+
+RealtimeFunctionTool GetSecretWordTool()
+{
+    return new RealtimeFunctionTool("GetSecretWord")
+    {
+        FunctionDescription = "Returns the secret word for the current session.",
+        FunctionParameters = BinaryData.FromString("""
+                                             {
+                                               "type": "object",
+                                               "properties": {},
+                                               "additionalProperties": false
+                                             }
+                                             """),
+    };
+}
+
+static async Task HandleFunctionCallAsync(
+    RealtimeSessionClient session,
+    RealtimeServerUpdateResponseFunctionCallArgumentsDone functionCall,
+    CancellationToken cancellationToken)
+{
+    string functionOutput = functionCall.FunctionName switch
+    {
+        "GetSecretWord" => "BananaCake",
+        _ => $"Tool '{functionCall.FunctionName}' is not implemented."
+    };
+
+    Utils.Gray($"[Tool]: {functionCall.FunctionName}()");
+
+    RealtimeFunctionCallOutputItem functionOutputItem =
+        RealtimeItem.CreateFunctionCallOutputItem(functionCall.CallId, functionOutput);
+
+    await session.AddItemAsync(functionOutputItem, cancellationToken);
+    await session.StartResponseAsync(cancellationToken);
 }
