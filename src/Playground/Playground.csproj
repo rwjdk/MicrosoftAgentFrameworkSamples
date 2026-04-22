@@ -25,6 +25,7 @@
 		<PackageReference Include="OpenAI" />
 		<PackageReference Include="Azure.AI.OpenAI" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+		<PackageReference Include="NAudio" />
 		<PackageReference Include="OpenTelemetry" />
 		<PackageReference Include="OpenTelemetry.Exporter.Console" />
 	</ItemGroup>
