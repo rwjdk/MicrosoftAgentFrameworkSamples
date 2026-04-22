@@ -111,13 +111,7 @@ sealed class ConversationConsole
         {
             ResetAssistantLineUnsafe();
 
-            if (response.Status is not null
-                && response.Status.ToString() is string status
-                && !string.Equals(status, RealtimeResponseStatus.Completed.ToString(), StringComparison.OrdinalIgnoreCase))
-            {
-                string message = response.StatusDetails?.Error?.Message ?? response.StatusDetails?.Reason?.ToString() ?? "Unknown response issue.";
-                Console.WriteLine($"[response:{status}] {message}");
-            }
+
         }
     }
 

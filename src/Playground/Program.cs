@@ -25,8 +25,6 @@ Console.CancelKeyPress += (_, args) =>
     cancellationToken.Cancel();
 };
 
-Console.WriteLine("Starting voice session...");
-
 using RealtimeSessionClient session = await realtimeClient.StartConversationSessionAsync(realtimeModel);
 
 WaveFormat pcmFormat = new(sampleRate, 16, 1);
@@ -149,49 +147,44 @@ static async Task ReceiveUpdatesAsync(
         switch (update)
         {
             case RealtimeServerUpdateSessionCreated:
-                conversationConsole.PrintStatus("Session connected.");
+                Utils.Gray("Session Created");
                 break;
-
             case RealtimeServerUpdateSessionUpdated:
-                conversationConsole.PrintStatus("Session configured for speech-to-speech.");
+                Utils.Gray("Session configured for speech-to-speech.");
                 break;
-
             case RealtimeServerUpdateInputAudioBufferSpeechStarted:
                 audioPlayer.Clear();
-                conversationConsole.NotifyListening();
+                Utils.Gray("[listening...]");
                 break;
-
             case RealtimeServerUpdateInputAudioBufferSpeechStopped:
                 conversationConsole.NotifyThinking();
                 break;
-
             case RealtimeServerUpdateConversationItemInputAudioTranscriptionCompleted completed:
                 conversationConsole.PrintUserTranscript(completed.Transcript);
                 break;
-
             case RealtimeServerUpdateResponseOutputAudioTranscriptDelta delta:
                 conversationConsole.AppendAssistantTranscript(delta.ItemId, delta.Delta);
                 break;
-
             case RealtimeServerUpdateResponseOutputAudioTranscriptDone done:
                 conversationConsole.CompleteAssistantTranscript(done.ItemId, done.Transcript);
                 break;
-
             case RealtimeServerUpdateResponseOutputAudioDelta delta:
                 audioPlayer.Enqueue(delta.Delta.ToArray());
                 break;
-
             case RealtimeServerUpdateOutputAudioBufferCleared:
                 audioPlayer.Clear();
                 conversationConsole.ResetAssistantLine();
                 break;
-
             case RealtimeServerUpdateResponseDone responseDone:
-                conversationConsole.FinishResponse(responseDone.Response);
+                RealtimeResponse response = responseDone.Response;
+                if (response.Status != RealtimeResponseStatus.Completed)
+                {
+                    string message = response.StatusDetails?.Error?.Message ?? response.StatusDetails?.Reason?.ToString() ?? "Unknown response issue.";
+                    Utils.Red(message);
+                }
                 break;
-
             case RealtimeServerUpdateError error:
-                conversationConsole.PrintError(error.Error);
+                Utils.Red($"[error:{error.Error.Code}] {error.Error.Message}");
                 break;
         }
     }
