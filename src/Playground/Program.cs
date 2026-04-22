@@ -1,10 +1,10 @@
 //WARNING: This is a playground area for the creator of the Repo to test and tinker. Nothing in this project is as such educational and might not even execute properly
 #pragma warning disable OPENAI002
 using NAudio.Wave;
-using OpenAI.Realtime;
-using Shared;
 using OpenAI;
+using OpenAI.Realtime;
 using Playground;
+using Shared;
 
 Utils.Init("Playground");
 Secrets secrets = SecretsManager.GetSecrets();
@@ -28,11 +28,10 @@ Console.CancelKeyPress += (_, args) =>
 using RealtimeSessionClient session = await realtimeClient.StartConversationSessionAsync(realtimeModel);
 
 WaveFormat pcmFormat = new(sampleRate, 16, 1);
-ConversationConsole conversationConsole = new();
 using StreamingAudioPlayer audioPlayer = new(pcmFormat);
 await using MicrophoneStreamer microphone = new(pcmFormat, cancellationToken.Token);
 
-Task receiveTask = ReceiveUpdatesAsync(session, audioPlayer, conversationConsole, cancellationToken.Token);
+Task receiveTask = ReceiveUpdatesAsync(session, audioPlayer, cancellationToken.Token);
 Task microphoneUploadTask = UploadMicrophoneAudioAsync(session, microphone, cancellationToken.Token);
 
 await session.ConfigureConversationSessionAsync(BuildSessionOptions(), cancellationToken.Token);
@@ -139,7 +138,6 @@ static async Task UploadMicrophoneAudioAsync(
 static async Task ReceiveUpdatesAsync(
     RealtimeSessionClient session, 
     StreamingAudioPlayer audioPlayer, 
-    ConversationConsole conversationConsole,
     CancellationToken cancellationToken)
 {
     await foreach (RealtimeServerUpdate update in session.ReceiveUpdatesAsync(cancellationToken))
@@ -153,34 +151,31 @@ static async Task ReceiveUpdatesAsync(
                 Utils.Gray("Session configured for speech-to-speech.");
                 break;
             case RealtimeServerUpdateInputAudioBufferSpeechStarted:
-                audioPlayer.Clear();
-                Utils.Gray("[listening...]");
+                Utils.Gray("[Listening...]");
                 break;
             case RealtimeServerUpdateInputAudioBufferSpeechStopped:
-                conversationConsole.NotifyThinking();
+                Utils.Gray("[Thinking...]");
                 break;
             case RealtimeServerUpdateConversationItemInputAudioTranscriptionCompleted completed:
-                conversationConsole.PrintUserTranscript(completed.Transcript);
-                break;
-            case RealtimeServerUpdateResponseOutputAudioTranscriptDelta delta:
-                conversationConsole.AppendAssistantTranscript(delta.ItemId, delta.Delta);
+                Utils.Gray($"[You]: {completed.Transcript}");
                 break;
             case RealtimeServerUpdateResponseOutputAudioTranscriptDone done:
-                conversationConsole.CompleteAssistantTranscript(done.ItemId, done.Transcript);
+                Utils.Gray($"[AI]: {done.Transcript}");
                 break;
             case RealtimeServerUpdateResponseOutputAudioDelta delta:
-                audioPlayer.Enqueue(delta.Delta.ToArray());
+                audioPlayer.Enqueue(delta.ItemId, delta.Delta.ToArray());
                 break;
             case RealtimeServerUpdateOutputAudioBufferCleared:
                 audioPlayer.Clear();
-                conversationConsole.ResetAssistantLine();
+                Console.WriteLine();
                 break;
             case RealtimeServerUpdateResponseDone responseDone:
+                audioPlayer.FlushPendingAudio();
                 RealtimeResponse response = responseDone.Response;
                 if (response.Status != RealtimeResponseStatus.Completed)
                 {
                     string message = response.StatusDetails?.Error?.Message ?? response.StatusDetails?.Reason?.ToString() ?? "Unknown response issue.";
-                    Utils.Red(message);
+                    Utils.Red($"[Status: {message}]");
                 }
                 break;
             case RealtimeServerUpdateError error:
