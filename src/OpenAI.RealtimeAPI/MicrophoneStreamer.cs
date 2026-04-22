@@ -1,7 +1,7 @@
 using System.Threading.Channels;
 using NAudio.Wave;
 
-namespace Playground;
+namespace OpenAI.RealtimeAPI;
 
 sealed class MicrophoneStreamer : IAsyncDisposable
 {

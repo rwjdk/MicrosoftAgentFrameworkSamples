@@ -1,6 +1,6 @@
 using NAudio.Wave;
 
-namespace Playground;
+namespace OpenAI.RealtimeAPI;
 
 internal class StreamingAudioPlayer : IDisposable
 {

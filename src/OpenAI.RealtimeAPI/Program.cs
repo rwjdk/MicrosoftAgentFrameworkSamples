@@ -1,9 +1,9 @@
 ﻿#pragma warning disable OPENAI002
 using OpenAI;
 using OpenAI.Realtime;
-using Playground;
 using Shared;
 using System.ClientModel;
+using OpenAI.RealtimeAPI;
 
 Utils.Init("Speech-to-Speech");
 Secrets secrets = SecretsManager.GetSecrets();
@@ -11,7 +11,7 @@ Secrets secrets = SecretsManager.GetSecrets();
 //OpenAIClient client = new(secrets.OpenAiApiKey);
 OpenAIClient client = new(new ApiKeyCredential(secrets.AzureOpenAiKey), new OpenAIClientOptions
 {
-    Endpoint = new Uri("https://sensum365ai.openai.azure.com/openai/v1") //Note that AZURE OpenAI only work via the OpenAI Client + Endpoint for Realtime
+    Endpoint = new Uri(secrets.AzureOpenAiEndpoint+"/openai/v1") //Note that AZURE OpenAI only work via the OpenAI Client + Endpoint for Realtime
 });
 
 RealtimeClient realtimeClient = client.GetRealtimeClient();
@@ -117,7 +117,9 @@ static async Task ReceiveUpdatesAsync(RealtimeSessionClient session, StreamingAu
         switch (update)
         {
             case RealtimeServerUpdateSessionCreated:
-                Utils.Gray("Session Created. [Speak naturally and wait for the AI to answer back. Press Ctrl+C to stop.]");
+                Utils.Gray("Session Created:");
+                Utils.Gray("- Speak naturally and wait for the AI to answer back.");
+                Utils.Gray("- Press Ctrl+C to stop.");
                 break;
             case RealtimeServerUpdateInputAudioBufferSpeechStarted:
                 Utils.Gray("[Listening...]");
