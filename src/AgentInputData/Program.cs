@@ -38,16 +38,16 @@ switch (scenario)
         response = await azureOpenAiAgent.RunAsync(new ChatMessage(ChatRole.User,
         [
             new TextContent("What is in this image?"),
-            new UriContent("https://upload.wikimedia.org/wikipedia/commons/7/70/A_game_of_Settlers_of_Catan.jpg", "image/jpeg")
+            new UriContent("https://cdn.pixabay.com/photo/2019/09/21/14/57/catan-4494043_1280.jpg", "image/jpeg")
         ]));
         ShowResponse(response);
         //---------------------------------------------------------------------------------
         //Local File
-        string path = Path.Combine("SampleData", "image.jpg");
+        string path = Path.Combine("SampleData", "Image.jpg");
 
         //Image via Base64
-        string base64Pdf = Convert.ToBase64String(File.ReadAllBytes(path));
-        string dataUri = $"data:image/jpeg;base64,{base64Pdf}";
+        string base64Image = Convert.ToBase64String(File.ReadAllBytes(path));
+        string dataUri = $"data:image/jpeg;base64,{base64Image}";
         response = await azureOpenAiAgent.RunAsync(new ChatMessage(ChatRole.User,
         [
             new TextContent("What is in this image?"),
