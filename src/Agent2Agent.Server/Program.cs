@@ -11,6 +11,7 @@ using Shared;
 using System.ClientModel;
 using System.Reflection;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 using AgentSkill = A2A.AgentSkill;
 
@@ -36,6 +37,8 @@ AIAgent agent = client
 
 //A2A Part begin
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.AddA2AServer(agent);
+
 WebApplication app = builder.Build();
 
 AgentCard agentCard = new() //Aka the Agents Business Card
@@ -61,14 +64,19 @@ AgentCard agentCard = new() //Aka the Agents Business Card
             Examples = ["What files are the in Folder 'Demo1'"],
         }
     ],
-    Url = "http://localhost:5000"
+    SupportedInterfaces =
+    [
+        new AgentInterface
+        {
+            Url = "http://localhost:5000",
+            ProtocolBinding = ProtocolBindingNames.JsonRpc,
+            ProtocolVersion = "1.0"
+        }
+    ]
 };
 
-app.MapA2A(
-    agent,
-    path: "/",
-    agentCard: agentCard,
-    taskManager => app.MapWellKnownAgentCard(taskManager, "/"));
+app.MapA2AJsonRpc(agent, path: "/");
+app.MapWellKnownAgentCard(agentCard);
 
 await app.RunAsync();
 return;

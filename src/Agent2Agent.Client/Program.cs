@@ -14,7 +14,7 @@ await Task.Delay(1000);
 Secrets secrets = SecretsManager.GetSecrets();
 
 Utils.Gray("- Connecting to Remote Agent");
-A2ACardResolver agentCardResolver = new A2ACardResolver(new Uri("http://localhost:5000/"));
+A2ACardResolver agentCardResolver = new A2ACardResolver(new Uri("http://localhost:5000"));
 AIAgent remoteAgent = await agentCardResolver.GetAIAgentAsync();
 
 Utils.Separator();
