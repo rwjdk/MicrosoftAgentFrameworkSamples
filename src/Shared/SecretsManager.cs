@@ -61,9 +61,39 @@ public class SecretsManager
             configurationRoot["OpenWeatherApiKey"] ?? string.Empty);
     }
 
-    public static (Uri endpoint, ApiKeyCredential apiKey) GetAzureOpenAICredentials()
+    public static (Uri endpoint, ApiKeyCredential apiKey) GetAzureOpenAICredentials(bool newUriFormat)
+    {
+        //New format (https://<name>.openai.azure.com/openai/v1)
+        //Old format (https://<name>.openai.azure.com/)
+        string suffix = "openai/v1";
+        Secrets secrets = GetSecrets();
+        string secretEndpoint = secrets.AzureOpenAiEndpoint;
+        if (!newUriFormat)
+        {
+            if (secretEndpoint.EndsWith(suffix))
+            {
+                //Azure OpenAI Client can't handle getting the new format so lets strip that
+                secretEndpoint = secretEndpoint[..^suffix.Length];
+            }
+            return (new Uri(secretEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+        }
+        
+        if (secretEndpoint.EndsWith(suffix))
+        {
+            return (new Uri(secretEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+        }
+
+        if (!secretEndpoint.EndsWith('/'))
+        {
+            secretEndpoint += "/";
+        }
+        return (new Uri(secretEndpoint + suffix), new ApiKeyCredential(secrets.AzureOpenAiKey));
+
+    }
+
+    public static string GetOpenAICredentials()
     {
         Secrets secrets = GetSecrets();
-        return (new Uri(secrets.AzureOpenAiEndpoint), new ApiKeyCredential(secrets.AzureOpenAiKey));
+        return secrets.OpenAiApiKey;
     }
 }

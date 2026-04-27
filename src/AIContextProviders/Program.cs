@@ -9,7 +9,7 @@ using System.Text.Json;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Utils.Init("AIContextProviders");
-(Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials();
+(Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials(false);
 
 AzureOpenAIClient client = new(endpoint, apiKey, new AzureOpenAIClientOptions
 {

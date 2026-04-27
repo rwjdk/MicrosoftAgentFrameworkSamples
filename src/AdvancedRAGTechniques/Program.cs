@@ -10,7 +10,7 @@ using System.Text.Json;
 using UsingRAGInAgentFramework.Models;
 
 Utils.Init("Advanced RAG Techniques");
-(Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials();
+(Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials(false);
 AzureOpenAIClient client = new(endpoint, apiKey);
 
 //Prep + Embedding

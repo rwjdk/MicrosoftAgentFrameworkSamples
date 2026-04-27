@@ -7,7 +7,7 @@ using Shared;
 
 #pragma warning disable MAAI001
 Utils.Init("AI Context Provider (AgentSkills)");
-AzureOpenAIClient client = Utils.GetAzureOpenAIClient(showRawCall: true);
+AzureOpenAIClient client = ClientHelper.GetAzureOpenAIClient(showRawCall: true);
 
 string skillPath = "TestData\\AgentSkills";
 

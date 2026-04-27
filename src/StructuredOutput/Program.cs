@@ -6,8 +6,7 @@ using StructuredOutput.Models;
 using System.ClientModel;
 
 Utils.Init("Structured Output");
-(Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials();
-AzureOpenAIClient client = new(endpoint, apiKey);
+AzureOpenAIClient client = ClientHelper.GetAzureOpenAIClient();
 
 const string question = "What are the top 10 Movies according to IMDB?";
 const string instructions = "You are an expert in IMDB Lists";

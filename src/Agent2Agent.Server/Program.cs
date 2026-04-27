@@ -17,8 +17,7 @@ using AgentSkill = A2A.AgentSkill;
 
 //Start with Business as Usual
 Utils.Init("A2A Server");
-(Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials();
-AzureOpenAIClient client = new(endpoint, apiKey);
+AzureOpenAIClient client = ClientHelper.GetAzureOpenAIClient();
 
 FileSystemTools target = new();
 MethodInfo[] methods = typeof(FileSystemTools).GetMethods(BindingFlags.Public | BindingFlags.Instance);

@@ -18,9 +18,7 @@ public class Before
     public static async Task RunAsync()
     {
         //Weather-Task: With GPT-5-Mini in low Reasoning, Call Tool with middleware and return as structured Output
-
-        (Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials();
-        AzureOpenAIClient client = new(endpoint, apiKey);
+        AzureOpenAIClient client = ClientHelper.GetAzureOpenAIClient();
 
         AIAgent agent = client
             .GetChatClient("gpt-5-mini")

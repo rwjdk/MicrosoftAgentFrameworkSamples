@@ -20,9 +20,8 @@ AIAgent remoteAgent = await agentCardResolver.GetAIAgentAsync();
 Utils.Separator();
 
 Utils.Gray("Ready for questions");
-(Uri endpoint, ApiKeyCredential apiKey) = SecretsManager.GetAzureOpenAICredentials();
 
-AzureOpenAIClient client = new(endpoint, apiKey);
+AzureOpenAIClient client = ClientHelper.GetAzureOpenAIClient();
 
 ChatClientAgent agent = client
     .GetChatClient("gpt-4.1")
