@@ -13,6 +13,7 @@
 		<PackageReference Include="Google_GenerativeAI.Microsoft" />
 		<PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" />
 		<PackageReference Include="Microsoft.Agents.AI" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
 		<PackageReference Include="Microsoft.Agents.AI.A2A" />
 		<PackageReference Include="Microsoft.Agents.AI.AGUI" />
 		<PackageReference Include="Microsoft.Agents.AI.AzureAI.Persistent" />

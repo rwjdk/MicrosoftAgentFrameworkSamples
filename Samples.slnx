@@ -38,6 +38,7 @@
     <Project Path="src/ChatMessageStoreFactory.Custom/ChatMessageStoreFactory.Custom.csproj" Id="82c31fc6-4203-4d3f-97d6-c49e3e9a6d53" />
   </Folder>
   <Folder Name="/Conversations (AgentSession)/">
+    <Project Path="src/ChatHistoryReducer.Custom/ChatHistoryReducer.Custom.csproj" Id="3e587209-939e-4a10-b3d1-11890a5d90a2" />
     <Project Path="src/ChatHistoryReducer/ChatHistoryReducer.csproj" Id="96cb4db1-2675-4f7d-a5d8-960f07b7e0fd" />
     <Project Path="src/ConversationThreads/ConversationThreads.csproj" Id="0cd8ac44-46cf-4a41-946e-736764a73a06" />
   </Folder>

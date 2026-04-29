@@ -1,10 +1,10 @@
-﻿using Azure.AI.OpenAI;
+﻿//Video related to this sample: https://youtu.be/a-7wyjpf5qQ
+
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Shared;
 using System.ClientModel;
-using System.Text.Json;
 using Microsoft.Extensions.AI;
-using OpenAI;
 using OpenAI.Chat;
 using Shared.Extensions;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
