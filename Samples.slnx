@@ -148,7 +148,7 @@
   </Folder>
   <Folder Name="/Tool Calling &amp; MCP/MCP Auth/">
     <Project Path="src/McpAuthApiKey/McpAuthApiKey.csproj" Id="df5f2528-37c9-4c38-a093-6b28973cf707" />
-    <Project Path="src/McpAuthEntraOAuth/McpAuthEntraOAuth.csproj" Id="2360c245-0546-44a8-a123-596066de089c" />
+    <Project Path="src/McpServerWithOAuth/McpServerWithOAuth.csproj" />
   </Folder>
   <Folder Name="/Workflows/">
     <Project Path="src/Workflow.AiAssisted.PizzaSample/Workflow.AiAssisted.PizzaSample.csproj" Id="ebb01b83-7e68-44be-a89a-4574848c00fa" />
