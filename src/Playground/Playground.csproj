@@ -12,7 +12,9 @@
 		<PackageReference Include="Azure.Identity" />
 		<PackageReference Include="Google_GenerativeAI.Microsoft" />
 		<PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" />
+		<PackageReference Include="Hyperlight.HyperlightSandbox.Guest.Python" />
 		<PackageReference Include="Microsoft.Agents.AI" />
+		<PackageReference Include="Microsoft.Agents.AI.Hyperlight" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
 		<PackageReference Include="Microsoft.Agents.AI.A2A" />
 		<PackageReference Include="Microsoft.Agents.AI.AGUI" />
