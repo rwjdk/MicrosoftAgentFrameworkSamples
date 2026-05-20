@@ -39,6 +39,7 @@ catch (ClientResultException e)
     }
 }
 
+AIFunction localTool = AIFunctionFactory.Create(GetWeather);
 //Step 1: Create/Update Agent if it does not exist
 try
 {
@@ -60,7 +61,7 @@ catch (ClientResultException e)
     }
 }
 
-FoundryAgent agentByName = client.AsAIAgent(myAgentName);
+FoundryAgent agentByName = client.AsAIAgent(myAgentName, tools: [localTool]);
 
 AgentResponse response = await agentByName.RunAsync("Hi there");
 Console.WriteLine(response);
@@ -80,12 +81,12 @@ Console.WriteLine(response);
 //Let's make a V2 with new instructions
 await CreateAgent("Speak like a pirate");
 
-FoundryAgent agentV2 = client.AsAIAgent(myAgentName);
+FoundryAgent agentV2 = client.AsAIAgent(myAgentName, tools: [localTool]);
 response = await agentV2.RunAsync("Hi there");
 Console.WriteLine(response);
 
 AgentVersion agentV1 = (await client.Agents.GetAgentVersionAsync(myAgentName, "1")).Value;
-FoundryAgent agentByVersion = client.AsAIAgent(agentV1);
+FoundryAgent agentByVersion = client.AsAIAgent(agentV1, tools: [localTool]);
 
 response = await agentByVersion.RunAsync("Hi Agent 1");
 Console.WriteLine(response);
@@ -103,7 +104,7 @@ async Task CreateAgent(string instructions)
                 {
                     new CodeInterpreterTool(new CodeInterpreterToolContainer(new AutomaticCodeInterpreterToolContainerConfiguration())),
                     new WebSearchTool(),
-
+                    localTool.AsOpenAIResponseTool()
                     //MCP Tools does work, but if add it the Portal GUI claim that it the tool is wrongly configured and you can't save more versions :-(
                     //new McpTool("TrelloDotNetToolAssistant", new Uri("https://trellodotnetassistantbackend.azurewebsites.net/runtime/webhooks/mcp?code=Tools"))
                     //{
@@ -122,9 +123,9 @@ async Task CreateAgent(string instructions)
     );
 }
 
-async Task GetAndLaunchCodeInterpreterGeneratedFile(AgentResponse AgentResponse, AIProjectClient aiProjectClient)
+async Task GetAndLaunchCodeInterpreterGeneratedFile(AgentResponse agentResponse, AIProjectClient aiProjectClient)
 {
-    foreach (ChatMessage message in AgentResponse.Messages)
+    foreach (ChatMessage message in agentResponse.Messages)
     {
         foreach (AIContent content in message.Contents)
         {
@@ -148,4 +149,9 @@ async Task GetAndLaunchCodeInterpreterGeneratedFile(AgentResponse AgentResponse,
             }
         }
     }
+}
+
+static string GetWeather(string city)
+{
+    return "It is Sunny and 19 Degrees";
 }
