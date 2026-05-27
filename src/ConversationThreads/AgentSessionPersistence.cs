@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace ConversationThreads;
 
-public static class AgentThreadPersistence
+public static class AgentSessionPersistence
 {
     private static string ConversationPath => Path.Combine(Path.GetTempPath(), "conversation.json");
 

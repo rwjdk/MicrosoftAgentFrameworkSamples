@@ -33,7 +33,7 @@ const bool optionToResume = true; //Set this to true to test resume of previous 
 
 if (optionToResume)
 {
-    session = await AgentThreadPersistence.ResumeChatIfRequestedAsync(agent);
+    session = await AgentSessionPersistence.ResumeChatIfRequestedAsync(agent);
 }
 else
 {
@@ -57,6 +57,6 @@ while (true)
 
     if (optionToResume)
     {
-        await AgentThreadPersistence.StoreThreadAsync(agent, session);
+        await AgentSessionPersistence.StoreThreadAsync(agent, session);
     }
 }

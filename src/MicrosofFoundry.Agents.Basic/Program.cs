@@ -105,19 +105,17 @@ async Task CreateAgent(string instructions)
                     new CodeInterpreterTool(new CodeInterpreterToolContainer(new AutomaticCodeInterpreterToolContainerConfiguration())),
                     new WebSearchTool(),
                     localTool.AsOpenAIResponseTool()
-                    //MCP Tools does work, but if add it the Portal GUI claim that it the tool is wrongly configured and you can't save more versions :-(
-                    //new McpTool("TrelloDotNetToolAssistant", new Uri("https://trellodotnetassistantbackend.azurewebsites.net/runtime/webhooks/mcp?code=Tools"))
-                    //{
-                    //    ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(new GlobalMcpToolCallApprovalPolicy("never"))
-                    //},
+                    new McpTool("TrelloDotNetToolAssistant", new Uri("https://trellodotnetassistantbackend.azurewebsites.net/runtime/webhooks/mcp?code=Tools"))
+                    {
+                        ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(new GlobalMcpToolCallApprovalPolicy("never"))
+                    },
                 },
                 Instructions = instructions,
 
-                //NB: Reasoning Effort is buggy at the moment in the portal :-(
-                //ReasoningOptions = new ResponseReasoningOptions
-                //{
-                //    ReasoningEffortLevel = ResponseReasoningEffortLevel.Low
-                //}
+                ReasoningOptions = new ResponseReasoningOptions
+                {
+                    ReasoningEffortLevel = ResponseReasoningEffortLevel.Low
+                }
             }
         )
     );
