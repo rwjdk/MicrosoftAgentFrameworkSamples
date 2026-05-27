@@ -104,7 +104,7 @@ async Task CreateAgent(string instructions)
                 {
                     new CodeInterpreterTool(new CodeInterpreterToolContainer(new AutomaticCodeInterpreterToolContainerConfiguration())),
                     new WebSearchTool(),
-                    localTool.AsOpenAIResponseTool()
+                    localTool.AsOpenAIResponseTool(),
                     new McpTool("TrelloDotNetToolAssistant", new Uri("https://trellodotnetassistantbackend.azurewebsites.net/runtime/webhooks/mcp?code=Tools"))
                     {
                         ToolCallApprovalPolicy = new McpToolCallApprovalPolicy(new GlobalMcpToolCallApprovalPolicy("never"))
