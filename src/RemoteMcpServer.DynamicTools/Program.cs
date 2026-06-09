@@ -56,11 +56,13 @@ builder.Services.AddMcpServer()
         });
     });
 
+
+
+
 WebApplication app = builder.Build();
 
 app.MapMcp("/mcp").AddEndpointFilter(async (context, next) =>
 {
-
     string[] validKeys = [normalApiKey, adminApiKey];
 
     string receivedApiKey = context.HttpContext.Request.Headers["x-api-key"].ToString();
