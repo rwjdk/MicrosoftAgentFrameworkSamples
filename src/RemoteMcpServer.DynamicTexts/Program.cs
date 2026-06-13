@@ -21,8 +21,7 @@ builder.Services.AddMcpServer()
             Name = "Extra_Tool",
             Description = "The Extra Tool's description"
         })
-    ])
-    .WithRequestFilters(filterBuilder =>
+    ]).WithRequestFilters(filterBuilder =>
     {
         filterBuilder.AddListToolsFilter(next => async (request, token) =>
         {
@@ -57,6 +56,7 @@ builder.Services.AddMcpServer()
             return result;
         });
     });
+    
 
 WebApplication app = builder.Build();
 
