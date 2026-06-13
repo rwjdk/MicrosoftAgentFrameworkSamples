@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Tool1",
+        "description": "Modified Tool1 Description",
+        "parameters": [
+            {
+                "id": "param1",
+                "description": "New description of param1"
+            }
+        ]
+    },
+    {
+        "name": "Tool2",
+        "description": "Modified Tool2 Description"
+    }
+]

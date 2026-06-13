@@ -133,14 +133,14 @@
   <Folder Name="/The Trello Experiment/">
     <Project Path="src/The Trello Experiment/The Trello Experiment.csproj" Id="d4d8961f-a27b-4a37-bcff-bf5675d36c4d" />
   </Folder>
-  <Folder Name="/Thinking &amp; Reasoning Settings/">
-    <Project Path="src/ReasoningEffort.Anthropic/ReasoningEffort.Anthropic.csproj" Id="310efaa3-9397-49cc-9a78-a05a917bd0c2" />
-    <Project Path="src/ReasoningEffort.Google/ReasoningEffort.Google.csproj" Id="31032388-d86a-47a2-8d9d-bb7d5aaf5d0a" />
-    <Project Path="src/ReasoningEffort/ReasoningEffort.OpenAI.csproj" Id="caba07b0-4551-4b07-b2b6-d895836bda18" />
-  </Folder>
   <Folder Name="/Token Usage/">
     <Project Path="src/TokenUsage/TokenUsage.csproj" Id="e3accc36-005a-4900-be4e-0d1d35142a2a" />
     <Project Path="src/UseToonToSaveTokens/UseToonToSaveTokens.csproj" Id="a84ca59e-b13d-4c0f-aaed-ff183d09d198" />
+  </Folder>
+  <Folder Name="/Token Usage/Thinking &amp; Reasoning Settings/">
+    <Project Path="src/ReasoningEffort.Anthropic/ReasoningEffort.Anthropic.csproj" Id="310efaa3-9397-49cc-9a78-a05a917bd0c2" />
+    <Project Path="src/ReasoningEffort.Google/ReasoningEffort.Google.csproj" Id="31032388-d86a-47a2-8d9d-bb7d5aaf5d0a" />
+    <Project Path="src/ReasoningEffort/ReasoningEffort.OpenAI.csproj" Id="caba07b0-4551-4b07-b2b6-d895836bda18" />
   </Folder>
   <Folder Name="/Tool Calling &amp; MCP/">
     <Project Path="src/ToolCalling.Advanced/ToolCalling.Advanced.csproj" Id="c8428d24-c838-4a61-ab71-ecffcde4b8d9" />
@@ -150,6 +150,7 @@
   </Folder>
   <Folder Name="/Tool Calling &amp; MCP/MCP Servers/">
     <Project Path="src/ExposeYourAgentsAsMcp/ExposeYourAgentsAsRemoteMcp.csproj" Id="9129a0a9-8819-411a-8591-6c1cdeb3d2d4" />
+    <Project Path="src/RemoteMcpServer.DynamicTexts/RemoteMcpServer.DynamicTexts.csproj" Id="9e188f13-3c43-4f2b-86d4-64a9849efde4" />
     <Project Path="src/RemoteMcpServer.DynamicTools/RemoteMcpServer.DynamicTools.csproj" />
   </Folder>
   <Folder Name="/Tool Calling &amp; MCP/MCP Servers/Auth/">
