@@ -1,4 +1,10 @@
-﻿/* Steps:
+﻿
+
+//NOTE: THIS SAMPLE DO NOT WORK AFTER 31st OF JULY AS THE GITHUB MODELS SERVICE HAS BEEN RETIRED!!!
+
+
+
+/* Steps:
  * 1: Get a GitHubPAT Token with GitHub Models access (https://github.com/marketplace?type=models > Choose a Model and follow instructions)
  * 2: Add Nuget Packages (Azure.AI.Inference + Microsoft.Extensions.AI.AzureAIInference + Microsoft.Agents.AI)
  * 3: Create an ChatCompletionsClient
