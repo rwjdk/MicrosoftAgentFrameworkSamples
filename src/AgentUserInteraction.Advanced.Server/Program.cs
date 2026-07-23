@@ -2,7 +2,6 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.Hosting.AGUI.AspNetCore;
 using Microsoft.Extensions.AI;
-using OpenAI;
 using Shared;
 using System.ClientModel;
 using AgentUserInteraction.Advanced.Server.AgUiSpecializedAgents;
@@ -36,7 +35,7 @@ ChatClientAgent movieStructuredOutputAgent = client
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddAGUI();
+builder.Services.AddAGUIServer();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Cors",
@@ -51,12 +50,10 @@ builder.Services.AddCors(options =>
 
 WebApplication app = builder.Build();
 
-app.UseCors("Cors");
-
-app.MapAGUI("/clientToolAgent", clientToolAgent);
-app.MapAGUI("/weatherAgent", weatherAgent);
-app.MapAGUI("/weatherAgentWithStructuredContent", new AgUiStructuredToolsOutputAgent(weatherAgentStructured, "get_weather"));
-app.MapAGUI("/movieAgent", new AgUiStructuredOutputAgent<MovieResult>(movieStructuredOutputAgent));
+app.MapAGUIServer("/clientToolAgent", clientToolAgent);
+app.MapAGUIServer("/weatherAgent", weatherAgent);
+app.MapAGUIServer("/weatherAgentWithStructuredContent", new AgUiStructuredToolsOutputAgent(weatherAgentStructured, "get_weather"));
+app.MapAGUIServer("/movieAgent", new AgUiStructuredOutputAgent<MovieResult>(movieStructuredOutputAgent));
 
 app.UseHttpsRedirection();
 app.Run();

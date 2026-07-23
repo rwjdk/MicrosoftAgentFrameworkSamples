@@ -21,10 +21,10 @@ ChatClientAgent agent = client
 
 //AG-UI Part begin
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-builder.Services.AddAGUI();
+builder.Services.AddAGUIServer();
 WebApplication app = builder.Build();
 
-app.MapAGUI("/", agent);
+app.MapAGUIServer("/", agent);
 
 await app.RunAsync();
 
