@@ -67,7 +67,9 @@
     <PackageVersion Include="Microsoft.SemanticKernel.Connectors.AzureOpenAI" Version="1.78.0" />
     <PackageVersion Include="Microsoft.SemanticKernel.Connectors.CosmosNoSql" Version="1.74.0-preview" />
     <PackageVersion Include="Microsoft.SemanticKernel.Connectors.InMemory" Version="1.74.0-preview" />
+    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.SqliteVec" Version="1.74.0-preview" />
     <PackageVersion Include="Microsoft.SemanticKernel.Connectors.SqlServer" Version="1.74.1-preview" />
+    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Sqlite" Version="1.74.1-preview" />
     <PackageVersion Include="Mistral.SDK" Version="2.3.1" />
     <PackageVersion Include="ModelContextProtocol" Version="1.4.1" />
     <PackageVersion Include="ModelContextProtocol.AspNetCore" Version="1.4.1" />

@@ -104,6 +104,7 @@
   </Folder>
   <Folder Name="/RAG/">
     <Project Path="src/AdvancedRAGTechniques/AdvancedRAGTechniques.csproj" Id="222d4527-f7ca-4e02-a3ef-2f65d7f5014a" />
+    <Project Path="src/CommunityToolkit.VectorData/CommunityToolkit.VectorData.csproj" Id="e45106b6-48bc-4a50-a93a-d5d4ae370993" />
     <Project Path="src/UsingRAGInAgentFramework/UsingRAGInAgentFramework.csproj" Id="11bf0b5c-8a06-4a3f-b70c-148730d2db08" />
   </Folder>
   <Folder Name="/Semantic Kernel to Agent Framework Migration/">
