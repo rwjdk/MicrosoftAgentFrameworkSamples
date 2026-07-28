@@ -2,7 +2,7 @@
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
-using Microsoft.SemanticKernel.Connectors.SqliteVec;
+using CommunityToolkit.VectorData.SqliteVec;
 using Shared;
 
 List<KnowledgeBaseEntry> knowledgeBaseDataToAddToVectorData =

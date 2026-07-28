@@ -8,8 +8,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Azure.AI.OpenAI" />
-		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.SqliteVec" />		
+		<PackageReference Include="CommunityToolkit.VectorData.SqliteVec" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />		
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />
