@@ -8,9 +8,8 @@
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="CommunityToolkit.VectorData.InMemory" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.SqlServer" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />

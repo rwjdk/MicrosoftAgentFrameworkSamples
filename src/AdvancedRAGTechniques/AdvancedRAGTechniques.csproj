@@ -14,11 +14,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="CommunityToolkit.VectorData.SqlServer" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureAISearch" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.CosmosNoSql" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" />
-		<PackageReference Include="Microsoft.SemanticKernel.Connectors.SqlServer" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Shared.csproj" />

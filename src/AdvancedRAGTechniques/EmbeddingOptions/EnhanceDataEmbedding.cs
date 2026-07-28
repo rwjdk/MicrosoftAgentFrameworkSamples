@@ -1,6 +1,6 @@
 ﻿using Azure.AI.OpenAI;
+using CommunityToolkit.VectorData.SqlServer;
 using Microsoft.Agents.AI;
-using Microsoft.SemanticKernel.Connectors.SqlServer;
 using OpenAI.Chat;
 using UsingRAGInAgentFramework.Models;
 

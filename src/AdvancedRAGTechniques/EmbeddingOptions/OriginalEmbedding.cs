@@ -1,4 +1,4 @@
-﻿using Microsoft.SemanticKernel.Connectors.SqlServer;
+﻿using CommunityToolkit.VectorData.SqlServer;
 using UsingRAGInAgentFramework.Models;
 
 namespace AdvancedRAGTechniques.EmbeddingOptions;

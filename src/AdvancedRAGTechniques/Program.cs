@@ -3,7 +3,7 @@
 using AdvancedRAGTechniques;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
-using Microsoft.SemanticKernel.Connectors.SqlServer;
+using CommunityToolkit.VectorData.SqlServer;
 using Shared;
 using System.ClientModel;
 using System.Text.Json;
@@ -28,7 +28,7 @@ Microsoft.Extensions.AI.IEmbeddingGenerator<string, Embedding<float>> embeddingG
 //        EmbeddingGenerator = embeddingGenerator
 //    });
 
-Microsoft.SemanticKernel.Connectors.SqlServer.SqlServerVectorStore vectorStore = new SqlServerVectorStore(
+SqlServerVectorStore vectorStore = new SqlServerVectorStore(
     "Server=(local);Database=RAG_TEST;Trusted_Connection=true;TrustServerCertificate=True", new SqlServerVectorStoreOptions
     {
         EmbeddingGenerator = embeddingGenerator

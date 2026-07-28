@@ -1,9 +1,9 @@
 ﻿using AdvancedRAGTechniques.EmbeddingOptions;
 using AdvancedRAGTechniques.SearchOptions;
 using Azure.AI.OpenAI;
+using CommunityToolkit.VectorData.SqlServer;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
-using Microsoft.SemanticKernel.Connectors.SqlServer;
 using OpenAI.Chat;
 using Shared.Extensions;
 using UsingRAGInAgentFramework.Models;

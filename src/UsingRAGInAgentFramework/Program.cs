@@ -4,13 +4,13 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
-using Microsoft.SemanticKernel.Connectors.InMemory;
 using OpenAI.Chat;
 using Shared;
 using Shared.Extensions;
 using System.ClientModel;
 using System.Text;
 using System.Text.Json;
+using CommunityToolkit.VectorData.InMemory;
 using UsingRAGInAgentFramework.Models;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
@@ -53,25 +53,25 @@ Console.Clear();
 
 Utils.Green("Sample 2 - Preload RAG Data");
 
-Microsoft.Extensions.AI.IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
+IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
     .GetEmbeddingClient("text-embedding-3-small")
     .AsIEmbeddingGenerator();
 
-Microsoft.SemanticKernel.Connectors.InMemory.InMemoryVectorStore vectorStore =
+InMemoryVectorStore vectorStore =
     new(new InMemoryVectorStoreOptions
     {
         EmbeddingGenerator = embeddingGenerator
     });
 
-//Microsoft.SemanticKernel.Connectors.AzureAISearch.AzureAISearchVectorStore vectorStoreFromAzureAiSearch = new AzureAISearchVectorStore(
+//CommunityToolkit.VectorData.AzureAISearch.AzureAISearchVectorStore vectorStoreFromAzureAiSearch = new AzureAISearchVectorStore(
 //    new SearchIndexClient(new Uri("azureAiSearchEndpoint"),
 //        new AzureKeyCredential("azureAiSearchKey")
 //    ));
 
-//Microsoft.SemanticKernel.Connectors.SqlServer.SqlServerVectorStore vectorStoreFromSqlServer2025 = new SqlServerVectorStore(
+//CommunityToolkit.VectorData.SqlServer.SqlServerVectorStore vectorStoreFromSqlServer2025 = new SqlServerVectorStore(
 //    "connectionString");
 
-//Microsoft.SemanticKernel.Connectors.CosmosNoSql.CosmosNoSqlVectorStore vectorStoreFromCosmosDb = new CosmosNoSqlVectorStore(
+//CommunityToolkit.VectorData.CosmosNoSql.CosmosNoSqlVectorStore vectorStoreFromCosmosDb = new CosmosNoSqlVectorStore(
 //    "connectionString",
 //    "databaseName",
 //    new CosmosClientOptions

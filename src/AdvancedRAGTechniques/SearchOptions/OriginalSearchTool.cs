@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.VectorData;
-using Microsoft.SemanticKernel.Connectors.SqlServer;
+﻿using CommunityToolkit.VectorData.SqlServer;
+using Microsoft.Extensions.VectorData;
 using UsingRAGInAgentFramework.Models;
 
 namespace AdvancedRAGTechniques.SearchOptions;
