@@ -3,11 +3,11 @@ using Microsoft.Agents.AI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
-using Microsoft.SemanticKernel.Connectors.InMemory;
 using OpenAI;
 using Shared;
 using System.ClientModel;
 using System.Text;
+using CommunityToolkit.VectorData.InMemory;
 using OpenAI.Chat;
 using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 

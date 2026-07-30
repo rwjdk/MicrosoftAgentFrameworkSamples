@@ -5,10 +5,10 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Agents;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.AzureOpenAI;
-using Microsoft.SemanticKernel.Connectors.InMemory;
 using OpenAI.Chat;
 using Shared;
 using System.Text.Json;
+using CommunityToolkit.VectorData.InMemory;
 using ChatMessageContent = Microsoft.SemanticKernel.ChatMessageContent;
 
 #pragma warning disable OPENAI001
