@@ -1,15 +1,17 @@
 ﻿
 
-using System.ClientModel;
-using System.Text;
 using Azure;
 using Azure.AI.OpenAI;
-using Azure.Search.Documents.Indexes;
-using CommunityToolkit.VectorData.AzureAISearch;
+using CommunityToolkit.VectorData.InMemory;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
 using OpenAI.Responses;
+using System.ClientModel;
+using System.Text;
+using Azure.Search.Documents.Indexes;
+using CommunityToolkit.VectorData.AzureAISearch;
+
 #pragma warning disable OPENAI001
 
 #region Step 1: Prepare your Source Data

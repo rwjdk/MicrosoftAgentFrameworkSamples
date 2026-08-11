@@ -9,8 +9,8 @@
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Azure.AI.OpenAI" />
-		<PackageReference Include="CommunityToolkit.VectorData.InMemory" />
 		<PackageReference Include="CommunityToolkit.VectorData.AzureAISearch" />
+		<PackageReference Include="CommunityToolkit.VectorData.InMemory" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
 	</ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-﻿
+﻿#region Step 1: Prepare your Source Data
 
 using System.ClientModel;
 using System.Text;
@@ -8,9 +8,6 @@ using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
 using OpenAI.Responses;
-#pragma warning disable OPENAI001
-
-#region Step 1: Prepare your Source Data
 
 List<MyDataEntry> data =
         [
@@ -65,6 +62,7 @@ VectorStore store = new InMemoryVectorStore(new InMemoryVectorStoreOptions
 {
     EmbeddingGenerator = embeddingGenerator
 });
+
 VectorStoreCollection<string, VectorModel> collection = store.GetCollection<string, VectorModel>("myCollection");
 await collection.EnsureCollectionExistsAsync();
 
@@ -72,14 +70,15 @@ await collection.EnsureCollectionExistsAsync();
 
 #region Step 7: Embed Data
 
-foreach (MyDataEntry entry in data)
+foreach (MyDataEntry dataEntry in data)
 {
-    Console.WriteLine($"Embedding Q: {entry.Question}");
+    Console.WriteLine($"Embedding q: {dataEntry.Question}");
+
     VectorModel vectorModel = new VectorModel
     {
-        Id = Guid.NewGuid().ToString(), 
-        Question = entry.Question,
-        Answer = entry.Answer
+        Id = Guid.NewGuid().ToString(),
+        Question = dataEntry.Question,
+        Answer = dataEntry.Answer
     };
 
     await collection.UpsertAsync(vectorModel);
@@ -91,7 +90,7 @@ foreach (MyDataEntry entry in data)
 
 async Task<string> SearchRag(string input)
 {
-    StringBuilder searchResult = new StringBuilder();
+    StringBuilder searchResult = new();
 
     await foreach (VectorSearchResult<VectorModel> result in collection.SearchAsync(input, 3))
     {
@@ -105,10 +104,15 @@ async Task<string> SearchRag(string input)
 
 #region Step 9: Build and use Agent
 
-ChatClientAgent agent = client.GetResponsesClient().AsAIAgent(llmModelDeploymentName, tools: [AIFunctionFactory.Create(SearchRag)]);
+#pragma warning disable OPENAI001
+ChatClientAgent agent = client
+    .GetResponsesClient()
+    .AsAIAgent(llmModelDeploymentName, tools: [AIFunctionFactory.Create(SearchRag)]);
 
 AgentResponse response = await agent.RunAsync("What is the Wifi password?");
 Console.WriteLine(response);
+
+#pragma warning restore OPENAI001
 
 #endregion
 
@@ -127,9 +131,10 @@ public class VectorModel
 
     [VectorStoreVector(1536)]
     public string? Vector => $"""
-                              <knowledgeBaseEntry>
+                              <knowledgebase>
                                  <question>{Question}</question>
                                  <answer>{Answer}</answer>
-                              </knowledgeBaseEntry>
+                              </knowledgebase>
                               """;
+
 }

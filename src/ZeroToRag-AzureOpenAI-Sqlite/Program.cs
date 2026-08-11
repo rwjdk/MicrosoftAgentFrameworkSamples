@@ -1,7 +1,5 @@
 ﻿
 
-using System.ClientModel;
-using System.Text;
 using Azure.AI.OpenAI;
 using CommunityToolkit.VectorData.InMemory;
 using CommunityToolkit.VectorData.SqliteVec;
@@ -9,6 +7,9 @@ using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
 using OpenAI.Responses;
+using System.ClientModel;
+using System.Reflection.Emit;
+using System.Text;
 #pragma warning disable OPENAI001
 
 #region Step 1: Prepare your Source Data
@@ -34,14 +35,14 @@ string azureEndpoint = "";
 string azureApiKey = ""; //todo - store this securely and not in source code!
 string embeddingModelDeploymentName = "";
 string llmModelDeploymentName = "";
-string sqliteConnectionString = "";
+string sqliteConnectionString = $"";
 #endregion
 
 #region Step 3: Install needed NuGet Packages
 
 //todo - Azure.AI.OpenAI (For the Azure Connection)
 //todo - Microsoft.Agents.AI.OpenAI (For the Agent)
-//todo - CommunityToolkit.VectorData.InMemory (For VectorStore)
+//todo - CommunityToolkit.VectorData.SqliteVec (For VectorStore)
 
 #endregion
 
@@ -62,10 +63,10 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
 
 #region Step 6: Create you VectorStore (with Embedding Generator in options) and collection (and ensure it exist)
 
-VectorStore store = new SqliteVectorStore(sqliteConnectionString, new SqliteVectorStoreOptions
+VectorStore store = new SqliteVectorStore(sqliteConnectionString, new SqliteVectorStoreOptions 
 {
     EmbeddingGenerator = embeddingGenerator
-});
+}); 
 VectorStoreCollection<string, VectorModel> collection = store.GetCollection<string, VectorModel>("myCollection");
 await collection.EnsureCollectionExistsAsync();
 

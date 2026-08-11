@@ -1,13 +1,15 @@
-﻿using System.ClientModel;
-using System.Text;
-using System.Text.Json;
-using Azure.AI.OpenAI;
-using CommunityToolkit.VectorData.CosmosNoSql;
+﻿using Azure.AI.OpenAI;
+using CommunityToolkit.VectorData.InMemory;
 using Microsoft.Agents.AI;
-using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
 using OpenAI.Responses;
+using System.ClientModel;
+using System.Text;
+using System.Text.Json;
+using CommunityToolkit.VectorData.CosmosNoSql;
+using Microsoft.Azure.Cosmos;
+
 #pragma warning disable OPENAI001
 
 #region Step 1: Prepare your Source Data
@@ -63,11 +65,13 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
 #region Step 6: Create you VectorStore (with Embedding Generator in options) and collection (and ensure it exist)
 
 VectorStore store = new CosmosNoSqlVectorStore(cosmosDbConnectionString, "youtube", new CosmosClientOptions
+    {
+        UseSystemTextJsonSerializerWithOptions = JsonSerializerOptions.Web
+    }, new CosmosNoSqlVectorStoreOptions
 {
-    UseSystemTextJsonSerializerWithOptions = JsonSerializerOptions.Web
-}, new CosmosNoSqlVectorStoreOptions{
     EmbeddingGenerator = embeddingGenerator
 });
+
 VectorStoreCollection<string, VectorModel> collection = store.GetCollection<string, VectorModel>("myCollection");
 await collection.EnsureCollectionExistsAsync();
 

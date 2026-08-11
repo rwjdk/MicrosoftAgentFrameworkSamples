@@ -28,8 +28,8 @@ List<MyDataEntry> data =
 #region Step 2: Configure environment
 
 string openAiApiKey = ""; //todo - store this securely and not in source code!
-string embeddingModelName = "";
-string llmModelName = "";
+string embeddingModelName = "text-embedding-3-small";
+string llmModelName = "gpt-5.6-luna";
 
 #endregion
 
@@ -43,9 +43,7 @@ string llmModelName = "";
 #region Step 4: Create you Embedding Generator
 
 OpenAIClient client = new OpenAIClient(openAiApiKey);
-IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
-    .GetEmbeddingClient(embeddingModelName)
-    .AsIEmbeddingGenerator();
+IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client.GetEmbeddingClient(embeddingModelName).AsIEmbeddingGenerator();
 
 #endregion
 

@@ -41,8 +41,7 @@ string llmModelName = "";
 #region Step 4: Create you Embedding Generator
 
 Client client = new Google.GenAI.Client(apiKey: googleApiKey);
-IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
-    .AsIEmbeddingGenerator(embeddingModelName);
+IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client.AsIEmbeddingGenerator(embeddingModelName);
 
 #endregion
 
