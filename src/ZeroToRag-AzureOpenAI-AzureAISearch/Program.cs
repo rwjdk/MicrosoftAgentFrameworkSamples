@@ -2,8 +2,10 @@
 
 using System.ClientModel;
 using System.Text;
+using Azure;
 using Azure.AI.OpenAI;
-using CommunityToolkit.VectorData.InMemory;
+using Azure.Search.Documents.Indexes;
+using CommunityToolkit.VectorData.AzureAISearch;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
@@ -33,6 +35,8 @@ string azureEndpoint = "";
 string azureApiKey = ""; //todo - store this securely and not in source code!
 string embeddingModelDeploymentName = "";
 string llmModelDeploymentName = "";
+string azureAiSearchEndpoint = "";
+string azureAiSearchKey = "";
 
 #endregion
 
@@ -40,7 +44,7 @@ string llmModelDeploymentName = "";
 
 //todo - Azure.AI.OpenAI (For the Azure Connection)
 //todo - Microsoft.Agents.AI.OpenAI (For the Agent)
-//todo - CommunityToolkit.VectorData.InMemory (For VectorStore)
+//todo - CommunityToolkit.VectorData.AzureAISearch (For VectorStore)
 
 #endregion
 
@@ -61,11 +65,11 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
 
 #region Step 6: Create you VectorStore (with Embedding Generator in options) and collection (and ensure it exist)
 
-VectorStore store = new InMemoryVectorStore(new InMemoryVectorStoreOptions
+VectorStore store = new AzureAISearchVectorStore(new SearchIndexClient(new Uri(azureAiSearchEndpoint), new AzureKeyCredential(azureAiSearchKey)), new AzureAISearchVectorStoreOptions
 {
     EmbeddingGenerator = embeddingGenerator
 });
-VectorStoreCollection<string, VectorModel> collection = store.GetCollection<string, VectorModel>("myCollection");
+VectorStoreCollection<string, VectorModel> collection = store.GetCollection<string, VectorModel>("my-collection"); //Note: lowercase letters only
 await collection.EnsureCollectionExistsAsync();
 
 #endregion
@@ -74,6 +78,7 @@ await collection.EnsureCollectionExistsAsync();
 
 foreach (MyDataEntry entry in data)
 {
+    Console.WriteLine($"Embedding Q: {entry.Question}");
     VectorModel vectorModel = new VectorModel
     {
         Id = Guid.NewGuid().ToString(), 

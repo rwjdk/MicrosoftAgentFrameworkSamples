@@ -1,14 +1,9 @@
-﻿
-
-using System.ClientModel;
-using System.Text;
-using Azure.AI.OpenAI;
+﻿using System.Text;
 using CommunityToolkit.VectorData.InMemory;
+using Google.GenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
-using OpenAI.Responses;
-#pragma warning disable OPENAI001
 
 #region Step 1: Prepare your Source Data
 
@@ -29,27 +24,25 @@ List<MyDataEntry> data =
 
 #region Step 2: Configure environment
 
-string azureEndpoint = "";
-string azureApiKey = ""; //todo - store this securely and not in source code!
-string embeddingModelDeploymentName = "";
-string llmModelDeploymentName = "";
+string googleApiKey = ""; //todo - store this securely and not in source code!
+string embeddingModelName = "";
+string llmModelName = "";
 
 #endregion
 
 #region Step 3: Install needed NuGet Packages
 
-//todo - Azure.AI.OpenAI (For the Azure Connection)
-//todo - Microsoft.Agents.AI.OpenAI (For the Agent)
+//todo - Google.GenAI (For the Gemini Connection)
+//todo - Microsoft.Agents.AI (For the Agent)
 //todo - CommunityToolkit.VectorData.InMemory (For VectorStore)
 
 #endregion
 
 #region Step 4: Create you Embedding Generator
 
-AzureOpenAIClient client = new AzureOpenAIClient(new Uri(azureEndpoint), new ApiKeyCredential(azureApiKey));
+Client client = new Google.GenAI.Client(apiKey: googleApiKey);
 IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
-    .GetEmbeddingClient(embeddingModelDeploymentName)
-    .AsIEmbeddingGenerator();
+    .AsIEmbeddingGenerator(embeddingModelName);
 
 #endregion
 
@@ -74,6 +67,7 @@ await collection.EnsureCollectionExistsAsync();
 
 foreach (MyDataEntry entry in data)
 {
+    Console.WriteLine($"Embedding Q: {entry.Question}");
     VectorModel vectorModel = new VectorModel
     {
         Id = Guid.NewGuid().ToString(), 
@@ -104,7 +98,7 @@ async Task<string> SearchRag(string input)
 
 #region Step 9: Build and use Agent
 
-ChatClientAgent agent = client.GetResponsesClient().AsAIAgent(llmModelDeploymentName, tools: [AIFunctionFactory.Create(SearchRag)]);
+ChatClientAgent agent = client.AsIChatClient(llmModelName).AsAIAgent(tools: [AIFunctionFactory.Create(SearchRag)]);
 
 AgentResponse response = await agent.RunAsync("What is the Wifi password?");
 Console.WriteLine(response);

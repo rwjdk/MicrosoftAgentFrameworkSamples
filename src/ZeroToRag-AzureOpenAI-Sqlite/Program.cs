@@ -4,6 +4,7 @@ using System.ClientModel;
 using System.Text;
 using Azure.AI.OpenAI;
 using CommunityToolkit.VectorData.InMemory;
+using CommunityToolkit.VectorData.SqliteVec;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
@@ -33,7 +34,7 @@ string azureEndpoint = "";
 string azureApiKey = ""; //todo - store this securely and not in source code!
 string embeddingModelDeploymentName = "";
 string llmModelDeploymentName = "";
-
+string sqliteConnectionString = "";
 #endregion
 
 #region Step 3: Install needed NuGet Packages
@@ -61,7 +62,7 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
 
 #region Step 6: Create you VectorStore (with Embedding Generator in options) and collection (and ensure it exist)
 
-VectorStore store = new InMemoryVectorStore(new InMemoryVectorStoreOptions
+VectorStore store = new SqliteVectorStore(sqliteConnectionString, new SqliteVectorStoreOptions
 {
     EmbeddingGenerator = embeddingGenerator
 });
@@ -74,6 +75,7 @@ await collection.EnsureCollectionExistsAsync();
 
 foreach (MyDataEntry entry in data)
 {
+    Console.WriteLine($"Embedding Q: {entry.Question}");
     VectorModel vectorModel = new VectorModel
     {
         Id = Guid.NewGuid().ToString(), 

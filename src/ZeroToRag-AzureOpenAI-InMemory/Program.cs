@@ -74,6 +74,7 @@ await collection.EnsureCollectionExistsAsync();
 
 foreach (MyDataEntry entry in data)
 {
+    Console.WriteLine($"Embedding Q: {entry.Question}");
     VectorModel vectorModel = new VectorModel
     {
         Id = Guid.NewGuid().ToString(), 

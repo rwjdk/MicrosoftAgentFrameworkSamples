@@ -1,10 +1,10 @@
-﻿
-
-using System.ClientModel;
+﻿using System.ClientModel;
 using System.Text;
+using System.Text.Json;
 using Azure.AI.OpenAI;
-using CommunityToolkit.VectorData.InMemory;
+using CommunityToolkit.VectorData.CosmosNoSql;
 using Microsoft.Agents.AI;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
 using OpenAI.Responses;
@@ -33,6 +33,7 @@ string azureEndpoint = "";
 string azureApiKey = ""; //todo - store this securely and not in source code!
 string embeddingModelDeploymentName = "";
 string llmModelDeploymentName = "";
+string cosmosDbConnectionString = "";
 
 #endregion
 
@@ -40,7 +41,7 @@ string llmModelDeploymentName = "";
 
 //todo - Azure.AI.OpenAI (For the Azure Connection)
 //todo - Microsoft.Agents.AI.OpenAI (For the Agent)
-//todo - CommunityToolkit.VectorData.InMemory (For VectorStore)
+//todo - CommunityToolkit.VectorData.CosmosNoSql (For VectorStore)
 
 #endregion
 
@@ -61,8 +62,10 @@ IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
 
 #region Step 6: Create you VectorStore (with Embedding Generator in options) and collection (and ensure it exist)
 
-VectorStore store = new InMemoryVectorStore(new InMemoryVectorStoreOptions
+VectorStore store = new CosmosNoSqlVectorStore(cosmosDbConnectionString, "youtube", new CosmosClientOptions
 {
+    UseSystemTextJsonSerializerWithOptions = JsonSerializerOptions.Web
+}, new CosmosNoSqlVectorStoreOptions{
     EmbeddingGenerator = embeddingGenerator
 });
 VectorStoreCollection<string, VectorModel> collection = store.GetCollection<string, VectorModel>("myCollection");
@@ -74,6 +77,7 @@ await collection.EnsureCollectionExistsAsync();
 
 foreach (MyDataEntry entry in data)
 {
+    Console.WriteLine($"Embedding Q: {entry.Question}");
     VectorModel vectorModel = new VectorModel
     {
         Id = Guid.NewGuid().ToString(), 

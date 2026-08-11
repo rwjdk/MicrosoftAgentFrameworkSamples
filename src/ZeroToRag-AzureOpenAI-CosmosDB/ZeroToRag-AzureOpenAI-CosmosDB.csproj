@@ -9,7 +9,9 @@
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Azure.AI.OpenAI" />
+		<PackageReference Include="CommunityToolkit.VectorData.CosmosNoSql" />
 		<PackageReference Include="CommunityToolkit.VectorData.InMemory" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+		<PackageReference Include="Newtonsoft.Json" />
 	</ItemGroup>
 </Project>
