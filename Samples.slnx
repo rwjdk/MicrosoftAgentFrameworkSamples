@@ -194,5 +194,14 @@
   <Folder Name="/ZeroToFirstAgent/OpenAI Based/Offline/">
     <Project Path="src/ZeroToFirstAgent.FoundryLocal/ZeroToFirstAgent.FoundryLocal.csproj" Id="420ee7f5-fa0f-4303-a68c-630ede8086e4" />
   </Folder>
+  <Folder Name="/ZeroToRAG/">
+    <Project Path="src/ZeroToRag-AzureOpenAI-AzureAISearch/ZeroToRag-AzureOpenAI-AzureAISearch.csproj" />
+    <Project Path="src/ZeroToRag-AzureOpenAI-CosmosDB/ZeroToRag-AzureOpenAI-cosmosDB.csproj" DisplayName="ZeroToRag-AzureOpenAI-CosmosDB" />
+    <Project Path="src/ZeroToRag-AzureOpenAI-InMemory/ZeroToRag-AzureOpenAI-InMemory.csproj" Id="c1104661-8fdf-40de-9fb2-3a2a7251d1c0" />
+    <Project Path="src/ZeroToRag-AzureOpenAI-Sqlite/ZeroToRag-AzureOpenAI-Sqlite.csproj" />
+    <Project Path="src/ZeroToRag-AzureOpenAI-SqlServer/ZeroToRag-AzureOpenAI-SqlServer.csproj" />
+    <Project Path="src/ZeroToRag-Google-InMemory/ZeroToRag-Google-InMemory.csproj" />
+    <Project Path="src/ZeroToRag-OpenAI-InMemory/ZeroToRag-OpenAI-InMemory.csproj" />
+  </Folder>
   <Project Path="src/Shared/Shared.csproj" />
 </Solution>
