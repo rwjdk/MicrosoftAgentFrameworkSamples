@@ -56,6 +56,7 @@ app.MapAGUIServer("/weatherAgentWithStructuredContent", new AgUiStructuredToolsO
 app.MapAGUIServer("/movieAgent", new AgUiStructuredOutputAgent<MovieResult>(movieStructuredOutputAgent));
 
 app.UseHttpsRedirection();
+app.UseCors("Cors");
 app.Run();
 
 //Server-Tool
