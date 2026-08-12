@@ -58,6 +58,11 @@ public static class Utils
         }
     }
 
+    public static void LineSeparator()
+    {
+        WriteLine("".PadLeft(Console.WindowWidth, '-'), ConsoleColor.Gray);
+    }
+
     public static void Separator()
     {
         Console.WriteLine();

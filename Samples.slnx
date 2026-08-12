@@ -100,6 +100,7 @@
     <Project Path="src/OpenAICachingTokens/OpenAICachingTokens.csproj" Id="eba2d4ee-af58-4670-aa78-64ab92ca8e13" />
     <Project Path="src/SettingsOnAiAgent/SettingsOnAiAgent.csproj" Id="86d8fd4d-bf34-488d-8f30-94e9b808419a" />
     <Project Path="src/TheDifferentAgents/TheDifferentAgents.csproj" Id="443e0db8-204b-403d-8145-7133496bf9c8" />
+    <Project Path="src/TimeToSwitchToTheResponsesAPI/TimeToSwitchToTheResponsesAPI.csproj" Id="600a03fd-5a55-48a4-8326-c26215cb31c5" />
     <Project Path="src/WhyIDontUseWorkflows/WhyIDontUseWorkflows.csproj" Id="caac6d90-94bb-43e0-bd61-9b09f7a8bfbf" />
   </Folder>
   <Folder Name="/RAG/">
@@ -135,14 +136,14 @@
   <Folder Name="/The Trello Experiment/">
     <Project Path="src/The Trello Experiment/The Trello Experiment.csproj" Id="d4d8961f-a27b-4a37-bcff-bf5675d36c4d" />
   </Folder>
-  <Folder Name="/Token Usage/">
-    <Project Path="src/TokenUsage/TokenUsage.csproj" Id="e3accc36-005a-4900-be4e-0d1d35142a2a" />
-    <Project Path="src/UseToonToSaveTokens/UseToonToSaveTokens.csproj" Id="a84ca59e-b13d-4c0f-aaed-ff183d09d198" />
-  </Folder>
-  <Folder Name="/Token Usage/Thinking &amp; Reasoning Settings/">
+  <Folder Name="/Thinking &amp; Reasoning Settings/">
     <Project Path="src/ReasoningEffort.Anthropic/ReasoningEffort.Anthropic.csproj" Id="310efaa3-9397-49cc-9a78-a05a917bd0c2" />
     <Project Path="src/ReasoningEffort.Google/ReasoningEffort.Google.csproj" Id="31032388-d86a-47a2-8d9d-bb7d5aaf5d0a" />
     <Project Path="src/ReasoningEffort/ReasoningEffort.OpenAI.csproj" Id="caba07b0-4551-4b07-b2b6-d895836bda18" />
+  </Folder>
+  <Folder Name="/Token Usage/">
+    <Project Path="src/TokenUsage/TokenUsage.csproj" Id="e3accc36-005a-4900-be4e-0d1d35142a2a" />
+    <Project Path="src/UseToonToSaveTokens/UseToonToSaveTokens.csproj" Id="a84ca59e-b13d-4c0f-aaed-ff183d09d198" />
   </Folder>
   <Folder Name="/Tool Calling &amp; MCP/">
     <Project Path="src/ToolCalling.Advanced/ToolCalling.Advanced.csproj" Id="c8428d24-c838-4a61-ab71-ecffcde4b8d9" />
@@ -196,7 +197,7 @@
   </Folder>
   <Folder Name="/ZeroToRAG/">
     <Project Path="src/ZeroToRag-AzureOpenAI-AzureAISearch/ZeroToRag-AzureOpenAI-AzureAISearch.csproj" />
-    <Project Path="src/ZeroToRag-AzureOpenAI-CosmosDB/ZeroToRag-AzureOpenAI-cosmosDB.csproj" DisplayName="ZeroToRag-AzureOpenAI-CosmosDB" />
+    <Project Path="src/ZeroToRag-AzureOpenAI-CosmosDB/ZeroToRag-AzureOpenAI-cosmosDB.csproj" />
     <Project Path="src/ZeroToRag-AzureOpenAI-InMemory/ZeroToRag-AzureOpenAI-InMemory.csproj" Id="c1104661-8fdf-40de-9fb2-3a2a7251d1c0" />
     <Project Path="src/ZeroToRag-AzureOpenAI-Sqlite/ZeroToRag-AzureOpenAI-Sqlite.csproj" />
     <Project Path="src/ZeroToRag-AzureOpenAI-SqlServer/ZeroToRag-AzureOpenAI-SqlServer.csproj" />

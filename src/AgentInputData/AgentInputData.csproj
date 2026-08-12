@@ -13,7 +13,6 @@
     </Content>
   </ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="OpenAI" />
 		<PackageReference Include="Azure.AI.OpenAI" />
 		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
 	</ItemGroup>

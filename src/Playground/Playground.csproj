@@ -28,7 +28,6 @@
 		<PackageReference Include="Microsoft.Agents.AI.Hosting.A2A.AspNetCore" />
 		<PackageReference Include="Microsoft.Agents.AI.Hosting.AGUI.AspNetCore" />
 		<PackageReference Include="Microsoft.Agents.AI.Workflows" />
-		<PackageReference Include="OpenAI" />
 		<PackageReference Include="Azure.AI.OpenAI" />
 		<PackageReference Include="NAudio" />
 		<PackageReference Include="OpenTelemetry" />
