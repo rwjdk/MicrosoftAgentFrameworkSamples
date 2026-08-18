@@ -7,7 +7,7 @@ internal class StreamingAudioPlayer : IDisposable
     private static readonly TimeSpan MinimumPreroll = TimeSpan.FromMilliseconds(500);
     private static readonly TimeSpan StreamStartPadding = TimeSpan.FromMilliseconds(450);
     private readonly BufferedWaveProvider _bufferedWaveProvider;
-    private readonly WaveOutEvent _player;
+    private readonly WaveOut _player;
     private readonly Lock _syncRoot = new();
     private readonly int _minimumPrerollBytes;
     private readonly byte[] _streamStartPaddingBytes;
@@ -17,9 +17,8 @@ internal class StreamingAudioPlayer : IDisposable
     public StreamingAudioPlayer()
     {
         WaveFormat waveFormat = new(24_000, 16, 1);
-        _bufferedWaveProvider = new BufferedWaveProvider(waveFormat)
+        _bufferedWaveProvider = new BufferedWaveProvider(waveFormat, TimeSpan.FromSeconds(20))
         {
-            BufferDuration = TimeSpan.FromSeconds(20),
             DiscardOnBufferOverflow = true,
             ReadFully = true,
         };
@@ -27,9 +26,9 @@ internal class StreamingAudioPlayer : IDisposable
         _minimumPrerollBytes = (int)(waveFormat.AverageBytesPerSecond * MinimumPreroll.TotalSeconds);
         _streamStartPaddingBytes = new byte[(int)(waveFormat.AverageBytesPerSecond * StreamStartPadding.TotalSeconds)];
 
-        _player = new WaveOutEvent
+        _player = new WaveOut
         {
-            DesiredLatency = 120,
+            BufferMilliseconds = 60,
         };
         _player.Init(_bufferedWaveProvider);
     }

@@ -1,5 +1,4 @@
 ﻿using Azure.AI.OpenAI;
-using NAudio.Utils;
 using NAudio.Wave;
 using OpenAI.Audio;
 using Shared;
@@ -43,17 +42,18 @@ while (true)
 MemoryStream RecordAudio()
 {
     MemoryStream stream = new();
-    using WaveInEvent waveIn = new();
+    using WaveIn waveIn = new();
     waveIn.WaveFormat = new WaveFormat(16000, 16, 1);
-    WaveFileWriter writer = new(new IgnoreDisposeStream(stream), waveIn.WaveFormat);
+    using (WaveFileWriter writer = new(stream, waveIn.WaveFormat))
+    {
+        waveIn.DataAvailable += (_, args) => { writer.Write(args.Buffer, 0, args.BytesRecorded); };
+        waveIn.StartRecording();
 
-    waveIn.DataAvailable += (_, args) => { writer.Write(args.Buffer, 0, args.BytesRecorded); };
-    waveIn.StartRecording();
+        Console.WriteLine("Recording... Press any key to stop");
+        Console.ReadKey();
 
-    Console.WriteLine("Recording... Press any key to stop");
-    Console.ReadKey();
-
-    waveIn.StopRecording();
+        waveIn.StopRecording();
+    }
     stream.Position = 0;
     return stream;
 }

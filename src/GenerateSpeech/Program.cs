@@ -39,7 +39,7 @@ File.WriteAllBytes(Path.Combine(Path.GetTempPath(), "test.mp3"), bytes);
 
 //Play directly (NAudio nuget package (Windows Only))
 WaveStream waveStream = new Mp3FileReader(new MemoryStream(bytes));
-IWavePlayer player = new WaveOutEvent();
+IWavePlayer player = new WaveOut();
 player.Init(waveStream);
 player.Play();
 

@@ -5,7 +5,7 @@ namespace OpenAI.RealtimeAPI;
 
 sealed class MicrophoneStreamer : IAsyncDisposable
 {
-    private readonly WaveInEvent _waveIn;
+    private readonly WaveIn _waveIn;
     private readonly Channel<byte[]> _audioChannel;
     private readonly CancellationTokenRegistration _cancellationRegistration;
     private bool _isDisposed;
@@ -19,7 +19,7 @@ sealed class MicrophoneStreamer : IAsyncDisposable
             SingleWriter = true,
         });
 
-        _waveIn = new WaveInEvent
+        _waveIn = new WaveIn
         {
             BufferMilliseconds = 100,
             NumberOfBuffers = 3,
